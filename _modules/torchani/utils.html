@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>torchani.utils &mdash; TorchANI 1.1.dev3+ge28aa28 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> TorchANI
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.dev3+ge28aa28
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/energy_force.html">Computing Energy and Force Using Models Inside Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ase_interface.html">Structure minimization and constant temperature MD using ASE interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/jit.html">Using TorchScript to serialize and deploy model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/vibration_analysis.html">Computing Vibrational Frequencies Using Analytical Hessian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/load_from_neurochem.html">Construct Model From NeuroChem Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/nnp_training.html">Train Your Own Neural Network Potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/nnp_training_force.html">Train Neural Network Potential To Both Energies and Forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/nnp_training_ignite.html">Train Your Own Neural Network Potential, Using PyTorch-Ignite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/cache_aev.html">Use Disk Cache of AEV to Boost Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/neurochem_trainer.html">Train Neural Network Potential From NeuroChem Input File</a></li>
+</ul>
+<p class="caption"><span class="caption-text">TorchANI's API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">TorchANI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.models">Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.data">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.utils">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.neurochem">NeuroChem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.ase">ASE Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.optim">TorchANI Optimizater</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.ignite">Ignite Helpers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TorchANI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>torchani.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for torchani.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.utils.data</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span>
+
+
+<div class="viewcode-block" id="pad"><a class="viewcode-back" href="../../api.html#torchani.pad">[docs]</a><span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="n">species</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Put different species together into single tensor.</span>
+
+<span class="sd">    If the species are from molecules of different number of total atoms, then</span>
+<span class="sd">    ghost atoms with atom type -1 will be added to make it fit into the same</span>
+<span class="sd">    shape.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        species (:class:`collections.abc.Sequence`): sequence of species.</span>
+<span class="sd">            Species must be of shape ``(N, A)``, where ``N`` is the number of</span>
+<span class="sd">            3D structures, ``A`` is the number of atoms.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`torch.Tensor`: species batched together.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_atoms</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">])</span>
+    <span class="n">padded_species</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">:</span>
+        <span class="n">natoms</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">natoms</span> <span class="o">&lt;</span> <span class="n">max_atoms</span><span class="p">:</span>
+            <span class="n">padding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_atoms</span> <span class="o">-</span> <span class="n">natoms</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                                 <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">s</span><span class="p">,</span> <span class="n">padding</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">padded_species</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">padded_species</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pad_atomic_properties"><a class="viewcode-back" href="../../api.html#torchani.pad_atomic_properties">[docs]</a><span class="k">def</span> <span class="nf">pad_atomic_properties</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">,</span> <span class="n">padding_values</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">species</span><span class="o">=-</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Put a sequence of atomic properties together into single tensor.</span>
+
+<span class="sd">    Inputs are `[{&#39;species&#39;: ..., ...}, {&#39;species&#39;: ..., ...}, ...]` and the outputs</span>
+<span class="sd">    are `{&#39;species&#39;: padded_tensor, ...}`</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        species_coordinates (:class:`collections.abc.Sequence`): sequence of</span>
+<span class="sd">             atomic properties.</span>
+<span class="sd">        padding_values (dict): the value to fill to pad tensors to same size</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">anykey</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">max_atoms</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">anykey</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">atomic_properties</span><span class="p">)</span>
+    <span class="n">padded</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">atomic_properties</span><span class="p">:</span>
+        <span class="n">num_molecules</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="n">num_molecules</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]},</span> <span class="s1">&#39;Number of molecules in different atomic properties mismatch&#39;</span>
+            <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">num_molecules</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">padatoms</span> <span class="o">=</span> <span class="n">max_atoms</span> <span class="o">-</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">padatoms</span>
+            <span class="n">padding</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">new_full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">padding_values</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">v</span><span class="p">,</span> <span class="n">padding</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_molecules</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">padded</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">padded</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+<span class="c1"># @torch.jit.script</span>
+<div class="viewcode-block" id="present_species"><a class="viewcode-back" href="../../api.html#torchani.present_species">[docs]</a><span class="k">def</span> <span class="nf">present_species</span><span class="p">(</span><span class="n">species</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a vector of species of atoms, compute the unique species present.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        species (:class:`torch.Tensor`): 1D vector of shape ``(atoms,)``</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`torch.Tensor`: 1D vector storing present atom types sorted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># present_species, _ = species.flatten()._unique(sorted=True)</span>
+    <span class="n">present_species</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">present_species</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">present_species</span> <span class="o">=</span> <span class="n">present_species</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">present_species</span></div>
+
+
+<div class="viewcode-block" id="strip_redundant_padding"><a class="viewcode-back" href="../../api.html#torchani.strip_redundant_padding">[docs]</a><span class="k">def</span> <span class="nf">strip_redundant_padding</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Strip trailing padding atoms.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        atomic_properties (dict): properties to strip</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: same set of properties with redundant padding atoms stripped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">species</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+    <span class="n">non_padding</span> <span class="o">=</span> <span class="p">(</span><span class="n">species</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">atomic_properties</span><span class="p">:</span>
+        <span class="n">atomic_properties</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">non_padding</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atomic_properties</span></div>
+
+
+<div class="viewcode-block" id="map2central"><a class="viewcode-back" href="../../api.html#torchani.map2central">[docs]</a><span class="k">def</span> <span class="nf">map2central</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">pbc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map atoms outside the unit cell into the cell using PBC.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        cell (:class:`torch.Tensor`): tensor of shape (3, 3) of the three</span>
+<span class="sd">            vectors defining unit cell:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                tensor([[x1, y1, z1],</span>
+<span class="sd">                        [x2, y2, z2],</span>
+<span class="sd">                        [x3, y3, z3]])</span>
+
+<span class="sd">        coordinates (:class:`torch.Tensor`): Tensor of shape</span>
+<span class="sd">            ``(molecules, atoms, 3)``.</span>
+
+<span class="sd">        pbc (:class:`torch.Tensor`): boolean vector of size 3 storing</span>
+<span class="sd">            if pbc is enabled for that direction.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`torch.Tensor`: coordinates of atoms mapped back to unit cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Step 1: convert coordinates from standard cartesian coordinate to unit</span>
+    <span class="c1"># cell coordinates</span>
+    <span class="n">inv_cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+    <span class="n">coordinates_cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">inv_cell</span><span class="p">)</span>
+    <span class="c1"># Step 2: wrap cell coordinates into [0, 1)</span>
+    <span class="n">coordinates_cell</span> <span class="o">-=</span> <span class="n">coordinates_cell</span><span class="o">.</span><span class="n">floor</span><span class="p">()</span> <span class="o">*</span> <span class="n">pbc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">coordinates_cell</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="c1"># Step 3: convert from cell coordinates back to standard cartesian</span>
+    <span class="c1"># coordinate</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">coordinates_cell</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EnergyShifter"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter">[docs]</a><span class="k">class</span> <span class="nc">EnergyShifter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper class for adding and subtracting self atomic energies</span>
+
+<span class="sd">    This is a subclass of :class:`torch.nn.Module`, so it can be used directly</span>
+<span class="sd">    in a pipeline as ``[input-&gt;AEVComputer-&gt;ANIModel-&gt;EnergyShifter-&gt;output]``.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        self_energies (:class:`collections.abc.Sequence`): Sequence of floating</span>
+<span class="sd">            numbers for the self energy of each atom type. The numbers should</span>
+<span class="sd">            be in order, i.e. ``self_energies[i]`` should be atom type ``i``.</span>
+<span class="sd">        fit_intercept (bool): Whether to calculate the intercept during the LSTSQ</span>
+<span class="sd">            fit. The intercept will also be taken into account to shift energies.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">self_energies</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EnergyShifter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
+        <span class="k">if</span> <span class="n">self_energies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">self_energies</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">self_energies</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;self_energies&#39;</span><span class="p">,</span> <span class="n">self_energies</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EnergyShifter.sae_from_dataset"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.sae_from_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">sae_from_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute atomic self energies from dataset.</span>
+
+<span class="sd">        Least-squares solution to a linear equation is calculated to output</span>
+<span class="sd">        ``self_energies`` when ``self_energies = None`` is passed to</span>
+<span class="sd">        :class:`torchani.EnergyShifter`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
+        <span class="n">present_species_</span> <span class="o">=</span> <span class="n">present_species</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">present_species_</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+        <span class="c1"># Concatenate a vector of ones to find fit intercept</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">coeff_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">coeff_</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EnergyShifter.sae"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.sae">[docs]</a>    <span class="k">def</span> <span class="nf">sae</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute self energies for molecules.</span>
+
+<span class="sd">        Padding atoms will be automatically excluded.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            species (:class:`torch.Tensor`): Long tensor in shape</span>
+<span class="sd">                ``(conformations, atoms)``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`torch.Tensor`: 1D vector in shape ``(conformations,)``</span>
+<span class="sd">            for molecular self energies.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">intercept</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="n">intercept</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
+        <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">self_energies</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">intercept</span></div>
+
+<div class="viewcode-block" id="EnergyShifter.subtract_from_dataset"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.subtract_from_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">subtract_from_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transformer for :class:`torchani.data.BatchedANIDataset` that</span>
+<span class="sd">        subtract self energies.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae_from_dataset</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">self_energies</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+
+        <span class="n">species</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">device</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">energies</span>
+        <span class="k">return</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span></div>
+
+<div class="viewcode-block" id="EnergyShifter.forward"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_energies</span><span class="p">):</span>
+        <span class="c1"># type: (Tuple[torch.Tensor, torch.Tensor]) -&gt; Tuple[torch.Tensor, torch.Tensor]</span>
+        <span class="sd">&quot;&quot;&quot;(species, molecular energies)-&gt;(species, molecular energies + sae)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">=</span> <span class="n">species_energies</span>
+        <span class="n">sae</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">+</span> <span class="n">sae</span></div></div>
+
+
+<div class="viewcode-block" id="ChemicalSymbolsToInts"><a class="viewcode-back" href="../../api.html#torchani.ChemicalSymbolsToInts">[docs]</a><span class="k">class</span> <span class="nc">ChemicalSymbolsToInts</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper that can be called to convert chemical symbol string to integers</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        all_species (:class:`collections.abc.Sequence` of :class:`str`):</span>
+<span class="sd">            sequence of all supported species, in order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_species</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rev_species</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_species</span><span class="p">)}</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert species from squence of strings to 1D tensor&quot;&quot;&quot;</span>
+        <span class="n">rev</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rev_species</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">rev</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rev_species</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="hessian"><a class="viewcode-back" href="../../api.html#torchani.hessian">[docs]</a><span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute analytical hessian from the energy graph or force graph.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        coordinates (:class:`torch.Tensor`): Tensor of shape `(molecules, atoms, 3)`</span>
+<span class="sd">        energies (:class:`torch.Tensor`): Tensor of shape `(molecules,)`, if specified,</span>
+<span class="sd">            then `forces` must be `None`. This energies must be computed from</span>
+<span class="sd">            `coordinates` in a graph.</span>
+<span class="sd">        forces (:class:`torch.Tensor`): Tensor of shape `(molecules, atoms, 3)`, if specified,</span>
+<span class="sd">            then `energies` must be `None`. This forces must be computed from</span>
+<span class="sd">            `coordinates` in a graph.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`torch.Tensor`: Tensor of shape `(molecules, 3A, 3A)` where A is the number of</span>
+<span class="sd">        atoms in each molecule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">energies</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">forces</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Energies or forces must be specified&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">energies</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">forces</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Energies or forces can not be specified at the same time&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">forces</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">forces</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">flattened_force</span> <span class="o">=</span> <span class="n">forces</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">force_components</span> <span class="o">=</span> <span class="n">flattened_force</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">force_components</span>
+    <span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="vibrational_analysis"><a class="viewcode-back" href="../../api.html#torchani.vibrational_analysis">[docs]</a><span class="k">def</span> <span class="nf">vibrational_analysis</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">hessian</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;cm^-1&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computing the vibrational wavenumbers from hessian.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">unit</span> <span class="o">!=</span> <span class="s1">&#39;cm^-1&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only cm^-1 are supported right now&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">hessian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Currently only supporting computing one molecule a time&#39;</span>
+    <span class="c1"># Solving the eigenvalue problem: Hq = w^2 * T q</span>
+    <span class="c1"># where H is the Hessian matrix, q is the normal coordinates,</span>
+    <span class="c1"># T = diag(m1, m1, m1, m2, m2, m2, ....) is the mass</span>
+    <span class="c1"># We solve this eigenvalue problem through Lowdin diagnolization:</span>
+    <span class="c1"># Hq = w^2 * Tq ==&gt; Hq = w^2 * T^(1/2) T^(1/2) q</span>
+    <span class="c1"># Letting q&#39; = T^(1/2) q, we then have</span>
+    <span class="c1"># T^(-1/2) H T^(-1/2) q&#39; = w^2 * q&#39;</span>
+    <span class="n">inv_sqrt_mass</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">masses</span><span class="o">.</span><span class="n">sqrt</span><span class="p">())</span><span class="o">.</span><span class="n">repeat_interleave</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># shape (molecule, 3 * atoms)</span>
+    <span class="n">mass_scaled_hessian</span> <span class="o">=</span> <span class="n">hessian</span> <span class="o">*</span> <span class="n">inv_sqrt_mass</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inv_sqrt_mass</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mass_scaled_hessian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The input should contain only one molecule&#39;</span><span class="p">)</span>
+    <span class="n">mass_scaled_hessian</span> <span class="o">=</span> <span class="n">mass_scaled_hessian</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">symeig</span><span class="p">(</span><span class="n">mass_scaled_hessian</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">angular_frequencies</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
+    <span class="n">frequencies</span> <span class="o">=</span> <span class="n">angular_frequencies</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="c1"># converting from sqrt(hartree / (amu * angstrom^2)) to cm^-1</span>
+    <span class="n">wavenumbers</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">*</span> <span class="mi">17092</span>
+    <span class="n">modes</span> <span class="o">=</span> <span class="p">(</span><span class="n">eigenvectors</span><span class="o">.</span><span class="n">t</span><span class="p">()</span> <span class="o">*</span> <span class="n">inv_sqrt_mass</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">frequencies</span><span class="o">.</span><span class="n">numel</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wavenumbers</span><span class="p">,</span> <span class="n">modes</span></div>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pad&#39;</span><span class="p">,</span> <span class="s1">&#39;pad_atomic_properties&#39;</span><span class="p">,</span> <span class="s1">&#39;present_species&#39;</span><span class="p">,</span> <span class="s1">&#39;hessian&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;vibrational_analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;strip_redundant_padding&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;ChemicalSymbolsToInts&#39;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Roitberg Group
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
