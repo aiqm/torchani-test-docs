@@ -95,8 +95,24 @@ but we do need to generate a disk cache for datasets
 
  .. code-block:: none
 
-      0%|          | 0/11 [00:00<?, ?it/s]     18%|#8        | 2/11 [00:00<00:00, 10.88it/s]     36%|###6      | 4/11 [00:00<00:00, 11.22it/s]     55%|#####4    | 6/11 [00:00<00:00, 11.37it/s]     73%|#######2  | 8/11 [00:00<00:00, 11.53it/s]     91%|######### | 10/11 [00:00<00:00, 11.72it/s]    100%|##########| 11/11 [00:00<00:00, 12.22it/s]
-      0%|          | 0/11 [00:00<?, ?it/s]     18%|#8        | 2/11 [00:00<00:00, 11.90it/s]     36%|###6      | 4/11 [00:00<00:00, 11.77it/s]     55%|#####4    | 6/11 [00:00<00:00, 11.74it/s]     73%|#######2  | 8/11 [00:00<00:00, 11.77it/s]     91%|######### | 10/11 [00:00<00:00, 11.66it/s]    100%|##########| 11/11 [00:00<00:00, 12.13it/s]
+    Exception in thread Thread-5:
+    Traceback (most recent call last):
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+        self.run()
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/site-packages/tensorboard/summary/writer/event_file_writer.py", line 211, in run
+        self._record_writer.write(data)
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/site-packages/tensorboard/summary/writer/record_writer.py", line 39, in write
+        self._writer.write(header + header_crc + data + footer_crc)
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 474, in write
+        self.fs.append(self.filename, file_content, self.binary_mode)
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 139, in append
+        self._write(filename, file_content, "ab" if binary_mode else "a")
+      File "/opt/hostedtoolcache/Python/3.7.4/x64/lib/python3.7/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py", line 143, in _write
+        with io.open(filename, mode, encoding=encoding) as f:
+    FileNotFoundError: [Errno 2] No such file or directory: b'runs/events.out.tfevents.1571083419.fv-az98.2789.1'
+
+      0%|          | 0/11 [00:00<?, ?it/s]     18%|#8        | 2/11 [00:00<00:00, 12.95it/s]     36%|###6      | 4/11 [00:00<00:00, 12.92it/s]     55%|#####4    | 6/11 [00:00<00:00, 12.70it/s]     73%|#######2  | 8/11 [00:00<00:00, 12.62it/s]     91%|######### | 10/11 [00:00<00:00, 12.31it/s]    100%|##########| 11/11 [00:00<00:00, 12.85it/s]
+      0%|          | 0/11 [00:00<?, ?it/s]     18%|#8        | 2/11 [00:00<00:00, 12.66it/s]     36%|###6      | 4/11 [00:00<00:00, 12.59it/s]     55%|#####4    | 6/11 [00:00<00:00, 12.44it/s]     73%|#######2  | 8/11 [00:00<00:00, 12.49it/s]     91%|######### | 10/11 [00:00<00:00, 12.47it/s]    100%|##########| 11/11 [00:00<00:00, 12.87it/s]
 
 
 
@@ -314,7 +330,7 @@ Let's add a progress bar for the trainer
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  35.437 seconds)
+   **Total running time of the script:** ( 0 minutes  35.630 seconds)
 
 
 .. _sphx_glr_download_examples_cache_aev.py:
