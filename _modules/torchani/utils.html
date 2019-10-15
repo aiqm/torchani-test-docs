@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.utils &mdash; TorchANI 1.0.2.dev2+g17575e8 documentation</title>
+  <title>torchani.utils &mdash; TorchANI 1.0.2.dev2+g5babd31 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev2+g17575e8
+                1.0.2.dev2+g5babd31
               </div>
             
           
@@ -391,8 +391,8 @@
         <span class="sd">&quot;&quot;&quot;(species, molecular energies)-&gt;(species, molecular energies + sae)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">=</span> <span class="n">species_energies</span>
-        <span class="n">sae</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">+</span> <span class="n">sae</span></div></div>
+        <span class="n">sae</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">energies</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sae</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">+</span> <span class="n">sae</span></div></div>
 
 
 <div class="viewcode-block" id="ChemicalSymbolsToInts"><a class="viewcode-back" href="../../api.html#torchani.ChemicalSymbolsToInts">[docs]</a><span class="k">class</span> <span class="nc">ChemicalSymbolsToInts</span><span class="p">:</span>
