@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Use Disk Cache of AEV to Boost Training &mdash; TorchANI 1.0.2.dev2+g18e63f1 documentation</title>
+  <title>Use Disk Cache of AEV to Boost Training &mdash; TorchANI 1.0.2.dev4+gd113934 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.0.2.dev2+g18e63f1
+                1.0.2.dev4+gd113934
               </div>
             
           
@@ -246,20 +246,20 @@ but we do need to generate a disk cache for datasets</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/11 [00:00&lt;?, ?it/s]
- 18%|#8        | 2/11 [00:00&lt;00:00, 12.48it/s]
- 36%|###6      | 4/11 [00:00&lt;00:00, 12.31it/s]
- 55%|#####4    | 6/11 [00:00&lt;00:00, 12.36it/s]
- 73%|#######2  | 8/11 [00:00&lt;00:00, 12.51it/s]
- 91%|######### | 10/11 [00:00&lt;00:00, 12.43it/s]
-100%|##########| 11/11 [00:00&lt;00:00, 12.86it/s]
+ 18%|#8        | 2/11 [00:00&lt;00:00, 12.04it/s]
+ 36%|###6      | 4/11 [00:00&lt;00:00, 11.98it/s]
+ 55%|#####4    | 6/11 [00:00&lt;00:00, 11.99it/s]
+ 73%|#######2  | 8/11 [00:00&lt;00:00, 12.08it/s]
+ 91%|######### | 10/11 [00:00&lt;00:00, 12.12it/s]
+100%|##########| 11/11 [00:00&lt;00:00, 12.52it/s]
 
   0%|          | 0/11 [00:00&lt;?, ?it/s]
- 18%|#8        | 2/11 [00:00&lt;00:00, 12.33it/s]
- 36%|###6      | 4/11 [00:00&lt;00:00, 12.22it/s]
- 55%|#####4    | 6/11 [00:00&lt;00:00, 12.10it/s]
- 73%|#######2  | 8/11 [00:00&lt;00:00, 12.16it/s]
- 91%|######### | 10/11 [00:00&lt;00:00, 12.16it/s]
-100%|##########| 11/11 [00:00&lt;00:00, 12.61it/s]
+ 18%|#8        | 2/11 [00:00&lt;00:00, 12.38it/s]
+ 36%|###6      | 4/11 [00:00&lt;00:00, 12.21it/s]
+ 55%|#####4    | 6/11 [00:00&lt;00:00, 12.07it/s]
+ 73%|#######2  | 8/11 [00:00&lt;00:00, 12.11it/s]
+ 91%|######### | 10/11 [00:00&lt;00:00, 12.14it/s]
+100%|##########| 11/11 [00:00&lt;00:00, 12.52it/s]
 </pre></div>
 </div>
 <p>The codes that define the network are also the same</p>
@@ -426,8 +426,8 @@ Epoch [1/20]: [7/11]  64%|######3    [00:00&lt;00:00]
 Epoch [1/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
 Epoch [1/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
 Epoch [1/20]: [9/11]  82%|########1  [00:00&lt;00:00]
-Epoch [1/20]: [9/11]  82%|########1  [00:00&lt;00:00]
-Epoch [1/20]: [10/11]  91%|#########  [00:00&lt;00:00]
+Epoch [1/20]: [9/11]  82%|########1  [00:01&lt;00:00]
+Epoch [1/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 Epoch [1/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 
 
@@ -447,8 +447,8 @@ Epoch [2/20]: [6/11]  55%|#####4     [00:00&lt;00:00]
 Epoch [2/20]: [7/11]  64%|######3    [00:00&lt;00:00]
 Epoch [2/20]: [7/11]  64%|######3    [00:00&lt;00:00]
 Epoch [2/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
-Epoch [2/20]: [8/11]  73%|#######2   [00:01&lt;00:00]
-Epoch [2/20]: [9/11]  82%|########1  [00:01&lt;00:00]
+Epoch [2/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
+Epoch [2/20]: [9/11]  82%|########1  [00:00&lt;00:00]
 Epoch [2/20]: [9/11]  82%|########1  [00:01&lt;00:00]
 Epoch [2/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 Epoch [2/20]: [10/11]  91%|#########  [00:01&lt;00:00]
@@ -815,8 +815,8 @@ Epoch [18/20]: [6/11]  55%|#####4     [00:00&lt;00:00]
 Epoch [18/20]: [7/11]  64%|######3    [00:00&lt;00:00]
 Epoch [18/20]: [7/11]  64%|######3    [00:00&lt;00:00]
 Epoch [18/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
-Epoch [18/20]: [8/11]  73%|#######2   [00:01&lt;00:00]
-Epoch [18/20]: [9/11]  82%|########1  [00:01&lt;00:00]
+Epoch [18/20]: [8/11]  73%|#######2   [00:00&lt;00:00]
+Epoch [18/20]: [9/11]  82%|########1  [00:00&lt;00:00]
 Epoch [18/20]: [9/11]  82%|########1  [00:01&lt;00:00]
 Epoch [18/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 Epoch [18/20]: [10/11]  91%|#########  [00:01&lt;00:00]
@@ -868,7 +868,7 @@ Epoch [20/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 Epoch [20/20]: [10/11]  91%|#########  [00:01&lt;00:00]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.371 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  34.168 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-cache-aev-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/7c95d8520df7931107daa7f4802a6bc0/cache_aev.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">cache_aev.py</span></code></a></div>
