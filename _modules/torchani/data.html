@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.data &mdash; TorchANI 1.0.2.dev4+gb8c2aa9 documentation</title>
+  <title>torchani.data &mdash; TorchANI 1.0.2.dev5+g5e65935 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev4+gb8c2aa9
+                1.0.2.dev5+g5e65935
               </div>
             
           
@@ -493,9 +493,9 @@
         <span class="n">mean</span> <span class="o">=</span> <span class="n">scaled_diff</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scaled_diff</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">15.0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
         <span class="n">std</span> <span class="o">=</span> <span class="n">scaled_diff</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scaled_diff</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">15.0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 
-        <span class="c1"># -15 * std + mean &lt; scaled_diff &lt; +11 * std + mean</span>
-        <span class="n">tol</span> <span class="o">=</span> <span class="mf">13.0</span> <span class="o">*</span> <span class="n">std</span> <span class="o">+</span> <span class="n">mean</span>
-        <span class="n">low_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scaled_diff</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">std</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="c1"># -8 * std + mean &lt; scaled_diff &lt; +8 * std + mean</span>
+        <span class="n">tol</span> <span class="o">=</span> <span class="mf">8.0</span> <span class="o">*</span> <span class="n">std</span> <span class="o">+</span> <span class="n">mean</span>
+        <span class="n">low_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scaled_diff</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
         <span class="n">outlier_count</span> <span class="o">=</span> <span class="n">molecules</span> <span class="o">-</span> <span class="n">low_idx</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span>
 
         <span class="c1"># discard outlier energy conformers if exist</span>
