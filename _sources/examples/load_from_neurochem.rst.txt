@@ -516,8 +516,8 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7fe29fbaa278>
-    <torchani.ase.Calculator object at 0x7fe29fbaa278>
+    <torchani.ase.Calculator object at 0x7f5494023c88>
+    <torchani.ase.Calculator object at 0x7f5494023c88>
 
 
 
@@ -641,7 +641,7 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.193 seconds)
+   **Total running time of the script:** ( 0 minutes  2.227 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
