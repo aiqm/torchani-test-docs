@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.0.2.dev13+g437f493 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.0.2.dev12+g20e1041 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev13+g437f493
+                1.0.2.dev12+g20e1041
               </div>
             
           
@@ -538,7 +538,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">aev_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_length</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;triu_index&#39;</span><span class="p">,</span> <span class="n">triu_index</span><span class="p">(</span><span class="n">num_species</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;triu_index&#39;</span><span class="p">,</span> <span class="n">triu_index</span><span class="p">(</span><span class="n">num_species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">EtaR</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
 
         <span class="c1"># Set up default cell and compute default shifts.</span>
         <span class="c1"># These values are used when cell and pbc switch are not given.</span>
