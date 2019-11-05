@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Your Own Neural Network Potential &mdash; TorchANI 1.0.2.dev18+ga2e2ee7 documentation</title>
+  <title>Train Your Own Neural Network Potential &mdash; TorchANI 1.0.2.dev20+gb901156 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.0.2.dev18+ga2e2ee7
+                1.0.2.dev20+gb901156
               </div>
             
           
@@ -565,81 +565,97 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 233.7178142666601 at epoch 1
+Exception in thread Thread-28:
+Traceback (most recent call last):
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/threading.py&quot;, line 916, in _bootstrap_inner
+    self.run()
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/site-packages/tensorboard/summary/writer/event_file_writer.py&quot;, line 211, in run
+    self._record_writer.write(data)
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/site-packages/tensorboard/summary/writer/record_writer.py&quot;, line 39, in write
+    self._writer.write(header + header_crc + data + footer_crc)
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py&quot;, line 507, in write
+    self.fs.append(self.filename, file_content, self.binary_mode)
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py&quot;, line 150, in append
+    self._write(filename, file_content, &quot;ab&quot; if binary_mode else &quot;a&quot;)
+  File &quot;/opt/hostedtoolcache/Python/3.6.9/x64/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/io/gfile.py&quot;, line 154, in _write
+    with io.open(filename, mode, encoding=encoding) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b&#39;runs/events.out.tfevents.1572939263.fv-az50.2907.2&#39;
+
+RMSE: 128.76889441413041 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:01,  2.51it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  2.50it/s]
-epoch 1:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.51it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.02it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  2.92it/s]
-RMSE: 63.56468480876017 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:01,  2.18it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  2.17it/s]
+epoch 1:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.16it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  2.63it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  2.53it/s]
+RMSE: 141.13727528248603 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:01,  2.52it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  2.50it/s]
-epoch 2:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.50it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.03it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  2.92it/s]
-RMSE: 26.187676377555714 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:01,  2.17it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  2.18it/s]
+epoch 2:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.20it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  2.68it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  2.59it/s]
+RMSE: 76.20415426958903 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:01,  2.46it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  2.44it/s]
-epoch 3:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.46it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  2.98it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  2.87it/s]
-RMSE: 64.10948143166074 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:01,  2.20it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  2.19it/s]
+epoch 3:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.18it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  2.65it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  2.55it/s]
+RMSE: 64.98990912052497 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:01,  2.45it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  2.46it/s]
-epoch 4:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.47it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  2.96it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  2.87it/s]
-RMSE: 62.80331412986159 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:01,  2.16it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  2.17it/s]
+epoch 4:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.19it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  2.66it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  2.57it/s]
+RMSE: 37.50583309854371 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:01,  2.49it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  2.47it/s]
-epoch 5:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.48it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.00it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  2.89it/s]
-RMSE: 23.848467826944265 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:01,  2.15it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  2.15it/s]
+epoch 5:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.17it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  2.64it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  2.55it/s]
+RMSE: 41.568352445925015 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:01,  2.46it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  2.46it/s]
-epoch 6:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.45it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  2.96it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  2.86it/s]
-RMSE: 25.864827499165205 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:01,  2.19it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  2.18it/s]
+epoch 6:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.18it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  2.65it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  2.55it/s]
+RMSE: 35.2738345405949 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:01,  2.47it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  2.45it/s]
-epoch 7:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.46it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  2.98it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  2.87it/s]
-RMSE: 29.875712221647326 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:01,  2.16it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  2.17it/s]
+epoch 7:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.18it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  2.66it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  2.57it/s]
+RMSE: 14.837878298769347 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:01,  2.47it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  2.45it/s]
-epoch 8:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.46it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  2.99it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  2.88it/s]
-RMSE: 15.54942602987828 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:01,  2.12it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  2.14it/s]
+epoch 8:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.16it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  2.63it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  2.54it/s]
+RMSE: 21.660747944288328 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:01,  2.49it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  2.48it/s]
-epoch 9:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.48it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.00it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  2.89it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:01,  2.20it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  2.20it/s]
+epoch 9:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.20it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  2.67it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  2.57it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.317 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.054 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
