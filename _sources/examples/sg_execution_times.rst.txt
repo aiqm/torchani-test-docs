@@ -5,13 +5,13 @@
 
 Computation times
 =================
-**02:28.315** total execution time for **examples** files:
+**02:16.506** total execution time for **examples** files:
 
-- **00:42.901**: :ref:`sphx_glr_examples_ase_interface.py` (``ase_interface.py``)
-- **00:40.717**: :ref:`sphx_glr_examples_neurochem_trainer.py` (``neurochem_trainer.py``)
-- **00:35.273**: :ref:`sphx_glr_examples_nnp_training_force.py` (``nnp_training_force.py``)
-- **00:16.221**: :ref:`sphx_glr_examples_nnp_training.py` (``nnp_training.py``)
-- **00:07.409**: :ref:`sphx_glr_examples_jit.py` (``jit.py``)
-- **00:02.060**: :ref:`sphx_glr_examples_load_from_neurochem.py` (``load_from_neurochem.py``)
-- **00:02.023**: :ref:`sphx_glr_examples_vibration_analysis.py` (``vibration_analysis.py``)
-- **00:01.711**: :ref:`sphx_glr_examples_energy_force.py` (``energy_force.py``)
+- **00:40.563**: :ref:`sphx_glr_examples_ase_interface.py` (``ase_interface.py``)
+- **00:34.462**: :ref:`sphx_glr_examples_nnp_training_force.py` (``nnp_training_force.py``)
+- **00:33.509**: :ref:`sphx_glr_examples_neurochem_trainer.py` (``neurochem_trainer.py``)
+- **00:15.731**: :ref:`sphx_glr_examples_nnp_training.py` (``nnp_training.py``)
+- **00:06.888**: :ref:`sphx_glr_examples_jit.py` (``jit.py``)
+- **00:01.962**: :ref:`sphx_glr_examples_vibration_analysis.py` (``vibration_analysis.py``)
+- **00:01.858**: :ref:`sphx_glr_examples_load_from_neurochem.py` (``load_from_neurochem.py``)
+- **00:01.533**: :ref:`sphx_glr_examples_energy_force.py` (``energy_force.py``)
