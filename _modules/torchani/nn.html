@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.nn &mdash; TorchANI 1.0.2.dev20+g3ec69bb documentation</title>
+  <title>torchani.nn &mdash; TorchANI 1.0.2.dev16+g77c9745 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev20+g3ec69bb
+                1.0.2.dev16+g77c9745
               </div>
             
           
@@ -189,19 +189,11 @@
 <span class="sd">            :attr:`modules`, which means, for example ``modules[i]`` must be</span>
 <span class="sd">            the module for atom type ``i``. Different atom types can share a</span>
 <span class="sd">            module by putting the same reference in :attr:`modules`.</span>
-<span class="sd">        padding_fill (float): The value to fill output of padding atoms.</span>
-<span class="sd">            Padding values will participate in reducing, so this value should</span>
-<span class="sd">            be appropriately chosen so that it has no effect on the result. For</span>
-<span class="sd">            example, if the reducer is :func:`torch.sum`, then</span>
-<span class="sd">            :attr:`padding_fill` should be 0, and if the reducer is</span>
-<span class="sd">            :func:`torch.min`, then :attr:`padding_fill` should be</span>
-<span class="sd">            :obj:`math.inf`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">,</span> <span class="n">padding_fill</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ANIModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">module_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">padding_fill</span> <span class="o">=</span> <span class="n">padding_fill</span>
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -212,8 +204,7 @@
         <span class="n">species_</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="n">aev</span> <span class="o">=</span> <span class="n">aev</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">species_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding_fill</span><span class="p">,</span>
-                            <span class="n">dtype</span><span class="o">=</span><span class="n">aev</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">aev</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">species_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module_list</span><span class="p">):</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">species_</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
@@ -228,21 +219,43 @@
 <div class="viewcode-block" id="Ensemble"><a class="viewcode-back" href="../../api.html#torchani.Ensemble">[docs]</a><span class="k">class</span> <span class="nc">Ensemble</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the average output of an ensemble of modules.&quot;&quot;&quot;</span>
 
+    <span class="c1"># FIXME: due to PyTorch bug, we have to hard code the</span>
+    <span class="c1"># ensemble size to 8.</span>
+
+    <span class="c1"># def __init__(self, modules):</span>
+    <span class="c1">#     super(Ensemble, self).__init__()</span>
+    <span class="c1">#     self.modules_list = torch.nn.ModuleList(modules)</span>
+
+    <span class="c1"># def forward(self, species_input):</span>
+    <span class="c1">#     # type: (Tuple[torch.Tensor, torch.Tensor]) -&gt; Tuple[torch.Tensor, torch.Tensor]</span>
+    <span class="c1">#     outputs = [x(species_input)[1] for x in self.modules_list]</span>
+    <span class="c1">#     species, _ = species_input</span>
+    <span class="c1">#     return species, sum(outputs) / len(outputs)</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Ensemble</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">modules_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modules_list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model0</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model1</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model2</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model3</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model4</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model5</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model6</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model7</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">model0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model3</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model5</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model6</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model7</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_input</span><span class="p">):</span>
         <span class="c1"># type: (Tuple[torch.Tensor, torch.Tensor]) -&gt; Tuple[torch.Tensor, torch.Tensor]</span>
-        <span class="n">sum_</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules_list</span><span class="p">:</span>
-            <span class="n">sum_</span> <span class="o">+=</span> <span class="n">x</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">species_input</span>
-        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">sum_</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
+        <span class="n">sum_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model0</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model1</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> \
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model2</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model3</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> \
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model4</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model5</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> \
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model6</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">model7</span><span class="p">(</span><span class="n">species_input</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">sum_</span> <span class="o">/</span> <span class="mf">8.0</span></div>
 
 
 <span class="k">class</span> <span class="nc">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
