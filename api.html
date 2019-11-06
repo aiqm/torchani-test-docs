@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev20+g099070b documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev19+g669fb65 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev20+g099070b
+                1.0.2.dev19+g669fb65
               </div>
             
           
@@ -248,7 +248,7 @@ unchanged, and AEVs is a tensor of shape
 
 <dl class="class">
 <dt id="torchani.ANIModel">
-<em class="property">class </em><code class="descclassname">torchani.</code><code class="descname">ANIModel</code><span class="sig-paren">(</span><em>modules</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#ANIModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.ANIModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">torchani.</code><code class="descname">ANIModel</code><span class="sig-paren">(</span><em>modules</em>, <em>padding_fill=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#ANIModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.ANIModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>ANI model that compute properties from species and AEVs.</p>
 <p>Different atom types might have different modules, when computing
 properties, for each atom, the module for its corresponding atom type will
@@ -258,11 +258,21 @@ different atoms to obtain molecular properties.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>modules</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Sequence</span></code></a>) – Modules for each atom
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>modules</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Sequence</span></code></a>) – Modules for each atom
 types. Atom types are distinguished by their order in
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">modules</span></code>, which means, for example <code class="docutils literal notranslate"><span class="pre">modules[i]</span></code> must be
 the module for atom type <code class="docutils literal notranslate"><span class="pre">i</span></code>. Different atom types can share a
-module by putting the same reference in <code class="xref py py-attr docutils literal notranslate"><span class="pre">modules</span></code>.</td>
+module by putting the same reference in <code class="xref py py-attr docutils literal notranslate"><span class="pre">modules</span></code>.</li>
+<li><strong>padding_fill</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The value to fill output of padding atoms.
+Padding values will participate in reducing, so this value should
+be appropriately chosen so that it has no effect on the result. For
+example, if the reducer is <a class="reference external" href="https://pytorch.org/docs/master/torch.html#torch.sum" title="(in PyTorch vmaster (1.4.0a0+6ea4219 ))"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.sum()</span></code></a>, then
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">padding_fill</span></code> should be 0, and if the reducer is
+<a class="reference external" href="https://pytorch.org/docs/master/torch.html#torch.min" title="(in PyTorch vmaster (1.4.0a0+6ea4219 ))"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.min()</span></code></a>, then <code class="xref py py-attr docutils literal notranslate"><span class="pre">padding_fill</span></code> should be
+<a class="reference external" href="https://docs.python.org/3/library/math.html#math.inf" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">math.inf</span></code></a>.</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
