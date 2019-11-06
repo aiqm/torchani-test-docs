@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.nn &mdash; TorchANI 1.0.2.dev20+g099070b documentation</title>
+  <title>torchani.nn &mdash; TorchANI 1.0.2.dev16+g86500df documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev20+g099070b
+                1.0.2.dev16+g86500df
               </div>
             
           
@@ -189,11 +189,19 @@
 <span class="sd">            :attr:`modules`, which means, for example ``modules[i]`` must be</span>
 <span class="sd">            the module for atom type ``i``. Different atom types can share a</span>
 <span class="sd">            module by putting the same reference in :attr:`modules`.</span>
+<span class="sd">        padding_fill (float): The value to fill output of padding atoms.</span>
+<span class="sd">            Padding values will participate in reducing, so this value should</span>
+<span class="sd">            be appropriately chosen so that it has no effect on the result. For</span>
+<span class="sd">            example, if the reducer is :func:`torch.sum`, then</span>
+<span class="sd">            :attr:`padding_fill` should be 0, and if the reducer is</span>
+<span class="sd">            :func:`torch.min`, then :attr:`padding_fill` should be</span>
+<span class="sd">            :obj:`math.inf`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="p">,</span> <span class="n">padding_fill</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ANIModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">module_list</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding_fill</span> <span class="o">=</span> <span class="n">padding_fill</span>
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -204,7 +212,8 @@
         <span class="n">species_</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="n">aev</span> <span class="o">=</span> <span class="n">aev</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="n">aev</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">species_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">species_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding_fill</span><span class="p">,</span>
+                            <span class="n">dtype</span><span class="o">=</span><span class="n">aev</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module_list</span><span class="p">):</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">species_</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
