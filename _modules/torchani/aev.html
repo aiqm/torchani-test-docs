@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.0.2.dev19+g48d85fe documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.0.2.dev23+g2703a89 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev19+g48d85fe
+                1.0.2.dev23+g2703a89
               </div>
             
           
@@ -341,8 +341,7 @@
 
 <span class="k">def</span> <span class="nf">triu_index</span><span class="p">(</span><span class="n">num_species</span><span class="p">):</span>
     <span class="c1"># type: (int) -&gt; torch.Tensor</span>
-    <span class="n">species</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_species</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
-    <span class="n">species1</span><span class="p">,</span> <span class="n">species2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">species1</span><span class="p">,</span> <span class="n">species2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">num_species</span><span class="p">,</span> <span class="n">num_species</span><span class="p">)</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">pair_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_species</span><span class="p">,</span> <span class="n">num_species</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
     <span class="n">ret</span><span class="p">[</span><span class="n">species1</span><span class="p">,</span> <span class="n">species2</span><span class="p">]</span> <span class="o">=</span> <span class="n">pair_index</span>
