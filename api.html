@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev21+g36267fa documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev20+g3ec69bb documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev21+g36267fa
+                1.0.2.dev20+g3ec69bb
               </div>
             
           
@@ -637,12 +637,56 @@ classes according to <code class="xref py py-attr docutils literal notranslate">
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="torchani.data.create_aev_cache">
+<code class="descclassname">torchani.data.</code><code class="descname">create_aev_cache</code><span class="sig-paren">(</span><em>dataset</em>, <em>aev_computer</em>, <em>output</em>, <em>progress_bar=True</em>, <em>encoder=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/data.html#create_aev_cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.data.create_aev_cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache AEV for the given dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dataset</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.data.PaddedBatchChunkDataset</span></code>) – the dataset to be cached</li>
+<li><strong>aev_computer</strong> (<a class="reference internal" href="#torchani.AEVComputer" title="torchani.AEVComputer"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.AEVComputer</span></code></a>) – the AEV computer used to compute aev</li>
+<li><strong>output</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – path to the directory where cache will be stored</li>
+<li><strong>progress_bar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to show progress bar</li>
+<li><strong>encoder</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Callable</span></code></a>) – The callable
+(species, aev) -&gt; (encoded_species, encoded_aev) that encode species and aev</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="class">
 <dt id="torchani.data.BatchedANIDataset">
 <em class="property">class </em><code class="descclassname">torchani.data.</code><code class="descname">BatchedANIDataset</code><span class="sig-paren">(</span><em>path</em>, <em>species_tensor_converter</em>, <em>batch_size</em>, <em>shuffle=True</em>, <em>properties=('energies'</em>, <em>)</em>, <em>atomic_properties=()</em>, <em>transform=()</em>, <em>dtype=torch.float32</em>, <em>device='cpu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/data.html#BatchedANIDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.data.BatchedANIDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Same as <a class="reference internal" href="#torchani.data.load_ani_dataset" title="torchani.data.load_ani_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">torchani.data.load_ani_dataset()</span></code></a>. This API has been deprecated.</p>
 </dd></dl>
 
+<dl class="class">
+<dt id="torchani.data.AEVCacheLoader">
+<em class="property">class </em><code class="descclassname">torchani.data.</code><code class="descname">AEVCacheLoader</code><span class="sig-paren">(</span><em>disk_cache=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/data.html#AEVCacheLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.data.AEVCacheLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a factory for AEV.</p>
+<p>The computation of AEV is the most time consuming part during training.
+Since during training, the AEV never changes, it is not hard to see that,
+If we have a fast enough storage (this is usually the case for good SSDs,
+but not for HDD), we could cache the computed AEVs into disk and load it
+rather than compute it from scratch everytime we use it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>disk_cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Directory storing disk caches.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-torchani.data.cache_aev"></span><p>AEVs for a dataset can be precomputed by invoking
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">torchani.data.cache_aev</span></code>, this would dump the dataset and
+computed aevs. Use the <code class="docutils literal notranslate"><span class="pre">-h</span></code> option for help.</p>
 </div>
 <div class="section" id="module-torchani.utils">
 <span id="utilities"></span><h1>Utilities<a class="headerlink" href="#module-torchani.utils" title="Permalink to this headline">¶</a></h1>
@@ -894,7 +938,7 @@ are stored.</li>
 
 <dl class="class">
 <dt id="torchani.neurochem.Trainer">
-<em class="property">class </em><code class="descclassname">torchani.neurochem.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>filename</em>, <em>device=device(type='cuda')</em>, <em>tqdm=False</em>, <em>tensorboard=None</em>, <em>checkpoint_name='model.pt'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/neurochem.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.neurochem.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">torchani.neurochem.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>filename</em>, <em>device=device(type='cuda')</em>, <em>tqdm=False</em>, <em>tensorboard=None</em>, <em>aev_caching=False</em>, <em>checkpoint_name='model.pt'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/neurochem.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.neurochem.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train with NeuroChem training configurations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -906,6 +950,7 @@ are stored.</li>
 <li><strong>tqdm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to enable tqdm</li>
 <li><strong>tensorboard</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Directory to store tensorboard log file, set to
 <code class="docutils literal notranslate"><span class="pre">None</span></code> to disable tensorboard.</li>
+<li><strong>aev_caching</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether to use AEV caching.</li>
 <li><strong>checkpoint_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Name of the checkpoint file, checkpoints
 will be stored in the network directory with this file name.</li>
 </ul>
@@ -923,6 +968,8 @@ will be stored in the network directory with this file name.</li>
 <dt id="torchani.neurochem.Trainer.load_data">
 <code class="descname">load_data</code><span class="sig-paren">(</span><em>training_path</em>, <em>validation_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/neurochem.html#Trainer.load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.neurochem.Trainer.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load training and validation dataset from file.</p>
+<p>If AEV caching is enabled, then the arguments are path to the cache
+directory, otherwise it should be path to the dataset.</p>
 </dd></dl>
 
 <dl class="method">
