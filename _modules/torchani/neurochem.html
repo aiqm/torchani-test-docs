@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.neurochem &mdash; TorchANI 1.0.2.dev14+gb942249 documentation</title>
+  <title>torchani.neurochem &mdash; TorchANI 1.0.2.dev19+gadba934 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev14+gb942249
+                1.0.2.dev19+gadba934
               </div>
             
           
@@ -447,28 +447,23 @@
 <span class="sd">            tqdm (bool): whether to enable tqdm</span>
 <span class="sd">            tensorboard (str): Directory to store tensorboard log file, set to</span>
 <span class="sd">                ``None`` to disable tensorboard.</span>
-<span class="sd">            aev_caching (bool): Whether to use AEV caching.</span>
 <span class="sd">            checkpoint_name (str): Name of the checkpoint file, checkpoints</span>
 <span class="sd">                will be stored in the network directory with this file name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">),</span> <span class="n">tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                     <span class="n">tensorboard</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aev_caching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                     <span class="n">checkpoint_name</span><span class="o">=</span><span class="s1">&#39;model.pt&#39;</span><span class="p">):</span>
+                     <span class="n">tensorboard</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s1">&#39;model.pt&#39;</span><span class="p">):</span>
 
             <span class="kn">from</span> <span class="nn">..data</span> <span class="k">import</span> <span class="n">load_ani_dataset</span>  <span class="c1"># noqa: E402</span>
-            <span class="kn">from</span> <span class="nn">..data</span> <span class="k">import</span> <span class="n">AEVCacheLoader</span>  <span class="c1"># noqa: E402</span>
 
             <span class="k">class</span> <span class="nc">dummy</span><span class="p">:</span>
                 <span class="k">pass</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">imports</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load_ani_dataset</span> <span class="o">=</span> <span class="n">load_ani_dataset</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">AEVCacheLoader</span> <span class="o">=</span> <span class="n">AEVCacheLoader</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">aev_caching</span> <span class="o">=</span> <span class="n">aev_caching</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">checkpoint_name</span> <span class="o">=</span> <span class="n">checkpoint_name</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[]</span>
@@ -713,11 +708,7 @@
 
             <span class="c1"># initialize weights and biases</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_caching</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
 
             <span class="c1"># loss functions</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mse_se</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
@@ -729,23 +720,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">best_validation_rmse</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
 
 <div class="viewcode-block" id="Trainer.load_data"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer.load_data">[docs]</a>        <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_path</span><span class="p">,</span> <span class="n">validation_path</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Load training and validation dataset from file.</span>
-
-<span class="sd">            If AEV caching is enabled, then the arguments are path to the cache</span>
-<span class="sd">            directory, otherwise it should be path to the dataset.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_caching</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">training_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">AEVCacheLoader</span><span class="p">(</span><span class="n">training_path</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">validation_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">AEVCacheLoader</span><span class="p">(</span><span class="n">validation_path</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">training_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load_ani_dataset</span><span class="p">(</span>
-                    <span class="n">training_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">training_batch_size</span><span class="p">,</span> <span class="n">rm_outlier</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
-                    <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_energy</span><span class="o">.</span><span class="n">subtract_from_dataset</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">validation_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load_ani_dataset</span><span class="p">(</span>
-                    <span class="n">validation_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">validation_batch_size</span><span class="p">,</span> <span class="n">rm_outlier</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
-                    <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_energy</span><span class="o">.</span><span class="n">subtract_from_dataset</span><span class="p">])</span></div>
+            <span class="sd">&quot;&quot;&quot;Load training and validation dataset from file.&quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load_ani_dataset</span><span class="p">(</span>
+                <span class="n">training_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">training_batch_size</span><span class="p">,</span> <span class="n">rm_outlier</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_energy</span><span class="o">.</span><span class="n">subtract_from_dataset</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">validation_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load_ani_dataset</span><span class="p">(</span>
+                <span class="n">validation_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validation_batch_size</span><span class="p">,</span> <span class="n">rm_outlier</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_energy</span><span class="o">.</span><span class="n">subtract_from_dataset</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="Trainer.evaluate"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer.evaluate">[docs]</a>        <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Run the evaluation&quot;&quot;&quot;</span>
