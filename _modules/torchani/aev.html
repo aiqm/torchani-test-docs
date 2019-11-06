@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.0.2.dev27+ge3ed2e1 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.0.2.dev22+g84d9d5b documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev27+ge3ed2e1
+                1.0.2.dev22+g84d9d5b
               </div>
             
           
@@ -350,6 +350,31 @@
     <span class="k">return</span> <span class="n">ret</span>
 
 
+<span class="k">def</span> <span class="nf">convert_pair_index</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+    <span class="c1"># type: (torch.Tensor) -&gt; Tuple[torch.Tensor, torch.Tensor]</span>
+    <span class="sd">&quot;&quot;&quot;Let&#39;s say we have a pair:</span>
+<span class="sd">    index: 0 1 2 3 4 5 6 7 8 9 ...</span>
+<span class="sd">    elem1: 0 0 1 0 1 2 0 1 2 3 ...</span>
+<span class="sd">    elem2: 1 2 2 3 3 3 4 4 4 4 ...</span>
+<span class="sd">    This function convert index back to elem1 and elem2</span>
+
+<span class="sd">    To implement this, divide it into groups, the first group contains 1</span>
+<span class="sd">    elements, the second contains 2 elements, ..., the nth group contains</span>
+<span class="sd">    n elements.</span>
+
+<span class="sd">    Let&#39;s say we want to compute the elem1 and elem2 for index i. We first find</span>
+<span class="sd">    the number of complete groups contained in index 0, 1, ..., i - 1</span>
+<span class="sd">    (all inclusive, not including i), then i will be in the next group. Let&#39;s</span>
+<span class="sd">    say there are N complete groups, then these N groups contains</span>
+<span class="sd">    N * (N + 1) / 2 elements, solving for the largest N that satisfies</span>
+<span class="sd">    N * (N + 1) / 2 &lt;= i, will get the N we want.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">8.0</span> <span class="o">*</span> <span class="n">index</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">))</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+    <span class="n">num_elems</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">index</span> <span class="o">-</span> <span class="n">num_elems</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+
 <span class="k">def</span> <span class="nf">cumsum_from_zero</span><span class="p">(</span><span class="n">input_</span><span class="p">):</span>
     <span class="c1"># type: (torch.Tensor) -&gt; torch.Tensor</span>
     <span class="n">cumsum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">input_</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -370,6 +395,7 @@
 <span class="sd">    are (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># convert representation from pair to central-others</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">atom_index1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ai1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">atom_index1</span><span class="p">,</span> <span class="n">atom_index2</span><span class="p">])</span>
     <span class="n">sorted_ai1</span><span class="p">,</span> <span class="n">rev_indices</span> <span class="o">=</span> <span class="n">ai1</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
@@ -378,18 +404,17 @@
     <span class="n">uniqued_central_atom_index</span> <span class="o">=</span> <span class="n">unique_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">unique_results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="c1"># compute central_atom_index</span>
+    <span class="c1"># do local combinations within unique key, assuming sorted</span>
     <span class="n">pair_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span> <span class="o">*</span> <span class="p">(</span><span class="n">counts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+    <span class="n">total_size</span> <span class="o">=</span> <span class="n">pair_sizes</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="n">pair_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">repeat_interleave</span><span class="p">(</span><span class="n">pair_sizes</span><span class="p">)</span>
     <span class="n">central_atom_index</span> <span class="o">=</span> <span class="n">uniqued_central_atom_index</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pair_indices</span><span class="p">)</span>
-
-    <span class="c1"># do local combinations within unique key, assuming sorted</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">if</span> <span class="n">counts</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">pair_sizes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">intra_pair_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tril_indices</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">ai1</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">intra_pair_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">ai1</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">pair_sizes</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-    <span class="n">sorted_local_index1</span><span class="p">,</span> <span class="n">sorted_local_index2</span> <span class="o">=</span> <span class="n">intra_pair_indices</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">cumsum_from_zero</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pair_indices</span><span class="p">)</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">cumsum_from_zero</span><span class="p">(</span><span class="n">pair_sizes</span><span class="p">)</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">cumsum</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pair_indices</span><span class="p">)</span>
+    <span class="n">sorted_local_pair_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">total_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">cumsum</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="o">-</span> <span class="n">cumsum</span>
+    <span class="n">sorted_local_index1</span><span class="p">,</span> <span class="n">sorted_local_index2</span> <span class="o">=</span> <span class="n">convert_pair_index</span><span class="p">(</span><span class="n">sorted_local_pair_index</span><span class="p">)</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">cumsum_from_zero</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="n">cumsum</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pair_indices</span><span class="p">)</span>
     <span class="n">sorted_local_index1</span> <span class="o">+=</span> <span class="n">cumsum</span>
     <span class="n">sorted_local_index2</span> <span class="o">+=</span> <span class="n">cumsum</span>
 
@@ -398,7 +423,6 @@
     <span class="n">local_index2</span> <span class="o">=</span> <span class="n">rev_indices</span><span class="p">[</span><span class="n">sorted_local_index2</span><span class="p">]</span>
 
     <span class="c1"># compute mapping between representation of central-other to pair</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">atom_index1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">sign1</span> <span class="o">=</span> <span class="p">((</span><span class="n">local_index1</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">sign2</span> <span class="o">=</span> <span class="p">((</span><span class="n">local_index2</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">central_atom_index</span><span class="p">,</span> <span class="n">local_index1</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span> <span class="n">local_index2</span> <span class="o">%</span> <span class="n">n</span><span class="p">,</span> <span class="n">sign1</span><span class="p">,</span> <span class="n">sign2</span>
