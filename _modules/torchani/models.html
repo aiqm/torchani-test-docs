@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 1.0.2.dev24+g583c25a documentation</title>
+  <title>torchani.models &mdash; TorchANI 1.0.2.dev24+g84fcd4e documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev24+g583c25a
+                1.0.2.dev24+g84fcd4e
               </div>
             
           
@@ -201,6 +201,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">Tensor</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span>
 <span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="k">import</span> <span class="n">resource_filename</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">neurochem</span>
@@ -261,8 +262,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">neural_networks</span> <span class="o">=</span> <span class="n">neurochem</span><span class="o">.</span><span class="n">load_model_ensemble</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_prefix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">):</span>
-        <span class="c1"># type: (Tuple[torch.Tensor, torch.Tensor]) -&gt; Tuple[torch.Tensor, torch.Tensor]</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Calculates predicted properties for minibatch of configurations</span>
 
 <span class="sd">        Args:</span>
