@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev31+g3a4e8cd documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev30+ga9f1f0d documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev31+g3a4e8cd
+                1.0.2.dev30+ga9f1f0d
               </div>
             
           
@@ -208,7 +208,7 @@ equation (4) in the <a class="reference external" href="http://pubs.rsc.org/en/C
 </table>
 <dl class="method">
 <dt id="torchani.AEVComputer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>input_: Tuple[torch.Tensor, torch.Tensor], cell: Optional[torch.Tensor] = None, pbc: Optional[torch.Tensor] = None</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>input_</em>, <em>cell=None</em>, <em>pbc=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute AEVs</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -297,7 +297,7 @@ fit. The intercept will also be taken into account to shift energies.</li>
 </table>
 <dl class="method">
 <dt id="torchani.EnergyShifter.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>species_energies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/utils.html#EnergyShifter.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.EnergyShifter.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>species_energies: Tuple[torch.Tensor, torch.Tensor]</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/torchani/utils.html#EnergyShifter.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.EnergyShifter.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>(species, molecular energies)-&gt;(species, molecular energies + sae)</p>
 </dd></dl>
 
