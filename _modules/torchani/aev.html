@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.0.2.dev31+g4b39b01 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.0.2.dev37+gba25d8e documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev31+g4b39b01
+                1.0.2.dev37+gba25d8e
               </div>
             
           
@@ -175,7 +175,6 @@
 <span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">Tensor</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">torch.jit</span> <span class="k">import</span> <span class="n">Final</span>
 
 
 <span class="k">def</span> <span class="nf">cutoff_cosine</span><span class="p">(</span><span class="n">distances</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
@@ -400,9 +399,9 @@
 <span class="k">def</span> <span class="nf">compute_aev</span><span class="p">(</span><span class="n">species</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
                 <span class="n">shifts</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">triu_index</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
                 <span class="n">constants</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
-                <span class="n">sizes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+                <span class="n">sizes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
     <span class="n">Rcr</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span> <span class="o">=</span> <span class="n">constants</span>
-    <span class="n">num_species</span><span class="p">,</span> <span class="n">radial_sublength</span><span class="p">,</span> <span class="n">radial_length</span><span class="p">,</span> <span class="n">angular_sublength</span><span class="p">,</span> <span class="n">angular_length</span> <span class="o">=</span> <span class="n">sizes</span>
+    <span class="n">num_species</span><span class="p">,</span> <span class="n">radial_sublength</span><span class="p">,</span> <span class="n">radial_length</span><span class="p">,</span> <span class="n">angular_sublength</span><span class="p">,</span> <span class="n">angular_length</span><span class="p">,</span> <span class="n">aev_length</span> <span class="o">=</span> <span class="n">sizes</span>
     <span class="n">num_molecules</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">num_atoms</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">num_species_pairs</span> <span class="o">=</span> <span class="n">angular_length</span> <span class="o">//</span> <span class="n">angular_sublength</span>
@@ -474,24 +473,15 @@
 <span class="sd">    .. _ANI paper:</span>
 <span class="sd">        http://pubs.rsc.org/en/Content/ArticleLanding/2017/SC/C6SC05720A#!divAbstract</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">Rcr</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">Rca</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
-    <span class="n">num_species</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-
-    <span class="n">radial_sublength</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">radial_length</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">angular_sublength</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">angular_length</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">aev_length</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
-    <span class="n">sizes</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+    <span class="n">__constants__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rcr&#39;</span><span class="p">,</span> <span class="s1">&#39;Rca&#39;</span><span class="p">,</span> <span class="s1">&#39;num_species&#39;</span><span class="p">,</span> <span class="s1">&#39;radial_sublength&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;radial_length&#39;</span><span class="p">,</span> <span class="s1">&#39;angular_sublength&#39;</span><span class="p">,</span> <span class="s1">&#39;angular_length&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;aev_length&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">num_species</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AEVComputer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rcr</span> <span class="o">=</span> <span class="n">Rcr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rca</span> <span class="o">=</span> <span class="n">Rca</span>
         <span class="k">assert</span> <span class="n">Rca</span> <span class="o">&lt;=</span> <span class="n">Rcr</span><span class="p">,</span> <span class="s2">&quot;Current implementation of AEVComputer assumes Rca &lt;= Rcr&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">=</span> <span class="n">num_species</span>
-
         <span class="c1"># convert constant tensors to a ready-to-broadcast shape</span>
         <span class="c1"># shape convension (..., EtaR, ShfR)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;EtaR&#39;</span><span class="p">,</span> <span class="n">EtaR</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -502,6 +492,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;ShfA&#39;</span><span class="p">,</span> <span class="n">ShfA</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;ShfZ&#39;</span><span class="p">,</span> <span class="n">ShfZ</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">=</span> <span class="n">num_species</span>
         <span class="c1"># The length of radial subaev of a single species</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radial_sublength</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EtaR</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ShfR</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span>
         <span class="c1"># The length of full radial aev</span>
@@ -512,7 +503,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_sublength</span>
         <span class="c1"># The length of full aev</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">aev_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">radial_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_sublength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_length</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;triu_index&#39;</span><span class="p">,</span> <span class="n">triu_index</span><span class="p">(</span><span class="n">num_species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">EtaR</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
 
