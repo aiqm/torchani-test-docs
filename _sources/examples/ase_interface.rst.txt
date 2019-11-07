@@ -120,7 +120,7 @@ Now let's minimize the structure:
 
     Begin minimizing...
           Step     Time          Energy         fmax
-    BFGS:    0 09:29:28    -8311.226179        0.0000
+    BFGS:    0 09:29:47    -8311.226179        0.0000
 
 
 
@@ -180,23 +180,23 @@ Now run the dynamics:
 
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
+    Energy per atom: Epot = -1038.865eV  Ekin = 0.023eV (T=176K)  Etot = -1038.842eV
+    Energy per atom: Epot = -1038.874eV  Ekin = 0.040eV (T=312K)  Etot = -1038.834eV
+    Energy per atom: Epot = -1038.874eV  Ekin = 0.042eV (T=323K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.861eV  Ekin = 0.030eV (T=234K)  Etot = -1038.831eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.035eV (T=269K)  Etot = -1038.828eV
+    Energy per atom: Epot = -1038.861eV  Ekin = 0.039eV (T=299K)  Etot = -1038.822eV
+    Energy per atom: Epot = -1038.857eV  Ekin = 0.018eV (T=137K)  Etot = -1038.839eV
+    Energy per atom: Epot = -1038.870eV  Ekin = 0.027eV (T=206K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.866eV  Ekin = 0.031eV (T=236K)  Etot = -1038.836eV
     Energy per atom: Epot = -1038.880eV  Ekin = 0.020eV (T=155K)  Etot = -1038.860eV
-    Energy per atom: Epot = -1038.880eV  Ekin = 0.017eV (T=134K)  Etot = -1038.863eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.016eV (T=127K)  Etot = -1038.846eV
-    Energy per atom: Epot = -1038.875eV  Ekin = 0.026eV (T=203K)  Etot = -1038.849eV
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.034eV (T=262K)  Etot = -1038.842eV
-    Energy per atom: Epot = -1038.845eV  Ekin = 0.020eV (T=154K)  Etot = -1038.825eV
-    Energy per atom: Epot = -1038.871eV  Ekin = 0.031eV (T=243K)  Etot = -1038.839eV
-    Energy per atom: Epot = -1038.883eV  Ekin = 0.033eV (T=254K)  Etot = -1038.850eV
-    Energy per atom: Epot = -1038.849eV  Ekin = 0.034eV (T=262K)  Etot = -1038.816eV
-    Energy per atom: Epot = -1038.877eV  Ekin = 0.026eV (T=200K)  Etot = -1038.852eV
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  45.149 seconds)
+   **Total running time of the script:** ( 0 minutes  43.857 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
