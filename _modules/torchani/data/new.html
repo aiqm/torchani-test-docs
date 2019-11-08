@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.data.new &mdash; TorchANI 1.0.2.dev45+g0f45b6c documentation</title>
+  <title>torchani.data.new &mdash; TorchANI 1.0.2.dev35+gf7507a9 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev45+g0f45b6c
+                1.0.2.dev35+gf7507a9
               </div>
             
           
@@ -177,10 +177,10 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">from</span> <span class="nn">._pyanitools</span> <span class="k">import</span> <span class="n">anidataloader</span>
-<span class="kn">from</span> <span class="nn">importlib</span> <span class="k">import</span> <span class="n">util</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">gc</span>
 
-<span class="n">PKBAR_INSTALLED</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;pkbar&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="n">PKBAR_INSTALLED</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;pkbar&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 <span class="k">if</span> <span class="n">PKBAR_INSTALLED</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">pkbar</span>
 
