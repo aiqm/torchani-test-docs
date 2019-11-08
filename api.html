@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev42+g83886bb documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev33+gc468ff3 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev42+g83886bb
+                1.0.2.dev33+gc468ff3
               </div>
             
           
@@ -208,7 +208,7 @@ equation (4) in the <a class="reference external" href="http://pubs.rsc.org/en/C
 </table>
 <dl class="method">
 <dt id="torchani.AEVComputer.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>input_: Tuple[torch.Tensor, torch.Tensor], cell: Optional[torch.Tensor] = None, pbc: Optional[torch.Tensor] = None</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>input_: Tuple[torch.Tensor, torch.Tensor], cell: Optional[torch.Tensor] = None, pbc: Optional[torch.Tensor] = None</em><span class="sig-paren">)</span> &#x2192; torchani.aev.SpeciesAEV<a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute AEVs</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -238,7 +238,7 @@ for that direction.</p>
 unchanged, and AEVs is a tensor of shape
 <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">A,</span> <span class="pre">self.aev_length())</span></code></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)">tuple</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">NamedTuple</td>
 </tr>
 </tbody>
 </table>
@@ -297,7 +297,7 @@ fit. The intercept will also be taken into account to shift energies.</li>
 </table>
 <dl class="method">
 <dt id="torchani.EnergyShifter.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>species_energies: Tuple[torch.Tensor, torch.Tensor]</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/torchani/utils.html#EnergyShifter.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.EnergyShifter.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>species_energies: Tuple[torch.Tensor, torch.Tensor]</em><span class="sig-paren">)</span> &#x2192; torchani.nn.SpeciesEnergies<a class="reference internal" href="_modules/torchani/utils.html#EnergyShifter.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.EnergyShifter.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>(species, molecular energies)-&gt;(species, molecular energies + sae)</p>
 </dd></dl>
 

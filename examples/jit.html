@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 1.0.2.dev42+g83886bb documentation</title>
+  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 1.0.2.dev33+gc468ff3 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.0.2.dev42+g83886bb
+                1.0.2.dev33+gc468ff3
               </div>
             
           
@@ -219,10 +219,10 @@ produces the same output as the original model:</p>
 </pre></div>
 </div>
 <p>And here is the result:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">energies_ensemble</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">energies_single</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">]((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">energies_ensemble_jit</span> <span class="o">=</span> <span class="n">loaded_compiled_model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">energies_single_jit</span> <span class="o">=</span> <span class="n">loaded_compiled_model0</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">energies_ensemble</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
+<span class="n">energies_single</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">]((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
+<span class="n">energies_ensemble_jit</span> <span class="o">=</span> <span class="n">loaded_compiled_model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
+<span class="n">energies_single_jit</span> <span class="o">=</span> <span class="n">loaded_compiled_model0</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ensemble energy, eager mode vs loaded jit:&#39;</span><span class="p">,</span> <span class="n">energies_ensemble</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">energies_ensemble_jit</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Single network energy, eager mode vs loaded jit:&#39;</span><span class="p">,</span> <span class="n">energies_single</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">energies_single_jit</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 </pre></div>
@@ -232,7 +232,7 @@ produces the same output as the original model:</p>
 Single network energy, eager mode vs loaded jit: -40.42878345662912 -40.42878345662912
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.097 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.847 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>

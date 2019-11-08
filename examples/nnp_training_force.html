@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.0.2.dev42+g83886bb documentation</title>
+  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.0.2.dev33+gc468ff3 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.0.2.dev42+g83886bb
+                1.0.2.dev33+gc468ff3
               </div>
             
           
@@ -254,9 +254,9 @@ containing forces:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 9.4058e-03,  2.6844e-01, -2.1346e-16],
-        [ 5.8302e-03, -8.4849e-02, -2.7976e-16],
-        [-1.5236e-02, -1.8359e-01,  4.9547e-16],
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 9.7349e-03, -7.3764e-02,  1.5161e-17],
+        [-3.7402e-03, -2.8979e-02,  2.5611e-19],
+        [-5.9947e-03,  1.0274e-01, -1.5161e-17],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00]])
@@ -453,7 +453,7 @@ is better than the best, then save the new best model to a checkpoint</p>
         <span class="n">true_energies</span> <span class="o">=</span> <span class="n">batch_y</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
         <span class="n">predicted_energies</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">chunk_species</span><span class="p">,</span> <span class="n">chunk_coordinates</span> <span class="ow">in</span> <span class="n">batch_x</span><span class="p">:</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">chunk_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">chunk_species</span><span class="p">,</span> <span class="n">chunk_coordinates</span><span class="p">))</span>
+            <span class="n">chunk_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">chunk_species</span><span class="p">,</span> <span class="n">chunk_coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
             <span class="n">predicted_energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_energies</span><span class="p">)</span>
         <span class="n">predicted_energies</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">predicted_energies</span><span class="p">)</span>
         <span class="n">total_mse</span> <span class="o">+=</span> <span class="n">mse_sum</span><span class="p">(</span><span class="n">predicted_energies</span><span class="p">,</span> <span class="n">true_energies</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
@@ -520,7 +520,7 @@ is better than the best, then save the new best model to a checkpoint</p>
             <span class="c1"># that we could compute force from it</span>
             <span class="n">chunk_coordinates</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="n">_</span><span class="p">,</span> <span class="n">chunk_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">chunk_species</span><span class="p">,</span> <span class="n">chunk_coordinates</span><span class="p">))</span>
+            <span class="n">chunk_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">chunk_species</span><span class="p">,</span> <span class="n">chunk_coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
 
             <span class="c1"># We can use torch.autograd.grad to compute force. Remember to</span>
             <span class="c1"># create graph so that the loss of the force can contribute to</span>
@@ -563,25 +563,25 @@ is better than the best, then save the new best model to a checkpoint</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 69.94924789480335 at epoch 1
+RMSE: 56.3942532099605 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:04&lt;00:14,  4.81s/it]
-epoch 1:  50%|#####     | 2/4 [00:09&lt;00:09,  4.79s/it]
-epoch 1:  75%|#######5  | 3/4 [00:14&lt;00:04,  4.79s/it]
-epoch 1: 100%|##########| 4/4 [00:17&lt;00:00,  4.24s/it]
-epoch 1: 100%|##########| 4/4 [00:17&lt;00:00,  4.32s/it]
-RMSE: 158.866301115255 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:04&lt;00:13,  4.43s/it]
+epoch 1:  50%|#####     | 2/4 [00:09&lt;00:08,  4.47s/it]
+epoch 1:  75%|#######5  | 3/4 [00:13&lt;00:04,  4.47s/it]
+epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  3.95s/it]
+epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  4.05s/it]
+RMSE: 38.328171941375395 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:04&lt;00:14,  4.75s/it]
-epoch 2:  50%|#####     | 2/4 [00:09&lt;00:09,  4.74s/it]
-epoch 2:  75%|#######5  | 3/4 [00:14&lt;00:04,  4.74s/it]
-epoch 2: 100%|##########| 4/4 [00:17&lt;00:00,  4.21s/it]
-epoch 2: 100%|##########| 4/4 [00:17&lt;00:00,  4.29s/it]
+epoch 2:  25%|##5       | 1/4 [00:04&lt;00:13,  4.40s/it]
+epoch 2:  50%|#####     | 2/4 [00:08&lt;00:08,  4.46s/it]
+epoch 2:  75%|#######5  | 3/4 [00:13&lt;00:04,  4.45s/it]
+epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  3.94s/it]
+epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  4.04s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.985 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  33.852 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/4b6aa9678849c98dd34491f14233c2bd/nnp_training_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training_force.py</span></code></a></div>
