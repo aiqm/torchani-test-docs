@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.0.2.dev33+gc468ff3 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.0.2.dev32+g5a63558 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev33+gc468ff3
+                1.0.2.dev32+g5a63558
               </div>
             
           
@@ -174,13 +174,8 @@
 <span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">Tensor</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">NamedTuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">torch.jit</span> <span class="k">import</span> <span class="n">Final</span>
-
-
-<span class="k">class</span> <span class="nc">SpeciesAEV</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">species</span><span class="p">:</span> <span class="n">Tensor</span>
-    <span class="n">aevs</span><span class="p">:</span> <span class="n">Tensor</span>
 
 
 <span class="k">def</span> <span class="nf">cutoff_cosine</span><span class="p">(</span><span class="n">distances</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
@@ -534,7 +529,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rcr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">EtaR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ShfR</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rca</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ShfZ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">EtaA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Zeta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ShfA</span>
 
 <div class="viewcode-block" id="AEVComputer.forward"><a class="viewcode-back" href="../../api.html#torchani.AEVComputer.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span> <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesAEV</span><span class="p">:</span>
+                <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Compute AEVs</span>
 
 <span class="sd">        Arguments:</span>
@@ -562,7 +557,7 @@
 <span class="sd">                for that direction.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            NamedTuple: Species and AEVs. species are the species from the input</span>
+<span class="sd">            tuple: Species and AEVs. species are the species from the input</span>
 <span class="sd">            unchanged, and AEVs is a tensor of shape</span>
 <span class="sd">            ``(C, A, self.aev_length())``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -576,8 +571,7 @@
             <span class="n">cutoff</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Rcr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rca</span><span class="p">)</span>
             <span class="n">shifts</span> <span class="o">=</span> <span class="n">compute_shifts</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
 
-        <span class="n">aev</span> <span class="o">=</span> <span class="n">compute_aev</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">triu_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">SpeciesAEV</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">aev</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">compute_aev</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">shifts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">triu_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
