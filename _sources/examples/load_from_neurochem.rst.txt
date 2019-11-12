@@ -15,7 +15,6 @@ This tutorial illustrates how to manually load model from `NeuroChem files`_.
 .. _NeuroChem files:
     https://github.com/isayev/ASE_ANI/tree/master/ani_models
 
-
 To begin with, let's first import the modules we will use:
 
 
@@ -518,8 +517,8 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7fbfeedcce10>
-    <torchani.ase.Calculator object at 0x7fbfeedcce10>
+    <torchani.ase.Calculator object at 0x7fe676d36510>
+    <torchani.ase.Calculator object at 0x7fe676d36510>
 
 
 
@@ -643,7 +642,7 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.802 seconds)
+   **Total running time of the script:** ( 0 minutes  1.996 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
