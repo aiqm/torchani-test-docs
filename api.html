@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev39+geebc484 documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev42+g0ec4d5e documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev39+geebc484
+                1.0.2.dev42+g0ec4d5e
               </div>
             
           
@@ -931,7 +931,7 @@ will be stored in the network directory with this file name.</li>
 <p>Tools for interfacing with <a class="reference external" href="https://wiki.fysik.dtu.dk/ase">ASE</a>.</p>
 <dl class="class">
 <dt id="torchani.ase.Calculator">
-<em class="property">class </em><code class="descclassname">torchani.ase.</code><code class="descname">Calculator</code><span class="sig-paren">(</span><em>species</em>, <em>aev_computer</em>, <em>model</em>, <em>energy_shifter</em>, <em>dtype=torch.float64</em>, <em>overwrite=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/ase.html#Calculator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.ase.Calculator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">torchani.ase.</code><code class="descname">Calculator</code><span class="sig-paren">(</span><em>species</em>, <em>model</em>, <em>overwrite=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/ase.html#Calculator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.ase.Calculator" title="Permalink to this definition">¶</a></dt>
 <dd><p>TorchANI calculator for ASE</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -939,11 +939,8 @@ will be stored in the network directory with this file name.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>species</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Sequence</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – sequence of all supported species, in order.</li>
-<li><strong>aev_computer</strong> (<a class="reference internal" href="#torchani.AEVComputer" title="torchani.AEVComputer"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.AEVComputer</span></code></a>) – AEV computer.</li>
-<li><strong>model</strong> (<a class="reference internal" href="#torchani.ANIModel" title="torchani.ANIModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.ANIModel</span></code></a> or <a class="reference internal" href="#torchani.Ensemble" title="torchani.Ensemble"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.Ensemble</span></code></a>) – neural network potential models.</li>
-<li><strong>energy_shifter</strong> (<a class="reference internal" href="#torchani.EnergyShifter" title="torchani.EnergyShifter"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.EnergyShifter</span></code></a>) – Energy shifter.</li>
-<li><strong>dtype</strong> (<a class="reference internal" href="#torchani.EnergyShifter" title="torchani.EnergyShifter"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.EnergyShifter</span></code></a>) – data type to use,
-by dafault <code class="docutils literal notranslate"><span class="pre">torch.float64</span></code>.</li>
+<li><strong>model</strong> (<a class="reference external" href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="(in PyTorch vmaster (1.4.0a0+1bb5209 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>) – neural network potential model
+that convert coordinates into energies.</li>
 <li><strong>overwrite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – After wrapping atoms into central box, whether
 to replace the original positions stored in <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="(in ASE)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ase.Atoms</span></code></a>
 object with the wrapped positions.</li>
