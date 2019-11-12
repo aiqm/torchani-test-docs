@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.ase &mdash; TorchANI 1.0.2.dev47+g577f0ad documentation</title>
+  <title>torchani.ase &mdash; TorchANI 1.0.2.dev38+g1a2b450 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev47+g577f0ad
+                1.0.2.dev38+g1a2b450
               </div>
             
           
@@ -179,12 +179,9 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">.nn</span> <span class="k">import</span> <span class="n">Sequential</span>
-<span class="kn">import</span> <span class="nn">ase.neighborlist</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">import</span> <span class="nn">ase.calculators.calculator</span>
 <span class="kn">import</span> <span class="nn">ase.units</span>
-<span class="kn">import</span> <span class="nn">copy</span>
 
 
 <div class="viewcode-block" id="Calculator"><a class="viewcode-back" href="../../api.html#torchani.ase.Calculator">[docs]</a><span class="k">class</span> <span class="nc">Calculator</span><span class="p">(</span><span class="n">ase</span><span class="o">.</span><span class="n">calculators</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">Calculator</span><span class="p">):</span>
@@ -193,12 +190,8 @@
 <span class="sd">    Arguments:</span>
 <span class="sd">        species (:class:`collections.abc.Sequence` of :class:`str`):</span>
 <span class="sd">            sequence of all supported species, in order.</span>
-<span class="sd">        aev_computer (:class:`torchani.AEVComputer`): AEV computer.</span>
-<span class="sd">        model (:class:`torchani.ANIModel` or :class:`torchani.Ensemble`):</span>
-<span class="sd">            neural network potential models.</span>
-<span class="sd">        energy_shifter (:class:`torchani.EnergyShifter`): Energy shifter.</span>
-<span class="sd">        dtype (:class:`torchani.EnergyShifter`): data type to use,</span>
-<span class="sd">            by dafault ``torch.float64``.</span>
+<span class="sd">        model (:class:`torch.nn.Module`): neural network potential model</span>
+<span class="sd">            that convert coordinates into energies.</span>
 <span class="sd">        overwrite (bool): After wrapping atoms into central box, whether</span>
 <span class="sd">            to replace the original positions stored in :class:`ase.Atoms`</span>
 <span class="sd">            object with the wrapped positions.</span>
@@ -206,24 +199,15 @@
 
     <span class="n">implemented_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="s1">&#39;stress&#39;</span><span class="p">,</span> <span class="s1">&#39;free_energy&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="n">aev_computer</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">energy_shifter</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Calculator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">species_to_tensor</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">ChemicalSymbolsToInts</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
-        <span class="c1"># aev_computer.neighborlist will be changed later, so we need a copy to</span>
-        <span class="c1"># make sure we do not change the original object</span>
-        <span class="n">aev_computer</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">aev_computer</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span> <span class="o">=</span> <span class="n">aev_computer</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overwrite</span> <span class="o">=</span> <span class="n">overwrite</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="o">.</span><span class="n">EtaR</span><span class="o">.</span><span class="n">device</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">nn</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">a_parameter</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">a_parameter</span><span class="o">.</span><span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">a_parameter</span><span class="o">.</span><span class="n">dtype</span>
 
     <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span>
                   <span class="n">system_changes</span><span class="o">=</span><span class="n">ase</span><span class="o">.</span><span class="n">calculators</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">all_changes</span><span class="p">):</span>
@@ -252,11 +236,10 @@
         <span class="k">if</span> <span class="n">pbc_enabled</span><span class="p">:</span>
             <span class="k">if</span> <span class="s1">&#39;stress&#39;</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
                 <span class="n">cell</span> <span class="o">=</span> <span class="n">cell</span> <span class="o">@</span> <span class="n">scaling</span>
-            <span class="n">aev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">),</span> <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="n">pbc</span><span class="p">)</span><span class="o">.</span><span class="n">aevs</span>
+            <span class="n">energy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">),</span> <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="n">pbc</span><span class="p">)</span><span class="o">.</span><span class="n">energies</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">aev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">aevs</span>
+            <span class="n">energy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
 
-        <span class="n">energy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">aev</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
         <span class="n">energy</span> <span class="o">*=</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;free_energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
