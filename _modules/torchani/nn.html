@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.nn &mdash; TorchANI 1.0.2.dev41+g16f3794 documentation</title>
+  <title>torchani.nn &mdash; TorchANI 1.0.2.dev40+gc72ebd8 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.2.dev41+g16f3794
+                1.0.2.dev40+gc72ebd8
               </div>
             
           
@@ -182,12 +182,14 @@
 
 
 <div class="viewcode-block" id="ANIModel"><a class="viewcode-back" href="../../api.html#torchani.ANIModel">[docs]</a><span class="k">class</span> <span class="nc">ANIModel</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;ANI model that compute properties from species and AEVs.</span>
+    <span class="sd">&quot;&quot;&quot;ANI model that compute energies from species and AEVs.</span>
 
 <span class="sd">    Different atom types might have different modules, when computing</span>
-<span class="sd">    properties, for each atom, the module for its corresponding atom type will</span>
+<span class="sd">    energies, for each atom, the module for its corresponding atom type will</span>
 <span class="sd">    be applied to its AEV, after that, outputs of modules will be reduced along</span>
-<span class="sd">    different atoms to obtain molecular properties.</span>
+<span class="sd">    different atoms to obtain molecular energies.</span>
+
+<span class="sd">    The resulting energies are in Hartree.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        modules (:class:`collections.abc.Sequence`): Modules for each atom</span>
