@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.0.2.dev41+gb31322e documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.0.2.dev41+g42f78a5 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.2.dev41+gb31322e
+                1.0.2.dev41+g42f78a5
               </div>
             
           
@@ -232,11 +232,11 @@ three vectors defining unit cell:</p>
 </div>
 <p>and pbc is boolean vector of size 3 storing if pbc is enabled
 for that direction.</p>
-<p>The coordinates, and cell are in Angstrom.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Species and AEVs. species are the species from the input
-unchanged, and AEVs is a tensor of shape <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">A,</span> <span class="pre">self.aev_length())</span></code></td>
+unchanged, and AEVs is a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">A,</span> <span class="pre">self.aev_length())</span></code></td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">NamedTuple</td>
 </tr>
@@ -249,12 +249,11 @@ unchanged, and AEVs is a tensor of shape <code class="docutils literal notransla
 <dl class="class">
 <dt id="torchani.ANIModel">
 <em class="property">class </em><code class="descclassname">torchani.</code><code class="descname">ANIModel</code><span class="sig-paren">(</span><em>modules</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#ANIModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.ANIModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>ANI model that compute energies from species and AEVs.</p>
+<dd><p>ANI model that compute properties from species and AEVs.</p>
 <p>Different atom types might have different modules, when computing
-energies, for each atom, the module for its corresponding atom type will
+properties, for each atom, the module for its corresponding atom type will
 be applied to its AEV, after that, outputs of modules will be reduced along
-different atoms to obtain molecular energies.</p>
-<p>The resulting energies are in Hartree.</p>
+different atoms to obtain molecular properties.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
