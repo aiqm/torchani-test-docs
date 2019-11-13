@@ -137,9 +137,9 @@ Due to padding, part of the forces might be 0
 
  .. code-block:: none
 
-    tensor([[ 3.7862e-02,  1.5303e-01, -5.9009e-17],
-            [-2.1906e-02,  1.1617e-02, -2.3420e-16],
-            [-1.5956e-02, -1.6465e-01,  2.9075e-16],
+    tensor([[ 7.7621e-02, -4.8856e-02,  5.9471e-17],
+            [-5.9329e-02,  1.1493e-01,  5.3120e-17],
+            [-1.8292e-02, -6.6073e-02, -1.1341e-16],
             [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
             [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
             [ 0.0000e+00,  0.0000e+00,  0.0000e+00]])
@@ -206,43 +206,41 @@ The code to define networks, optimizers, are mostly the same
  .. code-block:: none
 
     ANIModel(
-      (module_list): ModuleList(
-        (0): Sequential(
-          (0): Linear(in_features=384, out_features=160, bias=True)
-          (1): CELU(alpha=0.1)
-          (2): Linear(in_features=160, out_features=128, bias=True)
-          (3): CELU(alpha=0.1)
-          (4): Linear(in_features=128, out_features=96, bias=True)
-          (5): CELU(alpha=0.1)
-          (6): Linear(in_features=96, out_features=1, bias=True)
-        )
-        (1): Sequential(
-          (0): Linear(in_features=384, out_features=144, bias=True)
-          (1): CELU(alpha=0.1)
-          (2): Linear(in_features=144, out_features=112, bias=True)
-          (3): CELU(alpha=0.1)
-          (4): Linear(in_features=112, out_features=96, bias=True)
-          (5): CELU(alpha=0.1)
-          (6): Linear(in_features=96, out_features=1, bias=True)
-        )
-        (2): Sequential(
-          (0): Linear(in_features=384, out_features=128, bias=True)
-          (1): CELU(alpha=0.1)
-          (2): Linear(in_features=128, out_features=112, bias=True)
-          (3): CELU(alpha=0.1)
-          (4): Linear(in_features=112, out_features=96, bias=True)
-          (5): CELU(alpha=0.1)
-          (6): Linear(in_features=96, out_features=1, bias=True)
-        )
-        (3): Sequential(
-          (0): Linear(in_features=384, out_features=128, bias=True)
-          (1): CELU(alpha=0.1)
-          (2): Linear(in_features=128, out_features=112, bias=True)
-          (3): CELU(alpha=0.1)
-          (4): Linear(in_features=112, out_features=96, bias=True)
-          (5): CELU(alpha=0.1)
-          (6): Linear(in_features=96, out_features=1, bias=True)
-        )
+      (0): Sequential(
+        (0): Linear(in_features=384, out_features=160, bias=True)
+        (1): CELU(alpha=0.1)
+        (2): Linear(in_features=160, out_features=128, bias=True)
+        (3): CELU(alpha=0.1)
+        (4): Linear(in_features=128, out_features=96, bias=True)
+        (5): CELU(alpha=0.1)
+        (6): Linear(in_features=96, out_features=1, bias=True)
+      )
+      (1): Sequential(
+        (0): Linear(in_features=384, out_features=144, bias=True)
+        (1): CELU(alpha=0.1)
+        (2): Linear(in_features=144, out_features=112, bias=True)
+        (3): CELU(alpha=0.1)
+        (4): Linear(in_features=112, out_features=96, bias=True)
+        (5): CELU(alpha=0.1)
+        (6): Linear(in_features=96, out_features=1, bias=True)
+      )
+      (2): Sequential(
+        (0): Linear(in_features=384, out_features=128, bias=True)
+        (1): CELU(alpha=0.1)
+        (2): Linear(in_features=128, out_features=112, bias=True)
+        (3): CELU(alpha=0.1)
+        (4): Linear(in_features=112, out_features=96, bias=True)
+        (5): CELU(alpha=0.1)
+        (6): Linear(in_features=96, out_features=1, bias=True)
+      )
+      (3): Sequential(
+        (0): Linear(in_features=384, out_features=128, bias=True)
+        (1): CELU(alpha=0.1)
+        (2): Linear(in_features=128, out_features=112, bias=True)
+        (3): CELU(alpha=0.1)
+        (4): Linear(in_features=112, out_features=96, bias=True)
+        (5): CELU(alpha=0.1)
+        (6): Linear(in_features=96, out_features=1, bias=True)
       )
     )
 
@@ -543,17 +541,17 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    RMSE: 56.44118583213768 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:04<00:13,  4.35s/it]    epoch 1:  50%|#####     | 2/4 [00:08<00:08,  4.32s/it]    epoch 1:  75%|#######5  | 3/4 [00:12<00:04,  4.30s/it]    epoch 1: 100%|##########| 4/4 [00:15<00:00,  3.78s/it]    epoch 1: 100%|##########| 4/4 [00:15<00:00,  3.86s/it]
-    RMSE: 81.24661320703424 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:04<00:12,  4.33s/it]    epoch 2:  50%|#####     | 2/4 [00:08<00:08,  4.33s/it]    epoch 2:  75%|#######5  | 3/4 [00:12<00:04,  4.30s/it]    epoch 2: 100%|##########| 4/4 [00:15<00:00,  3.79s/it]    epoch 2: 100%|##########| 4/4 [00:15<00:00,  3.87s/it]
+    RMSE: 108.65748469644764 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:04<00:12,  4.32s/it]    epoch 1:  50%|#####     | 2/4 [00:08<00:08,  4.34s/it]    epoch 1:  75%|#######5  | 3/4 [00:13<00:04,  4.35s/it]    epoch 1: 100%|##########| 4/4 [00:15<00:00,  3.85s/it]    epoch 1: 100%|##########| 4/4 [00:15<00:00,  3.94s/it]
+    RMSE: 158.2744522919617 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:04<00:13,  4.47s/it]    epoch 2:  50%|#####     | 2/4 [00:08<00:08,  4.44s/it]    epoch 2:  75%|#######5  | 3/4 [00:13<00:04,  4.44s/it]    epoch 2: 100%|##########| 4/4 [00:15<00:00,  3.91s/it]    epoch 2: 100%|##########| 4/4 [00:15<00:00,  3.99s/it]
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  32.324 seconds)
+   **Total running time of the script:** ( 0 minutes  33.077 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
