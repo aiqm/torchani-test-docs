@@ -37,6 +37,7 @@ To begin with, let's first import the modules we will use:
 
 
 
+
 Now let's set up a crystal
 
 
@@ -59,12 +60,14 @@ Now let's set up a crystal
 
 
 
+
 Now let's create a calculator from builtin models:
 
 
 .. code-block:: default
 
     calculator = torchani.models.ANI1ccx().ase()
+
 
 
 
@@ -96,6 +99,7 @@ Now let's set the calculator for ``atoms``:
 
 
 
+
 Now let's minimize the structure:
 
 
@@ -119,7 +123,8 @@ Now let's minimize the structure:
 
     Begin minimizing...
           Step     Time          Energy         fmax
-    BFGS:    0 00:03:09    -8311.226180        0.0000
+    BFGS:    0 00:02:06    -8311.226180        0.0000
+
 
 
 
@@ -143,6 +148,7 @@ Now create a callback function that print interesting physical quantities:
 
 
 
+
 We want to run MD with constant energy using the Langevin algorithm
 with a time step of 1 fs, the temperature 300K and the friction
 coefficient to 0.02 atomic units.
@@ -152,6 +158,7 @@ coefficient to 0.02 atomic units.
 
     dyn = Langevin(atoms, 1 * units.fs, 300 * units.kB, 0.2)
     dyn.attach(printenergy, interval=50)
+
 
 
 
@@ -180,23 +187,25 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.889eV  Ekin = 0.010eV (T= 80K)  Etot = -1038.878eV
-    Energy per atom: Epot = -1038.886eV  Ekin = 0.028eV (T=215K)  Etot = -1038.859eV
-    Energy per atom: Epot = -1038.873eV  Ekin = 0.025eV (T=190K)  Etot = -1038.849eV
-    Energy per atom: Epot = -1038.870eV  Ekin = 0.018eV (T=139K)  Etot = -1038.852eV
-    Energy per atom: Epot = -1038.891eV  Ekin = 0.025eV (T=196K)  Etot = -1038.866eV
-    Energy per atom: Epot = -1038.873eV  Ekin = 0.029eV (T=225K)  Etot = -1038.844eV
-    Energy per atom: Epot = -1038.848eV  Ekin = 0.032eV (T=244K)  Etot = -1038.816eV
-    Energy per atom: Epot = -1038.850eV  Ekin = 0.027eV (T=208K)  Etot = -1038.823eV
-    Energy per atom: Epot = -1038.849eV  Ekin = 0.030eV (T=229K)  Etot = -1038.820eV
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.029eV (T=223K)  Etot = -1038.847eV
+    Energy per atom: Epot = -1038.890eV  Ekin = 0.026eV (T=197K)  Etot = -1038.864eV
+    Energy per atom: Epot = -1038.865eV  Ekin = 0.016eV (T=127K)  Etot = -1038.849eV
+    Energy per atom: Epot = -1038.878eV  Ekin = 0.019eV (T=150K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.012eV (T= 92K)  Etot = -1038.863eV
+    Energy per atom: Epot = -1038.866eV  Ekin = 0.039eV (T=300K)  Etot = -1038.827eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.056eV (T=434K)  Etot = -1038.815eV
+    Energy per atom: Epot = -1038.876eV  Ekin = 0.047eV (T=364K)  Etot = -1038.829eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.028eV (T=215K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.879eV  Ekin = 0.033eV (T=254K)  Etot = -1038.846eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.028eV (T=215K)  Etot = -1038.843eV
+
+    True
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  37.603 seconds)
+   **Total running time of the script:** ( 0 minutes  37.811 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:

@@ -27,12 +27,14 @@ To begin with, let's first import the modules we will use:
 
 
 
+
 Let's now manually specify the device we want TorchANI to run:
 
 
 .. code-block:: default
 
     device = torch.device('cpu')
+
 
 
 
@@ -50,6 +52,7 @@ issue in your application.
 .. code-block:: default
 
     model = torchani.models.ANI1ccx()
+
 
 
 
@@ -84,6 +87,7 @@ The coordinates are in Angstrom, and the energies you get are in Hartree
 
 
 
+
 Now let's compute energy and force:
 
 
@@ -92,6 +96,7 @@ Now let's compute energy and force:
     energy = model((species, coordinates)).energies
     derivative = torch.autograd.grad(energy.sum(), coordinates)[0]
     force = -derivative
+
 
 
 
@@ -126,9 +131,10 @@ And print to see the result:
 
 
 
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.846 seconds)
+   **Total running time of the script:** ( 0 minutes  1.789 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:

@@ -33,6 +33,7 @@ To begin with, let's first import the modules we will use:
 
 
 
+
 Now let's read constants from constant file and construct AEV computer.
 
 
@@ -45,6 +46,7 @@ Now let's read constants from constant file and construct AEV computer.
     const_file = os.path.join(path, '../torchani/resources/ani-1x_8x/rHCNO-5.2R_16-3.5A_a4-8.params')  # noqa: E501
     consts = torchani.neurochem.Constants(const_file)
     aev_computer = torchani.AEVComputer(**consts)
+
 
 
 
@@ -66,6 +68,7 @@ Now let's read self energies and construct energy shifter.
 
 
 
+
 Now let's read a whole ensemble of models.
 
 
@@ -80,6 +83,7 @@ Now let's read a whole ensemble of models.
 
 
 
+
 Or alternatively a single model.
 
 
@@ -87,6 +91,7 @@ Or alternatively a single model.
 
     model_dir = os.path.join(path, '../torchani/resources/ani-1x_8x/train0/networks')  # noqa: E501
     model = torchani.neurochem.load_model(consts.species, model_dir)
+
 
 
 
@@ -472,6 +477,7 @@ From using either the ensemble or a single model:
 
 
 
+
 You can also create an ASE calculator using the ensemble or single model:
 
 
@@ -492,8 +498,9 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7efd782a7550>
-    <torchani.ase.Calculator object at 0x7efd782a7550>
+    <torchani.ase.Calculator object at 0x7f7893c483c8>
+    <torchani.ase.Calculator object at 0x7f7893c483c8>
+
 
 
 
@@ -510,6 +517,7 @@ Now let's define a methane molecule
                                requires_grad=True)
     species = consts.species_to_tensor('CHHHH').unsqueeze(0)
     methane = ase.Atoms('CHHHH', positions=coordinates.squeeze().detach().numpy())
+
 
 
 
@@ -547,6 +555,7 @@ Now let's compute energies using the ensemble directly:
 
 
 
+
 And using the ASE interface of the ensemble:
 
 
@@ -572,6 +581,7 @@ And using the ASE interface of the ensemble:
      [ 0.08563145 -0.04288923  0.04082093]
      [ 0.02681219  0.00601403  0.03809873]
      [-0.01379386  0.00459347  0.05110046]]
+
 
 
 
@@ -615,9 +625,10 @@ We can do the same thing with the single model:
 
 
 
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.945 seconds)
+   **Total running time of the script:** ( 0 minutes  2.100 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:

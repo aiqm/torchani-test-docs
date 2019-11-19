@@ -16,9 +16,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_energy_force_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_energy_force_thumb.png
 
-        :ref:`sphx_glr_examples_energy_force.py`
+     :ref:`sphx_glr_examples_energy_force.py`
 
 .. raw:: html
 
@@ -36,9 +36,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_ase_interface_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_ase_interface_thumb.png
 
-        :ref:`sphx_glr_examples_ase_interface.py`
+     :ref:`sphx_glr_examples_ase_interface.py`
 
 .. raw:: html
 
@@ -56,9 +56,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_vibration_analysis_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_vibration_analysis_thumb.png
 
-        :ref:`sphx_glr_examples_vibration_analysis.py`
+     :ref:`sphx_glr_examples_vibration_analysis.py`
 
 .. raw:: html
 
@@ -76,9 +76,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_neurochem_trainer_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_neurochem_trainer_thumb.png
 
-        :ref:`sphx_glr_examples_neurochem_trainer.py`
+     :ref:`sphx_glr_examples_neurochem_trainer.py`
 
 .. raw:: html
 
@@ -96,9 +96,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_jit_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_jit_thumb.png
 
-        :ref:`sphx_glr_examples_jit.py`
+     :ref:`sphx_glr_examples_jit.py`
 
 .. raw:: html
 
@@ -116,9 +116,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_load_from_neurochem_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_load_from_neurochem_thumb.png
 
-        :ref:`sphx_glr_examples_load_from_neurochem.py`
+     :ref:`sphx_glr_examples_load_from_neurochem.py`
 
 .. raw:: html
 
@@ -136,9 +136,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_nnp_training_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_nnp_training_thumb.png
 
-        :ref:`sphx_glr_examples_nnp_training.py`
+     :ref:`sphx_glr_examples_nnp_training.py`
 
 .. raw:: html
 
@@ -156,9 +156,9 @@ Examples
 
 .. only:: html
 
-    .. figure:: /examples/images/thumb/sphx_glr_nnp_training_force_thumb.png
+ .. figure:: /examples/images/thumb/sphx_glr_nnp_training_force_thumb.png
 
-        :ref:`sphx_glr_examples_nnp_training_force.py`
+     :ref:`sphx_glr_examples_nnp_training_force.py`
 
 .. raw:: html
 
@@ -171,7 +171,7 @@ Examples
    /examples/nnp_training_force
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 

@@ -28,6 +28,7 @@ To begin with, let's first import the modules we will use:
 
 
 
+
 Let's now load the built-in ANI-1ccx models. The builtin ANI-1ccx contains 8
 models trained with diffrent initialization.
 
@@ -35,6 +36,7 @@ models trained with diffrent initialization.
 .. code-block:: default
 
     model = torchani.models.ANI1ccx()
+
 
 
 
@@ -56,6 +58,7 @@ It is very easy to compile and save the model using `torch.jit`.
 
 
 
+
 Besides compiling the ensemble, it is also possible to compile a single network
 
 
@@ -63,6 +66,7 @@ Besides compiling the ensemble, it is also possible to compile a single network
 
     compiled_model0 = torch.jit.script(model[0])
     torch.jit.save(compiled_model0, 'compiled_model0.pt')
+
 
 
 
@@ -86,6 +90,7 @@ produces the same output as the original model:
 
 
 
+
 We use the molecule below to test:
 
 
@@ -97,6 +102,7 @@ We use the molecule below to test:
                                  [0.45554739, 0.54289633, 0.81170881],
                                  [0.66091919, -0.16799635, -0.91037834]]])
     species = model.species_to_tensor('CHHHH').unsqueeze(0)
+
 
 
 
@@ -131,9 +137,10 @@ And here is the result:
 
 
 
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.748 seconds)
+   **Total running time of the script:** ( 0 minutes  2.887 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
