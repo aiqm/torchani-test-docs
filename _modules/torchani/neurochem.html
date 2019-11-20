@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.neurochem &mdash; TorchANI 1.2.dev2+g67da13c documentation</title>
+  <title>torchani.neurochem &mdash; TorchANI 1.2.dev3+g1655d68 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.2.dev2+g67da13c
+                1.2.dev3+g1655d68
               </div>
             
           
@@ -670,8 +670,8 @@
             <span class="n">input_size</span><span class="p">,</span> <span class="n">network_setup</span> <span class="o">=</span> <span class="n">network_setup</span>
             <span class="k">if</span> <span class="n">input_size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="o">.</span><span class="n">aev_length</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;AEV size and input size does not match&#39;</span><span class="p">)</span>
-            <span class="n">atomic_nets</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">atom_type</span> <span class="ow">in</span> <span class="n">network_setup</span><span class="p">:</span>
+            <span class="n">atomic_nets</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">atom_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species</span><span class="p">:</span>
                 <span class="n">layers</span> <span class="o">=</span> <span class="n">network_setup</span><span class="p">[</span><span class="n">atom_type</span><span class="p">]</span>
                 <span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="n">input_size</span>
@@ -711,7 +711,7 @@
                             <span class="s1">&#39;unrecognized parameter in layer setup&#39;</span><span class="p">)</span>
                     <span class="n">i</span> <span class="o">=</span> <span class="n">o</span>
                 <span class="n">atomic_nets</span><span class="p">[</span><span class="n">atom_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">modules</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nn</span> <span class="o">=</span> <span class="n">ANIModel</span><span class="p">([</span><span class="n">atomic_nets</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="o">.</span><span class="n">species</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nn</span> <span class="o">=</span> <span class="n">ANIModel</span><span class="p">(</span><span class="n">atomic_nets</span><span class="p">)</span>
 
             <span class="c1"># initialize weights and biases</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
