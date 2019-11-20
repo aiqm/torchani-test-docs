@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.neurochem &mdash; TorchANI 1.2.dev6+g88d88c0 documentation</title>
+  <title>torchani.neurochem &mdash; TorchANI 1.2.dev2+g67da13c documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.2.dev6+g88d88c0
+                1.2.dev2+g67da13c
               </div>
             
           
@@ -188,6 +188,7 @@
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">EnergyShifter</span><span class="p">,</span> <span class="n">ChemicalSymbolsToInts</span>
 <span class="kn">from</span> <span class="nn">..aev</span> <span class="k">import</span> <span class="n">AEVComputer</span>
 <span class="kn">from</span> <span class="nn">..optim</span> <span class="k">import</span> <span class="n">AdamW</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
 
 
 <div class="viewcode-block" id="Constants"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Constants">[docs]</a><span class="k">class</span> <span class="nc">Constants</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
@@ -413,10 +414,10 @@
 <span class="sd">            chemical symbols of each supported atom type in correct order.</span>
 <span class="sd">        dir_ (str): String for directory storing network configurations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">models</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">species</span><span class="p">:</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_</span><span class="p">,</span> <span class="s1">&#39;ANN-</span><span class="si">{}</span><span class="s1">.nnf&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_atomic_network</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_atomic_network</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ANIModel</span><span class="p">(</span><span class="n">models</span><span class="p">)</span></div>
 
 
