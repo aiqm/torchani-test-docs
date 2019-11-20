@@ -125,7 +125,7 @@ From using either the ensemble or a single model:
       (0): AEVComputer()
       (1): Ensemble(
         (0): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -134,7 +134,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -143,7 +143,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -152,7 +152,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -163,7 +163,7 @@ From using either the ensemble or a single model:
           )
         )
         (1): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -172,7 +172,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -181,7 +181,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -190,7 +190,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -201,7 +201,7 @@ From using either the ensemble or a single model:
           )
         )
         (2): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -210,7 +210,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -219,7 +219,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -228,7 +228,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -239,7 +239,7 @@ From using either the ensemble or a single model:
           )
         )
         (3): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -248,7 +248,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -257,7 +257,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -266,7 +266,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -277,7 +277,7 @@ From using either the ensemble or a single model:
           )
         )
         (4): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -286,7 +286,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -295,7 +295,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -304,7 +304,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -315,7 +315,7 @@ From using either the ensemble or a single model:
           )
         )
         (5): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -324,7 +324,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -333,7 +333,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -342,7 +342,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -353,7 +353,7 @@ From using either the ensemble or a single model:
           )
         )
         (6): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -362,7 +362,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -371,7 +371,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -380,7 +380,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -391,7 +391,7 @@ From using either the ensemble or a single model:
           )
         )
         (7): ANIModel(
-          (H): Sequential(
+          (0): Sequential(
             (0): Linear(in_features=384, out_features=160, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=160, out_features=128, bias=True)
@@ -400,7 +400,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (C): Sequential(
+          (1): Sequential(
             (0): Linear(in_features=384, out_features=144, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=144, out_features=112, bias=True)
@@ -409,7 +409,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (N): Sequential(
+          (2): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -418,7 +418,7 @@ From using either the ensemble or a single model:
             (5): CELU(alpha=0.1)
             (6): Linear(in_features=96, out_features=1, bias=True)
           )
-          (O): Sequential(
+          (3): Sequential(
             (0): Linear(in_features=384, out_features=128, bias=True)
             (1): CELU(alpha=0.1)
             (2): Linear(in_features=128, out_features=112, bias=True)
@@ -434,7 +434,7 @@ From using either the ensemble or a single model:
     Sequential(
       (0): AEVComputer()
       (1): ANIModel(
-        (H): Sequential(
+        (0): Sequential(
           (0): Linear(in_features=384, out_features=160, bias=True)
           (1): CELU(alpha=0.1)
           (2): Linear(in_features=160, out_features=128, bias=True)
@@ -443,7 +443,7 @@ From using either the ensemble or a single model:
           (5): CELU(alpha=0.1)
           (6): Linear(in_features=96, out_features=1, bias=True)
         )
-        (C): Sequential(
+        (1): Sequential(
           (0): Linear(in_features=384, out_features=144, bias=True)
           (1): CELU(alpha=0.1)
           (2): Linear(in_features=144, out_features=112, bias=True)
@@ -452,7 +452,7 @@ From using either the ensemble or a single model:
           (5): CELU(alpha=0.1)
           (6): Linear(in_features=96, out_features=1, bias=True)
         )
-        (N): Sequential(
+        (2): Sequential(
           (0): Linear(in_features=384, out_features=128, bias=True)
           (1): CELU(alpha=0.1)
           (2): Linear(in_features=128, out_features=112, bias=True)
@@ -461,7 +461,7 @@ From using either the ensemble or a single model:
           (5): CELU(alpha=0.1)
           (6): Linear(in_features=96, out_features=1, bias=True)
         )
-        (O): Sequential(
+        (3): Sequential(
           (0): Linear(in_features=384, out_features=128, bias=True)
           (1): CELU(alpha=0.1)
           (2): Linear(in_features=128, out_features=112, bias=True)
@@ -497,8 +497,8 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7fb2e1327550>
-    <torchani.ase.Calculator object at 0x7fb2e1327550>
+    <torchani.ase.Calculator object at 0x7f9feda09610>
+    <torchani.ase.Calculator object at 0x7f9feda09610>
 
 
 
@@ -627,7 +627,7 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.001 seconds)
+   **Total running time of the script:** ( 0 minutes  2.024 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
