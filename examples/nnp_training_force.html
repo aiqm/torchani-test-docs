@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.2.dev2+g1055f1f documentation</title>
+  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.2.dev5+g45d3584 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.2.dev2+g1055f1f
+                1.2.dev5+g45d3584
               </div>
             
           
@@ -254,9 +254,9 @@ containing forces:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.2944e-02,  2.1425e-01, -8.3645e-17],
-        [ 2.5722e-03, -7.4756e-02, -2.5335e-16],
-        [-1.5516e-02, -1.3949e-01,  3.3894e-16],
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 2.8986e-03, -3.8737e-02,  6.0441e-17],
+        [-4.2416e-04, -5.8982e-02, -3.7494e-17],
+        [-2.4744e-03,  9.7720e-02, -2.3357e-17],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00],
         [ 0.0000e+00,  0.0000e+00,  0.0000e+00]])
@@ -602,25 +602,25 @@ is better than the best, then save the new best model to a checkpoint</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 237.78976295235478 at epoch 1
+RMSE: 61.15708397581467 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:04&lt;00:14,  4.70s/it]
-epoch 1:  50%|#####     | 2/4 [00:09&lt;00:09,  4.67s/it]
-epoch 1:  75%|#######5  | 3/4 [00:13&lt;00:04,  4.65s/it]
-epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  4.10s/it]
-epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  4.18s/it]
-RMSE: 45.64246567841892 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:04&lt;00:14,  4.68s/it]
+epoch 1:  50%|#####     | 2/4 [00:09&lt;00:09,  4.68s/it]
+epoch 1:  75%|#######5  | 3/4 [00:14&lt;00:04,  4.69s/it]
+epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  4.14s/it]
+epoch 1: 100%|##########| 4/4 [00:16&lt;00:00,  4.23s/it]
+RMSE: 185.13438663376985 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:04&lt;00:14,  4.68s/it]
-epoch 2:  50%|#####     | 2/4 [00:09&lt;00:09,  4.65s/it]
-epoch 2:  75%|#######5  | 3/4 [00:13&lt;00:04,  4.64s/it]
-epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  4.10s/it]
-epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  4.18s/it]
+epoch 2:  25%|##5       | 1/4 [00:04&lt;00:13,  4.66s/it]
+epoch 2:  50%|#####     | 2/4 [00:09&lt;00:09,  4.66s/it]
+epoch 2:  75%|#######5  | 3/4 [00:13&lt;00:04,  4.66s/it]
+epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  4.12s/it]
+epoch 2: 100%|##########| 4/4 [00:16&lt;00:00,  4.21s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  34.890 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  35.217 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/4b6aa9678849c98dd34491f14233c2bd/nnp_training_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training_force.py</span></code></a></div>
