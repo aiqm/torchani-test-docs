@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Computing Energy and Force Using Models Inside Model Zoo &mdash; TorchANI 1.2.dev8+g72e3c6f documentation</title>
+  <title>Computing Energy and Force Using Models Inside Model Zoo &mdash; TorchANI 1.2.dev6+ga812939 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.2.dev8+g72e3c6f
+                1.2.dev6+ga812939
               </div>
             
           
@@ -188,7 +188,7 @@ TorchANI and can be used directly.</p>
 </pre></div>
 </div>
 <p>Let’s now manually specify the device we want TorchANI to run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <a href="https://pytorch.org/docs/master/cuda.html#torch.cuda.is_available" title="View documentation for torch.cuda.is_available"><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span></a><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Let’s now load the built-in ANI-1ccx models. The builtin ANI-1ccx contains 8
@@ -196,9 +196,7 @@ models trained with diffrent initialization. Predicting the energy and force
 using the average of the 8 models outperform using a single model, so it is
 always recommended to use an ensemble, unless the speed of computation is an
 issue in your application.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">periodic_table_index</span></code> arguments tells TorchANI to use element index
-in periodic table to index species.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Now let’s define the coordinate and species. If you just want to compute the
@@ -215,8 +213,7 @@ training. If you have <code class="docutils literal notranslate"><span class="pr
                              <span class="p">[</span><span class="mf">0.45554739</span><span class="p">,</span> <span class="mf">0.54289633</span><span class="p">,</span> <span class="mf">0.81170881</span><span class="p">],</span>
                              <span class="p">[</span><span class="mf">0.66091919</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16799635</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.91037834</span><span class="p">]]],</span>
                            <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-<span class="c1"># In periodic table, C = 6 and H = 1</span>
-<a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/torch.html#torch.tensor" title="View documentation for torch.tensor"><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span></a><span class="p">([[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">(</span><span class="s1">&#39;CHHHH&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now let’s compute energy and force:</p>
@@ -239,7 +236,7 @@ Force: tensor([[ 0.0312, -0.1272, -0.0511],
         [-0.0187,  0.0049,  0.0521]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.743 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.045 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-energy-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/45cd52b8df9d781ce483dcbafddf1cd2/energy_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">energy_force.py</span></code></a></div>

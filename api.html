@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.2.dev8+g72e3c6f documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.2.dev6+ga812939 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.2.dev8+g72e3c6f
+                1.2.dev6+ga812939
               </div>
             
           
@@ -375,7 +375,7 @@ directly calculate energies or get an ASE calculator. For example:</p>
 shouldn’t be used anymore.</p>
 <dl class="class">
 <dt id="torchani.models.ANI1x">
-<em class="property">class </em><code class="descclassname">torchani.models.</code><code class="descname">ANI1x</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/models.html#ANI1x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.models.ANI1x" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">torchani.models.</code><code class="descname">ANI1x</code><a class="reference internal" href="_modules/torchani/models.html#ANI1x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.models.ANI1x" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ANI-1x model as in <a class="reference external" href="https://github.com/isayev/ASE_ANI/tree/master/ani_models/ani-1x_8x">ani-1x_8x on GitHub</a> and <a class="reference external" href="https://aip.scitation.org/doi/abs/10.1063/1.5023802">Active Learning Paper</a>.</p>
 <p>The ANI-1x model is an ensemble of 8 networks that was trained using
 active learning on the ANI-1x dataset, the target level of theory is
@@ -385,7 +385,7 @@ shouldn’t be used with other atom types.</p>
 
 <dl class="class">
 <dt id="torchani.models.ANI1ccx">
-<em class="property">class </em><code class="descclassname">torchani.models.</code><code class="descname">ANI1ccx</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/models.html#ANI1ccx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.models.ANI1ccx" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">torchani.models.</code><code class="descname">ANI1ccx</code><a class="reference internal" href="_modules/torchani/models.html#ANI1ccx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.models.ANI1ccx" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ANI-1ccx model as in <a class="reference external" href="https://github.com/isayev/ASE_ANI/tree/master/ani_models/ani-1ccx_8x">ani-1ccx_8x on GitHub</a> and <a class="reference external" href="https://doi.org/10.26434/chemrxiv.6744440.v1">Transfer Learning Paper</a>.</p>
 <p>The ANI-1ccx model is an ensemble of 8 networks that was trained
 on the ANI-1ccx dataset, using transfer learning. The target accuracy
@@ -767,7 +767,7 @@ if pbc is enabled for that direction.</li>
 
 <dl class="function">
 <dt id="torchani.utils.hessian">
-<code class="descclassname">torchani.utils.</code><code class="descname">hessian</code><span class="sig-paren">(</span><em>coordinates</em>, <em>energies=None</em>, <em>forces=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/utils.html#hessian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.utils.hessian" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">torchani.utils.</code><code class="descname">hessian</code><span class="sig-paren">(</span><em>coordinates: torch.Tensor</em>, <em>energies: Optional[torch.Tensor] = None</em>, <em>forces: Optional[torch.Tensor] = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/torchani/utils.html#hessian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.utils.hessian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute analytical hessian from the energy graph or force graph.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
