@@ -35,7 +35,7 @@ models trained with diffrent initialization.
 
 .. code-block:: default
 
-    model = torchani.models.ANI1ccx()
+    model = torchani.models.ANI1ccx(periodic_table_index=True)
 
 
 
@@ -101,7 +101,8 @@ We use the molecule below to test:
                                  [-0.66518241, -0.84461308, 0.20759389],
                                  [0.45554739, 0.54289633, 0.81170881],
                                  [0.66091919, -0.16799635, -0.91037834]]])
-    species = model.species_to_tensor('CHHHH').unsqueeze(0)
+    # In periodic table, C = 6 and H = 1
+    species = torch.tensor([[6, 1, 1, 1, 1]])
 
 
 
@@ -140,7 +141,7 @@ And here is the result:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.916 seconds)
+   **Total running time of the script:** ( 0 minutes  2.832 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
