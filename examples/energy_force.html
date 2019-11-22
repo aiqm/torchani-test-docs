@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Computing Energy and Force Using Models Inside Model Zoo &mdash; TorchANI 1.2.dev7+g423fcc3 documentation</title>
+  <title>Computing Energy and Force Using Models Inside Model Zoo &mdash; TorchANI 1.2.dev7+g34419dc documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.2.dev7+g423fcc3
+                1.2.dev7+g34419dc
               </div>
             
           
@@ -197,7 +197,8 @@ using the average of the 8 models outperform using a single model, so it is
 always recommended to use an ensemble, unless the speed of computation is an
 issue in your application.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">periodic_table_index</span></code> arguments tells TorchANI to use element index
-in periodic table to index species.</p>
+in periodic table to index species. If not specified, you need to use
+0, 1, 2, 3, … to index species</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -208,7 +209,10 @@ make the coordinate tensor has shape <code class="docutils literal notranslate">
 preceding <code class="docutils literal notranslate"><span class="pre">1</span></code> in the shape is here to support batch processing like in
 training. If you have <code class="docutils literal notranslate"><span class="pre">N</span></code> different structures to compute, then make it
 <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p>
-<p>The coordinates are in Angstrom, and the energies you get are in Hartree</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The coordinates are in Angstrom, and the energies you get are in Hartree</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/torch.html#torch.tensor" title="View documentation for torch.tensor"><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span></a><span class="p">([[[</span><span class="mf">0.03192167</span><span class="p">,</span> <span class="mf">0.00638559</span><span class="p">,</span> <span class="mf">0.01301679</span><span class="p">],</span>
                              <span class="p">[</span><span class="o">-</span><span class="mf">0.83140486</span><span class="p">,</span> <span class="mf">0.39370209</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.26395324</span><span class="p">],</span>
                              <span class="p">[</span><span class="o">-</span><span class="mf">0.66518241</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.84461308</span><span class="p">,</span> <span class="mf">0.20759389</span><span class="p">],</span>
@@ -239,7 +243,7 @@ Force: tensor([[ 0.0312, -0.1272, -0.0511],
         [-0.0187,  0.0049,  0.0521]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.891 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.728 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-energy-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/45cd52b8df9d781ce483dcbafddf1cd2/energy_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">energy_force.py</span></code></a></div>
