@@ -49,7 +49,8 @@ always recommended to use an ensemble, unless the speed of computation is an
 issue in your application.
 
 The ``periodic_table_index`` arguments tells TorchANI to use element index
-in periodic table to index species.
+in periodic table to index species. If not specified, you need to use
+0, 1, 2, 3, ... to index species
 
 
 .. code-block:: default
@@ -71,7 +72,7 @@ preceding ``1`` in the shape is here to support batch processing like in
 training. If you have ``N`` different structures to compute, then make it
 ``N``.
 
-The coordinates are in Angstrom, and the energies you get are in Hartree
+.. note:: The coordinates are in Angstrom, and the energies you get are in Hartree
 
 
 .. code-block:: default
@@ -138,7 +139,7 @@ And print to see the result:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.989 seconds)
+   **Total running time of the script:** ( 0 minutes  1.864 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
