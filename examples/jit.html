@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 1.2.dev8+g86ca3a8 documentation</title>
+  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 1.2.dev9+g18cda68 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.2.dev8+g86ca3a8
+                1.2.dev9+g18cda68
               </div>
             
           
@@ -245,11 +245,13 @@ Single network energy, eager mode vs loaded jit: -40.42878345662912 -40.42878345
 <div class="section" id="customize-the-model-and-script">
 <h2>Customize the model and script<a class="headerlink" href="#customize-the-model-and-script" title="Permalink to this headline">¶</a></h2>
 <p>You could also customize the model you want to export. For example, let’s do
-the following customization to the model:
-1. uses double as dtype instead of float
-2. don’t care about periodic boundary condition
-3. in addition to energies, allow returnsing optionally forces, and hessians
-4. when indexing atom species, use its index in the periodic table instead of 0, 1, 2, 3, …</p>
+the following customization to the model:</p>
+<ul class="simple">
+<li>uses double as dtype instead of float</li>
+<li>don’t care about periodic boundary condition</li>
+<li>in addition to energies, allow returnsing optionally forces, and hessians</li>
+<li>when indexing atom species, use its index in the periodic table instead of 0, 1, 2, 3, …</li>
+</ul>
 <p>you could do the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomModule</span><span class="p">(</span><a href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="View documentation for torch.nn.Module"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span></a><span class="p">):</span>
 
@@ -338,7 +340,7 @@ Hessian, eager mode vs loaded jit:
         [    -0.2918,      0.0921,      0.6520,      0.0204,     -0.0153,     -0.0289,     -0.0265,      0.0108,      0.0012,     -0.0477,      0.0296,      0.0649,      0.3456,     -0.1171,     -0.6892]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.342 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.837 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>

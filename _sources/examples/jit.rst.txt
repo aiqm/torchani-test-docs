@@ -150,10 +150,11 @@ Customize the model and script
 
 You could also customize the model you want to export. For example, let's do
 the following customization to the model:
-1. uses double as dtype instead of float
-2. don't care about periodic boundary condition
-3. in addition to energies, allow returnsing optionally forces, and hessians
-4. when indexing atom species, use its index in the periodic table instead of 0, 1, 2, 3, ...
+
+- uses double as dtype instead of float
+- don't care about periodic boundary condition
+- in addition to energies, allow returnsing optionally forces, and hessians
+- when indexing atom species, use its index in the periodic table instead of 0, 1, 2, 3, ...
 
 you could do the following:
 
@@ -259,7 +260,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.342 seconds)
+   **Total running time of the script:** ( 0 minutes  5.837 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
