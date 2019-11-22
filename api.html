@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.2.dev8+gcffe541 documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.2.dev10+ge6590e6 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.2.dev8+gcffe541
+                1.2.dev10+ge6590e6
               </div>
             
           
@@ -88,7 +88,6 @@
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Examples</span></p>
 <ul>
@@ -221,16 +220,6 @@ then input can be a tuple of two tensors: species, coordinates.
 species must have shape <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">A)</span></code>, coordinates must have shape
 <code class="docutils literal notranslate"><span class="pre">(C,</span> <span class="pre">A,</span> <span class="pre">3)</span></code> where <code class="docutils literal notranslate"><span class="pre">C</span></code> is the number of molecules in a chunk,
 and <code class="docutils literal notranslate"><span class="pre">A</span></code> is the number of atoms.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The species must be indexed in 0, 1, 2, 3, …, not the element
-index in periodic table. Check <a class="reference internal" href="#torchani.SpeciesConverter" title="torchani.SpeciesConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.SpeciesConverter</span></code></a>
-if you want periodic table indexing.</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The coordinates, and cell are in Angstrom.</p>
-</div>
 <p>If you want to apply periodic boundary conditions, then the input
 would be a tuple of two tensors (species, coordinates) and two keyword
 arguments <cite>cell=…</cite> , and <cite>pbc=…</cite> where species and coordinates are
@@ -243,6 +232,7 @@ three vectors defining unit cell:</p>
 </div>
 <p>and pbc is boolean vector of size 3 storing if pbc is enabled
 for that direction.</p>
+<p>The coordinates, and cell are in Angstrom.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Species and AEVs. species are the species from the input
@@ -264,16 +254,7 @@ unchanged, and AEVs is a tensor of shape <code class="docutils literal notransla
 energies, for each atom, the module for its corresponding atom type will
 be applied to its AEV, after that, outputs of modules will be reduced along
 different atoms to obtain molecular energies.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The species must be indexed in 0, 1, 2, 3, …, not the element
-index in periodic table. Check <a class="reference internal" href="#torchani.SpeciesConverter" title="torchani.SpeciesConverter"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.SpeciesConverter</span></code></a>
-if you want periodic table indexing.</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The resulting energies are in Hartree.</p>
-</div>
+<p>The resulting energies are in Hartree.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -292,18 +273,6 @@ module by putting the same reference in <code class="xref py py-attr docutils li
 <dt id="torchani.Ensemble">
 <em class="property">class </em><code class="descclassname">torchani.</code><code class="descname">Ensemble</code><span class="sig-paren">(</span><em>modules</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#Ensemble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.Ensemble" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the average output of an ensemble of modules.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="torchani.SpeciesConverter">
-<em class="property">class </em><code class="descclassname">torchani.</code><code class="descname">SpeciesConverter</code><span class="sig-paren">(</span><em>species</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#SpeciesConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.SpeciesConverter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert from element index in the periodic table to 0, 1, 2, 3, …</p>
-<dl class="method">
-<dt id="torchani.SpeciesConverter.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>input_: Tuple[torch.Tensor, torch.Tensor], cell: Optional[torch.Tensor] = None, pbc: Optional[torch.Tensor] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/nn.html#SpeciesConverter.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.SpeciesConverter.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert species from periodic table element index to 0, 1, 2, 3, … indexing</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
