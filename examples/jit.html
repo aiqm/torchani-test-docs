@@ -191,8 +191,8 @@ models from a Python process and loaded in a process where there is no Python de
 <p>To begin with, let’s first import the modules we will use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torchani</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <a href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="View documentation for typing.Tuple"><span class="n">Tuple</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/typing.html#typing.Optional" title="View documentation for typing.Optional"><span class="n">Optional</span></a>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">Tensor</span></a>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="View documentation for typing.Tuple"><span class="n">Tuple</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/typing.html#typing.Optional" title="View documentation for typing.Optional"><span class="n">Optional</span></a>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">Tensor</span></a>
 </pre></div>
 </div>
 <div class="section" id="scripting-builtin-model-directly">
@@ -256,7 +256,7 @@ the following customization to the model:</p>
 <p>you could do the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomModule</span><span class="p">(</span><a href="https://pytorch.org/docs/master/nn.html#torch.nn.Module" title="View documentation for torch.nn.Module"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span></a><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1x</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span>
         <span class="c1"># self.model = torchani.models.ANI1x(periodic_table_index=True)[0].double()</span>
@@ -343,7 +343,7 @@ Hessian, eager mode vs loaded jit:
         [     0.2918,     -0.0921,     -0.6520,     -0.0204,      0.0153,      0.0289,      0.0265,     -0.0108,     -0.0012,      0.0477,     -0.0296,     -0.0649,     -0.3456,      0.1171,      0.6892]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.577 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.112 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>

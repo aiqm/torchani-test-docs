@@ -175,14 +175,14 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;Tools for loading, shuffling, and batching ANI datasets&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="k">import</span> <span class="n">Dataset</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">isdir</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">isdir</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">._pyanitools</span> <span class="k">import</span> <span class="n">anidataloader</span>
+<span class="kn">from</span> <span class="nn">._pyanitools</span> <span class="kn">import</span> <span class="n">anidataloader</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">utils</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">.new</span> <span class="k">import</span> <span class="n">CachedDataset</span><span class="p">,</span> <span class="n">ShuffledDataset</span><span class="p">,</span> <span class="n">find_threshold</span>
+<span class="kn">from</span> <span class="nn">.new</span> <span class="kn">import</span> <span class="n">CachedDataset</span><span class="p">,</span> <span class="n">ShuffledDataset</span><span class="p">,</span> <span class="n">find_threshold</span>
 
 <span class="n">default_device</span> <span class="o">=</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
 
@@ -334,7 +334,7 @@
 
 <span class="k">class</span> <span class="nc">PaddedBatchChunkDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
                  <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">get_default_dtype</span><span class="p">(),</span> <span class="n">device</span><span class="o">=</span><span class="n">default_device</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
@@ -350,7 +350,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">batches</span> <span class="o">=</span> <span class="n">split_whole_into_batches_and_chunks</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
         <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batches</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
         <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">properties</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">species_coordinates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -363,14 +363,14 @@
         <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;atomic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">atomic_properties</span>
         <span class="k">return</span> <span class="n">species_coordinates</span><span class="p">,</span> <span class="n">properties</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batches</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="BatchedANIDataset"><a class="viewcode-back" href="../../api.html#torchani.data.BatchedANIDataset">[docs]</a><span class="k">class</span> <span class="nc">BatchedANIDataset</span><span class="p">(</span><span class="n">PaddedBatchChunkDataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Same as :func:`torchani.data.load_ani_dataset`. This API has been deprecated.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">species_tensor_converter</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">species_tensor_converter</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span>
                  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;energies&#39;</span><span class="p">,),</span> <span class="n">atomic_properties</span><span class="o">=</span><span class="p">(),</span> <span class="n">transform</span><span class="o">=</span><span class="p">(),</span>
                  <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">get_default_dtype</span><span class="p">(),</span> <span class="n">device</span><span class="o">=</span><span class="n">default_device</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span>

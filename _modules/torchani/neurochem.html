@@ -185,11 +185,11 @@
 <span class="kn">import</span> <span class="nn">timeit</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">..nn</span> <span class="k">import</span> <span class="n">ANIModel</span><span class="p">,</span> <span class="n">Ensemble</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">EnergyShifter</span><span class="p">,</span> <span class="n">ChemicalSymbolsToInts</span>
-<span class="kn">from</span> <span class="nn">..aev</span> <span class="k">import</span> <span class="n">AEVComputer</span>
-<span class="kn">from</span> <span class="nn">..optim</span> <span class="k">import</span> <span class="n">AdamW</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">..nn</span> <span class="kn">import</span> <span class="n">ANIModel</span><span class="p">,</span> <span class="n">Ensemble</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">EnergyShifter</span><span class="p">,</span> <span class="n">ChemicalSymbolsToInts</span>
+<span class="kn">from</span> <span class="nn">..aev</span> <span class="kn">import</span> <span class="n">AEVComputer</span>
+<span class="kn">from</span> <span class="nn">..optim</span> <span class="kn">import</span> <span class="n">AdamW</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 
 <div class="viewcode-block" id="Constants"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Constants">[docs]</a><span class="k">class</span> <span class="nc">Constants</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
@@ -201,7 +201,7 @@
 <span class="sd">            string chemical symbols to 1d long tensor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
@@ -225,7 +225,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">species_to_tensor</span> <span class="o">=</span> <span class="n">ChemicalSymbolsToInts</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">yield</span> <span class="s1">&#39;Rcr&#39;</span>
         <span class="k">yield</span> <span class="s1">&#39;Rca&#39;</span>
         <span class="k">yield</span> <span class="s1">&#39;EtaR&#39;</span>
@@ -236,10 +236,10 @@
         <span class="k">yield</span> <span class="s1">&#39;ShfZ&#39;</span>
         <span class="k">yield</span> <span class="s1">&#39;num_species&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">8</span>
 
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span></div>
 
 
@@ -459,10 +459,10 @@
 <span class="sd">                will be stored in the network directory with this file name.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">),</span> <span class="n">tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">),</span> <span class="n">tqdm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                      <span class="n">tensorboard</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s1">&#39;model.pt&#39;</span><span class="p">):</span>
 
-            <span class="kn">from</span> <span class="nn">..data</span> <span class="k">import</span> <span class="n">load_ani_dataset</span>  <span class="c1"># noqa: E402</span>
+            <span class="kn">from</span> <span class="nn">..data</span> <span class="kn">import</span> <span class="n">load_ani_dataset</span>  <span class="c1"># noqa: E402</span>
 
             <span class="k">class</span> <span class="nc">dummy</span><span class="p">:</span>
                 <span class="k">pass</span>
