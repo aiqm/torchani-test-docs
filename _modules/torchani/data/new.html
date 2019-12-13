@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.data.new &mdash; TorchANI 1.2 documentation</title>
+  <title>torchani.data.new &mdash; TorchANI 1.3.dev1+gabc8f7f documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.2
+                1.3.dev1+gabc8f7f
               </div>
             
           
@@ -769,7 +769,7 @@
         <span class="k">if</span> <span class="n">properties_info</span><span class="p">[</span><span class="s1">&#39;padding_values&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">prop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">prop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">pad_sequence</span><span class="p">(</span><span class="n">batch_species</span><span class="p">,</span>
+            <span class="n">prop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">pad_sequence</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span>
                                                    <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                                    <span class="n">padding_value</span><span class="o">=</span><span class="n">properties_info</span><span class="p">[</span><span class="s1">&#39;padding_values&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
         <span class="c1"># sort with number of atoms</span>
