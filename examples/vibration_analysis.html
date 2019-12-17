@@ -200,33 +200,33 @@ vibration analysis analytically, thanks to the super power of <cite>torch.autogr
 <p>Let’s first construct a water molecule and do structure optimization:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">d</span></a> <span class="o">=</span> <span class="mf">0.9575</span>
 <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">t</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/math.html#math.pi" title="View documentation for math.pi"><span class="n">math</span><span class="o">.</span><span class="n">pi</span></a> <span class="o">/</span> <span class="mi">180</span> <span class="o">*</span> <span class="mf">104.51</span>
-<a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="View documentation for ase.Atoms"><span class="n">molecule</span></a> <span class="o">=</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="View documentation for ase.Atoms"><span class="n">ase</span><span class="o">.</span><span class="n">Atoms</span></a><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span>
     <span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">d</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">d</span></a> <span class="o">*</span> <a href="https://docs.python.org/3/library/math.html#math.cos" title="View documentation for math.cos"><span class="n">math</span><span class="o">.</span><span class="n">cos</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">t</span></a><span class="p">),</span> <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">d</span></a> <span class="o">*</span> <a href="https://docs.python.org/3/library/math.html#math.sin" title="View documentation for math.sin"><span class="n">math</span><span class="o">.</span><span class="n">sin</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">t</span></a><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
 <span class="p">],</span> <span class="n">calculator</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">ase</span><span class="p">())</span>
-<a href="https://wiki.fysik.dtu.dk/ase/ase/optimize.html#ase.optimize.BFGS" title="View documentation for ase.optimize.BFGS"><span class="n">opt</span></a> <span class="o">=</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/optimize.html#ase.optimize.BFGS" title="View documentation for ase.optimize.BFGS"><span class="n">ase</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">BFGS</span></a><span class="p">(</span><a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="View documentation for ase.Atoms"><span class="n">molecule</span></a><span class="p">)</span>
-<a href="https://wiki.fysik.dtu.dk/ase/ase/optimize.html#ase.optimize.BFGS" title="View documentation for ase.optimize.BFGS"><span class="n">opt</span></a><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">BFGS</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy         fmax
-BFGS:    0 09:11:22    -2078.633392        0.6576
-BFGS:    1 09:11:22    -2078.637244        0.1905
-BFGS:    2 09:11:22    -2078.637801        0.0292
-BFGS:    3 09:11:22    -2078.637827        0.0183
-BFGS:    4 09:11:22    -2078.637849        0.0014
-BFGS:    5 09:11:22    -2078.637849        0.0001
-BFGS:    6 09:11:22    -2078.637849        0.0000
-BFGS:    7 09:11:22    -2078.637849        0.0000
+BFGS:    0 00:03:44    -2078.633392        0.6576
+BFGS:    1 00:03:44    -2078.637244        0.1905
+BFGS:    2 00:03:44    -2078.637801        0.0292
+BFGS:    3 00:03:44    -2078.637827        0.0183
+BFGS:    4 00:03:44    -2078.637849        0.0014
+BFGS:    5 00:03:44    -2078.637849        0.0001
+BFGS:    6 00:03:44    -2078.637849        0.0000
+BFGS:    7 00:03:44    -2078.637849        0.0000
 
 True
 </pre></div>
 </div>
 <p>Now let’s extract coordinates and species from ASE to use it directly with
 TorchANI:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">(</span><a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_chemical_symbols" title="View documentation for ase.Atoms.get_chemical_symbols"><span class="n">molecule</span><span class="o">.</span><span class="n">get_chemical_symbols</span></a><span class="p">())</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/torch.html#torch.from_numpy" title="View documentation for torch.from_numpy"><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span></a><span class="p">(</span><a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_positions" title="View documentation for ase.Atoms.get_positions"><span class="n">molecule</span><span class="o">.</span><span class="n">get_positions</span></a><span class="p">())</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">get_chemical_symbols</span><span class="p">())</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/torch.html#torch.from_numpy" title="View documentation for torch.from_numpy"><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span></a><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">get_positions</span><span class="p">())</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>TorchANI needs to know the mass of each atom in amu in order to do vibration
@@ -285,7 +285,7 @@ Modes: tensor([[[-1.4982e-02, -6.7708e-01,  1.8343e-16],
          [ 5.3064e-02, -4.1079e-02, -6.2883e-18]]], dtype=torch.float64)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.027 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.075 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-vibration-analysis-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/ee78bc2f4e1967149696942823208fe8/vibration_analysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">vibration_analysis.py</span></code></a></div>

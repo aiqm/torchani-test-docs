@@ -587,8 +587,8 @@ Sequential(
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7fdac00d8290&gt;
-&lt;torchani.ase.Calculator object at 0x7fdac00d8290&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7f426a5b3160&gt;
+&lt;torchani.ase.Calculator object at 0x7f426a5b3160&gt;
 </pre></div>
 </div>
 <p>Now let’s define a methane molecule</p>
@@ -599,7 +599,7 @@ Sequential(
                              <span class="p">[</span><span class="mf">0.66091919</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16799635</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.91037834</span><span class="p">]]],</span>
                            <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <span class="n">consts</span><span class="o">.</span><span class="n">species_to_tensor</span><span class="p">(</span><span class="s1">&#39;CHHHH&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="View documentation for ase.Atoms"><span class="n">methane</span></a> <span class="o">=</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms" title="View documentation for ase.Atoms"><span class="n">ase</span><span class="o">.</span><span class="n">Atoms</span></a><span class="p">(</span><span class="s1">&#39;CHHHH&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.squeeze" title="View documentation for torch.Tensor.squeeze"><span class="n">coordinates</span><span class="o">.</span><span class="n">squeeze</span></a><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">methane</span> <span class="o">=</span> <span class="n">ase</span><span class="o">.</span><span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;CHHHH&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.squeeze" title="View documentation for torch.Tensor.squeeze"><span class="n">coordinates</span><span class="o">.</span><span class="n">squeeze</span></a><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Now let’s compute energies using the ensemble directly:</p>
@@ -620,9 +620,9 @@ Force: tensor([[ 0.0306, -0.1316, -0.0527],
 </pre></div>
 </div>
 <p>And using the ASE interface of the ensemble:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.set_calculator" title="View documentation for ase.Atoms.set_calculator"><span class="n">methane</span><span class="o">.</span><span class="n">set_calculator</span></a><span class="p">(</span><span class="n">calculator1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_potential_energy" title="View documentation for ase.Atoms.get_potential_energy"><span class="n">methane</span><span class="o">.</span><span class="n">get_potential_energy</span></a><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_forces" title="View documentation for ase.Atoms.get_forces"><span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span></a><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">methane</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calculator1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <span class="n">methane</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -641,9 +641,9 @@ Force: [[ 0.03062527 -0.13160461 -0.05265211]
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.item" title="View documentation for torch.Tensor.item"><span class="n">energy</span><span class="o">.</span><span class="n">item</span></a><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.squeeze" title="View documentation for torch.Tensor.squeeze"><span class="n">force</span><span class="o">.</span><span class="n">squeeze</span></a><span class="p">())</span>
 
-<a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.set_calculator" title="View documentation for ase.Atoms.set_calculator"><span class="n">methane</span><span class="o">.</span><span class="n">set_calculator</span></a><span class="p">(</span><span class="n">calculator2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_potential_energy" title="View documentation for ase.Atoms.get_potential_energy"><span class="n">methane</span><span class="o">.</span><span class="n">get_potential_energy</span></a><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_forces" title="View documentation for ase.Atoms.get_forces"><span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span></a><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
+<span class="n">methane</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calculator2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <span class="n">methane</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span><span class="p">()</span> <span class="o">/</span> <span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -661,7 +661,7 @@ Force: [[ 0.05614972 -0.12697156 -0.05413405]
  [-0.01562628  0.00682809  0.05653344]]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.954 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.106 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-load-from-neurochem-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/6e47da231026b2cca4300c62c515ca96/load_from_neurochem.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_from_neurochem.py</span></code></a></div>
