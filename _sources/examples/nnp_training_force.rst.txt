@@ -140,9 +140,9 @@ Due to padding, part of the forces might be 0
 
  .. code-block:: none
 
-    tensor([[     0.0007,      0.3163,     -0.0000],
-            [     0.0087,     -0.1159,     -0.0000],
-            [    -0.0094,     -0.2005,      0.0000],
+    tensor([[     0.0064,      0.1033,      0.0000],
+            [    -0.0023,     -0.0312,      0.0000],
+            [    -0.0041,     -0.0722,     -0.0000],
             [     0.0000,      0.0000,      0.0000],
             [     0.0000,      0.0000,      0.0000],
             [     0.0000,      0.0000,      0.0000]])
@@ -598,7 +598,7 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    RMSE: 59.14160088752698 at epoch 1
+    RMSE: 135.927156255238 at epoch 1
     epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
@@ -727,7 +727,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 1:  25%|##5       | 1/4 [00:02<00:08,  2.72s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 1:  25%|##5       | 1/4 [00:03<00:09,  3.25s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -855,7 +855,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.70s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 1:  50%|#####     | 2/4 [00:06<00:06,  3.22s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -983,7 +983,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 1:  75%|#######5  | 3/4 [00:08<00:02,  2.68s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 1:  75%|#######5  | 3/4 [00:09<00:03,  3.19s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -1111,8 +1111,8 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.38s/it]    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.42s/it]
-    RMSE: 171.90790017706297 at epoch 2
+    epoch 1: 100%|##########| 4/4 [00:11<00:00,  2.81s/it]    epoch 1: 100%|##########| 4/4 [00:11<00:00,  2.86s/it]
+    RMSE: 145.10751104080794 at epoch 2
     epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
@@ -1241,7 +1241,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 2:  25%|##5       | 1/4 [00:02<00:07,  2.64s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 2:  25%|##5       | 1/4 [00:03<00:09,  3.15s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -1369,7 +1369,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.64s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 2:  50%|#####     | 2/4 [00:06<00:06,  3.17s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -1497,7 +1497,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 2:  75%|#######5  | 3/4 [00:07<00:02,  2.66s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
+    epoch 2:  75%|#######5  | 3/4 [00:09<00:03,  3.15s/it]/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1360: UserWarning: This signature for addcmul_ is deprecated:
     addcmul_(Number value, Tensor tensor1, Tensor tensor2)
@@ -1625,7 +1625,7 @@ In the training loop, we need to compute force, and loss for forces
     add_(Number alpha, Tensor other)
     /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:1204: UserWarning: This signature for add_ is deprecated:
     add_(Number alpha, Tensor other)
-    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.36s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.41s/it]
+    epoch 2: 100%|##########| 4/4 [00:11<00:00,  2.80s/it]    epoch 2: 100%|##########| 4/4 [00:11<00:00,  2.86s/it]
 
 
 
@@ -1633,7 +1633,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  20.240 seconds)
+   **Total running time of the script:** ( 0 minutes  23.933 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
