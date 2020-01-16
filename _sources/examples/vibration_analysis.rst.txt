@@ -219,7 +219,7 @@ frequencies. Only the frequencies of the 3 vibrational modes are interesting.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.164 seconds)
+   **Total running time of the script:** ( 0 minutes  2.210 seconds)
 
 
 .. _sphx_glr_download_examples_vibration_analysis.py:
