@@ -120,8 +120,12 @@ Now, let's go!
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:01,  2.83it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:01,  2.87it/s]    epoch 1:  60%|######    | 3/5 [00:01<00:00,  2.90it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  2.99it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  3.52it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.00it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.02it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.02it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.03it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  3.57it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]/pytorch/torch/csrc/utils/python_arg_parser.cpp:698: UserWarning: This overload of add_ is deprecated:
+            add_(Number alpha, Tensor other)
+    Consider using one of the following signatures instead:
+            add_(Tensor other, Number alpha)
+    epoch 1:  20%|##        | 1/5 [00:00<00:01,  3.20it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  3.16it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  3.22it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  3.22it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  3.77it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.25it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.26it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.25it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.26it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  3.80it/s]
 
 
 
@@ -173,8 +177,12 @@ generating this document:
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:01,  3.15it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  3.19it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.16it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.12it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  3.66it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.48it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.39it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.25it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.25it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  3.77it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]/pytorch/torch/csrc/utils/python_arg_parser.cpp:698: UserWarning: This overload of add_ is deprecated:
+            add_(Number alpha, Tensor other)
+    Consider using one of the following signatures instead:
+            add_(Tensor other, Number alpha)
+    epoch 1:  20%|██        | 1/5 [00:00<00:01,  3.14it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  3.16it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.16it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.14it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  3.67it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.20it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.23it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.21it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.17it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  3.73it/s]
 
 
 
@@ -183,7 +191,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.304 seconds)
+   **Total running time of the script:** ( 0 minutes  10.027 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:
