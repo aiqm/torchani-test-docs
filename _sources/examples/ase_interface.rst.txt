@@ -187,16 +187,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.886eV  Ekin = 0.027eV (T=206K)  Etot = -1038.859eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.025eV (T=192K)  Etot = -1038.838eV
-    Energy per atom: Epot = -1038.860eV  Ekin = 0.028eV (T=215K)  Etot = -1038.833eV
-    Energy per atom: Epot = -1038.888eV  Ekin = 0.031eV (T=240K)  Etot = -1038.857eV
-    Energy per atom: Epot = -1038.879eV  Ekin = 0.028eV (T=216K)  Etot = -1038.851eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.034eV (T=261K)  Etot = -1038.844eV
-    Energy per atom: Epot = -1038.872eV  Ekin = 0.050eV (T=390K)  Etot = -1038.821eV
-    Energy per atom: Epot = -1038.860eV  Ekin = 0.031eV (T=243K)  Etot = -1038.829eV
-    Energy per atom: Epot = -1038.865eV  Ekin = 0.033eV (T=253K)  Etot = -1038.832eV
-    Energy per atom: Epot = -1038.868eV  Ekin = 0.033eV (T=253K)  Etot = -1038.835eV
+    Energy per atom: Epot = -1038.892eV  Ekin = 0.034eV (T=264K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.863eV  Ekin = 0.023eV (T=179K)  Etot = -1038.840eV
+    Energy per atom: Epot = -1038.874eV  Ekin = 0.023eV (T=176K)  Etot = -1038.851eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.027eV (T=205K)  Etot = -1038.848eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.028eV (T=218K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.872eV  Ekin = 0.037eV (T=288K)  Etot = -1038.835eV
+    Energy per atom: Epot = -1038.881eV  Ekin = 0.043eV (T=329K)  Etot = -1038.838eV
+    Energy per atom: Epot = -1038.876eV  Ekin = 0.032eV (T=244K)  Etot = -1038.845eV
+    Energy per atom: Epot = -1038.870eV  Ekin = 0.027eV (T=206K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.884eV  Ekin = 0.018eV (T=137K)  Etot = -1038.866eV
 
     True
 
@@ -205,7 +205,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.708 seconds)
+   **Total running time of the script:** ( 0 minutes  25.602 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
