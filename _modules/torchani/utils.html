@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.utils &mdash; TorchANI 1.3.dev16+g0d0e6d5 documentation</title>
+  <title>torchani.utils &mdash; TorchANI 1.3.dev17+g46f05ae documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.3.dev16+g0d0e6d5
+                1.3.dev17+g46f05ae
               </div>
             
           
@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.neurochem">NeuroChem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.ase">ASE Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.optim">TorchANI Optimizater</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html#module-torchani.units">Units</a></li>
 </ul>
 
             
@@ -179,6 +180,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">sqrt_mhessian2invcm</span><span class="p">,</span> <span class="n">sqrt_mhessian2milliev</span><span class="p">,</span> <span class="n">mhessian2fconst</span>
 <span class="kn">from</span> <span class="nn">.nn</span> <span class="kn">import</span> <span class="n">SpeciesEnergies</span>
 
 
@@ -452,12 +454,18 @@
 <span class="sd">    - MDU (mass deweighted unnormalized)</span>
 <span class="sd">    - MDN (mass deweighted normalized)</span>
 
-<span class="sd">    MDU modes are orthogonal but not normalized, MDN modes are normalized</span>
-<span class="sd">    but not orthogonal. MWN modes are orthonormal, but they correspond</span>
+<span class="sd">    MDU modes are not orthogonal, and not normalized,</span>
+<span class="sd">    MDN modes are not orthogonal, and normalized.</span>
+<span class="sd">    MWN modes are orthonormal, but they correspond</span>
 <span class="sd">    to mass weighted cartesian coordinates (x&#39; = sqrt(m)x).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">unit</span> <span class="o">!=</span> <span class="s1">&#39;cm^-1&#39;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only cm^-1 are supported right now&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;meV&#39;</span><span class="p">:</span>
+        <span class="n">unit_converter</span> <span class="o">=</span> <span class="n">sqrt_mhessian2milliev</span>
+    <span class="k">elif</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;cm^-1&#39;</span><span class="p">:</span>
+        <span class="n">unit_converter</span> <span class="o">=</span> <span class="n">sqrt_mhessian2invcm</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Only meV and cm^-1 are supported right now&#39;</span><span class="p">)</span>
+
     <span class="k">assert</span> <span class="n">hessian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Currently only supporting computing one molecule a time&#39;</span>
     <span class="c1"># Solving the eigenvalue problem: Hq = w^2 * T q</span>
     <span class="c1"># where H is the Hessian matrix, q is the normal coordinates,</span>
@@ -474,8 +482,8 @@
     <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">symeig</span><span class="p">(</span><span class="n">mass_scaled_hessian</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">angular_frequencies</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
     <span class="n">frequencies</span> <span class="o">=</span> <span class="n">angular_frequencies</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-    <span class="c1"># converting from sqrt(hartree / (amu * angstrom^2)) to cm^-1</span>
-    <span class="n">wavenumbers</span> <span class="o">=</span> <span class="n">frequencies</span> <span class="o">*</span> <span class="mi">17092</span>
+    <span class="c1"># converting from sqrt(hartree / (amu * angstrom^2)) to cm^-1 or meV</span>
+    <span class="n">wavenumbers</span> <span class="o">=</span> <span class="n">unit_converter</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
 
     <span class="c1"># Note that the normal modes are the COLUMNS of the eigenvectors matrix</span>
     <span class="n">mw_normalized</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
@@ -484,8 +492,8 @@
     <span class="n">md_normalized</span> <span class="o">=</span> <span class="n">md_unnormalized</span> <span class="o">*</span> <span class="n">norm_factors</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">rmasses</span> <span class="o">=</span> <span class="n">norm_factors</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># units are AMU</span>
-    <span class="c1"># The conversion factor for Ha/(AMU*A^2) to mDyne/(A*AMU) is 4.3597482</span>
-    <span class="n">fconstants</span> <span class="o">=</span> <span class="n">eigenvalues</span> <span class="o">*</span> <span class="n">rmasses</span> <span class="o">*</span> <span class="mf">4.3597482</span>  <span class="c1"># units are mDyne/A</span>
+    <span class="c1"># The conversion factor for Ha/(AMU*A^2) to mDyne/(A*AMU) is about 4.3597482</span>
+    <span class="n">fconstants</span> <span class="o">=</span> <span class="n">mhessian2fconst</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)</span> <span class="o">*</span> <span class="n">rmasses</span>  <span class="c1"># units are mDyne/A</span>
 
     <span class="k">if</span> <span class="n">mode_type</span> <span class="o">==</span> <span class="s1">&#39;MDN&#39;</span><span class="p">:</span>
         <span class="n">modes</span> <span class="o">=</span> <span class="p">(</span><span class="n">md_normalized</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">frequencies</span><span class="o">.</span><span class="n">numel</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
