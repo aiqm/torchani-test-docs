@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 1.3.dev19+g8292fa9 documentation</title>
+  <title>TorchANI &mdash; TorchANI 1.3.dev20+gd10c784 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.3.dev19+g8292fa9
+                1.3.dev20+gd10c784
               </div>
             
           
@@ -367,8 +367,7 @@ for molecular self energies.</td>
 <dl class="method">
 <dt id="torchani.EnergyShifter.subtract_from_dataset">
 <code class="descname">subtract_from_dataset</code><span class="sig-paren">(</span><em>atomic_properties</em>, <em>properties</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/utils.html#EnergyShifter.subtract_from_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.EnergyShifter.subtract_from_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Transformer for <a class="reference internal" href="#torchani.data.BatchedANIDataset" title="torchani.data.BatchedANIDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.data.BatchedANIDataset</span></code></a> that
-subtract self energies.</p>
+<dd><p>Transformer that subtracts self energies from a dataset</p>
 </dd></dl>
 
 </dd></dl>
@@ -651,7 +650,7 @@ creates only a single dataset.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.data.PaddedBatchChunkDataset</span></code> if there is
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An instance of <a class="reference internal" href="#torchani.data.PaddedBatchChunkDataset" title="torchani.data.PaddedBatchChunkDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.data.PaddedBatchChunkDataset</span></code></a> if there is
 only one element in <code class="xref py py-attr docutils literal notranslate"><span class="pre">split</span></code>, otherwise returns a tuple of the same
 classes according to <code class="xref py py-attr docutils literal notranslate"><span class="pre">split</span></code>.</p>
 </td>
@@ -661,9 +660,13 @@ classes according to <code class="xref py py-attr docutils literal notranslate">
 </dd></dl>
 
 <dl class="class">
-<dt id="torchani.data.BatchedANIDataset">
-<em class="property">class </em><code class="descclassname">torchani.data.</code><code class="descname">BatchedANIDataset</code><span class="sig-paren">(</span><em>path</em>, <em>species_tensor_converter</em>, <em>batch_size</em>, <em>shuffle=True</em>, <em>properties=('energies'</em>, <em>)</em>, <em>atomic_properties=()</em>, <em>transform=()</em>, <em>dtype=torch.float32</em>, <em>device='cpu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/data.html#BatchedANIDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.data.BatchedANIDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as <a class="reference internal" href="#torchani.data.load_ani_dataset" title="torchani.data.load_ani_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">torchani.data.load_ani_dataset()</span></code></a>. This API has been deprecated.</p>
+<dt id="torchani.data.PaddedBatchChunkDataset">
+<em class="property">class </em><code class="descclassname">torchani.data.</code><code class="descname">PaddedBatchChunkDataset</code><span class="sig-paren">(</span><em>atomic_properties</em>, <em>properties</em>, <em>batch_size</em>, <em>dtype=torch.float32</em>, <em>device='cpu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/data.html#PaddedBatchChunkDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.data.PaddedBatchChunkDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataset that contains batches in ‘chunks’, with padded structures</p>
+<p>This dataset acts as a container of batches to be used when training. Each
+of the batches is broken up into ‘chunks’, each of which is a tensor has
+molecules with a smiliar number of atoms, but which have been padded with
+dummy atoms in order for them to have the same tensor dimensions.</p>
 </dd></dl>
 
 </div>
@@ -1063,7 +1066,7 @@ different units are provided.</p>
 <dl class="function">
 <dt id="torchani.units.hartree2kjoulemol">
 <code class="descclassname">torchani.units.</code><code class="descname">hartree2kjoulemol</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/units.html#hartree2kjoulemol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.units.hartree2kjoulemol" title="Permalink to this definition">¶</a></dt>
-<dd><p>&lt;function hartree2kjoulemol at 0x7fcb69a15a60&gt;</p>
+<dd><p>&lt;function hartree2kjoulemol at 0x7f1c24cb3bf8&gt;</p>
 <p>1 Hartree = 2625.4996387552483 kJ/mol</p>
 </dd></dl>
 
