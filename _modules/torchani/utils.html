@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.utils &mdash; TorchANI 1.3.dev24+g338f896 documentation</title>
+  <title>torchani.utils &mdash; TorchANI 1.3.dev25+g6b058c6 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.3.dev24+g338f896
+                1.3.dev25+g6b058c6
               </div>
             
           
@@ -177,45 +177,73 @@
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
 <span class="kn">import</span> <span class="nn">torch.utils.data</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">sqrt_mhessian2invcm</span><span class="p">,</span> <span class="n">sqrt_mhessian2milliev</span><span class="p">,</span> <span class="n">mhessian2fconst</span>
 <span class="kn">from</span> <span class="nn">.nn</span> <span class="kn">import</span> <span class="n">SpeciesEnergies</span>
 
 
-<div class="viewcode-block" id="pad_atomic_properties"><a class="viewcode-back" href="../../api.html#torchani.pad_atomic_properties">[docs]</a><span class="k">def</span> <span class="nf">pad_atomic_properties</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">,</span> <span class="n">padding_values</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">species</span><span class="o">=-</span><span class="mi">1</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">stack_with_padding</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="n">padding</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[])</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">pad_sequence</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+
+<span class="k">def</span> <span class="nf">broadcast_first_dim</span><span class="p">(</span><span class="n">properties</span><span class="p">):</span>
+    <span class="n">num_molecule</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">num_molecule</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="n">num_molecule</span><span class="p">,</span> <span class="s2">&quot;unable to broadcast&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_molecule</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_molecule</span>
+        <span class="n">properties</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">properties</span>
+
+
+<div class="viewcode-block" id="pad_atomic_properties"><a class="viewcode-back" href="../../api.html#torchani.pad_atomic_properties">[docs]</a><span class="k">def</span> <span class="nf">pad_atomic_properties</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="n">padding_values</span><span class="o">=</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">species</span><span class="o">=-</span><span class="mi">1</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;Put a sequence of atomic properties together into single tensor.</span>
 
 <span class="sd">    Inputs are `[{&#39;species&#39;: ..., ...}, {&#39;species&#39;: ..., ...}, ...]` and the outputs</span>
 <span class="sd">    are `{&#39;species&#39;: padded_tensor, ...}`</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        species_coordinates (:class:`collections.abc.Sequence`): sequence of</span>
-<span class="sd">             atomic properties.</span>
+<span class="sd">        properties (:class:`collections.abc.Sequence`): sequence of properties.</span>
 <span class="sd">        padding_values (dict): the value to fill to pad tensors to same size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">anykey</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">max_atoms</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">anykey</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">atomic_properties</span><span class="p">)</span>
-    <span class="n">padded</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">}</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">atomic_properties</span><span class="p">:</span>
-        <span class="n">num_molecules</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">assert</span> <span class="n">num_molecules</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]},</span> <span class="s1">&#39;Number of molecules in different atomic properties mismatch&#39;</span>
-            <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">num_molecules</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">padatoms</span> <span class="o">=</span> <span class="n">max_atoms</span> <span class="o">-</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">padatoms</span>
-            <span class="n">padding</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">new_full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">padding_values</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">v</span><span class="p">,</span> <span class="n">padding</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_molecules</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">padded</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">padded</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+    <span class="n">vectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">scalars</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">padded_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">}</span>
+    <span class="n">num_molecules</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">]</span>
+    <span class="n">total_num_molecules</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">num_molecules</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">scalars</span><span class="p">:</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">:</span>
+        <span class="n">tensor</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">device</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_num_molecules</span>
+        <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">padded_sizes</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">padding_values</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">index0</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">num_molecules</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+            <span class="n">original_size</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">index0</span><span class="p">:</span> <span class="n">index0</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="n">original_size</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">index0</span> <span class="o">+=</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">output</span></div>
 
 
 <span class="c1"># @torch.jit.script</span>
@@ -307,24 +335,6 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;self_energies&#39;</span><span class="p">,</span> <span class="n">self_energies</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EnergyShifter.sae_from_dataset"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.sae_from_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">sae_from_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Compute atomic self energies from dataset.</span>
-
-<span class="sd">        Least-squares solution to a linear equation is calculated to output</span>
-<span class="sd">        ``self_energies`` when ``self_energies = None`` is passed to</span>
-<span class="sd">        :class:`torchani.EnergyShifter`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">species</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
-        <span class="n">energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
-        <span class="n">present_species_</span> <span class="o">=</span> <span class="n">present_species</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">present_species_</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
-        <span class="c1"># Concatenate a vector of ones to find fit intercept</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
-            <span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">coeff_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">coeff_</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="EnergyShifter.sae"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.sae">[docs]</a>    <span class="k">def</span> <span class="nf">sae</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Compute self energies for molecules.</span>
 
@@ -345,19 +355,6 @@
         <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
         <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">self_energies</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">intercept</span></div>
-
-<div class="viewcode-block" id="EnergyShifter.subtract_from_dataset"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.subtract_from_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">subtract_from_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Transformer that subtracts self energies from a dataset&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae_from_dataset</span><span class="p">(</span><span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">self_energies</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">self_energies</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
-
-        <span class="n">species</span> <span class="o">=</span> <span class="n">atomic_properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
-        <span class="n">energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
-        <span class="n">device</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">device</span>
-        <span class="n">energies</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">energies</span>
-        <span class="k">return</span> <span class="n">atomic_properties</span><span class="p">,</span> <span class="n">properties</span></div>
 
 <div class="viewcode-block" id="EnergyShifter.forward"><a class="viewcode-back" href="../../api.html#torchani.EnergyShifter.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_energies</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
                 <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -587,6 +584,17 @@
            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
     <span class="n">masses</span> <span class="o">=</span> <span class="n">default_atomic_masses</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">masses</span></div>
+
+
+<span class="n">PERIODIC_TABLE</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    H                                                                                                                           He</span>
+<span class="s2">    Li  Be                                                                                                  B   C   N   O   F   Ne</span>
+<span class="s2">    Na  Mg                                                                                                  Al  Si  P   S   Cl  Ar</span>
+<span class="s2">    K   Ca  Sc                                                          Ti  V   Cr  Mn  Fe  Co  Ni  Cu  Zn  Ga  Ge  As  Se  Br  Kr</span>
+<span class="s2">    Rb  Sr  Y                                                           Zr  Nb  Mo  Tc  Ru  Rh  Pd  Ag  Cd  In  Sn  Sb  Te  I   Xe</span>
+<span class="s2">    Cs  Ba  La  Ce  Pr  Nd  Pm  Sm  Eu  Gd  Tb  Dy  Ho  Er  Tm  Yb  Lu  Hf  Ta  W   Re  Os  Ir  Pt  Au  Hg  Tl  Pb  Bi  Po  At  Rn</span>
+<span class="s2">    Fr  Ra  Ac  Th  Pa  U   Np  Pu  Am  Cm  Bk  Cf  Es  Fm  Md  No  Lr  Rf  Db  Sg  Bh  Hs  Mt  Ds  Rg  Cn  Nh  Fl  Mc  Lv  Ts  Og</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pad_atomic_properties&#39;</span><span class="p">,</span> <span class="s1">&#39;present_species&#39;</span><span class="p">,</span> <span class="s1">&#39;hessian&#39;</span><span class="p">,</span>

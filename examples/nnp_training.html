@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Your Own Neural Network Potential &mdash; TorchANI 1.3.dev24+g338f896 documentation</title>
+  <title>Train Your Own Neural Network Potential &mdash; TorchANI 1.3.dev25+g6b058c6 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.3.dev24+g338f896
+                1.3.dev25+g6b058c6
               </div>
             
           
@@ -243,41 +243,26 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
     <a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">path</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.html#os.getcwd" title="View documentation for os.getcwd"><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span></a><span class="p">()</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">dspath</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="View documentation for os.path.join"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">path</span></a><span class="p">,</span> <span class="s1">&#39;../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5&#39;</span><span class="p">)</span>
-
 <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">batch_size</span></a> <span class="o">=</span> <span class="mi">2560</span>
 
-<span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_ani_dataset</span><span class="p">(</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">dspath</span></a><span class="p">,</span> <span class="n">species_to_tensor</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">batch_size</span></a><span class="p">,</span> <span class="n">rm_outlier</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
-    <span class="n">transform</span><span class="o">=</span><span class="p">[</span><span class="n">energy_shifter</span><span class="o">.</span><span class="n">subtract_from_dataset</span><span class="p">],</span> <span class="n">split</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">dspath</span></a><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">()</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">size</span></a> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">size</span></a><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Self atomic energies: &#39;</span><span class="p">,</span> <span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Self atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 3
+
+1/3  [=========&gt;....................] - 0.0s
+2/3  [===================&gt;..........] - 0.0s
+3/3  [==============================] - 0.0s
+Self atomic energies:  tensor([ 24.082, -16.140,  -8.092, -44.095], dtype=torch.float64)
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>When iterating the dataset, we will get pairs of input and output</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(species_coordinates,</span> <span class="pre">properties)</span></code>, where <code class="docutils literal notranslate"><span class="pre">species_coordinates</span></code> is the
-input and <code class="docutils literal notranslate"><span class="pre">properties</span></code> is the output.</p>
-<p><code class="docutils literal notranslate"><span class="pre">species_coordinates</span></code> is a list of species-coordinate pairs, with shape
-<code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">Na)</span></code> and <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">Na,</span> <span class="pre">3)</span></code>. The reason for getting this type is, when
-loading the dataset and generating minibatches, the whole dataset are
-shuffled and each minibatch contains structures of molecules with a wide
-range of number of atoms. Molecules of different number of atoms are batched
-into single by padding. The way padding works is: adding ghost atoms, with
-species ‘X’, and do computations as if they were normal atoms. But when
-computing AEVs, atoms with species <cite>X</cite> would be ignored. To avoid computation
-wasting on padding atoms, minibatches are further splitted into chunks. Each
-chunk contains structures of molecules of similar size, which minimize the
-total number of padding atoms required to add. The input list
-<code class="docutils literal notranslate"><span class="pre">species_coordinates</span></code> contains chunks of that minibatch we are getting. The
-batching and chunking happens automatically, so the user does not need to
-worry how to construct chunks, but the user need to compute the energies for
-each chunk and concat them into single tensor.</p>
-<p>The output, i.e. <code class="docutils literal notranslate"><span class="pre">properties</span></code> is a dictionary holding each property. This
-allows us to extend TorchANI in the future to training forces and properties.</p>
-</dd>
-</dl>
+<p>When iterating the dataset, we will get a dict of name-&gt;property mapping</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/nn.html#torch.nn.Sequential" title="View documentation for torch.nn.Sequential"><span class="n">H_network</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/nn.html#torch.nn.Sequential" title="View documentation for torch.nn.Sequential"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span></a><span class="p">(</span>
     <a href="https://pytorch.org/docs/master/nn.html#torch.nn.Linear" title="View documentation for torch.nn.Linear"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span></a><span class="p">(</span><span class="mi">384</span><span class="p">,</span> <span class="mi">160</span><span class="p">),</span>
     <a href="https://pytorch.org/docs/master/nn.html#torch.nn.CELU" title="View documentation for torch.nn.CELU"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span></a><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
@@ -513,16 +498,11 @@ is better than the best, then save the new best model to a checkpoint</p>
     <span class="n">mse_sum</span> <span class="o">=</span> <a href="https://pytorch.org/docs/master/nn.html#torch.nn.MSELoss" title="View documentation for torch.nn.MSELoss"><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span></a><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
     <span class="n">total_mse</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="View documentation for builtins.list"><span class="n">batch_x</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">batch_y</span></a> <span class="ow">in</span> <span class="n">validation</span><span class="p">:</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">batch_y</span></a><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="p">[]</span>
-        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_species</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_coordinates</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="View documentation for builtins.list"><span class="n">batch_x</span></a><span class="p">:</span>
-            <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_chunk</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;species&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_species</span></a><span class="p">,</span> <span class="s1">&#39;coordinates&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_coordinates</span></a><span class="p">}</span>
-            <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_chunk</span></a><span class="p">)</span>
-
-        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">pad_atomic_properties</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">)</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">energies</span>
+    <span class="k">for</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a> <span class="ow">in</span> <span class="n">validation</span><span class="p">:</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">_</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a><span class="p">))</span>
         <span class="n">total_mse</span> <span class="o">+=</span> <span class="n">mse_sum</span><span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
         <span class="n">count</span> <span class="o">+=</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">hartree2kcalmol</span><span class="p">(</span><a href="https://docs.python.org/3/library/math.html#math.sqrt" title="View documentation for math.sqrt"><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span></a><span class="p">(</span><span class="n">total_mse</span> <span class="o">/</span> <span class="n">count</span><span class="p">))</span>
@@ -543,7 +523,7 @@ set to a much larger value</p>
 <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">early_stopping_learning_rate</span></a> <span class="o">=</span> <span class="mf">1.0E-5</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="View documentation for builtins.str"><span class="n">best_model_checkpoint</span></a> <span class="o">=</span> <span class="s1">&#39;best.pt&#39;</span>
 
-<span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">_</span></a> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">max_epochs</span></a><span class="p">):</span>
+<span class="k">for</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">_</span></a> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">max_epochs</span></a><span class="p">):</span>
     <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">rmse</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/functions.html#object" title="View documentation for builtins.object"><span class="n">validate</span></a><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE:&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">rmse</span></a><span class="p">,</span> <span class="s1">&#39;at epoch&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -563,26 +543,17 @@ set to a much larger value</p>
     <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="View documentation for torch.utils.tensorboard.writer.SummaryWriter.add_scalar"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;best_validation_rmse&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">best</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
     <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="View documentation for torch.utils.tensorboard.writer.SummaryWriter.add_scalar"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="View documentation for builtins.float"><span class="n">learning_rate</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
 
-    <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">i</span></a><span class="p">,</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="View documentation for builtins.list"><span class="n">batch_x</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">batch_y</span></a><span class="p">)</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
+    <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="View documentation for builtins.int"><span class="n">i</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
         <span class="nb">enumerate</span><span class="p">(</span><span class="n">training</span><span class="p">),</span>
         <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="p">),</span>
         <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;epoch </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="View documentation for torch.optim.lr_scheduler.ReduceLROnPlateau"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
     <span class="p">):</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="View documentation for collections.defaultdict"><span class="n">properties</span></a><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">num_atoms</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">_</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">species</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">coordinates</span></a><span class="p">))</span>
 
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">batch_y</span></a><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="p">[]</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">num_atoms</span></a> <span class="o">=</span> <span class="p">[]</span>
-        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_species</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_coordinates</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="View documentation for builtins.list"><span class="n">batch_x</span></a><span class="p">:</span>
-            <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_chunk</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;species&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_species</span></a><span class="p">,</span> <span class="s1">&#39;coordinates&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_coordinates</span></a><span class="p">}</span>
-            <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="o">.</span><span class="n">append</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_chunk</span></a><span class="p">)</span>
-            <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">num_atoms</span></a><span class="o">.</span><span class="n">append</span><span class="p">((</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">chunk_species</span></a> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-
-        <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">pad_atomic_properties</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">)</span>
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="View documentation for builtins.dict"><span class="n">atomic_properties</span></a><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">energies</span>
-
-        <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">num_atoms</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/torch.html#torch.cat" title="View documentation for torch.cat"><span class="n">torch</span><span class="o">.</span><span class="n">cat</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">num_atoms</span></a><span class="p">)</span>
         <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">loss</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://pytorch.org/docs/master/nn.html#torch.nn.MSELoss" title="View documentation for torch.nn.MSELoss"><span class="n">mse</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">predicted_energies</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">true_energies</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.sqrt" title="View documentation for torch.Tensor.sqrt"><span class="n">num_atoms</span><span class="o">.</span><span class="n">sqrt</span></a><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
         <span class="n">AdamW</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
@@ -605,81 +576,81 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 59.09062489704514 at epoch 1
+RMSE: 84.96055417490321 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.33it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.36it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.37it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  4.11it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.98it/s]
-RMSE: 195.48164583389598 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.43it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.46it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.46it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  4.21it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  4.08it/s]
+RMSE: 173.86669240650934 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.44it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.45it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.45it/s]
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.58it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.58it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.58it/s]
+epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.32it/s]
 epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.18it/s]
-epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.03it/s]
-RMSE: 72.58625608786227 at epoch 3
+RMSE: 88.94517301716316 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.44it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.40it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.40it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  4.12it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.96it/s]
-RMSE: 50.491021513039364 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.36it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.42it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.46it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  4.23it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  4.11it/s]
+RMSE: 15.711917753778806 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.34it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.29it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.33it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  4.06it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.90it/s]
-RMSE: 76.2010565296451 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.55it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.53it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.54it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  4.31it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  4.15it/s]
+RMSE: 65.49996128086114 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.41it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.41it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.40it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  4.12it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.97it/s]
-RMSE: 7.1452518143590265 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.47it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.51it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.50it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  4.22it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  4.09it/s]
+RMSE: 38.05393263296278 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.30it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.33it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.37it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  4.08it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.96it/s]
-RMSE: 47.91194973451878 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.52it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.53it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.54it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  4.30it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  4.16it/s]
+RMSE: 19.600715691810464 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.40it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.41it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.40it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  4.12it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.98it/s]
-RMSE: 16.894794072803645 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.52it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.52it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.53it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  4.30it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  4.14it/s]
+RMSE: 33.54101247143459 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.42it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.41it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.43it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.15it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.00it/s]
-RMSE: 25.995862465498043 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.49it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.50it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.45it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.17it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.03it/s]
+RMSE: 9.78468008883664 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.40it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.37it/s]
-epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.35it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  4.06it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.91it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.50it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.47it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.46it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  4.20it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  4.04it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.153 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.098 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>

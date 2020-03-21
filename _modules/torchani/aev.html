@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 1.3.dev24+g338f896 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 1.3.dev25+g6b058c6 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.3.dev24+g338f896
+                1.3.dev25+g6b058c6
               </div>
             
           
@@ -583,8 +583,8 @@
 
 <span class="sd">                If you don&#39;t care about periodic boundary conditions at all,</span>
 <span class="sd">                then input can be a tuple of two tensors: species, coordinates.</span>
-<span class="sd">                species must have shape ``(C, A)``, coordinates must have shape</span>
-<span class="sd">                ``(C, A, 3)`` where ``C`` is the number of molecules in a chunk,</span>
+<span class="sd">                species must have shape ``(N, A)``, coordinates must have shape</span>
+<span class="sd">                ``(N, A, 3)`` where ``N`` is the number of molecules in a batch,</span>
 <span class="sd">                and ``A`` is the number of atoms.</span>
 
 <span class="sd">                .. warning::</span>
@@ -612,7 +612,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            NamedTuple: Species and AEVs. species are the species from the input</span>
-<span class="sd">            unchanged, and AEVs is a tensor of shape ``(C, A, self.aev_length())``</span>
+<span class="sd">            unchanged, and AEVs is a tensor of shape ``(N, A, self.aev_length())``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">input_</span>
 
