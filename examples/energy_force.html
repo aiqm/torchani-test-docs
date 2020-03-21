@@ -231,13 +231,17 @@ training. If you have <code class="docutils literal notranslate"><span class="pr
 <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">force</span></a> <span class="o">=</span> <span class="o">-</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="View documentation for torch.Tensor"><span class="n">derivative</span></a>
 </pre></div>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/pytorch/aten/src/ATen/native/BinaryOps.cpp:81: UserWarning: Integer division of tensors using div or / is deprecated, and in a future release div will perform true division as in Python 3. Use true_divide or floor_divide (// in Python) instead.
+</pre></div>
+</div>
 <p>And print to see the result:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy:&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.item" title="View documentation for torch.Tensor.item"><span class="n">energy</span><span class="o">.</span><span class="n">item</span></a><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor.squeeze" title="View documentation for torch.Tensor.squeeze"><span class="n">force</span><span class="o">.</span><span class="n">squeeze</span></a><span class="p">())</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.42562057713231
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.425620573407016
 Force: tensor([[ 0.0312, -0.1272, -0.0511],
         [-0.1200,  0.1628, -0.0761],
         [ 0.0856, -0.0448,  0.0407],
@@ -245,7 +249,7 @@ Force: tensor([[ 0.0312, -0.1272, -0.0511],
         [-0.0187,  0.0049,  0.0521]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.726 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.697 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-energy-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/45cd52b8df9d781ce483dcbafddf1cd2/energy_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">energy_force.py</span></code></a></div>
