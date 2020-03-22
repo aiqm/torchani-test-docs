@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.3.dev25+g6b058c6 documentation</title>
+  <title>Train Neural Network Potential To Both Energies and Forces &mdash; TorchANI 1.3.dev26+g4f834e2 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.3.dev25+g6b058c6
+                1.3.dev26+g4f834e2
               </div>
             
           
@@ -232,14 +232,23 @@ information</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 30
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 6
 
- 1/30  [&gt;.............................] - 0.0s
- 2/30  [=&gt;............................] - 0.0s
- 3/30  [==&gt;...........................] - 0.0s
- 4/30  [===&gt;..........................] - 0.0s
- 5/30  [====&gt;.........................] - 0.1s
- 6/30  [=====&gt;........................] - 0.1sSelf atomic energies:  tensor([-19.354, -19.354, -54.712, -75.163], dtype=torch.float64)
+1/6  [====&gt;.........................] - 0.0s
+2/6  [=========&gt;....................] - 0.0s
+3/6  [==============&gt;...............] - 0.0s
+4/6  [===================&gt;..........] - 0.1s
+5/6  [========================&gt;.....] - 0.1s
+6/6  [==============================] - 0.1s
+=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 6
+
+1/6  [====&gt;.........................] - 0.0s
+2/6  [=========&gt;....................] - 0.0s
+3/6  [==============&gt;...............] - 0.0s
+4/6  [===================&gt;..........] - 0.1s
+5/6  [========================&gt;.....] - 0.1s
+6/6  [==============================] - 0.1s
+Self atomic energies:  tensor([-19.354, -19.354, -54.712, -75.163], dtype=torch.float64)
 </pre></div>
 </div>
 <p>The code to define networks, optimizers, are mostly the same</p>
@@ -554,25 +563,25 @@ is better than the best, then save the new best model to a checkpoint</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 58.93447299480546 at epoch 1
+RMSE: 64.27297881234986 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:02&lt;00:08,  2.84s/it]
-epoch 1:  50%|#####     | 2/4 [00:05&lt;00:05,  2.83s/it]
-epoch 1:  75%|#######5  | 3/4 [00:08&lt;00:02,  2.81s/it]
-epoch 1: 100%|##########| 4/4 [00:10&lt;00:00,  2.47s/it]
+epoch 1:  25%|##5       | 1/4 [00:02&lt;00:08,  2.88s/it]
+epoch 1:  50%|#####     | 2/4 [00:05&lt;00:05,  2.86s/it]
+epoch 1:  75%|#######5  | 3/4 [00:08&lt;00:02,  2.86s/it]
 epoch 1: 100%|##########| 4/4 [00:10&lt;00:00,  2.52s/it]
-RMSE: 189.5150246624574 at epoch 2
+epoch 1: 100%|##########| 4/4 [00:10&lt;00:00,  2.57s/it]
+RMSE: 77.98836632875943 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:02&lt;00:08,  2.73s/it]
-epoch 2:  50%|#####     | 2/4 [00:05&lt;00:05,  2.73s/it]
-epoch 2:  75%|#######5  | 3/4 [00:08&lt;00:02,  2.72s/it]
-epoch 2: 100%|##########| 4/4 [00:09&lt;00:00,  2.40s/it]
-epoch 2: 100%|##########| 4/4 [00:09&lt;00:00,  2.45s/it]
+epoch 2:  25%|##5       | 1/4 [00:02&lt;00:08,  2.93s/it]
+epoch 2:  50%|#####     | 2/4 [00:05&lt;00:05,  2.91s/it]
+epoch 2:  75%|#######5  | 3/4 [00:08&lt;00:02,  2.90s/it]
+epoch 2: 100%|##########| 4/4 [00:10&lt;00:00,  2.54s/it]
+epoch 2: 100%|##########| 4/4 [00:10&lt;00:00,  2.59s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  21.349 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  22.356 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-force-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../_downloads/4b6aa9678849c98dd34491f14233c2bd/nnp_training_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training_force.py</span></code></a></div>
