@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_examples_jit.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_examples_jit.py:
+        Click :ref:`here <sphx_glr_download_examples_jit.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_examples_jit.py:
 
 
 Using TorchScript to serialize and deploy model
@@ -139,8 +141,8 @@ And here is the result:
 
  .. code-block:: none
 
-    Ensemble energy, eager mode vs loaded jit: -40.425620573407016 -40.425620573407016
-    Single network energy, eager mode vs loaded jit: -40.428783447315894 -40.428783447315894
+    Ensemble energy, eager mode vs loaded jit: -40.42562057713231 -40.42562057713231
+    Single network energy, eager mode vs loaded jit: -40.42878346128573 -40.42878346128573
 
 
 
@@ -262,7 +264,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.347 seconds)
+   **Total running time of the script:** ( 0 minutes  5.733 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
@@ -275,13 +277,13 @@ you could do the following:
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: jit.py <jit.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: jit.ipynb <jit.ipynb>`
 
