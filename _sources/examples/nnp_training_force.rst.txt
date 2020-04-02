@@ -90,9 +90,10 @@ The code to define networks, optimizers, are mostly the same
 
 .. code-block:: default
 
+    aev_dim = aev_computer.aev_length
 
     H_network = torch.nn.Sequential(
-        torch.nn.Linear(384, 160),
+        torch.nn.Linear(aev_dim, 160),
         torch.nn.CELU(0.1),
         torch.nn.Linear(160, 128),
         torch.nn.CELU(0.1),
@@ -102,7 +103,7 @@ The code to define networks, optimizers, are mostly the same
     )
 
     C_network = torch.nn.Sequential(
-        torch.nn.Linear(384, 144),
+        torch.nn.Linear(aev_dim, 144),
         torch.nn.CELU(0.1),
         torch.nn.Linear(144, 112),
         torch.nn.CELU(0.1),
@@ -112,7 +113,7 @@ The code to define networks, optimizers, are mostly the same
     )
 
     N_network = torch.nn.Sequential(
-        torch.nn.Linear(384, 128),
+        torch.nn.Linear(aev_dim, 128),
         torch.nn.CELU(0.1),
         torch.nn.Linear(128, 112),
         torch.nn.CELU(0.1),
@@ -122,7 +123,7 @@ The code to define networks, optimizers, are mostly the same
     )
 
     O_network = torch.nn.Sequential(
-        torch.nn.Linear(384, 128),
+        torch.nn.Linear(aev_dim, 128),
         torch.nn.CELU(0.1),
         torch.nn.Linear(128, 112),
         torch.nn.CELU(0.1),
@@ -505,10 +506,10 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    RMSE: 89.85329875311555 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:03<00:09,  3.30s/it]    epoch 1:  50%|#####     | 2/4 [00:06<00:06,  3.25s/it]    epoch 1:  75%|#######5  | 3/4 [00:09<00:03,  3.21s/it]    epoch 1: 100%|##########| 4/4 [00:11<00:00,  2.80s/it]    epoch 1: 100%|##########| 4/4 [00:11<00:00,  2.85s/it]
-    RMSE: 170.37123688522314 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:03<00:09,  3.15s/it]    epoch 2:  50%|#####     | 2/4 [00:06<00:06,  3.14s/it]    epoch 2:  75%|#######5  | 3/4 [00:09<00:03,  3.14s/it]    epoch 2: 100%|##########| 4/4 [00:11<00:00,  2.76s/it]    epoch 2: 100%|##########| 4/4 [00:11<00:00,  2.82s/it]
+    RMSE: 45.759340929295035 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:08,  2.82s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.75s/it]    epoch 1:  75%|#######5  | 3/4 [00:08<00:02,  2.72s/it]    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.36s/it]    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.40s/it]
+    RMSE: 103.81962540550127 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:08,  2.67s/it]    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.62s/it]    epoch 2:  75%|#######5  | 3/4 [00:07<00:02,  2.62s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.29s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.33s/it]
 
 
 
@@ -516,7 +517,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  24.524 seconds)
+   **Total running time of the script:** ( 0 minutes  20.818 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
