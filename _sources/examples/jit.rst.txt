@@ -141,8 +141,8 @@ And here is the result:
 
  .. code-block:: none
 
-    Ensemble energy, eager mode vs loaded jit: -40.42562057713231 -40.42562057713231
-    Single network energy, eager mode vs loaded jit: -40.42878346128573 -40.42878346128573
+    Ensemble energy, eager mode vs loaded jit: -40.425620573407016 -40.425620573407016
+    Single network energy, eager mode vs loaded jit: -40.428783447315894 -40.428783447315894
 
 
 
@@ -264,7 +264,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.272 seconds)
+   **Total running time of the script:** ( 0 minutes  6.006 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
