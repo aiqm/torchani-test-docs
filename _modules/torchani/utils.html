@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.utils &mdash; TorchANI 1.3.dev36+g1ddb371 documentation</title>
+  <title>torchani.utils &mdash; TorchANI 1.3.dev37+gfec59ac documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.3.dev36+g1ddb371
+                1.3.dev37+gfec59ac
               </div>
             
           
@@ -312,7 +312,7 @@
     <span class="n">inv_cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
     <span class="n">coordinates_cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">inv_cell</span><span class="p">)</span>
     <span class="c1"># Step 2: wrap cell coordinates into [0, 1)</span>
-    <span class="n">coordinates_cell</span> <span class="o">-=</span> <span class="n">coordinates_cell</span><span class="o">.</span><span class="n">floor</span><span class="p">()</span> <span class="o">*</span> <span class="n">pbc</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">coordinates_cell</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">coordinates_cell</span> <span class="o">-=</span> <span class="n">coordinates_cell</span><span class="o">.</span><span class="n">floor</span><span class="p">()</span> <span class="o">*</span> <span class="n">pbc</span>
     <span class="c1"># Step 3: convert from cell coordinates back to standard cartesian</span>
     <span class="c1"># coordinate</span>
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">coordinates_cell</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span></div>
@@ -368,8 +368,8 @@
         <span class="sd">&quot;&quot;&quot;(species, molecular energies)-&gt;(species, molecular energies + sae)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">=</span> <span class="n">species_energies</span>
-        <span class="n">sae</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">energies</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">energies</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sae</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">+</span> <span class="n">sae</span><span class="p">)</span></div></div>
+        <span class="n">sae</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">(</span><span class="n">species</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">+</span> <span class="n">sae</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="ChemicalSymbolsToInts"><a class="viewcode-back" href="../../api.html#torchani.ChemicalSymbolsToInts">[docs]</a><span class="k">class</span> <span class="nc">ChemicalSymbolsToInts</span><span class="p">:</span>
