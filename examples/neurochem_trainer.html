@@ -231,7 +231,7 @@ But this is wrong and should be avoided for any serious training.</p>
 1/1  [==============================] - 0.0s
 
 2/1  [============================================================] - 0.0s
-3/1  [==========================================================================================] - 0.1s
+3/1  [==========================================================================================] - 0.0s
 </pre></div>
 </div>
 <p>Once everything is set up, running NeuroChem is very easy. We simplify need a
@@ -255,18 +255,53 @@ its progressbar to stdout.</p>
 Consider using one of the following signatures instead:
         add_(Tensor other, Number alpha)
 
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.18it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.19it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.19it/s]
-epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.20it/s]
-epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.76it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  5.19it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  5.23it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  5.28it/s]
+epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  5.22it/s]
+epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  6.15it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.17it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.15it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.16it/s]
-epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.16it/s]
-epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.71it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  5.32it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  5.27it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  5.28it/s]
+epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  5.20it/s]
+epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  6.11it/s]
+
+epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 3:  20%|##        | 1/5 [00:00&lt;00:00,  5.44it/s]
+epoch 3:  40%|####      | 2/5 [00:00&lt;00:00,  5.35it/s]
+epoch 3:  60%|######    | 3/5 [00:00&lt;00:00,  5.34it/s]
+epoch 3:  80%|########  | 4/5 [00:00&lt;00:00,  5.36it/s]
+epoch 3: 100%|##########| 5/5 [00:00&lt;00:00,  6.25it/s]
+
+epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 4:  20%|##        | 1/5 [00:00&lt;00:00,  5.31it/s]
+epoch 4:  40%|####      | 2/5 [00:00&lt;00:00,  5.35it/s]
+epoch 4:  60%|######    | 3/5 [00:00&lt;00:00,  5.34it/s]
+epoch 4:  80%|########  | 4/5 [00:00&lt;00:00,  5.34it/s]
+epoch 4: 100%|##########| 5/5 [00:00&lt;00:00,  6.23it/s]
+
+epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 5:  20%|##        | 1/5 [00:00&lt;00:00,  5.25it/s]
+epoch 5:  40%|####      | 2/5 [00:00&lt;00:00,  5.24it/s]
+epoch 5:  60%|######    | 3/5 [00:00&lt;00:00,  5.28it/s]
+epoch 5:  80%|########  | 4/5 [00:00&lt;00:00,  5.31it/s]
+epoch 5: 100%|##########| 5/5 [00:00&lt;00:00,  6.18it/s]
+
+epoch 6:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 6:  20%|##        | 1/5 [00:00&lt;00:00,  5.30it/s]
+epoch 6:  40%|####      | 2/5 [00:00&lt;00:00,  5.36it/s]
+epoch 6:  60%|######    | 3/5 [00:00&lt;00:00,  5.35it/s]
+epoch 6:  80%|########  | 4/5 [00:00&lt;00:00,  5.38it/s]
+epoch 6: 100%|##########| 5/5 [00:00&lt;00:00,  6.33it/s]
+
+epoch 7:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 7:  20%|##        | 1/5 [00:00&lt;00:00,  5.51it/s]
+epoch 7:  40%|####      | 2/5 [00:00&lt;00:00,  5.30it/s]
+epoch 7:  60%|######    | 3/5 [00:00&lt;00:00,  5.30it/s]
+epoch 7:  80%|########  | 4/5 [00:00&lt;00:00,  5.32it/s]
+epoch 7: 100%|##########| 5/5 [00:00&lt;00:00,  6.16it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -296,84 +331,21 @@ generating this document:</p>
 Consider using one of the following signatures instead:
         add_(Tensor other, Number alpha)
 
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.14it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.14it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.16it/s]
-epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.17it/s]
-epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.70it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  4.96it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  4.98it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  5.04it/s]
+epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  5.10it/s]
+epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  5.95it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.12it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.16it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.16it/s]
-epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.19it/s]
-epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.76it/s]
-
-epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 3:  20%|██        | 1/5 [00:00&lt;00:01,  3.26it/s]
-epoch 3:  40%|████      | 2/5 [00:00&lt;00:00,  3.16it/s]
-epoch 3:  60%|██████    | 3/5 [00:00&lt;00:00,  3.18it/s]
-epoch 3:  80%|████████  | 4/5 [00:01&lt;00:00,  3.18it/s]
-epoch 3: 100%|██████████| 5/5 [00:01&lt;00:00,  3.71it/s]
-
-epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 4:  20%|██        | 1/5 [00:00&lt;00:01,  3.09it/s]
-epoch 4:  40%|████      | 2/5 [00:00&lt;00:00,  3.10it/s]
-epoch 4:  60%|██████    | 3/5 [00:00&lt;00:00,  3.10it/s]
-epoch 4:  80%|████████  | 4/5 [00:01&lt;00:00,  3.13it/s]
-epoch 4: 100%|██████████| 5/5 [00:01&lt;00:00,  3.67it/s]
-
-epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 5:  20%|██        | 1/5 [00:00&lt;00:01,  3.23it/s]
-epoch 5:  40%|████      | 2/5 [00:00&lt;00:00,  3.19it/s]
-epoch 5:  60%|██████    | 3/5 [00:00&lt;00:00,  3.18it/s]
-epoch 5:  80%|████████  | 4/5 [00:01&lt;00:00,  3.15it/s]
-epoch 5: 100%|██████████| 5/5 [00:01&lt;00:00,  3.69it/s]
-
-epoch 6:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 6:  20%|██        | 1/5 [00:00&lt;00:01,  3.20it/s]
-epoch 6:  40%|████      | 2/5 [00:00&lt;00:00,  3.21it/s]
-epoch 6:  60%|██████    | 3/5 [00:00&lt;00:00,  3.22it/s]
-epoch 6:  80%|████████  | 4/5 [00:01&lt;00:00,  3.16it/s]
-epoch 6: 100%|██████████| 5/5 [00:01&lt;00:00,  3.73it/s]
-
-epoch 7:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 7:  20%|██        | 1/5 [00:00&lt;00:01,  3.17it/s]
-epoch 7:  40%|████      | 2/5 [00:00&lt;00:00,  3.15it/s]
-epoch 7:  60%|██████    | 3/5 [00:00&lt;00:00,  3.14it/s]
-epoch 7:  80%|████████  | 4/5 [00:01&lt;00:00,  3.12it/s]
-epoch 7: 100%|██████████| 5/5 [00:01&lt;00:00,  3.65it/s]
-
-epoch 8:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 8:  20%|██        | 1/5 [00:00&lt;00:01,  3.22it/s]
-epoch 8:  40%|████      | 2/5 [00:00&lt;00:00,  3.17it/s]
-epoch 8:  60%|██████    | 3/5 [00:00&lt;00:00,  3.19it/s]
-epoch 8:  80%|████████  | 4/5 [00:01&lt;00:00,  3.16it/s]
-epoch 8: 100%|██████████| 5/5 [00:01&lt;00:00,  3.70it/s]
-
-epoch 9:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 9:  20%|██        | 1/5 [00:00&lt;00:01,  3.29it/s]
-epoch 9:  40%|████      | 2/5 [00:00&lt;00:00,  3.23it/s]
-epoch 9:  60%|██████    | 3/5 [00:00&lt;00:00,  3.23it/s]
-epoch 9:  80%|████████  | 4/5 [00:01&lt;00:00,  3.21it/s]
-epoch 9: 100%|██████████| 5/5 [00:01&lt;00:00,  3.75it/s]
-
-epoch 10:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 10:  20%|██        | 1/5 [00:00&lt;00:01,  3.07it/s]
-epoch 10:  40%|████      | 2/5 [00:00&lt;00:00,  3.06it/s]
-epoch 10:  60%|██████    | 3/5 [00:00&lt;00:00,  3.05it/s]
-epoch 10:  80%|████████  | 4/5 [00:01&lt;00:00,  3.09it/s]
-epoch 10: 100%|██████████| 5/5 [00:01&lt;00:00,  3.62it/s]
-
-epoch 11:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 11:  20%|██        | 1/5 [00:00&lt;00:01,  3.05it/s]
-epoch 11:  40%|████      | 2/5 [00:00&lt;00:00,  3.07it/s]
-epoch 11:  60%|██████    | 3/5 [00:00&lt;00:00,  3.09it/s]
-epoch 11:  80%|████████  | 4/5 [00:01&lt;00:00,  3.11it/s]
-epoch 11: 100%|██████████| 5/5 [00:01&lt;00:00,  3.67it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  5.36it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  5.40it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  5.32it/s]
+epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  5.28it/s]
+epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  6.22it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  28.162 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.173 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
