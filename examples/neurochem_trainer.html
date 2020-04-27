@@ -225,7 +225,7 @@ But this is wrong and should be avoided for any serious training.</p>
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
@@ -250,23 +250,24 @@ its progressbar to stdout.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]/pytorch/torch/csrc/utils/python_arg_parser.cpp:760: UserWarning: This overload of add_ is deprecated:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]/opt/hostedtoolcache/Python/3.6.10/x64/lib/python3.6/site-packages/torchani/optim.py:102: UserWarning: This overload of add_ is deprecated:
         add_(Number alpha, Tensor other)
 Consider using one of the following signatures instead:
-        add_(Tensor other, *, Number alpha)
+        add_(Tensor other, *, Number alpha) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:760.)
+  exp_avg.mul_(beta1).add_(1 - beta1, grad)
 
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  4.34it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  4.48it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  4.53it/s]
-epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  4.62it/s]
-epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  5.47it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.19it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.21it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.20it/s]
+epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.20it/s]
+epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.77it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  4.55it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  4.60it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  4.67it/s]
-epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  4.54it/s]
-epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  5.38it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.18it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.18it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.16it/s]
+epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.14it/s]
+epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.69it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -291,26 +292,27 @@ generating this document:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]/pytorch/torch/csrc/utils/python_arg_parser.cpp:760: UserWarning: This overload of add_ is deprecated:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]/opt/hostedtoolcache/Python/3.6.10/x64/lib/python3.6/site-packages/torchani/optim.py:102: UserWarning: This overload of add_ is deprecated:
         add_(Number alpha, Tensor other)
 Consider using one of the following signatures instead:
-        add_(Tensor other, *, Number alpha)
+        add_(Tensor other, *, Number alpha) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:760.)
+  exp_avg.mul_(beta1).add_(1 - beta1, grad)
 
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  4.73it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  4.75it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  4.78it/s]
-epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  4.51it/s]
-epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  5.36it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.21it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.21it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.16it/s]
+epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.19it/s]
+epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.74it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  4.57it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  4.64it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  4.65it/s]
-epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  4.72it/s]
-epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  5.51it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.03it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.08it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.10it/s]
+epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.13it/s]
+epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.70it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.275 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.289 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
