@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Your Own Neural Network Potential &mdash; TorchANI 2.1.dev2+gde9020d documentation</title>
+  <title>Train Your Own Neural Network Potential &mdash; TorchANI 2.1.dev3+g14b9a39 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                2.1.dev2+gde9020d
+                2.1.dev3+g14b9a39
               </div>
             
           
@@ -112,7 +112,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.utils">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.neurochem">NeuroChem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.ase">ASE Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.optim">TorchANI Optimizater</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.units">Units</a></li>
 </ul>
 
@@ -263,7 +262,7 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
 </pre></div>
 </div>
@@ -428,7 +427,7 @@ mistake in deep learning.  See: <a class="reference external" href="https://arxi
 Also note that the weight decay only applies to weight in the training
 of ANI models, not bias.</p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AdamW</span> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="torch.optim.Optimizer" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torchani</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span></a><span class="p">([</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span></a><span class="p">([</span>
     <span class="c1"># H networks</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
@@ -476,7 +475,7 @@ of ANI models, not bias.</p>
 </pre></div>
 </div>
 <p>Setting up a learning rate scheduler to do learning rate decay</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><span class="n">AdamW</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -566,7 +565,7 @@ set to a much larger value</p>
         <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.zero_grad" title="torch.optim.Optimizer.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.zero_grad" title="torch.optim.Optimizer.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/autograd.html#torch.Tensor.backward" title="torch.Tensor.backward" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-method"><span class="n">loss</span><span class="o">.</span><span class="n">backward</span></a><span class="p">()</span>
-        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.step" title="torch.optim.Optimizer.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW.step" title="torch.optim.AdamW.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD.step" title="torch.optim.SGD.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
 
         <span class="c1"># write current batch loss to TensorBoard</span>
@@ -583,72 +582,81 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 158.4869288025917 at epoch 1
+RMSE: 147.70607593689527 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  4.50it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  4.61it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.73it/s]
-epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  5.64it/s]
-RMSE: 113.43917075770824 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:01,  2.90it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  2.96it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.02it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.69it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.59it/s]
+RMSE: 133.2870891244236 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  5.05it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  5.02it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.02it/s]
-epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  5.86it/s]
-RMSE: 76.90918790478592 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.26it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.23it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.15it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.83it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.68it/s]
+RMSE: 64.74955943789925 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  4.91it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  4.91it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.91it/s]
-epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  5.75it/s]
-RMSE: 65.4786147796327 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.18it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.19it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.12it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.78it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.64it/s]
+RMSE: 16.675121757922273 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  5.06it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  5.03it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.01it/s]
-epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  5.75it/s]
-RMSE: 14.220833069453226 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.14it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.15it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.16it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.84it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.71it/s]
+RMSE: 53.09837829260002 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  4.85it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  4.84it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.87it/s]
-epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  5.69it/s]
-RMSE: 42.99022605323051 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.17it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.14it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.14it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.83it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.68it/s]
+RMSE: 40.71374050642295 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  4.98it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  4.95it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.93it/s]
-epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  5.71it/s]
-RMSE: 25.75448969046139 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.17it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.16it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.13it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.83it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.68it/s]
+RMSE: 14.505074563062056 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  4.94it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  4.87it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.85it/s]
-epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  5.65it/s]
-RMSE: 25.28034566212028 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.19it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.20it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.17it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.86it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
+RMSE: 26.47206376548066 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  4.95it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  4.94it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.85it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  5.66it/s]
-RMSE: 12.360494722495567 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.06it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.10it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.11it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.79it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
+RMSE: 16.7899746220554 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  4.88it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  4.88it/s]
-epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.87it/s]
-epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  5.70it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.16it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.17it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.13it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.81it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.900 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.658 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
