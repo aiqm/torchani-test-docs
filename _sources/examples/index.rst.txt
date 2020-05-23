@@ -12,27 +12,6 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example is modified from the official home page and `Constant temperature MD`_ to use the ...">
-
-.. only:: html
-
- .. figure:: /examples/images/thumb/sphx_glr_ase_interface_thumb.png
-     :alt: Structure minimization and constant temperature MD using ASE interface
-
-     :ref:`sphx_glr_examples_ase_interface.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /examples/ase_interface
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="TorchANI has a model zoo trained by NeuroChem. These models are shipped with TorchANI and can b...">
 
 .. only:: html
@@ -51,6 +30,27 @@ Examples
    :hidden:
 
    /examples/energy_force
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example is modified from the official home page and `Constant temperature MD`_ to use the ...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_ase_interface_thumb.png
+     :alt: Structure minimization and constant temperature MD using ASE interface
+
+     :ref:`sphx_glr_examples_ase_interface.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/ase_interface
 
 .. raw:: html
 
