@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 2.1.dev12+g13cacd0 documentation</title>
+  <title>torchani.models &mdash; TorchANI 2.1.dev13+g279e53a documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                2.1.dev12+g13cacd0
+                2.1.dev13+g279e53a
               </div>
             
           
@@ -177,9 +177,9 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;The ANI model zoo that stores public ANI models.</span>
 
-<span class="sd">Currently the model zoo has two models: ANI-1x and ANI-1ccx. The classes</span>
-<span class="sd">of these two models are :class:`ANI1x` and :class:`ANI1ccx`,</span>
-<span class="sd">these are subclasses of :class:`torch.nn.Module`.</span>
+<span class="sd">Currently the model zoo has three models: ANI-1x, ANI-1ccx, and ANI-2x.</span>
+<span class="sd">The classes of these models are :class:`ANI1x`, :class:`ANI1ccx`, and</span>
+<span class="sd">:class:`ANI2x` these are subclasses of :class:`torch.nn.Module`.</span>
 <span class="sd">To use the models just instantiate them and either</span>
 <span class="sd">directly calculate energies or get an ASE calculator. For example:</span>
 
@@ -455,6 +455,26 @@
 <span class="sd">        https://doi.org/10.26434/chemrxiv.6744440.v1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">info_file</span> <span class="o">=</span> <span class="s1">&#39;ani-1ccx_8x.info&#39;</span>
+    <span class="k">if</span> <span class="n">model_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BuiltinEnsemble</span><span class="o">.</span><span class="n">_from_neurochem_resources</span><span class="p">(</span><span class="n">info_file</span><span class="p">,</span> <span class="n">periodic_table_index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BuiltinModel</span><span class="o">.</span><span class="n">_from_neurochem_resources</span><span class="p">(</span><span class="n">info_file</span><span class="p">,</span> <span class="n">periodic_table_index</span><span class="p">,</span> <span class="n">model_index</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ANI2x"><a class="viewcode-back" href="../../api.html#torchani.models.ANI2x">[docs]</a><span class="k">def</span> <span class="nf">ANI2x</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">model_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The ANI-2x model as in `ANI2x Paper`_ and `ANI2x Results on GitHub`_.</span>
+
+<span class="sd">    The ANI-2x model is an ensemble of 8 networks that was trained on the</span>
+<span class="sd">    ANI-2x dataset. The target level of theory is wB97X/6-31G(d). It predicts</span>
+<span class="sd">    energies on HCNOFSCl elements exclusively it shouldn&#39;t be used with other</span>
+<span class="sd">    atom types.</span>
+
+<span class="sd">    .. _ANI2x Results on GitHub:</span>
+<span class="sd">        https://github.com/cdever01/ani-2x_results</span>
+
+<span class="sd">    .. _ANI2x Paper:</span>
+<span class="sd">        https://doi.org/10.26434/chemrxiv.11819268.v1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">info_file</span> <span class="o">=</span> <span class="s1">&#39;ani-2x_8x.info&#39;</span>
     <span class="k">if</span> <span class="n">model_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">BuiltinEnsemble</span><span class="o">.</span><span class="n">_from_neurochem_resources</span><span class="p">(</span><span class="n">info_file</span><span class="p">,</span> <span class="n">periodic_table_index</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">BuiltinModel</span><span class="o">.</span><span class="n">_from_neurochem_resources</span><span class="p">(</span><span class="n">info_file</span><span class="p">,</span> <span class="n">periodic_table_index</span><span class="p">,</span> <span class="n">model_index</span><span class="p">)</span></div>
