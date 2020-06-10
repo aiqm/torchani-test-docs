@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 2.2.dev1+g1b58c3c documentation</title>
+  <title>torchani.models &mdash; TorchANI 2.2.dev2+ge08bb3d documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                2.2.dev1+g1b58c3c
+                2.2.dev2+ge08bb3d
               </div>
             
           
@@ -190,17 +190,14 @@
 <span class="sd">    _, energies = ani1x((species, coordinates))</span>
 <span class="sd">    ani1x.ase()  # get ASE Calculator using this ensemble</span>
 <span class="sd">    # convert atom species from string to long tensor</span>
-<span class="sd">    ani1x.species_to_tensor(&#39;CHHHH&#39;)</span>
+<span class="sd">    ani1x.species_to_tensor([&#39;C&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;])</span>
 
 <span class="sd">    model0 = ani1x[0]  # get the first model in the ensemble</span>
 <span class="sd">    # compute energy using the first model in the ANI-1x model ensemble</span>
 <span class="sd">    _, energies = model0((species, coordinates))</span>
 <span class="sd">    model0.ase()  # get ASE Calculator using this model</span>
 <span class="sd">    # convert atom species from string to long tensor</span>
-<span class="sd">    model0.species_to_tensor(&#39;CHHHH&#39;)</span>
-
-<span class="sd">Note that the class BuiltinModels can be accessed but it is deprecated and</span>
-<span class="sd">shouldn&#39;t be used anymore.</span>
+<span class="sd">    model0.species_to_tensor([&#39;C&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">torch</span>
