@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 2.2.dev2+ge08bb3d documentation</title>
+  <title>torchani.models &mdash; TorchANI 2.2.dev3+g9e7baa6 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                2.2.dev2+ge08bb3d
+                2.2.dev3+g9e7baa6
               </div>
             
           
@@ -200,10 +200,12 @@
 <span class="sd">    model0.species_to_tensor([&#39;C&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">resource_filename</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">neurochem</span>
 <span class="kn">from</span> <span class="nn">.nn</span> <span class="kn">import</span> <span class="n">SpeciesConverter</span><span class="p">,</span> <span class="n">SpeciesEnergies</span>
 <span class="kn">from</span> <span class="nn">.aev</span> <span class="kn">import</span> <span class="n">AEVComputer</span>
@@ -246,11 +248,26 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_parse_neurochem_resources</span><span class="p">(</span><span class="n">info_file_path</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-            <span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vm">__name__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">return</span> <span class="n">resource_filename</span><span class="p">(</span><span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;resources/&#39;</span> <span class="o">+</span> <span class="n">file_path</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="s1">&#39;resources/&#39;</span> <span class="o">+</span> <span class="n">file_path</span><span class="p">)</span>
 
-        <span class="n">info_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">info_file_path</span><span class="p">)</span>
+        <span class="n">resource_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+        <span class="n">local_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.local/torchani&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">info_file_path</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">get_resource</span><span class="p">(</span><span class="n">local_dir</span><span class="p">,</span> <span class="n">info_file_path</span><span class="p">)):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading ANI model parameters ...&#39;</span><span class="p">)</span>
+                <span class="n">resource_res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.dropbox.com/sh/otrzul6yuye8uzs/AABuaihE22vtaB_rdrI0r6TUa?dl=1&quot;</span><span class="p">)</span>
+                <span class="n">resource_zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">resource_res</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">resource_zip</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">resource_path</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+                    <span class="n">resource_zip</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">local_dir</span><span class="p">)</span>
+                    <span class="n">resource_path</span> <span class="o">=</span> <span class="n">local_dir</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resource_path</span> <span class="o">=</span> <span class="n">local_dir</span>
+
+        <span class="n">info_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">info_file_path</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">info_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="c1"># const_file: Path to the file with the builtin constants.</span>
@@ -258,9 +275,9 @@
             <span class="c1"># ensemble_prefix: Prefix of the neurochem resource directories.</span>
             <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()][:</span><span class="mi">4</span><span class="p">]</span>
             <span class="n">const_file_path</span><span class="p">,</span> <span class="n">sae_file_path</span><span class="p">,</span> <span class="n">ensemble_prefix_path</span><span class="p">,</span> <span class="n">ensemble_size</span> <span class="o">=</span> <span class="n">lines</span>
-            <span class="n">const_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">const_file_path</span><span class="p">)</span>
-            <span class="n">sae_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">sae_file_path</span><span class="p">)</span>
-            <span class="n">ensemble_prefix</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">ensemble_prefix_path</span><span class="p">)</span>
+            <span class="n">const_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">const_file_path</span><span class="p">)</span>
+            <span class="n">sae_file</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">sae_file_path</span><span class="p">)</span>
+            <span class="n">ensemble_prefix</span> <span class="o">=</span> <span class="n">get_resource</span><span class="p">(</span><span class="n">resource_path</span><span class="p">,</span> <span class="n">ensemble_prefix_path</span><span class="p">)</span>
             <span class="n">ensemble_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ensemble_size</span><span class="p">)</span>
             <span class="n">consts</span> <span class="o">=</span> <span class="n">neurochem</span><span class="o">.</span><span class="n">Constants</span><span class="p">(</span><span class="n">const_file</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">consts</span><span class="p">,</span> <span class="n">sae_file</span><span class="p">,</span> <span class="n">ensemble_prefix</span><span class="p">,</span> <span class="n">ensemble_size</span>
