@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 2.1.2.dev6+g8dd1141 documentation</title>
+  <title>torchani.models &mdash; TorchANI 2.1.2.dev7+g5e6f640 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.1.2.dev6+g8dd1141
+                2.1.2.dev7+g5e6f640
               </div>
             
           
@@ -181,10 +181,15 @@
 <span class="sd">&quot;&quot;&quot;The ANI model zoo that stores public ANI models.</span>
 
 <span class="sd">Currently the model zoo has three models: ANI-1x, ANI-1ccx, and ANI-2x.</span>
-<span class="sd">The classes of these models are :class:`ANI1x`, :class:`ANI1ccx`, and</span>
-<span class="sd">:class:`ANI2x` these are subclasses of :class:`torch.nn.Module`.</span>
+<span class="sd">The parameters of these models are stored in `ani-model-zoo`_ repository and</span>
+<span class="sd">will be automatically downloaded the first time any of these models are</span>
+<span class="sd">instantiated. The classes of these models are :class:`ANI1x`, :class:`ANI1ccx`,</span>
+<span class="sd">and :class:`ANI2x` these are subclasses of :class:`torch.nn.Module`.</span>
 <span class="sd">To use the models just instantiate them and either</span>
 <span class="sd">directly calculate energies or get an ASE calculator. For example:</span>
+
+<span class="sd">.. _ani-model-zoo:</span>
+<span class="sd">    https://github.com/aiqm/ani-model-zoo</span>
 
 <span class="sd">.. code-block:: python</span>
 
