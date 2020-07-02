@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.1.2.dev10+g28ecce7 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.1.2.dev11+gd98926c documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.1.2.dev10+g28ecce7
+                2.1.2.dev11+gd98926c
               </div>
             
           
@@ -526,7 +526,7 @@
     <span class="n">sizes</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">num_species</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AEVComputer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rcr</span> <span class="o">=</span> <span class="n">Rcr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rca</span> <span class="o">=</span> <span class="n">Rca</span>
         <span class="k">assert</span> <span class="n">Rca</span> <span class="o">&lt;=</span> <span class="n">Rcr</span><span class="p">,</span> <span class="s2">&quot;Current implementation of AEVComputer assumes Rca &lt;= Rcr&quot;</span>
