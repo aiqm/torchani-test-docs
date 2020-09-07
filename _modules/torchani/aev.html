@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev1+g19882c6 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev2+g5fbd9ed documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev1+g19882c6
+                2.3.dev2+g5fbd9ed
               </div>
             
           
@@ -365,7 +365,7 @@
 <span class="sd">        padding_mask (:class:`torch.Tensor`): boolean tensor of shape</span>
 <span class="sd">            (molecules, atoms) for padding mask. 1 == is padding.</span>
 <span class="sd">        coordinates (:class:`torch.Tensor`): tensor of shape</span>
-<span class="sd">            (molecules * atoms, 3) for atom coordinates.</span>
+<span class="sd">            (molecules, atoms, 3) for atom coordinates.</span>
 <span class="sd">        cutoff (float): the cutoff inside which atoms are considered pairs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
