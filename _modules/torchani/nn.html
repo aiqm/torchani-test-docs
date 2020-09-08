@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.nn &mdash; TorchANI 2.3.dev2+g5fbd9ed documentation</title>
+  <title>torchani.nn &mdash; TorchANI 2.3.dev3+g31bf913 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev2+g5fbd9ed
+                2.3.dev3+g31bf913
               </div>
             
           
@@ -234,6 +234,8 @@
                 <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergies</span><span class="p">:</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">aev</span> <span class="o">=</span> <span class="n">species_aev</span>
+        <span class="k">assert</span> <span class="n">species</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">aev</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
         <span class="n">species_</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="n">aev</span> <span class="o">=</span> <span class="n">aev</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -312,7 +314,13 @@
                 <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert species from periodic table element index to 0, 1, 2, 3, ... indexing&quot;&quot;&quot;</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">input_</span>
-        <span class="k">return</span> <span class="n">SpeciesCoordinates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_tensor</span><span class="p">[</span><span class="n">species</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">coordinates</span><span class="p">)</span></div></div>
+        <span class="n">converted_species</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_tensor</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
+
+        <span class="c1"># check if unknown species are included</span>
+        <span class="k">if</span> <span class="n">converted_species</span><span class="p">[</span><span class="n">species</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unknown species found in </span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">SpeciesCoordinates</span><span class="p">(</span><span class="n">converted_species</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">coordinates</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
