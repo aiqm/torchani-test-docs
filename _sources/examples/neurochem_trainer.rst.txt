@@ -86,11 +86,13 @@ We also need to set the device to run the training:
 
  .. code-block:: none
 
+    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      warnings.warn((
     => loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
     2/1  [============================================================] - 0.1s    3/1  [==========================================================================================] - 0.1s=> loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
-    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.1s
+    2/1  [============================================================] - 0.1s    3/1  [==========================================================================================] - 0.1s
 
 
 
@@ -133,8 +135,10 @@ Now, let's go!
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:01,  2.99it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  3.05it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  3.06it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  3.04it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  3.59it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.10it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.10it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.09it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.09it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  3.62it/s]
+    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      warnings.warn((
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  4.70it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  4.70it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  4.66it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  4.67it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  5.46it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  4.73it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  4.70it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  4.69it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  4.67it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  5.45it/s]
 
 
 
@@ -186,13 +190,17 @@ generating this document:
 
  .. code-block:: none
 
+    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      warnings.warn((
     /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torchani/aev.py:203: UserWarning: This overload of nonzero is deprecated:
             nonzero()
     Consider using one of the following signatures instead:
             nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:882.)
       in_cutoff = (distances <= cutoff).nonzero()
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:01,  2.93it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:01,  2.99it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.02it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.03it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  3.56it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.10it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.09it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.07it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.03it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  3.55it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  4.85it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  4.77it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  4.75it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  4.76it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  5.53it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  4.52it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  4.56it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  4.56it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  4.56it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  5.37it/s]
+    epoch 3:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 3:  20%|██        | 1/5 [00:00<00:00,  4.57it/s]    epoch 3:  40%|████      | 2/5 [00:00<00:00,  4.58it/s]    epoch 3:  60%|██████    | 3/5 [00:00<00:00,  4.63it/s]    epoch 3:  80%|████████  | 4/5 [00:00<00:00,  4.61it/s]    epoch 3: 100%|██████████| 5/5 [00:00<00:00,  5.41it/s]
+    epoch 4:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 4:  20%|██        | 1/5 [00:00<00:00,  4.75it/s]    epoch 4:  40%|████      | 2/5 [00:00<00:00,  4.74it/s]    epoch 4:  60%|██████    | 3/5 [00:00<00:00,  4.70it/s]    epoch 4:  80%|████████  | 4/5 [00:00<00:00,  4.64it/s]    epoch 4: 100%|██████████| 5/5 [00:00<00:00,  5.43it/s]
 
 
 
@@ -201,7 +209,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.067 seconds)
+   **Total running time of the script:** ( 0 minutes  12.392 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:
