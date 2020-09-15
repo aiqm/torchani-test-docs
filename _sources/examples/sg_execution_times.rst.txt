@@ -5,22 +5,22 @@
 
 Computation times
 =================
-**01:19.795** total execution time for **examples** files:
+**01:37.906** total execution time for **examples** files:
 
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_neurochem_trainer.py` (``neurochem_trainer.py``)     | 00:18.545 | 0.0 MB |
+| :ref:`sphx_glr_examples_neurochem_trainer.py` (``neurochem_trainer.py``)     | 00:28.772 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_nnp_training_force.py` (``nnp_training_force.py``)   | 00:18.278 | 0.0 MB |
+| :ref:`sphx_glr_examples_nnp_training_force.py` (``nnp_training_force.py``)   | 00:19.405 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ase_interface.py` (``ase_interface.py``)             | 00:13.015 | 0.0 MB |
+| :ref:`sphx_glr_examples_ase_interface.py` (``ase_interface.py``)             | 00:14.959 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_energy_force.py` (``energy_force.py``)               | 00:10.621 | 0.0 MB |
+| :ref:`sphx_glr_examples_nnp_training.py` (``nnp_training.py``)               | 00:11.474 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_nnp_training.py` (``nnp_training.py``)               | 00:10.079 | 0.0 MB |
+| :ref:`sphx_glr_examples_energy_force.py` (``energy_force.py``)               | 00:11.369 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_jit.py` (``jit.py``)                                 | 00:05.228 | 0.0 MB |
+| :ref:`sphx_glr_examples_jit.py` (``jit.py``)                                 | 00:06.550 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_vibration_analysis.py` (``vibration_analysis.py``)   | 00:02.186 | 0.0 MB |
+| :ref:`sphx_glr_examples_vibration_analysis.py` (``vibration_analysis.py``)   | 00:02.897 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_load_from_neurochem.py` (``load_from_neurochem.py``) | 00:01.842 | 0.0 MB |
+| :ref:`sphx_glr_examples_load_from_neurochem.py` (``load_from_neurochem.py``) | 00:02.481 | 0.0 MB |
 +------------------------------------------------------------------------------+-----------+--------+
