@@ -80,8 +80,8 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
 
 
 
@@ -133,10 +133,10 @@ Now let's minimize the structure:
  .. code-block:: none
 
     Begin minimizing...
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
           Step     Time          Energy         fmax
-    BFGS:    0 00:03:20    -8311.226183        0.0000
+    BFGS:    0 00:03:31    -8311.226187        0.0000
 
 
 
@@ -200,18 +200,18 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.015eV (T=120K)  Etot = -1038.861eV
-    Energy per atom: Epot = -1038.881eV  Ekin = 0.032eV (T=248K)  Etot = -1038.849eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.018eV (T=139K)  Etot = -1038.860eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.035eV (T=267K)  Etot = -1038.829eV
-    Energy per atom: Epot = -1038.865eV  Ekin = 0.048eV (T=370K)  Etot = -1038.817eV
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.052eV (T=399K)  Etot = -1038.825eV
-    Energy per atom: Epot = -1038.860eV  Ekin = 0.036eV (T=280K)  Etot = -1038.824eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.029eV (T=221K)  Etot = -1038.835eV
-    Energy per atom: Epot = -1038.882eV  Ekin = 0.060eV (T=462K)  Etot = -1038.823eV
-    Energy per atom: Epot = -1038.859eV  Ekin = 0.036eV (T=277K)  Etot = -1038.823eV
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
+    Energy per atom: Epot = -1038.885eV  Ekin = 0.016eV (T=122K)  Etot = -1038.869eV
+    Energy per atom: Epot = -1038.880eV  Ekin = 0.037eV (T=288K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.024eV (T=184K)  Etot = -1038.847eV
+    Energy per atom: Epot = -1038.874eV  Ekin = 0.030eV (T=231K)  Etot = -1038.844eV
+    Energy per atom: Epot = -1038.852eV  Ekin = 0.033eV (T=258K)  Etot = -1038.819eV
+    Energy per atom: Epot = -1038.870eV  Ekin = 0.036eV (T=282K)  Etot = -1038.834eV
+    Energy per atom: Epot = -1038.864eV  Ekin = 0.036eV (T=278K)  Etot = -1038.828eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.036eV (T=280K)  Etot = -1038.826eV
+    Energy per atom: Epot = -1038.876eV  Ekin = 0.033eV (T=255K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.028eV (T=214K)  Etot = -1038.847eV
 
     True
 
@@ -220,7 +220,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.728 seconds)
+   **Total running time of the script:** ( 0 minutes  12.858 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:

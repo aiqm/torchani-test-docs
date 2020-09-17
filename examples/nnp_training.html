@@ -245,8 +245,8 @@ is provided as an argument to the object of <code class="xref py py-class docuti
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-  warnings.warn((
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  &quot;torch.norm is deprecated and may be removed in a future PyTorch release. &quot;
 </pre></div>
 </div>
 <p>Now let’s setup datasets. These paths assumes the user run this script under
@@ -601,83 +601,76 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-  warnings.warn((
-RMSE: 77.92274153284004 at epoch 1
+/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  &quot;torch.norm is deprecated and may be removed in a future PyTorch release. &quot;
+RMSE: 207.00929731139058 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.00it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.03it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.03it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.56it/s]
-RMSE: 193.54191818582055 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  4.37it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  4.45it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.46it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  5.32it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  5.19it/s]
+RMSE: 93.53560469646847 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.12it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.09it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.10it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.77it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.63it/s]
-RMSE: 79.86165980249191 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  4.47it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  4.50it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.51it/s]
+epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  5.25it/s]
+RMSE: 34.080834896119775 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.13it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.12it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.13it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.81it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
-RMSE: 30.17501766600165 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  4.41it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  4.41it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.42it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  5.20it/s]
+RMSE: 61.07609697931585 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.11it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.11it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.11it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.76it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.63it/s]
-RMSE: 72.23451453561333 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  4.08it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  4.19it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.31it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  5.15it/s]
+RMSE: 60.24937487685527 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.13it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.09it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.08it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.58it/s]
-RMSE: 31.49161949548288 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  4.64it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  4.62it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.58it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  5.29it/s]
+RMSE: 18.547514639450412 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.07it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.08it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.06it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.59it/s]
-RMSE: 28.928717191151197 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  4.65it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  4.46it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.40it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  5.04it/s]
+RMSE: 28.15447884665915 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.03it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  2.99it/s]
-epoch 7:  75%|#######5  | 3/4 [00:01&lt;00:00,  3.01it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.52it/s]
-RMSE: 33.40460080430113 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  4.23it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  4.22it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.34it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  5.22it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  5.05it/s]
+RMSE: 27.2789288151704 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.05it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.07it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.07it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.60it/s]
-RMSE: 5.324809606054335 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  4.64it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  4.65it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.68it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  5.48it/s]
+RMSE: 17.319932130565178 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:01,  2.80it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  2.81it/s]
-epoch 9:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.86it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.51it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.39it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  4.69it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  4.70it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.72it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  5.52it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.943 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.655 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
