@@ -54,8 +54,8 @@ models trained with diffrent initialization.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
 
 
 
@@ -150,8 +150,8 @@ And here is the result:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
     Ensemble energy, eager mode vs loaded jit: -40.42562058178892 -40.42562058178892
     Single network energy, eager mode vs loaded jit: -40.42878346687367 -40.42878346687367
 
@@ -223,8 +223,8 @@ you could do the following:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1241: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      warnings.warn((
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1242: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+      "torch.norm is deprecated and may be removed in a future PyTorch release. "
     Energy, eager mode vs loaded jit: -40.45902209665654 -40.45902209665654
 
     Force, eager mode vs loaded jit:
@@ -277,7 +277,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.119 seconds)
+   **Total running time of the script:** ( 0 minutes  6.764 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
