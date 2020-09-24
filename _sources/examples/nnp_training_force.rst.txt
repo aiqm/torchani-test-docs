@@ -514,10 +514,10 @@ In the training loop, we need to compute force, and loss for forces
     training starting from epoch 1
     /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
       "torch.norm is deprecated and may be removed in a future PyTorch release. "
-    RMSE: 41.9744961366952 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:06,  2.06s/it]    epoch 1:  50%|#####     | 2/4 [00:03<00:04,  2.02s/it]    epoch 1:  75%|#######5  | 3/4 [00:05<00:01,  1.99s/it]    epoch 1: 100%|##########| 4/4 [00:07<00:00,  1.73s/it]    epoch 1: 100%|##########| 4/4 [00:07<00:00,  1.76s/it]
-    RMSE: 47.61446318271809 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:01<00:05,  1.93s/it]    epoch 2:  50%|#####     | 2/4 [00:03<00:03,  1.93s/it]    epoch 2:  75%|#######5  | 3/4 [00:05<00:01,  1.92s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.68s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.72s/it]
+    RMSE: 59.47478636942867 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:01<00:05,  1.72s/it]    epoch 1:  50%|#####     | 2/4 [00:03<00:03,  1.69s/it]    epoch 1:  75%|#######5  | 3/4 [00:04<00:01,  1.68s/it]    epoch 1: 100%|##########| 4/4 [00:05<00:00,  1.47s/it]    epoch 1: 100%|##########| 4/4 [00:05<00:00,  1.50s/it]
+    RMSE: 176.71522895817185 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:01<00:04,  1.63s/it]    epoch 2:  50%|#####     | 2/4 [00:03<00:03,  1.63s/it]    epoch 2:  75%|#######5  | 3/4 [00:04<00:01,  1.63s/it]    epoch 2: 100%|##########| 4/4 [00:05<00:00,  1.43s/it]    epoch 2: 100%|##########| 4/4 [00:05<00:00,  1.46s/it]
 
 
 
@@ -525,7 +525,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.651 seconds)
+   **Total running time of the script:** ( 0 minutes  13.227 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
