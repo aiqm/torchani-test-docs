@@ -223,8 +223,8 @@ But this is wrong and should be avoided for any serious training.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-  &quot;torch.norm is deprecated and may be removed in a future PyTorch release. &quot;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1276: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  warnings.warn((
 =&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
@@ -254,22 +254,22 @@ its progressbar to stdout.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-  &quot;torch.norm is deprecated and may be removed in a future PyTorch release. &quot;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1276: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  warnings.warn((
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  5.26it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  5.11it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  5.07it/s]
-epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  5.08it/s]
-epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  5.87it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.22it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.20it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.20it/s]
+epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.20it/s]
+epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.76it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  4.98it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  4.97it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  5.05it/s]
-epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  5.11it/s]
-epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  5.97it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.37it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.33it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.29it/s]
+epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.23it/s]
+epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.79it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -294,30 +294,30 @@ generating this document:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-  &quot;torch.norm is deprecated and may be removed in a future PyTorch release. &quot;
-/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani/aev.py:203: UserWarning: This overload of nonzero is deprecated:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torch/functional.py:1276: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
+  warnings.warn((
+/opt/hostedtoolcache/Python/3.8.5/x64/lib/python3.8/site-packages/torchani/aev.py:203: UserWarning: This overload of nonzero is deprecated:
         nonzero()
 Consider using one of the following signatures instead:
         nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:882.)
   in_cutoff = (distances &lt;= cutoff).nonzero()
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  4.86it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  4.88it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  4.80it/s]
-epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  4.81it/s]
-epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  5.63it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.23it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.29it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.30it/s]
+epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.33it/s]
+epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.90it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  5.07it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  5.03it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  4.98it/s]
-epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  4.98it/s]
-epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  5.81it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.33it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.30it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.27it/s]
+epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.25it/s]
+epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.80it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.283 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.273 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
