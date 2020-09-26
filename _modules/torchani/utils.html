@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.utils &mdash; TorchANI 2.3.dev3+g31bf913 documentation</title>
+  <title>torchani.utils &mdash; TorchANI 2.3.dev4+gca6e325 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev3+g31bf913
+                2.3.dev4+gca6e325
               </div>
             
           
@@ -517,7 +517,7 @@
     <span class="c1"># Note that the normal modes are the COLUMNS of the eigenvectors matrix</span>
     <span class="n">mw_normalized</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
     <span class="n">md_unnormalized</span> <span class="o">=</span> <span class="n">mw_normalized</span> <span class="o">*</span> <span class="n">inv_sqrt_mass</span>
-    <span class="n">norm_factors</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">md_unnormalized</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># units are sqrt(AMU)</span>
+    <span class="n">norm_factors</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">md_unnormalized</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># units are sqrt(AMU)</span>
     <span class="n">md_normalized</span> <span class="o">=</span> <span class="n">md_unnormalized</span> <span class="o">*</span> <span class="n">norm_factors</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">rmasses</span> <span class="o">=</span> <span class="n">norm_factors</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># units are AMU</span>
