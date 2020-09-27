@@ -229,12 +229,12 @@ But this is wrong and should be avoided for any serious training.</p>
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1s
 </pre></div>
 </div>
@@ -258,18 +258,18 @@ its progressbar to stdout.</p>
   warnings.warn((
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.22it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.20it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.20it/s]
-epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.20it/s]
-epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.76it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.07it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.02it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.05it/s]
+epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.08it/s]
+epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.59it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.37it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.33it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.29it/s]
-epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.23it/s]
-epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.79it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.04it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.06it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.09it/s]
+epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.12it/s]
+epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.66it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -303,21 +303,35 @@ Consider using one of the following signatures instead:
   in_cutoff = (distances &lt;= cutoff).nonzero()
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.23it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.29it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.30it/s]
-epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.33it/s]
-epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.90it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  2.99it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.05it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.07it/s]
+epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.09it/s]
+epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.64it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.33it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.30it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.27it/s]
-epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.25it/s]
-epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.80it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.03it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.04it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.04it/s]
+epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.03it/s]
+epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.54it/s]
+
+epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 3:  20%|██        | 1/5 [00:00&lt;00:01,  3.07it/s]
+epoch 3:  40%|████      | 2/5 [00:00&lt;00:00,  3.08it/s]
+epoch 3:  60%|██████    | 3/5 [00:00&lt;00:00,  3.12it/s]
+epoch 3:  80%|████████  | 4/5 [00:01&lt;00:00,  3.12it/s]
+epoch 3: 100%|██████████| 5/5 [00:01&lt;00:00,  3.67it/s]
+
+epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 4:  20%|██        | 1/5 [00:00&lt;00:01,  3.07it/s]
+epoch 4:  40%|████      | 2/5 [00:00&lt;00:00,  3.06it/s]
+epoch 4:  60%|██████    | 3/5 [00:00&lt;00:00,  3.11it/s]
+epoch 4:  80%|████████  | 4/5 [00:01&lt;00:00,  3.08it/s]
+epoch 4: 100%|██████████| 5/5 [00:01&lt;00:00,  3.63it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.273 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.990 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
