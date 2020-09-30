@@ -80,8 +80,6 @@ information
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      "torch.norm is deprecated and may be removed in a future PyTorch release. "
     => loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 6
     1/6  [====>.........................] - 0.0s    2/6  [=========>....................] - 0.0s    3/6  [==============>...............] - 0.0s    4/6  [===================>..........] - 0.1s    5/6  [========================>.....] - 0.1s    6/6  [==============================] - 0.1s
     => loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 6
@@ -512,12 +510,10 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/functional.py:1277: UserWarning: torch.norm is deprecated and may be removed in a future PyTorch release. Use torch.linalg.norm instead.
-      "torch.norm is deprecated and may be removed in a future PyTorch release. "
-    RMSE: 88.43825932335399 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:08,  2.67s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.68s/it]    epoch 1:  75%|#######5  | 3/4 [00:07<00:02,  2.64s/it]    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.31s/it]    epoch 1: 100%|##########| 4/4 [00:09<00:00,  2.37s/it]
-    RMSE: 115.33517985929396 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:07,  2.57s/it]    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.57s/it]    epoch 2:  75%|#######5  | 3/4 [00:07<00:02,  2.57s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.25s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.31s/it]
+    RMSE: 76.1143481668334 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:01<00:05,  1.95s/it]    epoch 1:  50%|#####     | 2/4 [00:03<00:03,  1.94s/it]    epoch 1:  75%|#######5  | 3/4 [00:05<00:01,  1.91s/it]    epoch 1: 100%|##########| 4/4 [00:06<00:00,  1.67s/it]    epoch 1: 100%|##########| 4/4 [00:06<00:00,  1.70s/it]
+    RMSE: 161.1914496614219 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:01<00:05,  1.80s/it]    epoch 2:  50%|#####     | 2/4 [00:03<00:03,  1.81s/it]    epoch 2:  75%|#######5  | 3/4 [00:05<00:01,  1.81s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.61s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.65s/it]
 
 
 
@@ -525,7 +521,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  20.302 seconds)
+   **Total running time of the script:** ( 0 minutes  15.020 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
