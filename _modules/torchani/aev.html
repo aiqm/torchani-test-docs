@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev5+gd0ab8a8 documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev6+g29606ef documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev5+gd0ab8a8
+                2.3.dev6+g29606ef
               </div>
             
           
@@ -316,7 +316,7 @@
 <span class="sd">        cutoff (float): the cutoff inside which atoms are considered pairs</span>
 <span class="sd">        shifts (:class:`torch.Tensor`): tensor of shape (?, 3) storing shifts</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">padding_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     <span class="n">cell</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
     <span class="n">num_atoms</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">num_mols</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -344,8 +344,6 @@
     <span class="c1"># step 5, compute distances, and find all pairs within cutoff</span>
     <span class="n">selected_coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p12_all</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">num_mols</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="p">(</span><span class="n">selected_coordinates</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">-</span> <span class="n">selected_coordinates</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">+</span> <span class="n">shift_values</span><span class="p">)</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">padding_mask</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p12_all</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">distances</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">padding_mask</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
     <span class="n">in_cutoff</span> <span class="o">=</span> <span class="p">(</span><span class="n">distances</span> <span class="o">&lt;=</span> <span class="n">cutoff</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
     <span class="n">molecule_index</span><span class="p">,</span> <span class="n">pair_index</span> <span class="o">=</span> <span class="n">in_cutoff</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">molecule_index</span> <span class="o">*=</span> <span class="n">num_atoms</span>
@@ -367,7 +365,7 @@
 <span class="sd">            (molecules, atoms, 3) for atom coordinates.</span>
 <span class="sd">        cutoff (float): the cutoff inside which atoms are considered pairs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">padding_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     <span class="n">current_device</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">device</span>
     <span class="n">num_atoms</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">num_mols</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -376,8 +374,6 @@
 
     <span class="n">pair_coordinates</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p12_all_flattened</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">num_mols</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="p">(</span><span class="n">pair_coordinates</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">-</span> <span class="n">pair_coordinates</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">padding_mask</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p12_all_flattened</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">num_mols</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">distances</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">padding_mask</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
     <span class="n">in_cutoff</span> <span class="o">=</span> <span class="p">(</span><span class="n">distances</span> <span class="o">&lt;=</span> <span class="n">cutoff</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
     <span class="n">molecule_index</span><span class="p">,</span> <span class="n">pair_index</span> <span class="o">=</span> <span class="n">in_cutoff</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">molecule_index</span> <span class="o">*=</span> <span class="n">num_atoms</span>
