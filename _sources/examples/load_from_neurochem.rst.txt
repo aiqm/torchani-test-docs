@@ -500,8 +500,8 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7f912c3f86a0>
-    <torchani.ase.Calculator object at 0x7f912c3f86a0>
+    <torchani.ase.Calculator object at 0x7fb6ad1c58d0>
+    <torchani.ase.Calculator object at 0x7fb6ad1c58d0>
 
 
 
@@ -622,7 +622,7 @@ We can do the same thing with the single model:
      [-0.14007531  0.15523374 -0.07533836]
      [ 0.0753209  -0.0374411   0.03949669]
      [ 0.024231    0.00235088  0.0334423 ]
-     [-0.01562625  0.00682809  0.05653341]]
+     [-0.01562626  0.00682809  0.05653341]]
 
 
 
@@ -630,7 +630,7 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.283 seconds)
+   **Total running time of the script:** ( 0 minutes  2.819 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
