@@ -141,8 +141,8 @@ And here is the result:
 
  .. code-block:: none
 
-    Ensemble energy, eager mode vs loaded jit: -40.42562057433834 -40.42562057433834
-    Single network energy, eager mode vs loaded jit: -40.428783448247216 -40.428783448247216
+    Ensemble energy, eager mode vs loaded jit: -40.425620579926274 -40.425620579926274
+    Single network energy, eager mode vs loaded jit: -40.428783462217055 -40.428783462217055
 
 
 
@@ -155,7 +155,7 @@ the following customization to the model:
 
 - uses double as dtype instead of float
 - don't care about periodic boundary condition
-- in addition to energies, allow returning optionally forces
+- in addition to energies, allow returnsing optionally forces, and hessians
 - when indexing atom species, use its index in the periodic table instead of 0, 1, 2, 3, ...
 
 you could do the following:
@@ -171,31 +171,37 @@ you could do the following:
             # self.model = torchani.models.ANI1x(periodic_table_index=True)[0].double()
             # self.model = torchani.models.ANI1ccx(periodic_table_index=True).double()
 
-        def forward(self, species: Tensor, coordinates: Tensor, return_forces: bool = False) -> Tuple[Tensor, Optional[Tensor]]:
-            if return_forces:
+        def forward(self, species: Tensor, coordinates: Tensor, return_forces: bool = False,
+                    return_hessians: bool = False) -> Tuple[Tensor, Optional[Tensor], Optional[Tensor]]:
+            if return_forces or return_hessians:
                 coordinates.requires_grad_(True)
 
             energies = self.model((species, coordinates)).energies
 
             forces: Optional[Tensor] = None  # noqa: E701
-            if return_forces:
-                grad = torch.autograd.grad([energies.sum()], [coordinates])[0]
+            hessians: Optional[Tensor] = None
+            if return_forces or return_hessians:
+                grad = torch.autograd.grad([energies.sum()], [coordinates], create_graph=return_hessians)[0]
                 assert grad is not None
                 forces = -grad
-            return energies, forces
+                if return_hessians:
+                    hessians = torchani.utils.hessian(coordinates, forces=forces)
+            return energies, forces, hessians
 
 
     custom_model = CustomModule()
     compiled_custom_model = torch.jit.script(custom_model)
     torch.jit.save(compiled_custom_model, 'compiled_custom_model.pt')
     loaded_compiled_custom_model = torch.jit.load('compiled_custom_model.pt')
-    energies, forces = custom_model(species, coordinates, True)
-    energies_jit, forces_jit = loaded_compiled_custom_model(species, coordinates, True)
+    energies, forces, hessians = custom_model(species, coordinates, True, True)
+    energies_jit, forces_jit, hessians_jit = loaded_compiled_custom_model(species, coordinates, True, True)
 
     print('Energy, eager mode vs loaded jit:', energies.item(), energies_jit.item())
     print()
     print('Force, eager mode vs loaded jit:\n', forces.squeeze(0), '\n', forces_jit.squeeze(0))
     print()
+    torch.set_printoptions(sci_mode=False, linewidth=1000)
+    print('Hessian, eager mode vs loaded jit:\n', hessians.squeeze(0), '\n', hessians_jit.squeeze(0))
 
 
 
@@ -213,13 +219,44 @@ you could do the following:
             [-0.129,  0.164, -0.077],
             [ 0.086, -0.043,  0.041],
             [ 0.027,  0.006,  0.038],
-            [-0.014,  0.005,  0.051]]) 
+            [-0.014,  0.005,  0.051]], grad_fn=<SqueezeBackward1>) 
      tensor([[ 0.031, -0.132, -0.053],
             [-0.129,  0.164, -0.077],
             [ 0.086, -0.043,  0.041],
             [ 0.027,  0.006,  0.038],
-            [-0.014,  0.005,  0.051]])
+            [-0.014,  0.005,  0.051]], grad_fn=<SqueezeBackward1>)
 
+    Hessian, eager mode vs loaded jit:
+     tensor([[     3.149,     -0.035,      0.557,     -1.715,      0.685,     -0.522,     -0.588,     -0.382,      0.082,     -0.398,     -0.305,     -0.409,     -0.448,      0.037,      0.292],
+            [    -0.035,      1.765,      0.287,      0.796,     -0.430,      0.253,     -0.494,     -0.686,      0.095,     -0.292,     -0.459,     -0.544,      0.025,     -0.189,     -0.092],
+            [     0.557,      0.287,      2.097,     -0.556,      0.210,     -0.221,      0.104,      0.128,     -0.289,     -0.380,     -0.525,     -0.935,      0.275,     -0.100,     -0.652],
+            [    -1.715,      0.796,     -0.556,      1.756,     -0.815,      0.584,      0.065,     -0.049,      0.014,     -0.048,      0.030,     -0.022,     -0.058,      0.037,     -0.020],
+            [     0.685,     -0.430,      0.210,     -0.815,      0.624,     -0.347,      0.191,     -0.208,      0.146,     -0.071,      0.018,     -0.023,      0.009,     -0.003,      0.015],
+            [    -0.522,      0.253,     -0.221,      0.584,     -0.347,      0.199,     -0.065,      0.097,      0.032,     -0.084,      0.040,     -0.039,      0.087,     -0.044,      0.029],
+            [    -0.588,     -0.494,      0.104,      0.065,      0.191,     -0.065,      0.555,      0.397,     -0.084,     -0.012,     -0.034,      0.019,     -0.020,     -0.060,      0.027],
+            [    -0.382,     -0.686,      0.128,     -0.049,     -0.208,      0.097,      0.397,      0.893,     -0.234,      0.013,     -0.012,      0.020,      0.021,      0.014,     -0.011],
+            [     0.082,      0.095,     -0.289,      0.014,      0.146,      0.032,     -0.084,     -0.234,      0.223,     -0.043,     -0.070,      0.035,      0.031,      0.064,     -0.001],
+            [    -0.398,     -0.292,     -0.380,     -0.048,     -0.071,     -0.084,     -0.012,      0.013,     -0.043,      0.408,      0.316,      0.460,      0.051,      0.034,      0.048],
+            [    -0.305,     -0.459,     -0.525,      0.030,      0.018,      0.040,     -0.034,     -0.012,     -0.070,      0.316,      0.454,      0.584,     -0.007,     -0.001,     -0.030],
+            [    -0.409,     -0.544,     -0.935,     -0.022,     -0.023,     -0.039,      0.019,      0.020,      0.035,      0.460,      0.584,      1.004,     -0.048,     -0.037,     -0.065],
+            [    -0.448,      0.025,      0.275,     -0.058,      0.009,      0.087,     -0.020,      0.021,      0.031,      0.051,     -0.007,     -0.048,      0.475,     -0.049,     -0.346],
+            [     0.037,     -0.189,     -0.100,      0.037,     -0.003,     -0.044,     -0.060,      0.014,      0.064,      0.034,     -0.001,     -0.037,     -0.049,      0.180,      0.117],
+            [     0.292,     -0.092,     -0.652,     -0.020,      0.015,      0.029,      0.027,     -0.011,     -0.001,      0.048,     -0.030,     -0.065,     -0.346,      0.117,      0.689]]) 
+     tensor([[     3.149,     -0.035,      0.557,     -1.715,      0.685,     -0.522,     -0.588,     -0.382,      0.082,     -0.398,     -0.305,     -0.409,     -0.448,      0.037,      0.292],
+            [    -0.035,      1.765,      0.287,      0.796,     -0.430,      0.253,     -0.494,     -0.686,      0.095,     -0.292,     -0.459,     -0.544,      0.025,     -0.189,     -0.092],
+            [     0.557,      0.287,      2.097,     -0.556,      0.210,     -0.221,      0.104,      0.128,     -0.289,     -0.380,     -0.525,     -0.935,      0.275,     -0.100,     -0.652],
+            [    -1.715,      0.796,     -0.556,      1.756,     -0.815,      0.584,      0.065,     -0.049,      0.014,     -0.048,      0.030,     -0.022,     -0.058,      0.037,     -0.020],
+            [     0.685,     -0.430,      0.210,     -0.815,      0.624,     -0.347,      0.191,     -0.208,      0.146,     -0.071,      0.018,     -0.023,      0.009,     -0.003,      0.015],
+            [    -0.522,      0.253,     -0.221,      0.584,     -0.347,      0.199,     -0.065,      0.097,      0.032,     -0.084,      0.040,     -0.039,      0.087,     -0.044,      0.029],
+            [    -0.588,     -0.494,      0.104,      0.065,      0.191,     -0.065,      0.555,      0.397,     -0.084,     -0.012,     -0.034,      0.019,     -0.020,     -0.060,      0.027],
+            [    -0.382,     -0.686,      0.128,     -0.049,     -0.208,      0.097,      0.397,      0.893,     -0.234,      0.013,     -0.012,      0.020,      0.021,      0.014,     -0.011],
+            [     0.082,      0.095,     -0.289,      0.014,      0.146,      0.032,     -0.084,     -0.234,      0.223,     -0.043,     -0.070,      0.035,      0.031,      0.064,     -0.001],
+            [    -0.398,     -0.292,     -0.380,     -0.048,     -0.071,     -0.084,     -0.012,      0.013,     -0.043,      0.408,      0.316,      0.460,      0.051,      0.034,      0.048],
+            [    -0.305,     -0.459,     -0.525,      0.030,      0.018,      0.040,     -0.034,     -0.012,     -0.070,      0.316,      0.454,      0.584,     -0.007,     -0.001,     -0.030],
+            [    -0.409,     -0.544,     -0.935,     -0.022,     -0.023,     -0.039,      0.019,      0.020,      0.035,      0.460,      0.584,      1.004,     -0.048,     -0.037,     -0.065],
+            [    -0.448,      0.025,      0.275,     -0.058,      0.009,      0.087,     -0.020,      0.021,      0.031,      0.051,     -0.007,     -0.048,      0.475,     -0.049,     -0.346],
+            [     0.037,     -0.189,     -0.100,      0.037,     -0.003,     -0.044,     -0.060,      0.014,      0.064,      0.034,     -0.001,     -0.037,     -0.049,      0.180,      0.117],
+            [     0.292,     -0.092,     -0.652,     -0.020,      0.015,      0.029,      0.027,     -0.011,     -0.001,      0.048,     -0.030,     -0.065,     -0.346,      0.117,      0.689]])
 
 
 
@@ -227,7 +264,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.913 seconds)
+   **Total running time of the script:** ( 0 minutes  4.626 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
