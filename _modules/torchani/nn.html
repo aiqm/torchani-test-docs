@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.nn &mdash; TorchANI 2.3.dev28+gb270d59 documentation</title>
+  <title>torchani.nn &mdash; TorchANI 2.3.dev29+ge67a2ad documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev28+gb270d59
+                2.3.dev29+ge67a2ad
               </div>
             
           
@@ -234,6 +234,8 @@
                 <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergies</span><span class="p">:</span>
         <span class="n">species</span><span class="p">,</span> <span class="n">aev</span> <span class="o">=</span> <span class="n">species_aev</span>
+        <span class="k">assert</span> <span class="n">species</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">aev</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
         <span class="n">atomic_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atomic_energies</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">aev</span><span class="p">))</span>
         <span class="c1"># shape of atomic energies is (C, A)</span>
         <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">atomic_energies</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
