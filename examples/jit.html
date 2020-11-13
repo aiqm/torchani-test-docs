@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 2.3.dev27+gec35c7d documentation</title>
+  <title>Using TorchScript to serialize and deploy model &mdash; TorchANI 2.3.dev28+gb270d59 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.3.dev27+gec35c7d
+                2.3.dev28+gb270d59
               </div>
             
           
@@ -207,6 +207,10 @@ models trained with diffrent initialization.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev28+gb270d59-py3.6.egg/torchani/resources/
+</pre></div>
+</div>
 <p>It is very easy to compile and save the model using <cite>torch.jit</cite>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compiled_model</span> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.jit.script.html#torch.jit.script" title="torch.jit.script" class="sphx-glr-backref-module-torch-jit sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">script</span></a><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <a href="https://pytorch.org/docs/master/generated/torch.jit.save.html#torch.jit.save" title="torch.jit.save" class="sphx-glr-backref-module-torch-jit sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="n">compiled_model</span><span class="p">,</span> <span class="s1">&#39;compiled_model.pt&#39;</span><span class="p">)</span>
@@ -301,7 +305,8 @@ the following customization to the model:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy, eager mode vs loaded jit: -40.4590220910793 -40.4590220910793
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev28+gb270d59-py3.6.egg/torchani/resources/
+Energy, eager mode vs loaded jit: -40.4590220910793 -40.4590220910793
 
 Force, eager mode vs loaded jit:
  tensor([[ 0.031, -0.132, -0.053],
@@ -348,7 +353,7 @@ Hessian, eager mode vs loaded jit:
         [     0.292,     -0.092,     -0.652,     -0.020,      0.015,      0.029,      0.027,     -0.011,     -0.001,      0.048,     -0.030,     -0.065,     -0.346,      0.117,      0.689]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.108 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.312 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>

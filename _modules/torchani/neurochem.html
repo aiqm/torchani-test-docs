@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.neurochem &mdash; TorchANI 2.3.dev27+gec35c7d documentation</title>
+  <title>torchani.neurochem &mdash; TorchANI 2.3.dev28+gb270d59 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev27+gec35c7d
+                2.3.dev28+gb270d59
               </div>
             
           
@@ -193,6 +193,7 @@
 <span class="kn">from</span> <span class="nn">..nn</span> <span class="kn">import</span> <span class="n">ANIModel</span><span class="p">,</span> <span class="n">Ensemble</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">EnergyShifter</span><span class="p">,</span> <span class="n">ChemicalSymbolsToInts</span>
 <span class="kn">from</span> <span class="nn">..aev</span> <span class="kn">import</span> <span class="n">AEVComputer</span>
+<span class="kn">from</span> <span class="nn">.parse_resources</span> <span class="kn">import</span> <span class="n">parse_neurochem_resources</span>
 <span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">AdamW</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">hartree2kcalmol</span>
@@ -823,7 +824,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;time_vs_epoch&#39;</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span></div></div>
 
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Constants&#39;</span><span class="p">,</span> <span class="s1">&#39;load_sae&#39;</span><span class="p">,</span> <span class="s1">&#39;load_model&#39;</span><span class="p">,</span> <span class="s1">&#39;load_model_ensemble&#39;</span><span class="p">,</span> <span class="s1">&#39;Trainer&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Constants&#39;</span><span class="p">,</span> <span class="s1">&#39;load_sae&#39;</span><span class="p">,</span> <span class="s1">&#39;load_model&#39;</span><span class="p">,</span> <span class="s1">&#39;load_model_ensemble&#39;</span><span class="p">,</span> <span class="s1">&#39;Trainer&#39;</span><span class="p">,</span> <span class="s1">&#39;parse_neurochem_resources&#39;</span><span class="p">]</span>
 </pre></div>
 
            </div>

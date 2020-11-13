@@ -63,6 +63,14 @@ in periodic table to index species. If not specified, you need to use
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev28+gb270d59-py3.6.egg/torchani/resources/
+
 
 
 
@@ -205,7 +213,7 @@ you can also access model specific atomic energies
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.226 seconds)
+   **Total running time of the script:** ( 0 minutes  3.237 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
