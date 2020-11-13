@@ -47,7 +47,7 @@ Let's now manually specify the device we want TorchANI to run:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
       return torch._C._cuda_getDeviceCount() > 0
 
 
@@ -131,7 +131,7 @@ Now let's compute energy and force:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev21+g86ac402-py3.8.egg/torchani/aev.py:198: UserWarning: This overload of nonzero is deprecated:
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev22+gd47f39c-py3.6.egg/torchani/aev.py:198: UserWarning: This overload of nonzero is deprecated:
             nonzero()
     Consider using one of the following signatures instead:
             nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
@@ -157,7 +157,7 @@ And print to see the result:
 
  .. code-block:: none
 
-    Energy: -40.459790705366636
+    Energy: -40.459790701641346
     Force: tensor([[ 0.0478, -0.1304, -0.0551],
             [-0.1353,  0.1581, -0.0776],
             [ 0.0804, -0.0388,  0.0387],
@@ -170,7 +170,7 @@ And print to see the result:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.630 seconds)
+   **Total running time of the script:** ( 0 minutes  5.738 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
