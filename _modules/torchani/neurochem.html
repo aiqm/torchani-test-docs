@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.neurochem &mdash; TorchANI 2.3.dev18+g648c970 documentation</title>
+  <title>torchani.neurochem &mdash; TorchANI 2.3.dev19+g25bd59f documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev18+g648c970
+                2.3.dev19+g25bd59f
               </div>
             
           
@@ -326,7 +326,7 @@
 <span class="s1">        </span><span class="si">%i</span><span class="s1">mport common.CNAME</span>
 <span class="s1">        </span><span class="si">%i</span><span class="s1">mport common.WS</span>
 <span class="s1">        </span><span class="si">%i</span><span class="s1">gnore WS</span>
-<span class="s1">        &#39;&#39;&#39;</span><span class="p">)</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s1">&#39;lalr&#39;</span><span class="p">)</span>
         <span class="n">tree</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">nnf_file</span><span class="p">)</span>
 
         <span class="c1"># execute parse tree</span>
@@ -541,7 +541,7 @@
 <span class="s1">            </span><span class="si">%i</span><span class="s1">mport common.WS</span>
 <span class="s1">            </span><span class="si">%i</span><span class="s1">gnore WS</span>
 <span class="s1">            </span><span class="si">%i</span><span class="s1">gnore /!.*/</span>
-<span class="s1">            &#39;&#39;&#39;</span><span class="p">)</span>  <span class="c1"># noqa: E501</span>
+<span class="s1">            &#39;&#39;&#39;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s1">&#39;lalr&#39;</span><span class="p">)</span>  <span class="c1"># noqa: E501</span>
             <span class="n">tree</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 
             <span class="k">class</span> <span class="nc">TreeExec</span><span class="p">(</span><span class="n">lark</span><span class="o">.</span><span class="n">Transformer</span><span class="p">):</span>
