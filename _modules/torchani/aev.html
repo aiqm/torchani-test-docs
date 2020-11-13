@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev19+g25bd59f documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev20+g2e5032a documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev19+g25bd59f
+                2.3.dev20+g2e5032a
               </div>
             
           
@@ -215,17 +215,17 @@
 <span class="sd">    .. _ANI paper:</span>
 <span class="sd">        http://pubs.rsc.org/en/Content/ArticleLanding/2017/SC/C6SC05720A#!divAbstract</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">cutoff_cosine</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">)</span>
     <span class="c1"># Note that in the equation in the paper there is no 0.25</span>
     <span class="c1"># coefficient, but in NeuroChem there is such a coefficient.</span>
     <span class="c1"># We choose to be consistent with NeuroChem instead of the paper here.</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">EtaR</span> <span class="o">*</span> <span class="p">(</span><span class="n">distances</span> <span class="o">-</span> <span class="n">ShfR</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">fc</span>
-    <span class="c1"># At this point, ret now have shape</span>
-    <span class="c1"># (conformations, atoms, N, ?, ?) where ? depend on constants.</span>
-    <span class="c1"># We then should flat the last 2 dimensions to view the subAEV as one</span>
-    <span class="c1"># dimension vector</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># At this point, ret now has shape</span>
+    <span class="c1"># (conformations x atoms, ?, ?) where ? depend on constants.</span>
+    <span class="c1"># We then should flat the last 2 dimensions to view the subAEV as a two</span>
+    <span class="c1"># dimensional tensor (onnx doesn&#39;t support negative indices in flatten)</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">angular_terms</span><span class="p">(</span><span class="n">Rca</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
@@ -242,7 +242,7 @@
 <span class="sd">    .. _ANI paper:</span>
 <span class="sd">        http://pubs.rsc.org/en/Content/ArticleLanding/2017/SC/C6SC05720A#!divAbstract</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">vectors12</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">vectors12</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">distances12</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="n">cos_angles</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -253,11 +253,11 @@
     <span class="n">factor1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span> <span class="o">-</span> <span class="n">ShfZ</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="n">Zeta</span>
     <span class="n">factor2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">EtaA</span> <span class="o">*</span> <span class="p">(</span><span class="n">distances12</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">ShfA</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">factor1</span> <span class="o">*</span> <span class="n">factor2</span> <span class="o">*</span> <span class="n">fcj12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="c1"># At this point, ret now have shape</span>
-    <span class="c1"># (conformations, atoms, N, ?, ?, ?, ?) where ? depend on constants.</span>
-    <span class="c1"># We then should flat the last 4 dimensions to view the subAEV as one</span>
-    <span class="c1"># dimension vector</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=-</span><span class="mi">4</span><span class="p">)</span>
+    <span class="c1"># At this point, ret now has shape</span>
+    <span class="c1"># (conformations x atoms, ?, ?, ?, ?) where ? depend on constants.</span>
+    <span class="c1"># We then should flat the last 4 dimensions to view the subAEV as a two</span>
+    <span class="c1"># dimensional tensor (onnx doesn&#39;t support negative indices in flatten)</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">compute_shifts</span><span class="p">(</span><span class="n">cell</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">pbc</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
