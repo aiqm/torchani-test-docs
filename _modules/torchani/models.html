@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.models &mdash; TorchANI 2.3.dev25+g20b5746 documentation</title>
+  <title>torchani.models &mdash; TorchANI 2.3.dev26+g13f53da documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev25+g20b5746
+                2.3.dev26+g13f53da
               </div>
             
           
@@ -214,10 +214,16 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">distutils</span> <span class="kn">import</span> <span class="n">dir_util</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">neurochem</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">NamedTuple</span>
 <span class="kn">from</span> <span class="nn">.nn</span> <span class="kn">import</span> <span class="n">SpeciesConverter</span><span class="p">,</span> <span class="n">SpeciesEnergies</span>
 <span class="kn">from</span> <span class="nn">.aev</span> <span class="kn">import</span> <span class="n">AEVComputer</span>
+
+
+<span class="k">class</span> <span class="nc">SpeciesEnergiesQBC</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">species</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">energies</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">qbcs</span><span class="p">:</span> <span class="n">Tensor</span>
 
 
 <span class="k">class</span> <span class="nc">BuiltinModel</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -328,6 +334,44 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span><span class="p">(</span><span class="n">species_energies</span><span class="p">)</span>
 
     <span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">atomic_energies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+                        <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergies</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Calculates predicted atomic energies of all atoms in a molecule</span>
+
+<span class="sd">        ..warning::</span>
+<span class="sd">            Since this function does not call ``__call__`` directly,</span>
+<span class="sd">            hooks are not registered and profiling is not done correctly by</span>
+<span class="sd">            pytorch on it. It is meant as a convenience function for analysis</span>
+<span class="sd">             and active learning.</span>
+
+<span class="sd">        .. note:: The coordinates, and cell are in Angstrom, and the energies</span>
+<span class="sd">            will be in Hartree.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            species_coordinates: minibatch of configurations</span>
+<span class="sd">            cell: the cell used in PBC computation, set to None if PBC is not enabled</span>
+<span class="sd">            pbc: the bool tensor indicating which direction PBC is enabled, set to None if PBC is not enabled</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            species_atomic_energies: species and energies for the given configurations</span>
+<span class="sd">                note that the shape of species is (C, A), where C is</span>
+<span class="sd">                the number of configurations and A the number of atoms, and</span>
+<span class="sd">                the shape of energies is (C, A) for a BuiltinModel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">periodic_table_index</span><span class="p">:</span>
+            <span class="n">species_coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">species_converter</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">)</span>
+        <span class="n">species</span><span class="p">,</span> <span class="n">aevs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="n">pbc</span><span class="p">)</span>
+        <span class="n">atomic_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neural_networks</span><span class="o">.</span><span class="n">_atomic_energies</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">aevs</span><span class="p">))</span>
+        <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">self_energies</span> <span class="o">=</span> <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
+        <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+        <span class="c1"># shift all atomic energies individually</span>
+        <span class="k">assert</span> <span class="n">self_energies</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">atomic_energies</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">atomic_energies</span> <span class="o">+=</span> <span class="n">self_energies</span>
+        <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">atomic_energies</span><span class="p">)</span>
+
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">export</span>
     <span class="k">def</span> <span class="nf">_recast_long_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">species_converter</span><span class="o">.</span><span class="n">conv_tensor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">species_converter</span><span class="o">.</span><span class="n">conv_tensor</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="o">.</span><span class="n">triu_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="o">.</span><span class="n">triu_index</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
@@ -404,6 +448,36 @@
                          <span class="n">energy_shifter</span><span class="p">,</span> <span class="n">species_to_tensor</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">sae_dict</span><span class="p">,</span>
                          <span class="n">periodic_table_index</span><span class="p">)</span>
 
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">atomic_energies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+                        <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">average</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergies</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Calculates predicted atomic energies of all atoms in a molecule</span>
+
+<span class="sd">        see `:method:torchani.BuiltinModel.atomic_energies`</span>
+
+<span class="sd">        If average is True (the default) it returns the average over all models</span>
+<span class="sd">        (shape (C, A)), otherwise it returns one atomic energy per model (shape</span>
+<span class="sd">        (M, C, A))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">periodic_table_index</span><span class="p">:</span>
+            <span class="n">species_coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">species_converter</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">)</span>
+        <span class="n">species</span><span class="p">,</span> <span class="n">aevs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="n">pbc</span><span class="p">)</span>
+        <span class="n">members_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">nnp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neural_networks</span><span class="p">:</span>
+            <span class="n">members_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nnp</span><span class="o">.</span><span class="n">_atomic_energies</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">aevs</span><span class="p">))</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">member_atomic_energies</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">members_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">self_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">self_energies</span> <span class="o">=</span> <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span><span class="p">]</span>
+        <span class="n">self_energies</span><span class="p">[</span><span class="n">species</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">species</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+        <span class="c1"># shift all atomic energies individually</span>
+        <span class="k">assert</span> <span class="n">self_energies</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">member_atomic_energies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">member_atomic_energies</span> <span class="o">+=</span> <span class="n">self_energies</span>
+        <span class="k">if</span> <span class="n">average</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">member_atomic_energies</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">member_atomic_energies</span><span class="p">)</span>
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_from_neurochem_resources</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">info_file_path</span><span class="p">,</span> <span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># this is used to load only 1 model (by default model 0)</span>
@@ -441,6 +515,95 @@
                            <span class="bp">self</span><span class="o">.</span><span class="n">_species_to_tensor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">consts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sae_dict</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">periodic_table_index</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">members_energies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+                         <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergies</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Calculates predicted energies of all member modules</span>
+
+<span class="sd">        ..warning::</span>
+<span class="sd">            Since this function does not call ``__call__`` directly,</span>
+<span class="sd">            hooks are not registered and profiling is not done correctly by</span>
+<span class="sd">            pytorch on it. It is meant as a convenience function for analysis</span>
+<span class="sd">             and active learning.</span>
+
+<span class="sd">        .. note:: The coordinates, and cell are in Angstrom, and the energies</span>
+<span class="sd">            will be in Hartree.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            species_coordinates: minibatch of configurations</span>
+<span class="sd">            cell: the cell used in PBC computation, set to None if PBC is not enabled</span>
+<span class="sd">            pbc: the bool tensor indicating which direction PBC is enabled, set to None if PBC is not enabled</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            species_energies: species and energies for the given configurations</span>
+<span class="sd">                note that the shape of species is (C, A), where C is</span>
+<span class="sd">                the number of configurations and A the number of atoms, and</span>
+<span class="sd">                the shape of energies is (M, C), where M is the number</span>
+<span class="sd">                of modules in the ensemble</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">periodic_table_index</span><span class="p">:</span>
+            <span class="n">species_coordinates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">species_converter</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">)</span>
+        <span class="n">species</span><span class="p">,</span> <span class="n">aevs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aev_computer</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="n">pbc</span><span class="p">)</span>
+        <span class="n">member_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">nnp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neural_networks</span><span class="p">:</span>
+            <span class="n">unshifted_energies</span> <span class="o">=</span> <span class="n">nnp</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">aevs</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
+            <span class="n">shifted_energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_shifter</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">unshifted_energies</span><span class="p">))</span><span class="o">.</span><span class="n">energies</span>
+            <span class="n">member_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shifted_energies</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">SpeciesEnergies</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">member_outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">export</span>
+    <span class="k">def</span> <span class="nf">energies_qbcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species_coordinates</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+                      <span class="n">cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                      <span class="n">pbc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">unbiased</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SpeciesEnergiesQBC</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Calculates predicted predicted energies and qbc factors</span>
+
+<span class="sd">        QBC factors are used for query-by-committee (QBC) based active learning</span>
+<span class="sd">        (as described in the ANI-1x paper `less-is-more`_ ).</span>
+
+<span class="sd">        .. _less-is-more:</span>
+<span class="sd">            https://aip.scitation.org/doi/10.1063/1.5023802</span>
+
+<span class="sd">        ..warning::</span>
+<span class="sd">            Since this function does not call ``__call__`` directly,</span>
+<span class="sd">            hooks are not registered and profiling is not done correctly by</span>
+<span class="sd">            pytorch on it. It is meant as a convenience function for analysis</span>
+<span class="sd">             and active learning.</span>
+
+<span class="sd">        .. note:: The coordinates, and cell are in Angstrom, and the energies</span>
+<span class="sd">            and qbc factors will be in Hartree.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            species_coordinates: minibatch of configurations</span>
+<span class="sd">            cell: the cell used in PBC computation, set to None if PBC is not</span>
+<span class="sd">                enabled</span>
+<span class="sd">            pbc: the bool tensor indicating which direction PBC is enabled, set</span>
+<span class="sd">                to None if PBC is not enabled</span>
+<span class="sd">            unbiased: if `True` then Bessel&#39;s correction is applied to the</span>
+<span class="sd">                standard deviation over the ensemble member&#39;s. If `False` Bessel&#39;s</span>
+<span class="sd">                correction is not applied, True by default.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            species_energies_qbcs: species, energies and qbc factors for the</span>
+<span class="sd">                given configurations note that the shape of species is (C, A),</span>
+<span class="sd">                where C is the number of configurations and A the number of</span>
+<span class="sd">                atoms, the shape of energies is (C,) and the shape of qbc</span>
+<span class="sd">                factors is also (C,).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span><span class="p">,</span> <span class="n">energies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">members_energies</span><span class="p">(</span><span class="n">species_coordinates</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">pbc</span><span class="p">)</span>
+
+        <span class="c1"># standard deviation is taken across ensemble members</span>
+        <span class="n">qbc_factors</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">unbiased</span><span class="o">=</span><span class="n">unbiased</span><span class="p">)</span>
+
+        <span class="c1"># rho&#39;s (qbc factors) are weighted by dividing by the square root of</span>
+        <span class="c1"># the number of atoms in each molecule</span>
+        <span class="n">num_atoms</span> <span class="o">=</span> <span class="p">(</span><span class="n">species</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">energies</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">qbc_factors</span> <span class="o">=</span> <span class="n">qbc_factors</span> <span class="o">/</span> <span class="n">num_atoms</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="n">energies</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">qbc_factors</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">energies</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">return</span> <span class="n">SpeciesEnergiesQBC</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">qbc_factors</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the number of networks in the ensemble</span>

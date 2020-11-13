@@ -41,15 +41,6 @@ Let's now manually specify the device we want TorchANI to run:
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
-      return torch._C._cuda_getDeviceCount() > 0
-
 
 
 
@@ -71,14 +62,6 @@ in periodic table to index species. If not specified, you need to use
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Downloading ANI model parameters ...
 
 
 
@@ -125,18 +108,6 @@ Now let's compute energy and force:
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev25+g20b5746-py3.6.egg/torchani/aev.py:199: UserWarning: This overload of nonzero is deprecated:
-            nonzero()
-    Consider using one of the following signatures instead:
-            nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
-      in_cutoff = (distances <= cutoff).nonzero()
-
 
 
 
@@ -151,18 +122,82 @@ And print to see the result:
 
 
 
+
 .. rst-class:: sphx-glr-script-out
 
  Out:
 
  .. code-block:: none
 
-    Energy: -40.459790701641346
-    Force: tensor([[ 0.0478, -0.1304, -0.0551],
-            [-0.1353,  0.1581, -0.0776],
-            [ 0.0804, -0.0388,  0.0387],
-            [ 0.0254,  0.0076,  0.0433],
-            [-0.0183,  0.0035,  0.0508]])
+    Energy: -40.459790705366636
+    Force: tensor([[ 0.048, -0.130, -0.055],
+            [-0.135,  0.158, -0.078],
+            [ 0.080, -0.039,  0.039],
+            [ 0.025,  0.008,  0.043],
+            [-0.018,  0.004,  0.051]])
+
+
+
+
+you can also get the atomic energies (WARNING: these have no physical
+meaning) by calling:
+
+
+.. code-block:: default
+
+    _, atomic_energies = model.atomic_energies((species, coordinates))
+
+
+
+
+
+
+
+
+this gives you the average (shifted) energies over all models of the ensemble by default,
+with the same shape as the coordinates. Dummy atoms, if present, will have an
+energy of zero
+
+
+.. code-block:: default
+
+    print('Average Atomic energies, for species 6 1 1 1 1', atomic_energies)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Average Atomic energies, for species 6 1 1 1 1 tensor([[-38.080,  -0.581,  -0.591,  -0.605,  -0.604]],
+           grad_fn=<MeanBackward1>)
+
+
+
+
+you can also access model specific atomic energies
+
+
+.. code-block:: default
+
+    _, atomic_energies = model.atomic_energies((species, coordinates), average=False)
+    print('Atomic energies of first model, for species 6 1 1 1 1', atomic_energies[0, :, :])
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Atomic energies of first model, for species 6 1 1 1 1 tensor([[-38.084,  -0.580,  -0.590,  -0.603,  -0.603]],
+           grad_fn=<SliceBackward>)
 
 
 
@@ -170,7 +205,7 @@ And print to see the result:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.505 seconds)
+   **Total running time of the script:** ( 0 minutes  3.018 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
