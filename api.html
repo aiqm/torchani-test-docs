@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TorchANI &mdash; TorchANI 2.3.dev24+g55e6d4f documentation</title>
+  <title>TorchANI &mdash; TorchANI 2.3.dev25+g20b5746 documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                2.3.dev24+g55e6d4f
+                2.3.dev25+g20b5746
               </div>
             
           
@@ -212,6 +212,19 @@ equation (4) in the <a class="reference external" href="http://pubs.rsc.org/en/C
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt id="torchani.AEVComputer.cover_linearly">
+<em class="property">classmethod </em><code class="descname">cover_linearly</code><span class="sig-paren">(</span><em><span class="n">radial_cutoff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em>, <em><span class="n">angular_cutoff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em>, <em><span class="n">radial_eta</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em>, <em><span class="n">angular_eta</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em>, <em><span class="n">radial_dist_divisions</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em><span class="n">angular_dist_divisions</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em><span class="n">zeta</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span></em>, <em><span class="n">angle_sections</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em><span class="n">num_species</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em><span class="n">angular_start</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.9</span></em>, <em><span class="n">radial_start</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.9</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.cover_linearly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.cover_linearly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a convenient way to linearly fill cutoffs</p>
+<p>This is a user friendly constructor that builds an
+<a class="reference internal" href="#torchani.AEVComputer" title="torchani.AEVComputer"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.AEVComputer</span></code></a> where the subdivisions along the the
+distance dimension for the angular and radial sub-AEVs, and the angle
+sections for the angular sub-AEV, are linearly covered with shifts. By
+default the distance shifts start at 0.9 Angstroms.</p>
+<p>To reproduce the ANI-1x AEV’s the signature <code class="docutils literal notranslate"><span class="pre">(5.2,</span> <span class="pre">3.5,</span> <span class="pre">16.0,</span> <span class="pre">8.0,</span> <span class="pre">16,</span> <span class="pre">4,</span> <span class="pre">32.0,</span> <span class="pre">8,</span> <span class="pre">4)</span></code>
+can be used.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="torchani.AEVComputer.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">input_</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.8.0a0+9bc97fc ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.8.0a0+9bc97fc ))">torch.Tensor</a><span class="p">]</span></span></em>, <em><span class="n">cell</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.8.0a0+9bc97fc ))">torch.Tensor</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em><span class="n">pbc</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.8.0a0+9bc97fc ))">torch.Tensor</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; torchani.aev.SpeciesAEV<a class="reference internal" href="_modules/torchani/aev.html#AEVComputer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.AEVComputer.forward" title="Permalink to this definition">¶</a></dt>
@@ -913,7 +926,7 @@ different units are provided.</p>
 <dl class="py function">
 <dt id="torchani.units.hartree2kjoulemol">
 <code class="descclassname">torchani.units.</code><code class="descname">hartree2kjoulemol</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/units.html#hartree2kjoulemol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torchani.units.hartree2kjoulemol" title="Permalink to this definition">¶</a></dt>
-<dd><p>&lt;function hartree2kjoulemol at 0x7f8c0d716bf8&gt;</p>
+<dd><p>&lt;function hartree2kjoulemol at 0x7f239950ab80&gt;</p>
 <p>1 Hartree = 2625.4996387552483 kJ/mol</p>
 </dd></dl>
 
