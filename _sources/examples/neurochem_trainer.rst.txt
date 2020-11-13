@@ -88,9 +88,9 @@ We also need to set the device to run the training:
 
     => loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
-    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.1s=> loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
+    2/1  [============================================================] - 0.1s    3/1  [==========================================================================================] - 0.1s=> loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
-    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.1s
+    2/1  [============================================================] - 0.1s    3/1  [==========================================================================================] - 0.1s
 
 
 
@@ -133,8 +133,8 @@ Now, let's go!
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  5.20it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  5.22it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  5.22it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  5.26it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  6.16it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  5.42it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  5.42it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  5.36it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  5.35it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  6.28it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:01,  3.37it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  3.38it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  3.39it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  3.39it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  3.99it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.33it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.34it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.33it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.35it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  3.89it/s]
 
 
 
@@ -186,17 +186,17 @@ generating this document:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev20+g2e5032a-py3.8.egg/torchani/__init__.py:49: UserWarning: cuaev not installed
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev20+g2e5032a-py3.6.egg/torchani/__init__.py:49: UserWarning: cuaev not installed
       warnings.warn("cuaev not installed")
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
       return torch._C._cuda_getDeviceCount() > 0
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev20+g2e5032a-py3.8.egg/torchani/aev.py:198: UserWarning: This overload of nonzero is deprecated:
+    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev20+g2e5032a-py3.6.egg/torchani/aev.py:198: UserWarning: This overload of nonzero is deprecated:
             nonzero()
     Consider using one of the following signatures instead:
             nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
       in_cutoff = (distances <= cutoff).nonzero()
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  5.00it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  5.06it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  5.11it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  5.16it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  6.08it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  5.29it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  5.35it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  5.24it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  5.26it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  6.17it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:01,  3.37it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  3.39it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.39it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.29it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  3.87it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.26it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.29it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.30it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.30it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  3.89it/s]
 
 
 
@@ -205,7 +205,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.586 seconds)
+   **Total running time of the script:** ( 0 minutes  12.478 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:
