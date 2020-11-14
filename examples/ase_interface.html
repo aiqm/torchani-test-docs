@@ -211,7 +211,7 @@ calculator.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev30+g12422dd-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev30+g12422dd-py3.6.egg/torchani/resources/
 Downloading ANI model parameters ...
 </pre></div>
 </div>
@@ -239,15 +239,15 @@ large for structure minimization. If you insist on using
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
-/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev30+g12422dd-py3.8.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
+/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev30+g12422dd-py3.6.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
         nonzero()
 Consider using one of the following signatures instead:
         nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
   in_cutoff = (distances &lt;= cutoff).nonzero()
-/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
-  return Variable._execution_engine.run_backward(
+/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/autograd/__init__.py:225: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+  inputs, allow_unused, accumulate_grad=False)
       Step     Time          Energy         fmax
-BFGS:    0 23:58:04    -8311.226180        0.0000
+BFGS:    0 23:58:05    -8311.226174        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -276,21 +276,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.884eV  Ekin = 0.009eV (T= 66K)  Etot = -1038.875eV
-Energy per atom: Epot = -1038.879eV  Ekin = 0.025eV (T=191K)  Etot = -1038.854eV
-Energy per atom: Epot = -1038.882eV  Ekin = 0.036eV (T=281K)  Etot = -1038.846eV
-Energy per atom: Epot = -1038.859eV  Ekin = 0.030eV (T=231K)  Etot = -1038.829eV
-Energy per atom: Epot = -1038.871eV  Ekin = 0.023eV (T=176K)  Etot = -1038.848eV
-Energy per atom: Epot = -1038.872eV  Ekin = 0.034eV (T=262K)  Etot = -1038.838eV
-Energy per atom: Epot = -1038.875eV  Ekin = 0.043eV (T=331K)  Etot = -1038.833eV
-Energy per atom: Epot = -1038.849eV  Ekin = 0.035eV (T=268K)  Etot = -1038.814eV
-Energy per atom: Epot = -1038.848eV  Ekin = 0.041eV (T=320K)  Etot = -1038.806eV
-Energy per atom: Epot = -1038.856eV  Ekin = 0.061eV (T=472K)  Etot = -1038.795eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.012eV (T= 90K)  Etot = -1038.863eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.033eV (T=259K)  Etot = -1038.837eV
+Energy per atom: Epot = -1038.880eV  Ekin = 0.033eV (T=256K)  Etot = -1038.847eV
+Energy per atom: Epot = -1038.885eV  Ekin = 0.020eV (T=152K)  Etot = -1038.865eV
+Energy per atom: Epot = -1038.891eV  Ekin = 0.030eV (T=233K)  Etot = -1038.861eV
+Energy per atom: Epot = -1038.882eV  Ekin = 0.024eV (T=183K)  Etot = -1038.858eV
+Energy per atom: Epot = -1038.880eV  Ekin = 0.030eV (T=232K)  Etot = -1038.850eV
+Energy per atom: Epot = -1038.882eV  Ekin = 0.037eV (T=289K)  Etot = -1038.844eV
+Energy per atom: Epot = -1038.877eV  Ekin = 0.043eV (T=332K)  Etot = -1038.835eV
+Energy per atom: Epot = -1038.877eV  Ekin = 0.042eV (T=323K)  Etot = -1038.836eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.405 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.813 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
