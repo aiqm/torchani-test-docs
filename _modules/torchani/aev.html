@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev29+ge67a2ad documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev30+g12422dd documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                2.3.dev29+ge67a2ad
+                2.3.dev30+g12422dd
               </div>
             
           
@@ -183,6 +183,16 @@
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">NamedTuple</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">importlib_metadata</span>
+
+<span class="n">has_cuaev</span> <span class="o">=</span> <span class="s1">&#39;torchani.cuaev&#39;</span> <span class="ow">in</span> <span class="n">importlib_metadata</span><span class="o">.</span><span class="n">metadata</span><span class="p">(</span><span class="n">__package__</span><span class="p">)</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="s1">&#39;Provides&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">has_cuaev</span><span class="p">:</span>
+    <span class="c1"># We need to import torchani.cuaev to tell PyTorch to initialize torch.ops.cuaev</span>
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">cuaev</span>  <span class="c1"># type: ignore # noqa: F401</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;cuaev not installed&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
     <span class="k">class</span> <span class="nc">FakeFinal</span><span class="p">:</span>
@@ -493,6 +503,20 @@
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">radial_aev</span><span class="p">,</span> <span class="n">angular_aev</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">compute_cuaev</span><span class="p">(</span><span class="n">species</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">triu_index</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+                  <span class="n">constants</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+                  <span class="n">num_species</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cell_shifts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+    <span class="n">Rcr</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span> <span class="o">=</span> <span class="n">constants</span>
+
+    <span class="k">assert</span> <span class="n">cell_shifts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Current implementation of cuaev does not support pbc.&quot;</span>
+    <span class="n">species_int</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">cuaev</span><span class="o">.</span><span class="n">cuComputeAEV</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">species_int</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">ShfR</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">EtaA</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">Zeta</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">ShfA</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">ShfZ</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">num_species</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">has_cuaev</span><span class="p">:</span>
+    <span class="n">compute_cuaev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">unused</span><span class="p">(</span><span class="n">compute_cuaev</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="AEVComputer"><a class="viewcode-back" href="../../api.html#torchani.AEVComputer">[docs]</a><span class="k">class</span> <span class="nc">AEVComputer</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The AEV computer that takes coordinates as input and outputs aevs.</span>
 
@@ -529,13 +553,19 @@
     <span class="n">aev_length</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
     <span class="n">sizes</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
     <span class="n">triu_index</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">use_cuda_extension</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">num_species</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">num_species</span><span class="p">,</span> <span class="n">use_cuda_extension</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rcr</span> <span class="o">=</span> <span class="n">Rcr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Rca</span> <span class="o">=</span> <span class="n">Rca</span>
         <span class="k">assert</span> <span class="n">Rca</span> <span class="o">&lt;=</span> <span class="n">Rcr</span><span class="p">,</span> <span class="s2">&quot;Current implementation of AEVComputer assumes Rca &lt;= Rcr&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span> <span class="o">=</span> <span class="n">num_species</span>
+
+        <span class="c1"># cuda aev</span>
+        <span class="k">if</span> <span class="n">use_cuda_extension</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">has_cuaev</span><span class="p">,</span> <span class="s2">&quot;AEV cuda extension is not installed&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda_extension</span> <span class="o">=</span> <span class="n">use_cuda_extension</span>
 
         <span class="c1"># convert constant tensors to a ready-to-broadcast shape</span>
         <span class="c1"># shape convension (..., EtaR, ShfR)</span>
@@ -652,6 +682,11 @@
         <span class="k">assert</span> <span class="n">species</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span>
         <span class="k">assert</span> <span class="n">species</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">assert</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_cuda_extension</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="n">cell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pbc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;cuaev does not support PBC&quot;</span>
+            <span class="n">aev</span> <span class="o">=</span> <span class="n">compute_cuaev</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">triu_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_species</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">SpeciesAEV</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">aev</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cell</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pbc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">aev</span> <span class="o">=</span> <span class="n">compute_aev</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">triu_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">sizes</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
