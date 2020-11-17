@@ -80,7 +80,7 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev30+g12422dd-py3.6.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev31+g57dd26b-py3.8.egg/torchani/resources/
     Downloading ANI model parameters ...
 
 
@@ -133,15 +133,15 @@ Now let's minimize the structure:
  .. code-block:: none
 
     Begin minimizing...
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev30+g12422dd-py3.6.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev31+g57dd26b-py3.8.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
             nonzero()
     Consider using one of the following signatures instead:
             nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
       in_cutoff = (distances <= cutoff).nonzero()
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torch/autograd/__init__.py:225: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
-      inputs, allow_unused, accumulate_grad=False)
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+      return Variable._execution_engine.run_backward(
           Step     Time          Energy         fmax
-    BFGS:    0 00:06:42    -8311.226174        0.0000
+    BFGS:    0 17:54:30    -8311.226180        0.0000
 
 
 
@@ -205,16 +205,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.870eV  Ekin = 0.016eV (T=126K)  Etot = -1038.854eV
-    Energy per atom: Epot = -1038.882eV  Ekin = 0.043eV (T=333K)  Etot = -1038.839eV
-    Energy per atom: Epot = -1038.872eV  Ekin = 0.044eV (T=338K)  Etot = -1038.828eV
-    Energy per atom: Epot = -1038.888eV  Ekin = 0.030eV (T=234K)  Etot = -1038.857eV
-    Energy per atom: Epot = -1038.887eV  Ekin = 0.038eV (T=293K)  Etot = -1038.849eV
-    Energy per atom: Epot = -1038.865eV  Ekin = 0.058eV (T=448K)  Etot = -1038.807eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.077eV (T=598K)  Etot = -1038.786eV
-    Energy per atom: Epot = -1038.869eV  Ekin = 0.059eV (T=459K)  Etot = -1038.810eV
-    Energy per atom: Epot = -1038.867eV  Ekin = 0.042eV (T=325K)  Etot = -1038.825eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.044eV (T=340K)  Etot = -1038.819eV
+    Energy per atom: Epot = -1038.878eV  Ekin = 0.020eV (T=156K)  Etot = -1038.857eV
+    Energy per atom: Epot = -1038.872eV  Ekin = 0.024eV (T=186K)  Etot = -1038.848eV
+    Energy per atom: Epot = -1038.887eV  Ekin = 0.032eV (T=250K)  Etot = -1038.855eV
+    Energy per atom: Epot = -1038.876eV  Ekin = 0.022eV (T=167K)  Etot = -1038.855eV
+    Energy per atom: Epot = -1038.877eV  Ekin = 0.034eV (T=262K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.861eV  Ekin = 0.035eV (T=267K)  Etot = -1038.827eV
+    Energy per atom: Epot = -1038.847eV  Ekin = 0.035eV (T=268K)  Etot = -1038.812eV
+    Energy per atom: Epot = -1038.853eV  Ekin = 0.049eV (T=378K)  Etot = -1038.805eV
+    Energy per atom: Epot = -1038.849eV  Ekin = 0.027eV (T=208K)  Etot = -1038.822eV
+    Energy per atom: Epot = -1038.866eV  Ekin = 0.047eV (T=364K)  Etot = -1038.819eV
 
     True
 
@@ -223,7 +223,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  55.615 seconds)
+   **Total running time of the script:** ( 0 minutes  16.098 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:

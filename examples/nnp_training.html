@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Train Your Own Neural Network Potential &mdash; TorchANI 2.3.dev30+g12422dd documentation</title>
+  <title>Train Your Own Neural Network Potential &mdash; TorchANI 2.3.dev31+g57dd26b documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.3.dev30+g12422dd
+                2.3.dev31+g57dd26b
               </div>
             
           
@@ -212,6 +212,7 @@ they should setup their models.</p>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">torch.utils.tensorboard</span>
 <span class="kn">import</span> <span class="nn">tqdm</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 
 <span class="c1"># helper function to convert energy unit from Hartree to kcal/mol</span>
 <span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">hartree2kcalmol</span>
@@ -260,23 +261,46 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dspath</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">path</span></a><span class="p">,</span> <span class="s1">&#39;../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5&#39;</span><span class="p">)</span>
 <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a> <span class="o">=</span> <span class="mi">2560</span>
 
-<span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dspath</span></a><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">species_order</span></a><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">species_order</span></a><span class="p">)</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
-<span class="n">validation</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pickled_dataset_path</span></a> <span class="o">=</span> <span class="s1">&#39;dataset.pkl&#39;</span>
+
+<span class="c1"># We pickle the dataset after loading to ensure we use the same validation set</span>
+<span class="c1"># each time we restart training, otherwise we risk mixing the validation and</span>
+<span class="c1"># training sets on each restart.</span>
+<span class="k">if</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="os.path.isfile" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pickled_dataset_path</span></a><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unpickling preprocessed dataset found in </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pickled_dataset_path</span></a><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pickled_dataset_path</span></a><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <a href="https://docs.python.org/3/library/io.html#io.BufferedWriter" title="io.BufferedWriter" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f</span></a><span class="p">:</span>
+        <span class="n">dataset</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/pickle.html#pickle.load" title="pickle.load" class="sphx-glr-backref-module-pickle sphx-glr-backref-type-py-function"><span class="n">pickle</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/io.html#io.BufferedWriter" title="io.BufferedWriter" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f</span></a><span class="p">)</span>
+    <span class="n">training</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;training&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+    <span class="n">validation</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+    <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span></a> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;self_energies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Processing dataset in </span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dspath</span></a><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dspath</span></a><span class="p">)</span>\
+                                        <span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">species_order</span></a><span class="p">)</span>\
+                                        <span class="o">.</span><span class="n">species_to_indices</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">species_order</span></a><span class="p">)</span>\
+                                        <span class="o">.</span><span class="n">shuffle</span><span class="p">()</span>\
+                                        <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pickled_dataset_path</span></a><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <a href="https://docs.python.org/3/library/io.html#io.BufferedWriter" title="io.BufferedWriter" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f</span></a><span class="p">:</span>
+        <a href="https://docs.python.org/3/library/pickle.html#pickle.dump" title="pickle.dump" class="sphx-glr-backref-module-pickle sphx-glr-backref-type-py-function"><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span></a><span class="p">({</span><span class="s1">&#39;training&#39;</span><span class="p">:</span> <span class="n">training</span><span class="p">,</span>
+                     <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">validation</span><span class="p">,</span>
+                     <span class="s1">&#39;self_energies&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span></a><span class="o">.</span><span class="n">cpu</span><span class="p">()},</span> <a href="https://docs.python.org/3/library/io.html#io.BufferedWriter" title="io.BufferedWriter" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">f</span></a><span class="p">)</span>
+    <span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+    <span class="n">validation</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">batch_size</span></a><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Self atomic energies: &#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Processing dataset in /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5
+=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.1s
-3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
+2/1  [============================================================] - 0.0s
+3/1  [==========================================================================================] - 0.0s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.1s
+2/1  [============================================================] - 0.0s
 3/1  [==========================================================================================] - 0.1sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
 </pre></div>
 </div>
@@ -596,81 +620,72 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 184.629368175326 at epoch 1
+RMSE: 182.0848494822138 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.25it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.29it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.31it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  4.04it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.92it/s]
-RMSE: 86.05893972155363 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  5.26it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  5.29it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.34it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  6.25it/s]
+RMSE: 84.25326916076683 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.34it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.33it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.31it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  4.05it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.90it/s]
-RMSE: 36.49976091288737 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  5.49it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  5.49it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.52it/s]
+epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  6.46it/s]
+RMSE: 32.93549069479235 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.22it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.23it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.25it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.97it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.83it/s]
-RMSE: 51.777003049544135 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  5.49it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  5.50it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.52it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  6.46it/s]
+RMSE: 52.90369414508841 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.29it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.25it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.24it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.89it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.74it/s]
-RMSE: 53.24882108906922 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  5.34it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  5.34it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.34it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  6.20it/s]
+RMSE: 55.42300262038608 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.09it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.14it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.20it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.91it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.80it/s]
-RMSE: 21.479067299839446 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  5.42it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  5.24it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.33it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  6.20it/s]
+RMSE: 20.002983161729546 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.34it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.32it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.34it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  4.06it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.91it/s]
-RMSE: 31.543191406414955 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  5.56it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  5.55it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.51it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  6.42it/s]
+RMSE: 32.247682431888165 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.05it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.10it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.17it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.89it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.78it/s]
-RMSE: 20.154324120264683 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  5.42it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  5.41it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.47it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  6.39it/s]
+RMSE: 22.18388846993077 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.35it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.33it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.33it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  4.01it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.87it/s]
-RMSE: 13.738428980526756 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  5.52it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  5.51it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.50it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  6.40it/s]
+RMSE: 13.15741547164077 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.18it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.16it/s]
-epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.17it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.88it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.73it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  5.52it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  5.48it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.45it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  6.37it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.380 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.323 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
