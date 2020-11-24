@@ -54,7 +54,7 @@ models trained with diffrent initialization.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev35+gd2d6305-py3.6.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev35+gd2d6305-py3.8.egg/torchani/resources/
 
 
 
@@ -220,7 +220,7 @@ you could do the following:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/torchani-2.3.dev35+gd2d6305-py3.6.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev35+gd2d6305-py3.8.egg/torchani/resources/
     Energy, eager mode vs loaded jit: -40.4590220910793 -40.4590220910793
 
     Force, eager mode vs loaded jit:
@@ -273,7 +273,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.873 seconds)
+   **Total running time of the script:** ( 0 minutes  5.069 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
