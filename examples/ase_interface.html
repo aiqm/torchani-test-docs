@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev41+g60fa1c3 documentation</title>
+  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev42+g0d02e33 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.3.dev41+g60fa1c3
+                2.3.dev42+g0d02e33
               </div>
             
           
@@ -211,7 +211,7 @@ calculator.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev41+g60fa1c3-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev42+g0d02e33-py3.8.egg/torchani/resources/
 Downloading ANI model parameters ...
 </pre></div>
 </div>
@@ -239,7 +239,7 @@ large for structure minimization. If you insist on using
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
-/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev41+g60fa1c3-py3.8.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
+/opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev42+g0d02e33-py3.8.egg/torchani/aev.py:179: UserWarning: This overload of nonzero is deprecated:
         nonzero()
 Consider using one of the following signatures instead:
         nonzero(*, bool as_tuple) (Triggered internally at  /pytorch/torch/csrc/utils/python_arg_parser.cpp:962.)
@@ -247,7 +247,7 @@ Consider using one of the following signatures instead:
 /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:222: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
   return Variable._execution_engine.run_backward(
       Step     Time          Energy         fmax
-BFGS:    0 20:26:49    -8311.226180        0.0000
+BFGS:    0 20:32:01    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -276,21 +276,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.890eV  Ekin = 0.036eV (T=282K)  Etot = -1038.854eV
-Energy per atom: Epot = -1038.878eV  Ekin = 0.024eV (T=187K)  Etot = -1038.854eV
-Energy per atom: Epot = -1038.873eV  Ekin = 0.017eV (T=132K)  Etot = -1038.856eV
-Energy per atom: Epot = -1038.882eV  Ekin = 0.031eV (T=241K)  Etot = -1038.851eV
-Energy per atom: Epot = -1038.876eV  Ekin = 0.035eV (T=268K)  Etot = -1038.842eV
-Energy per atom: Epot = -1038.883eV  Ekin = 0.044eV (T=340K)  Etot = -1038.839eV
-Energy per atom: Epot = -1038.863eV  Ekin = 0.054eV (T=415K)  Etot = -1038.810eV
-Energy per atom: Epot = -1038.858eV  Ekin = 0.033eV (T=252K)  Etot = -1038.825eV
-Energy per atom: Epot = -1038.883eV  Ekin = 0.055eV (T=427K)  Etot = -1038.828eV
-Energy per atom: Epot = -1038.868eV  Ekin = 0.042eV (T=322K)  Etot = -1038.826eV
+Energy per atom: Epot = -1038.884eV  Ekin = 0.017eV (T=133K)  Etot = -1038.867eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.021eV (T=164K)  Etot = -1038.861eV
+Energy per atom: Epot = -1038.849eV  Ekin = 0.043eV (T=334K)  Etot = -1038.806eV
+Energy per atom: Epot = -1038.861eV  Ekin = 0.038eV (T=291K)  Etot = -1038.823eV
+Energy per atom: Epot = -1038.865eV  Ekin = 0.023eV (T=180K)  Etot = -1038.842eV
+Energy per atom: Epot = -1038.867eV  Ekin = 0.028eV (T=216K)  Etot = -1038.839eV
+Energy per atom: Epot = -1038.860eV  Ekin = 0.035eV (T=268K)  Etot = -1038.825eV
+Energy per atom: Epot = -1038.878eV  Ekin = 0.029eV (T=225K)  Etot = -1038.849eV
+Energy per atom: Epot = -1038.872eV  Ekin = 0.039eV (T=303K)  Etot = -1038.832eV
+Energy per atom: Epot = -1038.845eV  Ekin = 0.028eV (T=218K)  Etot = -1038.817eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.245 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  17.756 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
