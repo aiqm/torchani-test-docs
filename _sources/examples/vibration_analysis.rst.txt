@@ -85,14 +85,14 @@ Let's first construct a water molecule and do structure optimization:
  .. code-block:: none
 
           Step     Time          Energy         fmax
-    BFGS:    0 20:27:09    -2078.633392        0.6576
-    BFGS:    1 20:27:09    -2078.637244        0.1905
-    BFGS:    2 20:27:09    -2078.637801        0.0292
-    BFGS:    3 20:27:09    -2078.637827        0.0183
-    BFGS:    4 20:27:09    -2078.637849        0.0014
-    BFGS:    5 20:27:09    -2078.637849        0.0001
-    BFGS:    6 20:27:09    -2078.637849        0.0000
-    BFGS:    7 20:27:10    -2078.637849        0.0000
+    BFGS:    0 20:27:26    -2078.633392        0.6576
+    BFGS:    1 20:27:26    -2078.637244        0.1905
+    BFGS:    2 20:27:26    -2078.637801        0.0292
+    BFGS:    3 20:27:27    -2078.637827        0.0183
+    BFGS:    4 20:27:27    -2078.637849        0.0014
+    BFGS:    5 20:27:27    -2078.637849        0.0001
+    BFGS:    6 20:27:27    -2078.637849        0.0000
+    BFGS:    7 20:27:27    -2078.637849        0.0000
 
     True
 
@@ -229,7 +229,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.805 seconds)
+   **Total running time of the script:** ( 0 minutes  2.025 seconds)
 
 
 .. _sphx_glr_download_examples_vibration_analysis.py:
