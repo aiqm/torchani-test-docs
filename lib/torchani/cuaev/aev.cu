@@ -1,6 +1,8 @@
+#include <stdio.h>
 #include <thrust/equal.h>
 #include <torch/extension.h>
 #include <cub/cub.cuh>
+#include <vector>
 
 #include <ATen/Context.h>
 #include <THC/THC.h>
@@ -8,17 +10,38 @@
 #include <THC/THCThrustAllocator.cuh>
 
 #define PI 3.141592653589793
+using torch::Tensor;
+using torch::autograd::tensor_list;
 
 template <typename DataT, typename IndexT = int>
 struct AEVScalarParams {
   DataT Rcr;
   DataT Rca;
-
   IndexT radial_sublength;
   IndexT radial_length;
   IndexT angular_sublength;
   IndexT angular_length;
   IndexT num_species;
+
+  AEVScalarParams() = default;
+
+  AEVScalarParams(const torch::IValue& aev_params_ivalue){
+    c10::intrusive_ptr<c10::ivalue::Tuple> aev_params_tuple_ptr = aev_params_ivalue.toTuple();
+    auto aev_params_tuple = aev_params_tuple_ptr->elements();
+
+    Rcr = (float)aev_params_tuple[0].toDouble();
+    Rca = (float)aev_params_tuple[1].toDouble();
+    radial_sublength = (int)aev_params_tuple[2].toInt();
+    radial_length = (int)aev_params_tuple[3].toInt();
+    angular_sublength = (int)aev_params_tuple[4].toInt();
+    angular_length = (int)aev_params_tuple[5].toInt();
+    num_species = (int)aev_params_tuple[6].toInt();
+  }
+
+  operator torch::IValue() {
+    return torch::IValue(std::make_tuple(
+        (double)Rcr, (double)Rca, radial_sublength, radial_length, angular_sublength, angular_length, num_species));
+  }
 };
 
 #define MAX_NSPECIES 10
@@ -103,6 +126,42 @@ __global__ void pairwiseDistance(
       }
     }
   }
+}
+
+// every block compute blocksize RIJ's gradient by column major, to avoid atomicAdd waiting
+template <typename DataT, typename IndexT = int>
+__global__ void pairwiseDistance_backward(
+    torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> pos_t,
+    torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> grad_radial_dist,
+    torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> grad_coord,
+    PairDist<DataT>* d_radialRij,
+    IndexT nRadialRij) {
+  int gidx = threadIdx.x * gridDim.x + blockIdx.x;
+
+  if (gidx >= nRadialRij)
+    return;
+
+  PairDist<DataT> d = d_radialRij[gidx];
+  DataT Rij = d.Rij;
+  int mol_idx = d.midx;
+  int i = d.i;
+  int j = d.j;
+
+  const DataT delx = pos_t[mol_idx][j][0] - pos_t[mol_idx][i][0];
+  const DataT dely = pos_t[mol_idx][j][1] - pos_t[mol_idx][i][1];
+  const DataT delz = pos_t[mol_idx][j][2] - pos_t[mol_idx][i][2];
+
+  DataT grad_dist_coord_x = delx / Rij;
+  DataT grad_dist_coord_y = dely / Rij;
+  DataT grad_dist_coord_z = delz / Rij;
+  DataT grad_radial_dist_item = grad_radial_dist[gidx];
+
+  atomicAdd(&grad_coord[mol_idx][j][0], grad_radial_dist_item * grad_dist_coord_x);
+  atomicAdd(&grad_coord[mol_idx][j][1], grad_radial_dist_item * grad_dist_coord_y);
+  atomicAdd(&grad_coord[mol_idx][j][2], grad_radial_dist_item * grad_dist_coord_z);
+  atomicAdd(&grad_coord[mol_idx][i][0], -grad_radial_dist_item * grad_dist_coord_x);
+  atomicAdd(&grad_coord[mol_idx][i][1], -grad_radial_dist_item * grad_dist_coord_y);
+  atomicAdd(&grad_coord[mol_idx][i][2], -grad_radial_dist_item * grad_dist_coord_z);
 }
 
 template <typename SpeciesT, typename DataT, typename IndexT = int, int TILEX = 8, int TILEY = 4>
@@ -222,7 +281,7 @@ __global__ void cuAngularAEVs(
         DataT fc_ijk = fc_ij * fc_ik;
 
         IndexT subaev_offset = csubaev_offsets[type_j * num_species + type_k];
-        IndexT aev_offset = aev_params.radial_length + subaev_offset;
+        // IndexT aev_offset = aev_params.radial_length + subaev_offset;
 
         for (int itheta = tile.x; itheta < nShfZ; itheta += TILEX) {
           DataT ShfZ = ShfZ_t[itheta];
@@ -273,7 +332,7 @@ __global__ void cuRadialAEVs(
   int i = d.i;
   int j = d.j;
 
-  SpeciesT type_i = species_t[mol_idx][i];
+  // SpeciesT type_i = species_t[mol_idx][i];
   SpeciesT type_j = species_t[mol_idx][j];
 
   DataT fc = 0.5 * cos(PI * Rij / aev_params.Rcr) + 0.5;
@@ -284,6 +343,53 @@ __global__ void cuRadialAEVs(
     DataT GmR = 0.25 * exp(-EtaR * (Rij - ShfR) * (Rij - ShfR)) * fc;
 
     atomicAdd(&aev_t[mol_idx][i][type_j * aev_params.radial_sublength + ishfr], GmR);
+  }
+}
+
+// every <THREADS_PER_RIJ> threads take care of 1 RIJ, and iterate <nShfR / THREADS_PER_RIJ> times
+template <typename SpeciesT, typename DataT, int THREADS_PER_RIJ>
+__global__ void cuRadialAEVs_backward(
+    torch::PackedTensorAccessor32<SpeciesT, 2, torch::RestrictPtrTraits> species_t,
+    torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> ShfR_t,
+    torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> EtaR_t,
+    torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> grad_output,
+    torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> grad_radial_dist,
+    PairDist<DataT>* d_Rij,
+    AEVScalarParams<DataT, int> aev_params,
+    int nRadialRij) {
+  int gidx = blockIdx.x * blockDim.x + threadIdx.x;
+  int idx = gidx / THREADS_PER_RIJ;
+
+  int nShfR = ShfR_t.size(0);
+  DataT EtaR = EtaR_t[0];
+
+  if (idx >= nRadialRij)
+    return;
+
+  int laneIdx = threadIdx.x % THREADS_PER_RIJ;
+
+  PairDist<DataT> d = d_Rij[idx];
+  DataT Rij = d.Rij;
+  int mol_idx = d.midx;
+  int i = d.i;
+  int j = d.j;
+
+  // SpeciesT type_i = species_t[mol_idx][i];
+  SpeciesT type_j = species_t[mol_idx][j];
+
+  DataT fc = 0.5 * cos(PI * Rij / aev_params.Rcr) + 0.5;
+  DataT fc_grad = -0.5 * (PI / aev_params.Rcr) * sin(PI * Rij / aev_params.Rcr);
+
+  for (int ishfr = laneIdx; ishfr < nShfR; ishfr += THREADS_PER_RIJ) {
+    DataT ShfR = ShfR_t[ishfr];
+
+    DataT GmR = 0.25 * exp(-EtaR * (Rij - ShfR) * (Rij - ShfR));
+    DataT GmR_grad = -EtaR * (-2 * ShfR + 2 * Rij) * GmR;
+
+    DataT grad_output_item = grad_output[mol_idx][i][type_j * aev_params.radial_sublength + ishfr];
+    DataT grad_radial_dist_item = grad_output_item * (GmR_grad * fc + GmR * fc_grad);
+
+    atomicAdd(&grad_radial_dist[idx], grad_radial_dist_item);
   }
 }
 
@@ -406,19 +512,30 @@ void initConsts(AEVScalarParams<float>& aev_params, cudaStream_t stream) {
   delete[] subaev_offsets;
 }
 
+typedef struct Result {
+  Tensor aev_t;
+  AEVScalarParams<float> aev_params;
+  Tensor tensor_Rij;
+  Tensor tensor_radialRij;
+  Tensor tensor_angularRij;
+  int total_natom_pairs;
+  int nRadialRij;
+  int nAngularRij;
+} Result;
+
 // NOTE: assumes size of EtaA_t = Zeta_t = EtaR_t = 1
 template <typename ScalarRealT = float>
-torch::Tensor cuComputeAEV(
-    torch::Tensor coordinates_t,
-    torch::Tensor species_t,
+Result cuaev_forward(
+    const Tensor& coordinates_t,
+    const Tensor& species_t,
     double Rcr_,
     double Rca_,
-    torch::Tensor EtaR_t,
-    torch::Tensor ShfR_t,
-    torch::Tensor EtaA_t,
-    torch::Tensor Zeta_t,
-    torch::Tensor ShfA_t,
-    torch::Tensor ShfZ_t,
+    const Tensor& EtaR_t,
+    const Tensor& ShfR_t,
+    const Tensor& EtaA_t,
+    const Tensor& Zeta_t,
+    const Tensor& ShfA_t,
+    const Tensor& ShfZ_t,
     int64_t num_species_) {
   TORCH_CHECK(
       (species_t.dtype() == torch::kInt32) && (coordinates_t.dtype() == torch::kFloat32), "Unsupported input type");
@@ -450,7 +567,7 @@ torch::Tensor cuComputeAEV(
   auto aev_t = torch::zeros({n_molecules, max_natoms_per_mol, aev_length}, coordinates_t.options());
 
   if (species_t.numel() == 0) {
-    return aev_t;
+    return {aev_t, aev_params, Tensor(), Tensor(), Tensor(), 0, 0, 0};
   }
 
   cudaStream_t stream = at::cuda::getCurrentCUDAStream();
@@ -463,8 +580,9 @@ torch::Tensor cuComputeAEV(
 
   // buffer to store all the pairwise distance (Rij)
   auto total_natom_pairs = n_molecules * max_natoms_per_mol * max_natoms_per_mol;
-  auto buffer_Rij = allocator.allocate(sizeof(PairDist<float>) * total_natom_pairs);
-  PairDist<float>* d_Rij = (PairDist<float>*)buffer_Rij.get();
+  auto d_options = torch::dtype(torch::kUInt8).device(torch::kCUDA, coordinates_t.device().index());
+  Tensor tensor_Rij = torch::empty(sizeof(PairDist<float>) * total_natom_pairs, d_options);
+  PairDist<float>* d_Rij = (PairDist<float>*)tensor_Rij.data_ptr();
 
   // init all Rij to inf
   PairDist<float> init;
@@ -473,8 +591,8 @@ torch::Tensor cuComputeAEV(
 
   // buffer to store all the pairwise distance that is needed for Radial AEV
   // computation
-  auto buffer_radialRij = allocator.allocate(sizeof(PairDist<float>) * total_natom_pairs);
-  PairDist<float>* d_radialRij = (PairDist<float>*)buffer_radialRij.get();
+  Tensor tensor_radialRij = torch::empty(sizeof(PairDist<float>) * total_natom_pairs, d_options);
+  PairDist<float>* d_radialRij = (PairDist<float>*)tensor_radialRij.data_ptr();
 
   auto buffer_count = allocator.allocate(sizeof(int));
   int* d_count_out = (int*)buffer_count.get();
@@ -483,6 +601,7 @@ torch::Tensor cuComputeAEV(
 
   dim3 block(8, 8, 1);
   // Compute pairwise distance (Rij) for all atom pairs in a molecule
+  // maximum 4096 atoms, which needs 49152 byte (48 kb) of shared memory
   pairwiseDistance<<<n_molecules, block, sizeof(float) * max_natoms_per_mol * 3, stream>>>(
       species_t.packed_accessor32<int, 2, torch::RestrictPtrTraits>(),
       coordinates_t.packed_accessor32<float, 3, torch::RestrictPtrTraits>(),
@@ -511,7 +630,8 @@ torch::Tensor cuComputeAEV(
 
   // reuse buffer allocated for all Rij
   // d_angularRij will store all the Rij required in Angular AEV computation
-  PairDist<float>* d_angularRij = d_Rij;
+  Tensor tensor_angularRij = torch::empty(sizeof(PairDist<float>) * nRadialRij, d_options);
+  PairDist<float>* d_angularRij = (PairDist<float>*)tensor_angularRij.data_ptr();
 
   // Extract Rijs that is needed for AngularAEV comptuation i.e. all the Rij
   // <= Rca
@@ -540,7 +660,7 @@ torch::Tensor cuComputeAEV(
     const int nthreads_per_catom = 32;
     const int nblocks_angAEV = (ncenter_atoms * nthreads_per_catom + block_size - 1) / block_size;
     auto smem_size = [&aev_params](int max_nbrs, int ncatom_per_tpb) {
-      int sm_aev = sizeof(float) * align<4>(aev_params.angular_length);
+      int sm_aev = sizeof(float) * align<4>(aev_params.angular_length); // (angular_length / 4 + 1) * 4
       int sxyz = sizeof(float) * max_nbrs * 3;
       int sRij = sizeof(float) * max_nbrs;
       int sfc = sizeof(float) * max_nbrs;
@@ -574,11 +694,154 @@ torch::Tensor cuComputeAEV(
         align<4>(aev_params.angular_length),
         ncenter_atoms);
   }
-  return aev_t;
+  return {
+      aev_t, aev_params, tensor_Rij, tensor_radialRij, tensor_angularRij, total_natom_pairs, nRadialRij, nAngularRij};
+}
+
+Tensor cuaev_backward(
+    const Tensor& grad_output,
+    const Tensor& coordinates_t,
+    const Tensor& species_t,
+    const AEVScalarParams<float>& aev_params,
+    const Tensor& EtaR_t,
+    const Tensor& ShfR_t,
+    const Tensor& EtaA_t,
+    const Tensor& Zeta_t,
+    const Tensor& ShfA_t,
+    const Tensor& ShfZ_t,
+    const Tensor& tensor_Rij,
+    int total_natom_pairs,
+    const Tensor& tensor_radialRij,
+    int nRadialRij,
+    const Tensor& tensor_angularRij,
+    int nAngularRij) {
+  using namespace torch::indexing;
+  const int n_molecules = coordinates_t.size(0);
+  const int max_natoms_per_mol = coordinates_t.size(1);
+  cudaStream_t stream = at::cuda::getCurrentCUDAStream();
+
+  auto grad_coord = torch::zeros(coordinates_t.sizes(), coordinates_t.options().requires_grad(false)); // [2, 5, 3]
+  auto grad_output_radial = grad_output.index({Ellipsis, Slice(None, aev_params.radial_length)}); // [2, 5, 64]
+  auto grad_output_angular = grad_output.index({Ellipsis, Slice(aev_params.radial_length, None)}); // [2, 5, 320]
+
+  PairDist<float>* d_radialRij = (PairDist<float>*)tensor_radialRij.data_ptr();
+
+  Tensor grad_radial_dist = torch::zeros(nRadialRij, coordinates_t.options().requires_grad(false));
+  // float* grad_radial_dist_ptr = (float*)grad_radial_dist.data_ptr();
+
+  int block_size = 64;
+  int nblocks = (nRadialRij * 8 + block_size - 1) / block_size;
+  cuRadialAEVs_backward<int, float, 8><<<nblocks, block_size, 0, stream>>>(
+      species_t.packed_accessor32<int, 2, torch::RestrictPtrTraits>(),
+      ShfR_t.packed_accessor32<float, 1, torch::RestrictPtrTraits>(),
+      EtaR_t.packed_accessor32<float, 1, torch::RestrictPtrTraits>(),
+      grad_output.packed_accessor32<float, 3, torch::RestrictPtrTraits>(),
+      grad_radial_dist.packed_accessor32<float, 1, torch::RestrictPtrTraits>(),
+      d_radialRij,
+      aev_params,
+      nRadialRij);
+
+  // For best result, block_size should match average molecule size (no padding) to avoid atomicAdd
+  nblocks = (nRadialRij + block_size - 1) / block_size;
+  pairwiseDistance_backward<<<nblocks, block_size, 0, stream>>>(
+      coordinates_t.packed_accessor32<float, 3, torch::RestrictPtrTraits>(),
+      grad_radial_dist.packed_accessor32<float, 1, torch::RestrictPtrTraits>(),
+      grad_coord.packed_accessor32<float, 3, torch::RestrictPtrTraits>(),
+      d_radialRij,
+      nRadialRij);
+
+  return grad_coord;
+}
+
+#define AEV_INPUT                                                                                                     \
+  const Tensor& coordinates_t, const Tensor& species_t, double Rcr_, double Rca_, const Tensor& EtaR_t, const Tensor& ShfR_t, const Tensor& EtaA_t, \
+      const Tensor& Zeta_t, const Tensor& ShfA_t, const Tensor& ShfZ_t, int64_t num_species_
+
+Tensor cuaev_cuda(AEV_INPUT) {
+  printf("calling cuda \n");
+  Result res = cuaev_forward<float>(
+      coordinates_t, species_t, Rcr_, Rca_, EtaR_t, ShfR_t, EtaA_t, Zeta_t, ShfA_t, ShfZ_t, num_species_);
+  return res.aev_t;
+}
+
+class CuaevAutograd : public torch::autograd::Function<CuaevAutograd> {
+ public:
+  static Tensor forward(torch::autograd::AutogradContext* ctx, AEV_INPUT) {
+    at::AutoNonVariableTypeMode g;
+    printf("calling autograd::forward \n");
+    Result res = cuaev_forward<float>(
+        coordinates_t, species_t, Rcr_, Rca_, EtaR_t, ShfR_t, EtaA_t, Zeta_t, ShfA_t, ShfZ_t, num_species_);
+    if (coordinates_t.requires_grad()) {
+      printf("saving context \n");
+      ctx->save_for_backward({coordinates_t,
+                              species_t,
+                              res.tensor_Rij,
+                              res.tensor_radialRij,
+                              res.tensor_angularRij,
+                              EtaR_t,
+                              ShfR_t,
+                              EtaA_t,
+                              Zeta_t,
+                              ShfA_t,
+                              ShfZ_t});
+      ctx->saved_data["aev_params"] = static_cast<torch::IValue>(res.aev_params);
+      ctx->saved_data["int_list"] = c10::List<int64_t> {res.total_natom_pairs, res.nRadialRij, res.nAngularRij};
+    }
+    return res.aev_t;
+  }
+
+  static tensor_list backward(torch::autograd::AutogradContext* ctx, tensor_list grad_outputs) {
+    printf("calling autograd::backward \n");
+    auto saved = ctx->get_saved_variables();
+    auto coordinates_t = saved[0], species_t = saved[1];
+    auto tensor_Rij = saved[2], tensor_radialRij = saved[3], tensor_angularRij = saved[4];
+    auto EtaR_t = saved[5], ShfR_t = saved[6], EtaA_t = saved[7], Zeta_t = saved[8], ShfA_t = saved[9],
+         ShfZ_t = saved[10];
+    AEVScalarParams<float> aev_params (ctx->saved_data["aev_params"]);
+    c10::List<int64_t> int_list = ctx->saved_data["int_list"].toIntList();
+    int total_natom_pairs = (int)int_list[0];
+    int nRadialRij = (int)int_list[1];
+    int nAngularRij = (int)int_list[2];
+
+    Tensor grad_coord = cuaev_backward(
+        grad_outputs[0],
+        coordinates_t,
+        species_t,
+        aev_params,
+        EtaR_t,
+        ShfR_t,
+        EtaA_t,
+        Zeta_t,
+        ShfA_t,
+        ShfZ_t,
+        tensor_Rij,
+        total_natom_pairs,
+        tensor_radialRij,
+        nRadialRij,
+        tensor_angularRij,
+        nAngularRij);
+
+    return {
+        grad_coord, Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor()};
+  }
+};
+
+Tensor cuaev_autograd(AEV_INPUT) {
+  printf("calling autograd \n");
+  return CuaevAutograd::apply(
+      coordinates_t, species_t, Rcr_, Rca_, EtaR_t, ShfR_t, EtaA_t, Zeta_t, ShfA_t, ShfZ_t, num_species_);
 }
 
 TORCH_LIBRARY(cuaev, m) {
-  m.def("cuComputeAEV", &cuComputeAEV<float>);
+  m.def("cuComputeAEV", cuaev_cuda);
+}
+
+TORCH_LIBRARY_IMPL(cuaev, CUDA, m) {
+  m.impl("cuComputeAEV", cuaev_cuda);
+}
+
+TORCH_LIBRARY_IMPL(cuaev, Autograd, m) {
+  m.impl("cuComputeAEV", cuaev_autograd);
 }
 
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {}
