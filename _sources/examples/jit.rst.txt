@@ -54,7 +54,7 @@ models trained with diffrent initialization.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev46+gddebb29-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev47+ga85e52f-py3.8.egg/torchani/resources/
 
 
 
@@ -149,8 +149,8 @@ And here is the result:
 
  .. code-block:: none
 
-    Ensemble energy, eager mode vs loaded jit: -40.425620579926274 -40.425620579926274
-    Single network energy, eager mode vs loaded jit: -40.428783462217055 -40.428783462217055
+    Ensemble energy, eager mode vs loaded jit: -40.42562057433834 -40.42562057433834
+    Single network energy, eager mode vs loaded jit: -40.428783448247216 -40.428783448247216
 
 
 
@@ -220,7 +220,7 @@ you could do the following:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev46+gddebb29-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.6/x64/lib/python3.8/site-packages/torchani-2.3.dev47+ga85e52f-py3.8.egg/torchani/resources/
     Energy, eager mode vs loaded jit: -40.4590220910793 -40.4590220910793
 
     Force, eager mode vs loaded jit:
@@ -273,7 +273,7 @@ you could do the following:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.022 seconds)
+   **Total running time of the script:** ( 0 minutes  5.536 seconds)
 
 
 .. _sphx_glr_download_examples_jit.py:
