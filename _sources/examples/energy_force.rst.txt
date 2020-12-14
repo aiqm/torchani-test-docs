@@ -137,7 +137,7 @@ And print to see the result:
 
  .. code-block:: none
 
-    Energy: -40.459790701641346
+    Energy: -40.459790705366636
     Force: tensor([[ 0.048, -0.130, -0.055],
             [-0.135,  0.158, -0.078],
             [ 0.080, -0.039,  0.039],
