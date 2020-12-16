@@ -391,13 +391,16 @@ is better than the best, then save the new best model to a checkpoint
         mse_sum = torch.nn.MSELoss(reduction='sum')
         total_mse = 0.0
         count = 0
-        for properties in validation:
-            species = properties['species'].to(device)
-            coordinates = properties['coordinates'].to(device).float()
-            true_energies = properties['energies'].to(device).float()
-            _, predicted_energies = model((species, coordinates))
-            total_mse += mse_sum(predicted_energies, true_energies).item()
-            count += predicted_energies.shape[0]
+        model.train(False)
+        with torch.no_grad():
+            for properties in validation:
+                species = properties['species'].to(device)
+                coordinates = properties['coordinates'].to(device).float()
+                true_energies = properties['energies'].to(device).float()
+                _, predicted_energies = model((species, coordinates))
+                total_mse += mse_sum(predicted_energies, true_energies).item()
+                count += predicted_energies.shape[0]
+        model.train(True)
         return hartree2kcalmol(math.sqrt(total_mse / count))
 
 
@@ -510,10 +513,10 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    RMSE: 110.65718110364264 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:01<00:05,  1.90s/it]    epoch 1:  50%|#####     | 2/4 [00:03<00:03,  1.86s/it]    epoch 1:  75%|#######5  | 3/4 [00:05<00:01,  1.81s/it]    epoch 1: 100%|##########| 4/4 [00:06<00:00,  1.55s/it]    epoch 1: 100%|##########| 4/4 [00:06<00:00,  1.58s/it]
-    RMSE: 162.35850655825934 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:01<00:05,  1.68s/it]    epoch 2:  50%|#####     | 2/4 [00:03<00:03,  1.71s/it]    epoch 2:  75%|#######5  | 3/4 [00:05<00:01,  1.70s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.48s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.53s/it]
+    RMSE: 109.59073906801616 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:08,  2.72s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.66s/it]    epoch 1:  75%|#######5  | 3/4 [00:07<00:02,  2.56s/it]    epoch 1: 100%|##########| 4/4 [00:08<00:00,  2.21s/it]    epoch 1: 100%|##########| 4/4 [00:08<00:00,  2.24s/it]
+    RMSE: 163.02352910241342 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:07,  2.54s/it]    epoch 2:  50%|#####     | 2/4 [00:04<00:04,  2.48s/it]    epoch 2:  75%|#######5  | 3/4 [00:07<00:02,  2.45s/it]    epoch 2: 100%|##########| 4/4 [00:08<00:00,  2.11s/it]    epoch 2: 100%|##########| 4/4 [00:08<00:00,  2.14s/it]
 
 
 
@@ -521,7 +524,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.717 seconds)
+   **Total running time of the script:** ( 0 minutes  19.598 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
