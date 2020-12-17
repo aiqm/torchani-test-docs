@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev39+gd7302cc documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev41+gb10e7c4 documentation</title>
   
 
   
@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
 
   
   
@@ -63,7 +64,7 @@
             
             
               <div class="version">
-                2.3.dev39+gd7302cc
+                2.3.dev41+gb10e7c4
               </div>
             
           
@@ -255,8 +256,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">vectors12</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">distances12</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="n">cos_angles</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cos_angles</span> <span class="o">=</span> <span class="n">vectors12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">distances12</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="nb">min</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
     <span class="c1"># 0.95 is multiplied to the cos values to prevent acos from returning NaN.</span>
     <span class="n">angles</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="mf">0.95</span> <span class="o">*</span> <span class="n">cos_angles</span><span class="p">)</span>
 
