@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Train Neural Network Potential From NeuroChem Input File &mdash; TorchANI 2.3.dev40+ga3720bc documentation</title>
   
@@ -20,7 +20,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -55,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> TorchANI
+            <a href="../index.html" class="icon icon-home"> TorchANI
           
 
           
@@ -155,6 +158,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -166,7 +171,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/examples/neurochem_trainer.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -234,7 +239,7 @@ But this is wrong and should be avoided for any serious training.</p>
 1/1  [==============================] - 0.0s
 
 2/1  [============================================================] - 0.0s
-3/1  [==========================================================================================] - 0.1s
+3/1  [==========================================================================================] - 0.0s
 </pre></div>
 </div>
 <p>Once everything is set up, running NeuroChem is very easy. We simplify need a
@@ -254,46 +259,46 @@ its progressbar to stdout.</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  5.30it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  5.32it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  5.15it/s]
-epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  5.08it/s]
-epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  5.99it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  5.73it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  5.64it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  5.64it/s]
+epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  5.68it/s]
+epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  6.64it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  5.05it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  5.04it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  4.99it/s]
-epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  4.99it/s]
-epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  5.77it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  5.69it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  5.73it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  5.70it/s]
+epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  5.71it/s]
+epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  6.68it/s]
 
 epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 3:  20%|##        | 1/5 [00:00&lt;00:00,  5.20it/s]
-epoch 3:  40%|####      | 2/5 [00:00&lt;00:00,  5.21it/s]
-epoch 3:  60%|######    | 3/5 [00:00&lt;00:00,  5.15it/s]
-epoch 3:  80%|########  | 4/5 [00:00&lt;00:00,  5.07it/s]
-epoch 3: 100%|##########| 5/5 [00:00&lt;00:00,  5.97it/s]
+epoch 3:  20%|##        | 1/5 [00:00&lt;00:00,  5.76it/s]
+epoch 3:  40%|####      | 2/5 [00:00&lt;00:00,  5.78it/s]
+epoch 3:  60%|######    | 3/5 [00:00&lt;00:00,  5.76it/s]
+epoch 3:  80%|########  | 4/5 [00:00&lt;00:00,  5.76it/s]
+epoch 3: 100%|##########| 5/5 [00:00&lt;00:00,  6.74it/s]
 
 epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 4:  20%|##        | 1/5 [00:00&lt;00:00,  5.16it/s]
-epoch 4:  40%|####      | 2/5 [00:00&lt;00:00,  5.09it/s]
-epoch 4:  60%|######    | 3/5 [00:00&lt;00:00,  5.07it/s]
-epoch 4:  80%|########  | 4/5 [00:00&lt;00:00,  5.08it/s]
-epoch 4: 100%|##########| 5/5 [00:00&lt;00:00,  5.97it/s]
+epoch 4:  20%|##        | 1/5 [00:00&lt;00:00,  5.73it/s]
+epoch 4:  40%|####      | 2/5 [00:00&lt;00:00,  5.73it/s]
+epoch 4:  60%|######    | 3/5 [00:00&lt;00:00,  5.72it/s]
+epoch 4:  80%|########  | 4/5 [00:00&lt;00:00,  5.71it/s]
+epoch 4: 100%|##########| 5/5 [00:00&lt;00:00,  6.68it/s]
 
 epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 5:  20%|##        | 1/5 [00:00&lt;00:00,  4.94it/s]
-epoch 5:  40%|####      | 2/5 [00:00&lt;00:00,  4.89it/s]
-epoch 5:  60%|######    | 3/5 [00:00&lt;00:00,  5.02it/s]
-epoch 5:  80%|########  | 4/5 [00:00&lt;00:00,  5.01it/s]
-epoch 5: 100%|##########| 5/5 [00:00&lt;00:00,  5.85it/s]
+epoch 5:  20%|##        | 1/5 [00:00&lt;00:00,  5.68it/s]
+epoch 5:  40%|####      | 2/5 [00:00&lt;00:00,  5.69it/s]
+epoch 5:  60%|######    | 3/5 [00:00&lt;00:00,  5.68it/s]
+epoch 5:  80%|########  | 4/5 [00:00&lt;00:00,  5.59it/s]
+epoch 5: 100%|##########| 5/5 [00:00&lt;00:00,  6.59it/s]
 
 epoch 6:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 6:  20%|##        | 1/5 [00:00&lt;00:00,  4.89it/s]
-epoch 6:  40%|####      | 2/5 [00:00&lt;00:00,  5.00it/s]
-epoch 6:  60%|######    | 3/5 [00:00&lt;00:00,  4.98it/s]
-epoch 6:  80%|########  | 4/5 [00:00&lt;00:00,  4.99it/s]
-epoch 6: 100%|##########| 5/5 [00:00&lt;00:00,  5.85it/s]
+epoch 6:  20%|##        | 1/5 [00:00&lt;00:00,  5.67it/s]
+epoch 6:  40%|####      | 2/5 [00:00&lt;00:00,  5.67it/s]
+epoch 6:  60%|######    | 3/5 [00:00&lt;00:00,  5.67it/s]
+epoch 6:  80%|########  | 4/5 [00:00&lt;00:00,  5.69it/s]
+epoch 6: 100%|##########| 5/5 [00:00&lt;00:00,  6.65it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -329,84 +334,84 @@ Consider using one of the following signatures instead:
   in_cutoff = (distances &lt;= cutoff).nonzero()
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  4.93it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  4.92it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  4.96it/s]
-epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  5.00it/s]
-epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  5.85it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  5.30it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  5.46it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  5.57it/s]
+epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  5.64it/s]
+epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  6.54it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  5.29it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  5.30it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  5.24it/s]
-epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  5.20it/s]
-epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  6.13it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  5.65it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  5.66it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  5.71it/s]
+epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  5.73it/s]
+epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  6.68it/s]
 
 epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 3:  20%|██        | 1/5 [00:00&lt;00:00,  5.02it/s]
-epoch 3:  40%|████      | 2/5 [00:00&lt;00:00,  5.13it/s]
-epoch 3:  60%|██████    | 3/5 [00:00&lt;00:00,  5.01it/s]
-epoch 3:  80%|████████  | 4/5 [00:00&lt;00:00,  5.02it/s]
-epoch 3: 100%|██████████| 5/5 [00:00&lt;00:00,  5.90it/s]
+epoch 3:  20%|██        | 1/5 [00:00&lt;00:00,  5.65it/s]
+epoch 3:  40%|████      | 2/5 [00:00&lt;00:00,  5.68it/s]
+epoch 3:  60%|██████    | 3/5 [00:00&lt;00:00,  5.70it/s]
+epoch 3:  80%|████████  | 4/5 [00:00&lt;00:00,  5.67it/s]
+epoch 3: 100%|██████████| 5/5 [00:00&lt;00:00,  6.65it/s]
 
 epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 4:  20%|██        | 1/5 [00:00&lt;00:00,  5.17it/s]
-epoch 4:  40%|████      | 2/5 [00:00&lt;00:00,  5.24it/s]
-epoch 4:  60%|██████    | 3/5 [00:00&lt;00:00,  5.17it/s]
-epoch 4:  80%|████████  | 4/5 [00:00&lt;00:00,  5.16it/s]
-epoch 4: 100%|██████████| 5/5 [00:00&lt;00:00,  6.05it/s]
+epoch 4:  20%|██        | 1/5 [00:00&lt;00:00,  5.64it/s]
+epoch 4:  40%|████      | 2/5 [00:00&lt;00:00,  5.57it/s]
+epoch 4:  60%|██████    | 3/5 [00:00&lt;00:00,  5.61it/s]
+epoch 4:  80%|████████  | 4/5 [00:00&lt;00:00,  5.61it/s]
+epoch 4: 100%|██████████| 5/5 [00:00&lt;00:00,  6.57it/s]
 
 epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 5:  20%|██        | 1/5 [00:00&lt;00:00,  4.96it/s]
-epoch 5:  40%|████      | 2/5 [00:00&lt;00:00,  4.95it/s]
-epoch 5:  60%|██████    | 3/5 [00:00&lt;00:00,  4.98it/s]
-epoch 5:  80%|████████  | 4/5 [00:00&lt;00:00,  5.02it/s]
-epoch 5: 100%|██████████| 5/5 [00:00&lt;00:00,  5.87it/s]
+epoch 5:  20%|██        | 1/5 [00:00&lt;00:00,  5.62it/s]
+epoch 5:  40%|████      | 2/5 [00:00&lt;00:00,  5.65it/s]
+epoch 5:  60%|██████    | 3/5 [00:00&lt;00:00,  5.20it/s]
+epoch 5:  80%|████████  | 4/5 [00:00&lt;00:00,  5.32it/s]
+epoch 5: 100%|██████████| 5/5 [00:00&lt;00:00,  6.29it/s]
 
 epoch 6:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 6:  20%|██        | 1/5 [00:00&lt;00:00,  5.33it/s]
-epoch 6:  40%|████      | 2/5 [00:00&lt;00:00,  5.40it/s]
-epoch 6:  60%|██████    | 3/5 [00:00&lt;00:00,  5.34it/s]
-epoch 6:  80%|████████  | 4/5 [00:00&lt;00:00,  5.24it/s]
-epoch 6: 100%|██████████| 5/5 [00:00&lt;00:00,  6.21it/s]
+epoch 6:  20%|██        | 1/5 [00:00&lt;00:00,  5.71it/s]
+epoch 6:  40%|████      | 2/5 [00:00&lt;00:00,  5.72it/s]
+epoch 6:  60%|██████    | 3/5 [00:00&lt;00:00,  5.59it/s]
+epoch 6:  80%|████████  | 4/5 [00:00&lt;00:00,  5.57it/s]
+epoch 6: 100%|██████████| 5/5 [00:00&lt;00:00,  6.56it/s]
 
 epoch 7:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 7:  20%|██        | 1/5 [00:00&lt;00:00,  4.96it/s]
-epoch 7:  40%|████      | 2/5 [00:00&lt;00:00,  5.04it/s]
-epoch 7:  60%|██████    | 3/5 [00:00&lt;00:00,  5.05it/s]
-epoch 7:  80%|████████  | 4/5 [00:00&lt;00:00,  5.03it/s]
-epoch 7: 100%|██████████| 5/5 [00:00&lt;00:00,  5.87it/s]
+epoch 7:  20%|██        | 1/5 [00:00&lt;00:00,  5.64it/s]
+epoch 7:  40%|████      | 2/5 [00:00&lt;00:00,  5.67it/s]
+epoch 7:  60%|██████    | 3/5 [00:00&lt;00:00,  5.68it/s]
+epoch 7:  80%|████████  | 4/5 [00:00&lt;00:00,  5.64it/s]
+epoch 7: 100%|██████████| 5/5 [00:00&lt;00:00,  6.62it/s]
 
 epoch 8:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 8:  20%|██        | 1/5 [00:00&lt;00:00,  5.13it/s]
-epoch 8:  40%|████      | 2/5 [00:00&lt;00:00,  5.30it/s]
-epoch 8:  60%|██████    | 3/5 [00:00&lt;00:00,  5.35it/s]
-epoch 8:  80%|████████  | 4/5 [00:00&lt;00:00,  5.41it/s]
-epoch 8: 100%|██████████| 5/5 [00:00&lt;00:00,  6.29it/s]
+epoch 8:  20%|██        | 1/5 [00:00&lt;00:00,  5.45it/s]
+epoch 8:  40%|████      | 2/5 [00:00&lt;00:00,  5.42it/s]
+epoch 8:  60%|██████    | 3/5 [00:00&lt;00:00,  5.50it/s]
+epoch 8:  80%|████████  | 4/5 [00:00&lt;00:00,  5.54it/s]
+epoch 8: 100%|██████████| 5/5 [00:00&lt;00:00,  6.47it/s]
 
 epoch 9:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 9:  20%|██        | 1/5 [00:00&lt;00:00,  4.91it/s]
-epoch 9:  40%|████      | 2/5 [00:00&lt;00:00,  4.98it/s]
-epoch 9:  60%|██████    | 3/5 [00:00&lt;00:00,  4.89it/s]
-epoch 9:  80%|████████  | 4/5 [00:00&lt;00:00,  4.84it/s]
-epoch 9: 100%|██████████| 5/5 [00:00&lt;00:00,  5.68it/s]
+epoch 9:  20%|██        | 1/5 [00:00&lt;00:00,  5.64it/s]
+epoch 9:  40%|████      | 2/5 [00:00&lt;00:00,  5.66it/s]
+epoch 9:  60%|██████    | 3/5 [00:00&lt;00:00,  5.65it/s]
+epoch 9:  80%|████████  | 4/5 [00:00&lt;00:00,  5.62it/s]
+epoch 9: 100%|██████████| 5/5 [00:00&lt;00:00,  6.60it/s]
 
 epoch 10:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 10:  20%|██        | 1/5 [00:00&lt;00:00,  4.64it/s]
-epoch 10:  40%|████      | 2/5 [00:00&lt;00:00,  4.73it/s]
-epoch 10:  60%|██████    | 3/5 [00:00&lt;00:00,  4.82it/s]
-epoch 10:  80%|████████  | 4/5 [00:00&lt;00:00,  4.86it/s]
-epoch 10: 100%|██████████| 5/5 [00:00&lt;00:00,  5.66it/s]
+epoch 10:  20%|██        | 1/5 [00:00&lt;00:00,  5.60it/s]
+epoch 10:  40%|████      | 2/5 [00:00&lt;00:00,  5.64it/s]
+epoch 10:  60%|██████    | 3/5 [00:00&lt;00:00,  5.61it/s]
+epoch 10:  80%|████████  | 4/5 [00:00&lt;00:00,  5.61it/s]
+epoch 10: 100%|██████████| 5/5 [00:00&lt;00:00,  6.58it/s]
 
 epoch 11:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 11:  20%|██        | 1/5 [00:00&lt;00:00,  4.97it/s]
-epoch 11:  40%|████      | 2/5 [00:00&lt;00:00,  4.99it/s]
-epoch 11:  60%|██████    | 3/5 [00:00&lt;00:00,  5.00it/s]
-epoch 11:  80%|████████  | 4/5 [00:00&lt;00:00,  4.94it/s]
-epoch 11: 100%|██████████| 5/5 [00:00&lt;00:00,  5.81it/s]
+epoch 11:  20%|██        | 1/5 [00:00&lt;00:00,  5.58it/s]
+epoch 11:  40%|████      | 2/5 [00:00&lt;00:00,  5.57it/s]
+epoch 11:  60%|██████    | 3/5 [00:00&lt;00:00,  5.56it/s]
+epoch 11:  80%|████████  | 4/5 [00:00&lt;00:00,  5.62it/s]
+epoch 11: 100%|██████████| 5/5 [00:00&lt;00:00,  6.55it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  25.774 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  23.116 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
@@ -421,37 +426,29 @@ epoch 11: 100%|██████████| 5/5 [00:00&lt;00:00,  5.81it/s]
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../api.html" class="btn btn-neutral float-right" title="TorchANI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="nnp_training_force.html" class="btn btn-neutral float-left" title="Train Neural Network Potential To Both Energies and Forces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../api.html" class="btn btn-neutral float-right" title="TorchANI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nnp_training_force.html" class="btn btn-neutral float-left" title="Train Neural Network Potential To Both Energies and Forces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2018, Roitberg Group
+        &#169; Copyright 2018, Roitberg Group.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
