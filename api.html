@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>TorchANI &mdash; TorchANI 2.3.dev47+g269344b documentation</title>
+  <title>TorchANI &mdash; TorchANI 2.3.dev48+gefae6d9 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.3.dev47+g269344b
+                2.3.dev48+gefae6d9
               </div>
             
           
@@ -467,8 +467,10 @@ atom types.</p>
 <p>Tools for loading, shuffling, and batching ANI datasets</p>
 <p>The <cite>torchani.data.load(path)</cite> creates an iterable of raw data,
 where species are strings, and coordinates are numpy ndarrays.</p>
-<p>You can transform these iterable by using transformations.
-To do transformation, just do <cite>it.transformation_name()</cite>.</p>
+<p>You can transform this iterable by using transformations.
+To do a transformation, call <cite>it.transformation_name()</cite>. This
+will return an iterable that may be cached depending on the specific
+transformation.</p>
 <p>Available transformations are listed below:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -495,35 +497,48 @@ specified by species_order. By default the function orders by atomic
 number if no extra argument is provided, but a specific order may be requested.</dd>
 </dl>
 </li>
-<li><cite>remove_outliers</cite></li>
-<li><cite>shuffle</cite></li>
-<li><cite>cache</cite> cache the result of previous transformations.</li>
+<li><cite>remove_outliers</cite> removes some outlier energies from the dataset if present.</li>
 <li><dl class="first docutils">
-<dt><cite>collate</cite> pad the dataset, convert it to tensor, and stack them</dt><dd>together to get a batch. <cite>collate</cite> uses a default padding dictionary
-<code class="docutils literal notranslate"><span class="pre">{'species':</span> <span class="pre">-1,</span> <span class="pre">'coordinates':</span> <span class="pre">0.0,</span> <span class="pre">'forces':</span> <span class="pre">0.0,</span> <span class="pre">'energies':</span> <span class="pre">0.0}</span></code> for
-padding, but a custom padding dictionary can be passed as an optional
-parameter, which overrides this default padding.</dd>
+<dt><cite>shuffle</cite> shuffles the provided dataset. Note that if the dataset is</dt><dd>not cached (i.e. it lives in the disk and not in memory) then this method
+will cache it before shuffling. This may take time and memory depending on
+the dataset size. This method may be used before splitting into validation/training
+shuffle all molecules in the dataset, and ensure a uniform sampling from
+the initial dataset, and it can also be used during training on a cached
+dataset of batches to shuffle the batches.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><cite>pin_memory</cite> copy the tensor to pinned memory so that later transfer</dt><dd>to cuda could be faster.</dd>
+<dt><cite>cache</cite> cache the result of previous transformations.</dt><dd>If the input is already cached this does nothing.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>collate</cite> creates batches and pads the atoms of all molecules in each batch</dt><dd>with dummy atoms, then converts each batch to tensor. <cite>collate</cite> uses a
+default padding dictionary:
+<code class="docutils literal notranslate"><span class="pre">{'species':</span> <span class="pre">-1,</span> <span class="pre">'coordinates':</span> <span class="pre">0.0,</span> <span class="pre">'forces':</span> <span class="pre">0.0,</span> <span class="pre">'energies':</span> <span class="pre">0.0}</span></code> for
+padding, but a custom padding dictionary can be passed as an optional
+parameter, which overrides this default padding. Note that this function
+returns a generator, it doesn’t cache the result in memory.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>pin_memory</cite> copies the tensor to pinned (page-locked) memory so that later transfer</dt><dd>to cuda devices can be done faster.</dd>
 </dl>
 </li>
 </ul>
+<p>you can also use <cite>split</cite> to split the iterable to pieces. use <cite>split</cite> as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ratio1</span><span class="p">,</span> <span class="n">ratio2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where None in the end indicate that we want to use all of the rest.</p>
 <p>Note that orderings used in <a class="reference internal" href="#torchani.utils.ChemicalSymbolsToInts" title="torchani.utils.ChemicalSymbolsToInts"><code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.utils.ChemicalSymbolsToInts</span></code></a> and
 <code class="xref py py-class docutils literal notranslate"><span class="pre">torchani.nn.SpeciesConverter</span></code> should be consistent with orderings used
 in <cite>species_to_indices</cite> and <cite>subtract_self_energies</cite>. To prevent confusion it
 is recommended that arguments to intialize converters and arguments to these
 functions all order elements <em>by their atomic number</em> (e. g. if you are working
 with hydrogen, nitrogen and bromine always use [‘H’, ‘N’, ‘Br’] and never [‘N’,
-‘H’, ‘Br’] or other variations).  It is possible to specify a different custom
+‘H’, ‘Br’] or other variations). It is possible to specify a different custom
 ordering, mainly due to backwards compatibility and to fully custom atom types,
 but doing so is NOT recommended, since it is very error prone.</p>
-<p>you can also use <cite>split</cite> to split the iterable to pieces. use <cite>split</cite> as:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">it</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ratio1</span><span class="p">,</span> <span class="n">ratio2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>where the None in the end indicate that we want to use all of the the rest</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">energy_shifter</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">EnergyShifter</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dspath</span><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">()</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
@@ -932,7 +947,7 @@ different units are provided.</p>
 <dl class="py function">
 <dt id="torchani.units.hartree2kjoulemol">
 <code class="descclassname"><span class="pre">torchani.units.</span></code><code class="descname"><span class="pre">hartree2kjoulemol</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torchani/units.html#hartree2kjoulemol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#torchani.units.hartree2kjoulemol" title="Permalink to this definition">¶</a></dt>
-<dd><p>&lt;function hartree2kjoulemol at 0x7fa4b3f5c8b0&gt;</p>
+<dd><p>&lt;function hartree2kjoulemol at 0x7fad509ae8b0&gt;</p>
 <p>1 Hartree = 2625.4996387552483 kJ/mol</p>
 </dd></dl>
 
