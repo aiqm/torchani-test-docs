@@ -1,6 +1,7 @@
 #include <thrust/equal.h>
 #include <torch/extension.h>
 #include <cub/cub.cuh>
+#include <iostream>
 #include <vector>
 
 #include <ATen/Context.h>
@@ -10,6 +11,7 @@
 
 #define PI 3.141592653589793
 using torch::Tensor;
+using torch::autograd::AutogradContext;
 using torch::autograd::tensor_list;
 
 template <typename DataT, typename IndexT = int>
@@ -1120,6 +1122,93 @@ Tensor cuaev_backward(
   return grad_coord;
 }
 
+class CuaevDoubleAutograd : public torch::autograd::Function<CuaevDoubleAutograd> {
+ public:
+  static Tensor forward(AutogradContext* ctx, Tensor grad_e_aev, AutogradContext* prectx) {
+    auto saved = prectx->get_saved_variables();
+    auto coordinates_t = saved[0], species_t = saved[1];
+    auto tensor_Rij = saved[2], tensor_radialRij = saved[3], tensor_angularRij = saved[4];
+    auto EtaR_t = saved[5], ShfR_t = saved[6], EtaA_t = saved[7], Zeta_t = saved[8], ShfA_t = saved[9],
+         ShfZ_t = saved[10];
+    auto tensor_centralAtom = saved[11], tensor_numPairsPerCenterAtom = saved[12],
+         tensor_centerAtomStartIdx = saved[13];
+    AEVScalarParams<float> aev_params(prectx->saved_data["aev_params"]);
+    c10::List<int64_t> int_list = prectx->saved_data["int_list"].toIntList();
+    int total_natom_pairs = int_list[0], nRadialRij = int_list[1], nAngularRij = int_list[2];
+    int maxnbrs_per_atom_aligned = int_list[3], angular_length_aligned = int_list[4];
+    int ncenter_atoms = int_list[5];
+    std::cout << "DoubleAutograd Forward 1" << '\n';
+
+    if (grad_e_aev.requires_grad()) {
+      std::cout << "-----DoubleAutograd Forward 2" << '\n';
+      ctx->save_for_backward({coordinates_t,
+                              species_t,
+                              tensor_Rij,
+                              tensor_radialRij,
+                              tensor_angularRij,
+                              EtaR_t,
+                              ShfR_t,
+                              EtaA_t,
+                              Zeta_t,
+                              ShfA_t,
+                              ShfZ_t,
+                              tensor_centralAtom,
+                              tensor_numPairsPerCenterAtom,
+                              tensor_centerAtomStartIdx});
+      ctx->saved_data["aev_params"] = aev_params;
+      ctx->saved_data["int_list"] = c10::List<int64_t>{
+          total_natom_pairs, nRadialRij, nAngularRij, maxnbrs_per_atom_aligned, angular_length_aligned, ncenter_atoms};
+    }
+
+    Tensor grad_coord = cuaev_backward(
+        grad_e_aev,
+        coordinates_t,
+        species_t,
+        aev_params,
+        EtaR_t,
+        ShfR_t,
+        EtaA_t,
+        Zeta_t,
+        ShfA_t,
+        ShfZ_t,
+        tensor_Rij,
+        total_natom_pairs,
+        tensor_radialRij,
+        nRadialRij,
+        tensor_angularRij,
+        nAngularRij,
+        tensor_centralAtom,
+        tensor_numPairsPerCenterAtom,
+        tensor_centerAtomStartIdx,
+        maxnbrs_per_atom_aligned,
+        angular_length_aligned,
+        ncenter_atoms);
+    std::cout << "DoubleAutograd Forward 3" << '\n';
+    return grad_coord;
+  }
+
+  static tensor_list backward(AutogradContext* ctx, tensor_list grad_outputs) {
+    std::cout << "DoubleAutograd Backward 1" << '\n';
+    Tensor grad_force = grad_outputs[0];
+    auto saved = ctx->get_saved_variables();
+    auto coordinates_t = saved[0], species_t = saved[1];
+    auto tensor_Rij = saved[2], tensor_radialRij = saved[3], tensor_angularRij = saved[4];
+    auto EtaR_t = saved[5], ShfR_t = saved[6], EtaA_t = saved[7], Zeta_t = saved[8], ShfA_t = saved[9],
+         ShfZ_t = saved[10];
+    auto tensor_centralAtom = saved[11], tensor_numPairsPerCenterAtom = saved[12],
+         tensor_centerAtomStartIdx = saved[13];
+    AEVScalarParams<float> aev_params(ctx->saved_data["aev_params"]);
+    c10::List<int64_t> int_list = ctx->saved_data["int_list"].toIntList();
+    int total_natom_pairs = int_list[0], nRadialRij = int_list[1], nAngularRij = int_list[2];
+    int maxnbrs_per_atom_aligned = int_list[3], angular_length_aligned = int_list[4];
+    int ncenter_atoms = int_list[5];
+    std::cout << "DoubleAutograd Backward 2" << '\n';
+    std::cout << grad_force.size(0) << ' ' << grad_force.size(1) << ' ' << grad_force.size(2) << '\n';
+
+    return {torch::Tensor(), torch::Tensor()};
+  }
+};
+
 #define AEV_INPUT                                                                                                   \
   const Tensor &coordinates_t, const Tensor &species_t, double Rcr_, double Rca_, const Tensor &EtaR_t,             \
       const Tensor &ShfR_t, const Tensor &EtaA_t, const Tensor &Zeta_t, const Tensor &ShfA_t, const Tensor &ShfZ_t, \
@@ -1133,7 +1222,7 @@ Tensor cuaev_cuda(AEV_INPUT) {
 
 class CuaevAutograd : public torch::autograd::Function<CuaevAutograd> {
  public:
-  static Tensor forward(torch::autograd::AutogradContext* ctx, AEV_INPUT) {
+  static Tensor forward(AutogradContext* ctx, AEV_INPUT) {
     at::AutoNonVariableTypeMode g;
     Result res = cuaev_forward<float>(
         coordinates_t, species_t, Rcr_, Rca_, EtaR_t, ShfR_t, EtaA_t, Zeta_t, ShfA_t, ShfZ_t, num_species_);
@@ -1163,43 +1252,8 @@ class CuaevAutograd : public torch::autograd::Function<CuaevAutograd> {
     return res.aev_t;
   }
 
-  static tensor_list backward(torch::autograd::AutogradContext* ctx, tensor_list grad_outputs) {
-    auto saved = ctx->get_saved_variables();
-    auto coordinates_t = saved[0], species_t = saved[1];
-    auto tensor_Rij = saved[2], tensor_radialRij = saved[3], tensor_angularRij = saved[4];
-    auto EtaR_t = saved[5], ShfR_t = saved[6], EtaA_t = saved[7], Zeta_t = saved[8], ShfA_t = saved[9],
-         ShfZ_t = saved[10];
-    auto tensor_centralAtom = saved[11], tensor_numPairsPerCenterAtom = saved[12],
-         tensor_centerAtomStartIdx = saved[13];
-    AEVScalarParams<float> aev_params(ctx->saved_data["aev_params"]);
-    c10::List<int64_t> int_list = ctx->saved_data["int_list"].toIntList();
-    int total_natom_pairs = int_list[0], nRadialRij = int_list[1], nAngularRij = int_list[2];
-    int maxnbrs_per_atom_aligned = int_list[3], angular_length_aligned = int_list[4];
-    int ncenter_atoms = int_list[5];
-
-    Tensor grad_coord = cuaev_backward(
-        grad_outputs[0],
-        coordinates_t,
-        species_t,
-        aev_params,
-        EtaR_t,
-        ShfR_t,
-        EtaA_t,
-        Zeta_t,
-        ShfA_t,
-        ShfZ_t,
-        tensor_Rij,
-        total_natom_pairs,
-        tensor_radialRij,
-        nRadialRij,
-        tensor_angularRij,
-        nAngularRij,
-        tensor_centralAtom,
-        tensor_numPairsPerCenterAtom,
-        tensor_centerAtomStartIdx,
-        maxnbrs_per_atom_aligned,
-        angular_length_aligned,
-        ncenter_atoms);
+  static tensor_list backward(AutogradContext* ctx, tensor_list grad_outputs) {
+    Tensor grad_coord = CuaevDoubleAutograd::apply(grad_outputs[0], ctx);
 
     return {
         grad_coord, Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor(), Tensor()};
