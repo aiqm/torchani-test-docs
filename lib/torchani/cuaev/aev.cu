@@ -13,7 +13,7 @@ using torch::Tensor;
 using torch::autograd::AutogradContext;
 using torch::autograd::tensor_list;
 
-// [Note: naming convention for backward and double backward]
+// [Computation graph for forward, backward, and double backward]
 //
 //
 // [Forward]
@@ -42,23 +42,26 @@ using torch::autograd::tensor_list;
 //
 //
 // [Backward]
-//            dout           v
-//             |             v
-//            ...            v
-//             |             v
-//          denergy          v
-//          /      \         v
-//        daev    dparams    v
-//       /   \               v
-// dradial  dangular         v
-//    /     /  |             v
-// ddist---/  /              v
-//    \     /                v
-//     dcoord                v
-//       |                   v
-//      ...                  v
-//       |                   v
-//      out2                 v
+//                   dout                     v
+//                    |                       v
+//                   ...                      v
+//                    |                       v
+//       aev params denergy  aev params       v
+//         \   |   /      \   |   /           v
+//          d a e v        dparams            v
+//          /      \____                      v
+// dist dradial         \                     v
+//   \    /              \                    v
+//   ddist dist coord   dangular dist coord   v
+//      \   /    /           \    |    /      v
+//       \_/____/             \___|___/       v
+//        |    __________________/            v
+//        |   /                               v
+//      dcoord                                v
+//        |                                   v
+//       ...                                  v
+//        |                                   v
+//       out2                                 v
 //
 // Functional relationship:
 // dout <-- input
@@ -74,25 +77,25 @@ using torch::autograd::tensor_list;
 // out2(dcoord, ...)  <-- output
 //
 //
-// [Double backward]
-//        ddout            ^
-//          |              ^
-//         ...             ^
-//          |              ^
-//       ddenergy          ^
-//       /      \          ^
-//     ddaev   ddparams    ^
-//    /     |              ^
-// dddist   |              ^
-//    \     |              ^
-//    ddcoord              ^
-//       |                 ^
-//      ...                ^
-//       |                 ^
-//     dout2               ^
+// [Double backward w.r.t params (i.e. force training)]
+//      aev [params] denergy                   ^
+//         \  |     /                          ^
+//          [ddaev]                            ^
+//          /      \_____                      ^
+// dist [ddradial]        \                    ^
+//   \    /                \                   ^
+//  [dddist] dist coord [ddangular] dist coord ^
+//       \   /    /           \      |    /    ^
+//        \_/____/             \_____|___/     ^
+//         |    _____________________/         ^
+//         |   /                               ^
+//      [ddcoord]                              ^
+//         |                                   ^
+//        ...                                  ^
+//         |                                   ^
+//       [dout2]                               ^
 //
 // Functional relationship:
-// TODO
 //
 
 template <typename DataT, typename IndexT = int>
