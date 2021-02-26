@@ -529,8 +529,8 @@ You can also create an ASE calculator using the ensemble or single model:
 
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7f66a7880910>
-    <torchani.ase.Calculator object at 0x7f66a7880910>
+    <torchani.ase.Calculator object at 0x7f694d2a6760>
+    <torchani.ase.Calculator object at 0x7f694d2a6760>
 
 
 
@@ -583,7 +583,7 @@ Now let's compute energies using the ensemble directly:
 
  .. code-block:: none
 
-    Energy: -40.459022101999686
+    Energy: -40.45902210386233
     Force: tensor([[ 0.031, -0.132, -0.053],
             [-0.129,  0.164, -0.077],
             [ 0.086, -0.043,  0.041],
@@ -615,12 +615,12 @@ And using the ASE interface of the ensemble:
 
  .. code-block:: none
 
-    Energy: -40.459022101999686
-    Force: [[ 0.03062524 -0.13160463 -0.05265211]
+    Energy: -40.45902210386233
+    Force: [[ 0.03062525 -0.13160463 -0.05265211]
      [-0.12927505  0.16388637 -0.07736803]
-     [ 0.08563147 -0.04288925  0.04082095]
-     [ 0.02681219  0.00601404  0.03809874]
-     [-0.01379384  0.00459347  0.05110046]]
+     [ 0.08563146 -0.04288925  0.04082095]
+     [ 0.02681219  0.00601403  0.03809873]
+     [-0.01379385  0.00459347  0.05110047]]
 
 
 
@@ -652,18 +652,18 @@ We can do the same thing with the single model:
 
  .. code-block:: none
 
-    Energy: -40.46280036406355
+    Energy: -40.4628003622009
     Force: tensor([[ 0.056, -0.127, -0.054],
             [-0.140,  0.155, -0.075],
             [ 0.075, -0.037,  0.039],
             [ 0.024,  0.002,  0.033],
             [-0.016,  0.007,  0.057]])
-    Energy: -40.46280036406355
+    Energy: -40.4628003622009
     Force: [[ 0.05614966 -0.1269716  -0.05413404]
-     [-0.14007531  0.15523373 -0.07533836]
-     [ 0.0753209  -0.0374411   0.03949668]
-     [ 0.024231    0.00235088  0.03344231]
-     [-0.01562626  0.00682809  0.05653341]]
+     [-0.14007528  0.15523373 -0.07533836]
+     [ 0.0753209  -0.03744109  0.03949669]
+     [ 0.02423098  0.00235086  0.03344228]
+     [-0.01562626  0.00682809  0.05653342]]
 
 
 
@@ -671,7 +671,7 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.269 seconds)
+   **Total running time of the script:** ( 0 minutes  0.965 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
