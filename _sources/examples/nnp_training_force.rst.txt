@@ -552,10 +552,10 @@ In the training loop, we need to compute force, and loss for forces
  .. code-block:: none
 
     training starting from epoch 1
-    RMSE: 111.49084991895235 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:03<00:09,  3.00s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.85s/it]    epoch 1:  75%|#######5  | 3/4 [00:08<00:02,  2.76s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.30s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.50s/it]
-    RMSE: 160.8321920486552 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:08,  2.69s/it]    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.68s/it]    epoch 2:  75%|#######5  | 3/4 [00:08<00:02,  2.69s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.25s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.41s/it]
+    RMSE: 113.48099948604137 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:08,  2.95s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.86s/it]    epoch 1:  75%|#######5  | 3/4 [00:08<00:02,  2.82s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.34s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.53s/it]
+    RMSE: 164.45628073438127 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:07,  2.62s/it]    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.68s/it]    epoch 2:  75%|#######5  | 3/4 [00:08<00:02,  2.67s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.26s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.41s/it]
 
 
 
@@ -563,7 +563,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  21.167 seconds)
+   **Total running time of the script:** ( 0 minutes  21.270 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
