@@ -98,7 +98,7 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev56+g2c4f0a3-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev57+g33cb64c-py3.8.egg/torchani/resources/
     Downloading ANI model parameters ...
 
 
@@ -162,7 +162,7 @@ Now let's minimize the structure:
     /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
       return Variable._execution_engine.run_backward(
           Step     Time          Energy         fmax
-    BFGS:    0 19:38:51    -8311.226180        0.0000
+    BFGS:    0 19:41:12    -8311.226174        0.0000
 
 
 
@@ -244,16 +244,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.012eV (T= 95K)  Etot = -1038.866eV
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.026eV (T=202K)  Etot = -1038.850eV
-    Energy per atom: Epot = -1038.883eV  Ekin = 0.031eV (T=243K)  Etot = -1038.852eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.020eV (T=158K)  Etot = -1038.844eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.026eV (T=204K)  Etot = -1038.837eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.021eV (T=163K)  Etot = -1038.842eV
-    Energy per atom: Epot = -1038.869eV  Ekin = 0.029eV (T=221K)  Etot = -1038.841eV
-    Energy per atom: Epot = -1038.863eV  Ekin = 0.045eV (T=351K)  Etot = -1038.817eV
-    Energy per atom: Epot = -1038.872eV  Ekin = 0.031eV (T=241K)  Etot = -1038.841eV
-    Energy per atom: Epot = -1038.874eV  Ekin = 0.017eV (T=128K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.877eV  Ekin = 0.019eV (T=146K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.870eV  Ekin = 0.038eV (T=290K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.880eV  Ekin = 0.023eV (T=176K)  Etot = -1038.857eV
+    Energy per atom: Epot = -1038.882eV  Ekin = 0.035eV (T=271K)  Etot = -1038.846eV
+    Energy per atom: Epot = -1038.882eV  Ekin = 0.042eV (T=322K)  Etot = -1038.841eV
+    Energy per atom: Epot = -1038.847eV  Ekin = 0.017eV (T=133K)  Etot = -1038.829eV
+    Energy per atom: Epot = -1038.843eV  Ekin = 0.049eV (T=376K)  Etot = -1038.795eV
+    Energy per atom: Epot = -1038.859eV  Ekin = 0.054eV (T=417K)  Etot = -1038.806eV
+    Energy per atom: Epot = -1038.863eV  Ekin = 0.046eV (T=356K)  Etot = -1038.817eV
+    Energy per atom: Epot = -1038.840eV  Ekin = 0.015eV (T=114K)  Etot = -1038.826eV
 
     True
 
@@ -262,7 +262,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.462 seconds)
+   **Total running time of the script:** ( 0 minutes  13.562 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
