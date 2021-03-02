@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev64+gad27cbf documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev66+g52c8fb7 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.3.dev64+gad27cbf
+                2.3.dev66+g52c8fb7
               </div>
             
           
@@ -507,15 +507,6 @@
     <span class="n">angular_aev</span> <span class="o">=</span> <span class="n">angular_aev</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_molecules</span><span class="p">,</span> <span class="n">num_atoms</span><span class="p">,</span> <span class="n">angular_length</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">radial_aev</span><span class="p">,</span> <span class="n">angular_aev</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-
-<span class="c1"># def compute_cuaev(species: Tensor, coordinates: Tensor, triu_index: Tensor,</span>
-<span class="c1">#                   constants: Tuple[float, Tensor, Tensor, float, Tensor, Tensor, Tensor, Tensor],</span>
-<span class="c1">#                   num_species: int, cell_shifts: Optional[Tuple[Tensor, Tensor]]) -&gt; Tensor:</span>
-<span class="c1">#     Rcr, EtaR, ShfR, Rca, ShfZ, EtaA, Zeta, ShfA = constants</span>
-
-<span class="c1">#     assert cell_shifts is None, &quot;Current implementation of cuaev does not support pbc.&quot;</span>
-<span class="c1">#     species_int = species.to(torch.int32)</span>
-<span class="c1">#     return torch.ops.cuaev.cuComputeAEV(coordinates, species_int, Rcr, Rca, EtaR.flatten(), ShfR.flatten(), EtaA.flatten(), Zeta.flatten(), ShfA.flatten(), ShfZ.flatten(), num_species)</span>
 
 <span class="k">def</span> <span class="nf">compute_cuaev</span><span class="p">(</span><span class="n">species</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">cuaev_computer</span><span class="p">:</span> <span class="n">CuaevComputerType</span><span class="p">):</span>
     <span class="n">species_int</span> <span class="o">=</span> <span class="n">species</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
