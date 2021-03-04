@@ -323,12 +323,18 @@ def compute_aev(species: Tensor, coordinates: Tensor, triu_index: Tensor,
     return torch.cat([radial_aev, angular_aev], dim=-1)
 
 
-def jit_unused_if_no_cuaev(condition=has_cuaev):
-    def decorator(func):
-        if not condition:
-            return torch.jit.unused(func)
-        return func
-    return decorator
+def compute_cuaev(species: Tensor, coordinates: Tensor, triu_index: Tensor,
+                  constants: Tuple[float, Tensor, Tensor, float, Tensor, Tensor, Tensor, Tensor],
+                  num_species: int, cell_shifts: Optional[Tuple[Tensor, Tensor]]) -> Tensor:
+    Rcr, EtaR, ShfR, Rca, ShfZ, EtaA, Zeta, ShfA = constants
+
+    assert cell_shifts is None, "Current implementation of cuaev does not support pbc."
+    species_int = species.to(torch.int32)
+    return torch.ops.cuaev.cuComputeAEV(coordinates, species_int, Rcr, Rca, EtaR.flatten(), ShfR.flatten(), EtaA.flatten(), Zeta.flatten(), ShfA.flatten(), ShfZ.flatten(), num_species)
+
+
+if not has_cuaev:
+    compute_cuaev = torch.jit.unused(compute_cuaev)
 
 
 class AEVComputer(torch.nn.Module):
@@ -415,22 +421,6 @@ class AEVComputer(torch.nn.Module):
         self.register_buffer('default_cell', default_cell)
         self.register_buffer('default_shifts', default_shifts)
 
-        self.cuaev_computer = None
-        # Should create only when use_cuda_extension is True.
-        # However jit needs to know cuaev_computer's Type even when use_cuda_extension is False, because it is enabled when cuaev is available
-        if has_cuaev:
-            self.init_cuaev_computer()
-
-    @jit_unused_if_no_cuaev()
-    def init_cuaev_computer(self):
-        self.cuaev_computer = torch.classes.cuaev.CuaevComputer(self.Rcr, self.Rca, self.EtaR.flatten(), self.ShfR.flatten(), self.EtaA.flatten(), self.Zeta.flatten(), self.ShfA.flatten(), self.ShfZ.flatten(), self.num_species)
-
-    @jit_unused_if_no_cuaev()
-    def compute_cuaev(self, species, coordinates):
-        species_int = species.to(torch.int32)
-        aev = torch.ops.cuaev.run(coordinates, species_int, self.cuaev_computer)
-        return aev
-
     @classmethod
     def cover_linearly(cls, radial_cutoff: float, angular_cutoff: float,
                        radial_eta: float, angular_eta: float,
@@ -515,11 +505,8 @@ class AEVComputer(torch.nn.Module):
         assert coordinates.shape[-1] == 3
 
         if self.use_cuda_extension:
-            assert (cell is None and pbc is None), "cuaev currently does not support PBC"
-            # if use_cuda_extension is enabled after initialization
-            if self.cuaev_computer is None:
-                self.init_cuaev_computer()
-            aev = self.compute_cuaev(species, coordinates)
+            assert (cell is None and pbc is None), "cuaev does not support PBC"
+            aev = compute_cuaev(species, coordinates, self.triu_index, self.constants(), self.num_species, None)
             return SpeciesAEV(species, aev)
 
         if cell is None and pbc is None:
