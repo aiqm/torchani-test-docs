@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev77+g5ee8833 documentation</title>
+  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev78+g570b176 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.3.dev77+g5ee8833
+                2.3.dev78+g570b176
               </div>
             
           
@@ -216,7 +216,7 @@ calculator.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev77+g5ee8833-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev78+g570b176-py3.8.egg/torchani/resources/
 Downloading ANI model parameters ...
 </pre></div>
 </div>
@@ -247,7 +247,7 @@ large for structure minimization. If you insist on using
 /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
   return Variable._execution_engine.run_backward(
       Step     Time          Energy         fmax
-BFGS:    0 04:53:11    -8311.226180        0.0000
+BFGS:    0 04:56:32    -8311.226174        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -281,21 +281,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.895eV  Ekin = 0.019eV (T=151K)  Etot = -1038.876eV
-Energy per atom: Epot = -1038.881eV  Ekin = 0.033eV (T=254K)  Etot = -1038.848eV
-Energy per atom: Epot = -1038.852eV  Ekin = 0.042eV (T=327K)  Etot = -1038.809eV
-Energy per atom: Epot = -1038.879eV  Ekin = 0.032eV (T=251K)  Etot = -1038.846eV
-Energy per atom: Epot = -1038.875eV  Ekin = 0.056eV (T=431K)  Etot = -1038.819eV
-Energy per atom: Epot = -1038.875eV  Ekin = 0.031eV (T=238K)  Etot = -1038.845eV
-Energy per atom: Epot = -1038.866eV  Ekin = 0.022eV (T=173K)  Etot = -1038.844eV
-Energy per atom: Epot = -1038.872eV  Ekin = 0.028eV (T=216K)  Etot = -1038.844eV
-Energy per atom: Epot = -1038.878eV  Ekin = 0.026eV (T=200K)  Etot = -1038.852eV
-Energy per atom: Epot = -1038.852eV  Ekin = 0.016eV (T=123K)  Etot = -1038.836eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.019eV (T=147K)  Etot = -1038.852eV
+Energy per atom: Epot = -1038.886eV  Ekin = 0.026eV (T=203K)  Etot = -1038.860eV
+Energy per atom: Epot = -1038.875eV  Ekin = 0.026eV (T=203K)  Etot = -1038.848eV
+Energy per atom: Epot = -1038.859eV  Ekin = 0.026eV (T=202K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.878eV  Ekin = 0.022eV (T=173K)  Etot = -1038.856eV
+Energy per atom: Epot = -1038.873eV  Ekin = 0.051eV (T=398K)  Etot = -1038.822eV
+Energy per atom: Epot = -1038.852eV  Ekin = 0.040eV (T=307K)  Etot = -1038.813eV
+Energy per atom: Epot = -1038.841eV  Ekin = 0.019eV (T=143K)  Etot = -1038.823eV
+Energy per atom: Epot = -1038.854eV  Ekin = 0.029eV (T=228K)  Etot = -1038.825eV
+Energy per atom: Epot = -1038.868eV  Ekin = 0.022eV (T=171K)  Etot = -1038.846eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.194 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.102 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
