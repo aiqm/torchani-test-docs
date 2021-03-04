@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev85+gc062254 documentation</title>
+  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev86+g3503971 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.3.dev85+gc062254
+                2.3.dev86+g3503971
               </div>
             
           
@@ -216,7 +216,7 @@ calculator.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev85+gc062254-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torchani-2.3.dev86+g3503971-py3.8.egg/torchani/resources/
 Downloading ANI model parameters ...
 </pre></div>
 </div>
@@ -244,10 +244,10 @@ large for structure minimization. If you insist on using
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
-/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
+/opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
   return Variable._execution_engine.run_backward(
       Step     Time          Energy         fmax
-BFGS:    0 05:37:20    -8311.226174        0.0000
+BFGS:    0 07:28:23    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -267,7 +267,7 @@ coefficient to 0.02 atomic units.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the &#39;temperature_K&#39; argument
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the &#39;temperature_K&#39; argument
   warnings.warn(FutureWarning(w))
 </pre></div>
 </div>
@@ -281,21 +281,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.878eV  Ekin = 0.019eV (T=144K)  Etot = -1038.859eV
-Energy per atom: Epot = -1038.857eV  Ekin = 0.039eV (T=301K)  Etot = -1038.818eV
-Energy per atom: Epot = -1038.849eV  Ekin = 0.028eV (T=220K)  Etot = -1038.820eV
-Energy per atom: Epot = -1038.872eV  Ekin = 0.045eV (T=349K)  Etot = -1038.827eV
-Energy per atom: Epot = -1038.861eV  Ekin = 0.021eV (T=165K)  Etot = -1038.840eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.030eV (T=234K)  Etot = -1038.839eV
-Energy per atom: Epot = -1038.886eV  Ekin = 0.036eV (T=280K)  Etot = -1038.849eV
-Energy per atom: Epot = -1038.865eV  Ekin = 0.037eV (T=286K)  Etot = -1038.828eV
-Energy per atom: Epot = -1038.846eV  Ekin = 0.035eV (T=271K)  Etot = -1038.810eV
-Energy per atom: Epot = -1038.847eV  Ekin = 0.027eV (T=205K)  Etot = -1038.820eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.022eV (T=170K)  Etot = -1038.861eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.032eV (T=245K)  Etot = -1038.851eV
+Energy per atom: Epot = -1038.862eV  Ekin = 0.030eV (T=231K)  Etot = -1038.832eV
+Energy per atom: Epot = -1038.848eV  Ekin = 0.015eV (T=115K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.855eV  Ekin = 0.023eV (T=181K)  Etot = -1038.831eV
+Energy per atom: Epot = -1038.886eV  Ekin = 0.030eV (T=235K)  Etot = -1038.855eV
+Energy per atom: Epot = -1038.837eV  Ekin = 0.030eV (T=232K)  Etot = -1038.807eV
+Energy per atom: Epot = -1038.866eV  Ekin = 0.038eV (T=290K)  Etot = -1038.828eV
+Energy per atom: Epot = -1038.872eV  Ekin = 0.044eV (T=340K)  Etot = -1038.828eV
+Energy per atom: Epot = -1038.849eV  Ekin = 0.034eV (T=260K)  Etot = -1038.815eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.817 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.683 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>

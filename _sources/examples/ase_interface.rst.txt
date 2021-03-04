@@ -98,7 +98,7 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torchani-2.3.dev85+gc062254-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torchani-2.3.dev86+g3503971-py3.8.egg/torchani/resources/
     Downloading ANI model parameters ...
 
 
@@ -159,10 +159,10 @@ Now let's minimize the structure:
  .. code-block:: none
 
     Begin minimizing...
-    /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
+    /opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torch/autograd/__init__.py:223: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:104.)
       return Variable._execution_engine.run_backward(
           Step     Time          Energy         fmax
-    BFGS:    0 05:37:20    -8311.226174        0.0000
+    BFGS:    0 07:28:23    -8311.226180        0.0000
 
 
 
@@ -214,7 +214,7 @@ coefficient to 0.02 atomic units.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.7/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the 'temperature_K' argument
+    /opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the 'temperature_K' argument
       warnings.warn(FutureWarning(w))
 
 
@@ -244,16 +244,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.019eV (T=144K)  Etot = -1038.859eV
-    Energy per atom: Epot = -1038.857eV  Ekin = 0.039eV (T=301K)  Etot = -1038.818eV
-    Energy per atom: Epot = -1038.849eV  Ekin = 0.028eV (T=220K)  Etot = -1038.820eV
-    Energy per atom: Epot = -1038.872eV  Ekin = 0.045eV (T=349K)  Etot = -1038.827eV
-    Energy per atom: Epot = -1038.861eV  Ekin = 0.021eV (T=165K)  Etot = -1038.840eV
-    Energy per atom: Epot = -1038.870eV  Ekin = 0.030eV (T=234K)  Etot = -1038.839eV
-    Energy per atom: Epot = -1038.886eV  Ekin = 0.036eV (T=280K)  Etot = -1038.849eV
-    Energy per atom: Epot = -1038.865eV  Ekin = 0.037eV (T=286K)  Etot = -1038.828eV
-    Energy per atom: Epot = -1038.846eV  Ekin = 0.035eV (T=271K)  Etot = -1038.810eV
-    Energy per atom: Epot = -1038.847eV  Ekin = 0.027eV (T=205K)  Etot = -1038.820eV
+    Energy per atom: Epot = -1038.883eV  Ekin = 0.022eV (T=170K)  Etot = -1038.861eV
+    Energy per atom: Epot = -1038.883eV  Ekin = 0.032eV (T=245K)  Etot = -1038.851eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.030eV (T=231K)  Etot = -1038.832eV
+    Energy per atom: Epot = -1038.848eV  Ekin = 0.015eV (T=115K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.855eV  Ekin = 0.023eV (T=181K)  Etot = -1038.831eV
+    Energy per atom: Epot = -1038.886eV  Ekin = 0.030eV (T=235K)  Etot = -1038.855eV
+    Energy per atom: Epot = -1038.837eV  Ekin = 0.030eV (T=232K)  Etot = -1038.807eV
+    Energy per atom: Epot = -1038.866eV  Ekin = 0.038eV (T=290K)  Etot = -1038.828eV
+    Energy per atom: Epot = -1038.872eV  Ekin = 0.044eV (T=340K)  Etot = -1038.828eV
+    Energy per atom: Epot = -1038.849eV  Ekin = 0.034eV (T=260K)  Etot = -1038.815eV
 
     True
 
@@ -262,7 +262,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.817 seconds)
+   **Total running time of the script:** ( 0 minutes  11.683 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
