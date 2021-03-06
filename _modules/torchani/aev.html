@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>torchani.aev &mdash; TorchANI 2.3.dev53+gc4f5d3b documentation</title>
+  <title>torchani.aev &mdash; TorchANI 2.3.dev61+gb358956 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.3.dev53+gc4f5d3b
+                2.3.dev61+gb358956
               </div>
             
           
@@ -704,6 +704,7 @@
             <span class="c1"># if use_cuda_extension is enabled after initialization</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cuaev_enabled</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">init_cuaev_computer</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cuaev_enabled</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">aev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_cuaev</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">SpeciesAEV</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">aev</span><span class="p">)</span>
 
