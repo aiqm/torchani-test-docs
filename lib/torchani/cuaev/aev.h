@@ -2,7 +2,6 @@
 
 #include <c10/cuda/CUDACachingAllocator.h>
 #include <torch/extension.h>
-#include <iostream>
 using torch::Tensor;
 using torch::autograd::AutogradContext;
 using torch::autograd::tensor_list;
@@ -186,8 +185,6 @@ struct Result {
   }
 };
 
-void initAEVConsts(AEVScalarParams& aev_params, cudaStream_t stream);
-
 // cuda kernels
 Result cuaev_forward(const Tensor& coordinates_t, const Tensor& species_t, const AEVScalarParams& aev_params);
 Tensor cuaev_backward(const Tensor& grad_output, const AEVScalarParams& aev_params, const Result& result);
@@ -197,7 +194,6 @@ Tensor cuaev_double_backward(const Tensor& grad_force, const AEVScalarParams& ae
 // Only keep one copy of aev parameters
 struct CuaevComputer : torch::CustomClassHolder {
   AEVScalarParams aev_params;
-  bool aev_consts_initialized;
 
   CuaevComputer(
       double Rcr,
@@ -211,12 +207,6 @@ struct CuaevComputer : torch::CustomClassHolder {
       int64_t num_species);
 
   Result forward(const Tensor& coordinates_t, const Tensor& species_t) {
-    if (!aev_consts_initialized) {
-      cudaStream_t stream = at::cuda::getCurrentCUDAStream(coordinates_t.device().index());
-      initAEVConsts(aev_params, stream);
-      aev_consts_initialized = true;
-      std::cout << "init constants\n";
-    }
     return cuaev_forward(coordinates_t, species_t, aev_params);
   }
 
