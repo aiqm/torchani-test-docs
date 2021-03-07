@@ -26,17 +26,15 @@ constexpr int csubaev_offsets(int i, int j, int n) {
   return starting + offset;
 }
 
-template <typename DataT>
-struct PairDist {
-  DataT Rij;
+struct alignas(4 * sizeof(int)) PairDist {
+  float Rij;
   int midx;
-  short i;
-  short j;
+  int i;
+  int j;
 };
 
 // used to group Rijs by atom id
-template <typename DataT>
-__host__ __device__ bool operator==(const PairDist<DataT>& lhs, const PairDist<DataT>& rhs) {
+__host__ __device__ bool operator==(const PairDist& lhs, const PairDist& rhs) {
   return lhs.midx == rhs.midx && lhs.i == rhs.i;
 }
 
@@ -54,7 +52,7 @@ template <typename SpeciesT, typename DataT, typename IndexT = int>
 __global__ void pairwiseDistance(
     torch::PackedTensorAccessor32<SpeciesT, 2, torch::RestrictPtrTraits> species_t,
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> pos_t,
-    PairDist<DataT>* d_Rij,
+    PairDist* d_Rij,
     IndexT max_natoms_per_mol) {
   extern __shared__ DataT spos[];
   DataT* sx = &spos[0];
@@ -65,9 +63,12 @@ __global__ void pairwiseDistance(
   int tidx = threadIdx.y * blockDim.x + threadIdx.x;
 
   for (int i = tidx; i < max_natoms_per_mol; i += blockDim.x * blockDim.y) {
-    sx[i] = pos_t[mol_idx][i][0];
-    sy[i] = pos_t[mol_idx][i][1];
-    sz[i] = pos_t[mol_idx][i][2];
+    SpeciesT type_i = species_t[mol_idx][i];
+    if (type_i != -1) {
+      sx[i] = pos_t[mol_idx][i][0];
+      sy[i] = pos_t[mol_idx][i][1];
+      sz[i] = pos_t[mol_idx][i][2];
+    }
   }
 
   __syncthreads();
@@ -83,19 +84,17 @@ __global__ void pairwiseDistance(
 
     for (int j = threadIdx.x; j < max_natoms_per_mol; j += blockDim.x) {
       SpeciesT type_j = species_t[mol_idx][j];
-
-      const DataT xj = sx[j];
-      const DataT yj = sy[j];
-      const DataT zj = sz[j];
-      const DataT delx = xj - xi;
-      const DataT dely = yj - yi;
-      const DataT delz = zj - zi;
-
-      const DataT Rsq = delx * delx + dely * dely + delz * delz;
       if (type_i != -1 && type_j != -1 && i != j) {
-        DataT Rij = sqrt(Rsq);
+        const DataT xj = sx[j];
+        const DataT yj = sy[j];
+        const DataT zj = sz[j];
+        const DataT delx = xj - xi;
+        const DataT dely = yj - yi;
+        const DataT delz = zj - zi;
 
-        PairDist<DataT> d;
+        const DataT Rsq = delx * delx + dely * dely + delz * delz;
+        DataT Rij = sqrt(Rsq);
+        PairDist d;
         d.Rij = Rij;
         d.midx = mol_idx;
         d.i = i;
@@ -111,7 +110,7 @@ template <typename SpeciesT, typename DataT, typename IndexT = int>
 __global__ void pairwiseDistanceSingleMolecule(
     torch::PackedTensorAccessor32<SpeciesT, 2, torch::RestrictPtrTraits> species_t,
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> pos_t,
-    PairDist<DataT>* d_Rij,
+    PairDist* d_Rij,
     IndexT max_natoms_per_mol) {
   constexpr int mol_idx = 0;
   int natom_pairs = max_natoms_per_mol * max_natoms_per_mol;
@@ -139,7 +138,7 @@ __global__ void pairwiseDistanceSingleMolecule(
   if (type_i != -1 && type_j != -1 && i != j) {
     DataT Rij = sqrt(Rsq);
 
-    PairDist<DataT> d;
+    PairDist d;
     d.Rij = Rij;
     d.midx = mol_idx;
     d.i = i;
@@ -157,14 +156,14 @@ __global__ void pairwiseDistance_backward_or_doublebackward(
         grad_dist, // ddist for backward, dddist for double backward
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits>
         grad_coord_or_force, // dcoord for backward, dforce(i.e. ddcoord) for double backward
-    const PairDist<DataT>* d_radialRij,
+    const PairDist* d_radialRij,
     IndexT nRadialRij) {
   int gidx = threadIdx.x * gridDim.x + blockIdx.x;
 
   if (gidx >= nRadialRij)
     return;
 
-  PairDist<DataT> d = d_radialRij[gidx];
+  PairDist d = d_radialRij[gidx];
   DataT Rij = d.Rij;
   int mol_idx = d.midx;
   int i = d.i;
@@ -207,8 +206,8 @@ __global__ void cuAngularAEVs(
     torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> EtaA_t,
     torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> Zeta_t,
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> aev_t,
-    PairDist<DataT>* d_Rij,
-    PairDist<DataT>* d_centralAtom,
+    PairDist* d_Rij,
+    PairDist* d_centralAtom,
     int* d_nPairsPerCenterAtom,
     int* d_centerAtomStartIdx,
     float Rca,
@@ -259,7 +258,7 @@ __global__ void cuAngularAEVs(
   IndexT nShfA = ShfA_t.size(0);
   IndexT nShfZ = ShfZ_t.size(0);
 
-  PairDist<DataT> d = d_centralAtom[cIdx];
+  PairDist d = d_centralAtom[cIdx];
   int start_idx = d_centerAtomStartIdx[cIdx];
   int jnum = d_nPairsPerCenterAtom[cIdx];
 
@@ -276,7 +275,7 @@ __global__ void cuAngularAEVs(
   DataT zi = pos_t[mol_idx][i][2];
 
   for (int jj = laneIdx; jj < jnum; jj += threads_per_catom) {
-    PairDist<DataT> dij = d_Rij[start_idx + jj];
+    PairDist dij = d_Rij[start_idx + jj];
     int j = dij.j;
     DataT Rij = dij.Rij;
     SpeciesT type_j = species_t[mol_idx][j];
@@ -362,8 +361,8 @@ __global__ void cuAngularAEVs_backward_or_doublebackward(
         grad_output, // for backward, this is daev, for double backward, this is dforce (i.e. ddcoord)
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits>
         grad_input, // for backward, this is dcoord, for double backward, this is ddaev
-    const PairDist<DataT>* d_Rij,
-    const PairDist<DataT>* d_centralAtom,
+    const PairDist* d_Rij,
+    const PairDist* d_centralAtom,
     int* d_nPairsPerCenterAtom,
     int* d_centerAtomStartIdx,
     float Rca,
@@ -423,7 +422,7 @@ __global__ void cuAngularAEVs_backward_or_doublebackward(
   IndexT nShfA = ShfA_t.size(0);
   IndexT nShfZ = ShfZ_t.size(0);
 
-  PairDist<DataT> d = d_centralAtom[cIdx];
+  PairDist d = d_centralAtom[cIdx];
   int start_idx = d_centerAtomStartIdx[cIdx];
   int jnum = d_nPairsPerCenterAtom[cIdx];
 
@@ -436,7 +435,7 @@ __global__ void cuAngularAEVs_backward_or_doublebackward(
   DataT zi = pos_t[mol_idx][i][2];
 
   for (int jj = laneIdx; jj < jnum; jj += threads_per_catom) {
-    PairDist<DataT> dij = d_Rij[start_idx + jj];
+    PairDist dij = d_Rij[start_idx + jj];
     int j = dij.j;
     DataT Rij = dij.Rij;
     SpeciesT type_j = species_t[mol_idx][j];
@@ -635,7 +634,7 @@ __global__ void cuRadialAEVs(
     torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> ShfR_t,
     torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits> EtaR_t,
     torch::PackedTensorAccessor32<DataT, 3, torch::RestrictPtrTraits> aev_t,
-    PairDist<DataT>* d_Rij,
+    PairDist* d_Rij,
     float Rcr,
     int radial_length,
     int radial_sublength,
@@ -651,7 +650,7 @@ __global__ void cuRadialAEVs(
 
   int laneIdx = threadIdx.x % THREADS_PER_RIJ;
 
-  PairDist<DataT> d = d_Rij[idx];
+  PairDist d = d_Rij[idx];
   DataT Rij = d.Rij;
   int mol_idx = d.midx;
   int i = d.i;
@@ -680,7 +679,7 @@ __global__ void cuRadialAEVs_backward_or_doublebackward(
         grad_aev, // daev for backward, ddaev for double backward
     torch::PackedTensorAccessor32<DataT, 1, torch::RestrictPtrTraits>
         grad_dist, // ddist for backward, dddist for double backward
-    const PairDist<DataT>* d_Rij,
+    const PairDist* d_Rij,
     float Rcr,
     int radial_length,
     int radial_sublength,
@@ -696,7 +695,7 @@ __global__ void cuRadialAEVs_backward_or_doublebackward(
 
   int laneIdx = threadIdx.x % THREADS_PER_RIJ;
 
-  PairDist<DataT> d = d_Rij[idx];
+  PairDist d = d_Rij[idx];
   DataT Rij = d.Rij;
   int mol_idx = d.midx;
   int i = d.i;
@@ -857,18 +856,18 @@ Result cuaev_forward(const Tensor& coordinates_t, const Tensor& species_t, const
   // buffer to store all the pairwise distance (Rij)
   auto total_natom_pairs = n_molecules * max_natoms_per_mol * max_natoms_per_mol;
   auto d_options = torch::dtype(torch::kUInt8).device(coordinates_t.device());
-  Tensor tensor_Rij = torch::empty(sizeof(PairDist<float>) * total_natom_pairs, d_options);
-  PairDist<float>* d_Rij = (PairDist<float>*)tensor_Rij.data_ptr();
+  Tensor tensor_Rij = torch::empty(sizeof(PairDist) * total_natom_pairs, d_options);
+  PairDist* d_Rij = (PairDist*)tensor_Rij.data_ptr();
 
   // init all Rij to inf
-  PairDist<float> init;
+  PairDist init;
   init.Rij = std::numeric_limits<float>::infinity();
   thrust::fill(policy, d_Rij, d_Rij + total_natom_pairs, init);
 
   // buffer to store all the pairwise distance that is needed for Radial AEV
   // computation
-  Tensor tensor_radialRij = torch::empty(sizeof(PairDist<float>) * total_natom_pairs, d_options);
-  PairDist<float>* d_radialRij = (PairDist<float>*)tensor_radialRij.data_ptr();
+  Tensor tensor_radialRij = torch::empty(sizeof(PairDist) * total_natom_pairs, d_options);
+  PairDist* d_radialRij = (PairDist*)tensor_radialRij.data_ptr();
 
   auto buffer_count = allocator.allocate(sizeof(int));
   int* d_count_out = (int*)buffer_count.get();
@@ -903,7 +902,7 @@ Result cuaev_forward(const Tensor& coordinates_t, const Tensor& species_t, const
       d_radialRij,
       total_natom_pairs,
       d_count_out,
-      [=] __device__(const PairDist<float> d) { return d.Rij <= Rcr; },
+      [=] __device__(const PairDist d) { return d.Rij <= Rcr; },
       stream);
 
   int nblocks = (nRadialRij * 8 + block_size - 1) / block_size;
@@ -920,8 +919,8 @@ Result cuaev_forward(const Tensor& coordinates_t, const Tensor& species_t, const
 
   // reuse buffer allocated for all Rij
   // d_angularRij will store all the Rij required in Angular AEV computation
-  Tensor tensor_angularRij = torch::empty(sizeof(PairDist<float>) * nRadialRij, d_options);
-  PairDist<float>* d_angularRij = (PairDist<float>*)tensor_angularRij.data_ptr();
+  Tensor tensor_angularRij = torch::empty(sizeof(PairDist) * nRadialRij, d_options);
+  PairDist* d_angularRij = (PairDist*)tensor_angularRij.data_ptr();
 
   // Extract Rijs that is needed for AngularAEV comptuation i.e. all the Rij
   // <= Rca
@@ -930,11 +929,11 @@ Result cuaev_forward(const Tensor& coordinates_t, const Tensor& species_t, const
       d_angularRij,
       nRadialRij,
       d_count_out,
-      [=] __device__(const PairDist<float> d) { return d.Rij <= Rca; },
+      [=] __device__(const PairDist d) { return d.Rij <= Rca; },
       stream);
 
-  Tensor tensor_centralAtom = torch::empty(sizeof(PairDist<float>) * nAngularRij, d_options);
-  PairDist<float>* d_centralAtom = (PairDist<float>*)tensor_centralAtom.data_ptr();
+  Tensor tensor_centralAtom = torch::empty(sizeof(PairDist) * nAngularRij, d_options);
+  PairDist* d_centralAtom = (PairDist*)tensor_centralAtom.data_ptr();
 
   Tensor tensor_numPairsPerCenterAtom = torch::empty(sizeof(int) * nAngularRij, d_options);
   int* d_numPairsPerCenterAtom = (int*)tensor_numPairsPerCenterAtom.data_ptr();
@@ -1015,10 +1014,10 @@ Tensor cuaev_backward(const Tensor& grad_output, const AEVScalarParams& aev_para
 
   auto grad_coord = torch::zeros(coordinates_t.sizes(), coordinates_t.options().requires_grad(false)); // [2, 5, 3]
 
-  PairDist<float>* d_Rij = (PairDist<float>*)result.tensor_Rij.data_ptr();
-  PairDist<float>* d_radialRij = (PairDist<float>*)result.tensor_radialRij.data_ptr();
-  PairDist<float>* d_angularRij = (PairDist<float>*)result.tensor_angularRij.data_ptr();
-  PairDist<float>* d_centralAtom = (PairDist<float>*)result.tensor_centralAtom.data_ptr();
+  PairDist* d_Rij = (PairDist*)result.tensor_Rij.data_ptr();
+  PairDist* d_radialRij = (PairDist*)result.tensor_radialRij.data_ptr();
+  PairDist* d_angularRij = (PairDist*)result.tensor_angularRij.data_ptr();
+  PairDist* d_centralAtom = (PairDist*)result.tensor_centralAtom.data_ptr();
   int* d_numPairsPerCenterAtom = (int*)result.tensor_numPairsPerCenterAtom.data_ptr();
   int* d_centerAtomStartIdx = (int*)result.tensor_centerAtomStartIdx.data_ptr();
 
@@ -1104,10 +1103,10 @@ Tensor cuaev_double_backward(const Tensor& grad_force, const AEVScalarParams& ae
       {coordinates_t.size(0), coordinates_t.size(1), aev_length},
       coordinates_t.options().requires_grad(false)); // [2, 5, 384]
 
-  PairDist<float>* d_Rij = (PairDist<float>*)result.tensor_Rij.data_ptr();
-  PairDist<float>* d_radialRij = (PairDist<float>*)result.tensor_radialRij.data_ptr();
-  PairDist<float>* d_angularRij = (PairDist<float>*)result.tensor_angularRij.data_ptr();
-  PairDist<float>* d_centralAtom = (PairDist<float>*)result.tensor_centralAtom.data_ptr();
+  PairDist* d_Rij = (PairDist*)result.tensor_Rij.data_ptr();
+  PairDist* d_radialRij = (PairDist*)result.tensor_radialRij.data_ptr();
+  PairDist* d_angularRij = (PairDist*)result.tensor_angularRij.data_ptr();
+  PairDist* d_centralAtom = (PairDist*)result.tensor_centralAtom.data_ptr();
   int* d_numPairsPerCenterAtom = (int*)result.tensor_numPairsPerCenterAtom.data_ptr();
   int* d_centerAtomStartIdx = (int*)result.tensor_centerAtomStartIdx.data_ptr();
 
