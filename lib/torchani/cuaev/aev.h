@@ -134,7 +134,6 @@ struct AEVScalarParams {
 
 struct Result {
   Tensor aev_t;
-  Tensor tensor_Rij;
   Tensor tensor_radialRij;
   Tensor tensor_angularRij;
   int total_natom_pairs;
@@ -151,7 +150,6 @@ struct Result {
 
   Result(
       Tensor aev_t_,
-      Tensor tensor_Rij_,
       Tensor tensor_radialRij_,
       Tensor tensor_angularRij_,
       int64_t total_natom_pairs_,
@@ -167,21 +165,21 @@ struct Result {
       Tensor species_t_);
   Result(tensor_list tensors);
   operator tensor_list() {
-    return {Tensor(), // aev_t got removed
-            tensor_Rij,
-            tensor_radialRij,
-            tensor_angularRij,
-            torch::tensor(total_natom_pairs),
-            torch::tensor(nRadialRij),
-            torch::tensor(nAngularRij),
-            tensor_centralAtom,
-            tensor_numPairsPerCenterAtom,
-            tensor_centerAtomStartIdx,
-            torch::tensor(maxnbrs_per_atom_aligned),
-            torch::tensor(angular_length_aligned),
-            torch::tensor(ncenter_atoms),
-            coordinates_t,
-            species_t};
+    return {
+        Tensor(), // aev_t got removed
+        tensor_radialRij,
+        tensor_angularRij,
+        torch::tensor(total_natom_pairs),
+        torch::tensor(nRadialRij),
+        torch::tensor(nAngularRij),
+        tensor_centralAtom,
+        tensor_numPairsPerCenterAtom,
+        tensor_centerAtomStartIdx,
+        torch::tensor(maxnbrs_per_atom_aligned),
+        torch::tensor(angular_length_aligned),
+        torch::tensor(ncenter_atoms),
+        coordinates_t,
+        species_t};
   }
 };
 
