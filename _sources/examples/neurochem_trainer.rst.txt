@@ -157,8 +157,8 @@ Now, let's go!
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:01,  3.14it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  3.13it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  3.06it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  3.13it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  3.67it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.14it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.16it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.08it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.10it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  3.66it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  4.81it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  4.82it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  4.81it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  4.84it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  5.67it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  4.81it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  4.83it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  4.85it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  4.81it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  5.65it/s]
 
 
 
@@ -216,10 +216,12 @@ generating this document:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torchani-2.3.dev59+g23e93f6-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
+    /opt/hostedtoolcache/Python/3.8.8/x64/lib/python3.8/site-packages/torchani-2.3.dev60+gc568218-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
       warnings.warn("cuaev not installed")
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:01,  2.97it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  3.01it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.06it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.08it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  3.60it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.13it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.14it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.10it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.10it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  3.64it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  4.86it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  4.88it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  4.89it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  4.84it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  5.68it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  4.86it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  4.85it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  4.87it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  4.85it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  5.69it/s]
+    epoch 3:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 3:  20%|██        | 1/5 [00:00<00:00,  4.84it/s]    epoch 3:  40%|████      | 2/5 [00:00<00:00,  4.87it/s]    epoch 3:  60%|██████    | 3/5 [00:00<00:00,  4.86it/s]    epoch 3:  80%|████████  | 4/5 [00:00<00:00,  4.87it/s]    epoch 3: 100%|██████████| 5/5 [00:00<00:00,  5.70it/s]
+    epoch 4:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 4:  20%|██        | 1/5 [00:00<00:00,  4.88it/s]    epoch 4:  40%|████      | 2/5 [00:00<00:00,  4.87it/s]    epoch 4:  60%|██████    | 3/5 [00:00<00:00,  4.88it/s]    epoch 4:  80%|████████  | 4/5 [00:00<00:00,  4.89it/s]    epoch 4: 100%|██████████| 5/5 [00:00<00:00,  5.72it/s]
 
 
 
@@ -228,7 +230,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.487 seconds)
+   **Total running time of the script:** ( 0 minutes  11.770 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:
