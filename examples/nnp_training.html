@@ -223,7 +223,7 @@ they should setup their models.</p>
 <span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">hartree2kcalmol</span>
 
 <span class="c1"># device to run the training</span>
-<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <a href="https://pytorch.org/docs/master/cuda.html#torch.cuda.is_available" title="torch.cuda.is_available" class="sphx-glr-backref-module-torch-cuda sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span></a><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <a href="https://pytorch.org/docs/master/generated/torch.cuda.is_available.html#torch.cuda.is_available" title="torch.cuda.is_available" class="sphx-glr-backref-module-torch-cuda sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span></a><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now let’s setup constants and construct an AEV computer. These numbers could
@@ -300,12 +300,12 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.0s
+2/1  [============================================================] - 0.1s
 3/1  [==========================================================================================] - 0.1sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
 </pre></div>
 </div>
@@ -470,7 +470,7 @@ mistake in deep learning.  See: <a class="reference external" href="https://arxi
 Also note that the weight decay only applies to weight in the training
 of ANI models, not bias.</p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span></a><span class="p">([</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span></a><span class="p">([</span>
     <span class="c1"># H networks</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
@@ -493,7 +493,7 @@ of ANI models, not bias.</p>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">O_network</span></a><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
 <span class="p">])</span>
 
-<a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span></a><span class="p">([</span>
+<a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span></a><span class="p">([</span>
     <span class="c1"># H networks</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
     <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Sequential.html#torch.nn.Sequential" title="torch.nn.Sequential" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">H_network</span></a><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
@@ -518,8 +518,8 @@ of ANI models, not bias.</p>
 </pre></div>
 </div>
 <p>Setting up a learning rate scheduler to do learning rate decay</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW" title="torch.optim.AdamW" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class"><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD" title="torch.optim.SGD" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD</span></a><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Train the model by minimizing the MSE loss, until validation RMSE no longer
@@ -534,10 +534,10 @@ to store current training state.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="os.path.isfile" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">latest_checkpoint</span></a><span class="p">):</span>
     <span class="n">checkpoint</span> <span class="o">=</span> <a href="https://pytorch.org/docs/master/generated/torch.load.html#torch.load" title="torch.load" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">latest_checkpoint</span></a><span class="p">)</span>
     <a href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.load_state_dict" title="torch.nn.Module.load_state_dict" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-method"><span class="n">nn</span><span class="o">.</span><span class="n">load_state_dict</span></a><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;nn&#39;</span><span class="p">])</span>
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.load_state_dict" title="torch.optim.Optimizer.load_state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">load_state_dict</span></a><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW&#39;</span><span class="p">])</span>
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.load_state_dict" title="torch.optim.Optimizer.load_state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">load_state_dict</span></a><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD&#39;</span><span class="p">])</span>
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">])</span>
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">])</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW.load_state_dict" title="torch.optim.AdamW.load_state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">load_state_dict</span></a><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW&#39;</span><span class="p">])</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.load_state_dict" title="torch.optim.SGD.load_state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">load_state_dict</span></a><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD&#39;</span><span class="p">])</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">])</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>During training, we need to validate on validation set and if validation error
@@ -585,11 +585,11 @@ set to a much larger value</p>
         <span class="k">break</span>
 
     <span class="c1"># checkpoint</span>
-    <span class="k">if</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">is_better</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">best</span></a><span class="p">):</span>
+    <span class="k">if</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">is_better</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">best</span></a><span class="p">):</span>
         <a href="https://pytorch.org/docs/master/generated/torch.save.html#torch.save" title="torch.save" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict" title="torch.nn.Module.state_dict" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-method"><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">best_model_checkpoint</span></a><span class="p">)</span>
 
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">step</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">)</span>
-    <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">step</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">)</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">step</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">)</span>
+    <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">step</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">)</span>
 
     <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="torch.utils.tensorboard.writer.SummaryWriter.add_scalar" class="sphx-glr-backref-module-torch-utils-tensorboard-writer sphx-glr-backref-type-py-method"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;validation_rmse&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rmse</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span></a><span class="p">)</span>
     <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="torch.utils.tensorboard.writer.SummaryWriter.add_scalar" class="sphx-glr-backref-module-torch-utils-tensorboard-writer sphx-glr-backref-type-py-method"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;best_validation_rmse&#39;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">best</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span></a><span class="p">)</span>
@@ -608,101 +608,101 @@ set to a much larger value</p>
 
         <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">loss</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://pytorch.org/docs/master/generated/torch.nn.MSELoss.html#torch.nn.MSELoss" title="torch.nn.MSELoss" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mse</span></a><span class="p">(</span><a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">predicted_energies</span></a><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">true_energies</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">num_atoms</span></a><span class="o">.</span><span class="n">sqrt</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.zero_grad" title="torch.optim.Optimizer.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
-        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.zero_grad" title="torch.optim.Optimizer.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW.zero_grad" title="torch.optim.AdamW.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.zero_grad" title="torch.optim.SGD.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/generated/torch.Tensor.backward.html#torch.Tensor.backward" title="torch.Tensor.backward" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-method"><span class="n">loss</span><span class="o">.</span><span class="n">backward</span></a><span class="p">()</span>
-        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.AdamW.step" title="torch.optim.AdamW.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
-        <a href="https://pytorch.org/docs/master/optim.html#torch.optim.SGD.step" title="torch.optim.SGD.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW.step" title="torch.optim.AdamW.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.step" title="torch.optim.SGD.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
 
         <span class="c1"># write current batch loss to TensorBoard</span>
         <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="torch.utils.tensorboard.writer.SummaryWriter.add_scalar" class="sphx-glr-backref-module-torch-utils-tensorboard-writer sphx-glr-backref-type-py-method"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;batch_loss&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">loss</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span></a> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="p">)</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">)</span>
 
     <a href="https://pytorch.org/docs/master/generated/torch.save.html#torch.save" title="torch.save" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-function"><span class="n">torch</span><span class="o">.</span><span class="n">save</span></a><span class="p">({</span>
         <span class="s1">&#39;nn&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict" title="torch.nn.Module.state_dict" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-method"><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span>
-        <span class="s1">&#39;AdamW&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.state_dict" title="torch.optim.Optimizer.state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span>
-        <span class="s1">&#39;SGD&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer.state_dict" title="torch.optim.Optimizer.state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span>
-        <span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-        <span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;AdamW&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW.state_dict" title="torch.optim.AdamW.state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span>
+        <span class="s1">&#39;SGD&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.state_dict" title="torch.optim.SGD.state_dict" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">state_dict</span></a><span class="p">(),</span>
+        <span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span></a><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">:</span> <a href="https://pytorch.org/docs/master/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html#torch.optim.lr_scheduler.ReduceLROnPlateau" title="torch.optim.lr_scheduler.ReduceLROnPlateau" class="sphx-glr-backref-module-torch-optim-lr_scheduler sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SGD_scheduler</span></a><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
     <span class="p">},</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">latest_checkpoint</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 22.900010906787422 at epoch 1
+RMSE: 28.39979706218141 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.08it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.19it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.16it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  4.05it/s]
-epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
-RMSE: 256.84171432215277 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:01,  2.97it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.05it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.12it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  4.10it/s]
+epoch 1: 100%|##########| 4/4 [00:01&lt;00:00,  3.65it/s]
+RMSE: 190.91904660128895 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.07it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.09it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.09it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  4.02it/s]
-epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.62it/s]
-RMSE: 86.37147245382312 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.21it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.18it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.19it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  4.16it/s]
+epoch 2: 100%|##########| 4/4 [00:01&lt;00:00,  3.74it/s]
+RMSE: 79.117770799598 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.03it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.04it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.01it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.96it/s]
-epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.55it/s]
-RMSE: 65.85563984952343 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.14it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.18it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.16it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  4.14it/s]
+epoch 3: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
+RMSE: 47.06591193908575 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.17it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.08it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.07it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.99it/s]
-epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.61it/s]
-RMSE: 87.90467345578372 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.18it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.18it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.16it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  4.14it/s]
+epoch 4: 100%|##########| 4/4 [00:01&lt;00:00,  3.72it/s]
+RMSE: 70.52997427912894 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.00it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  2.98it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.02it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.99it/s]
-epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.56it/s]
-RMSE: 18.06633781203413 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.23it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.00it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.10it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  4.04it/s]
+epoch 5: 100%|##########| 4/4 [00:01&lt;00:00,  3.63it/s]
+RMSE: 14.373258853729075 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:01,  2.99it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  2.98it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.04it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.96it/s]
-epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.55it/s]
-RMSE: 55.21727485028087 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.13it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.11it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.11it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  4.09it/s]
+epoch 6: 100%|##########| 4/4 [00:01&lt;00:00,  3.67it/s]
+RMSE: 45.19966634402886 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.02it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.02it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.02it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.95it/s]
-epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.55it/s]
-RMSE: 12.717242670771624 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.21it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.15it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.13it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  4.11it/s]
+epoch 7: 100%|##########| 4/4 [00:01&lt;00:00,  3.70it/s]
+RMSE: 8.598866253864854 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:01,  2.91it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  2.98it/s]
-epoch 8:  75%|#######5  | 3/4 [00:01&lt;00:00,  3.00it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.90it/s]
-epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.50it/s]
-RMSE: 34.575535937698334 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.15it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.07it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.12it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  4.08it/s]
+epoch 8: 100%|##########| 4/4 [00:01&lt;00:00,  3.66it/s]
+RMSE: 29.652335837850988 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:01,  2.98it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  2.96it/s]
-epoch 9:  75%|#######5  | 3/4 [00:01&lt;00:00,  2.98it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.93it/s]
-epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.51it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.21it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.19it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.19it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  4.18it/s]
+epoch 9: 100%|##########| 4/4 [00:01&lt;00:00,  3.76it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.844 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.505 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
