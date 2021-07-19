@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Computing Vibrational Frequencies Using Analytical Hessian &mdash; TorchANI 2.3.dev60+ga85e330 documentation</title>
+  <title>Computing Vibrational Frequencies Using Analytical Hessian &mdash; TorchANI 2.3.dev62+g739ed28 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2.3.dev60+ga85e330
+                2.3.dev62+g739ed28
               </div>
             
           
@@ -95,12 +95,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../start.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tips.html">Tips</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Examples</span></p>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="energy_force.html">Computing Energy and Force Using Models Inside Model Zoo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ase_interface.html">Structure minimization and constant temperature MD using ASE interface</a></li>
@@ -111,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nnp_training_force.html">Train Neural Network Potential To Both Energies and Forces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="neurochem_trainer.html">Train Neural Network Potential From NeuroChem Input File</a></li>
 </ul>
-<p class="caption"><span class="caption-text">TorchANI's API</span></p>
+<p class="caption" role="heading"><span class="caption-text">TorchANI's API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">TorchANI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.models">Model Zoo</a></li>
@@ -212,7 +212,7 @@ vibration analysis analytically, thanks to the super power of <cite>torch.autogr
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/torchani-2.3.dev60+ga85e330-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/torchani-2.3.dev62+g739ed28-py3.8.egg/torchani/resources/
 </pre></div>
 </div>
 <p>Let’s first construct a water molecule and do structure optimization:</p>
@@ -229,14 +229,14 @@ vibration analysis analytically, thanks to the super power of <cite>torch.autogr
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy         fmax
-BFGS:    0 00:17:34    -2078.633392        0.6576
-BFGS:    1 00:17:34    -2078.637244        0.1905
-BFGS:    2 00:17:34    -2078.637801        0.0292
-BFGS:    3 00:17:34    -2078.637827        0.0183
-BFGS:    4 00:17:34    -2078.637849        0.0014
-BFGS:    5 00:17:34    -2078.637849        0.0001
-BFGS:    6 00:17:34    -2078.637849        0.0000
-BFGS:    7 00:17:34    -2078.637849        0.0000
+BFGS:    0 17:15:49    -2078.633392        0.6576
+BFGS:    1 17:15:49    -2078.637244        0.1905
+BFGS:    2 17:15:49    -2078.637801        0.0292
+BFGS:    3 17:15:49    -2078.637827        0.0183
+BFGS:    4 17:15:49    -2078.637849        0.0014
+BFGS:    5 17:15:49    -2078.637849        0.0001
+BFGS:    6 17:15:49    -2078.637849        0.0000
+BFGS:    7 17:15:49    -2078.637849        0.0000
 
 True
 </pre></div>
@@ -286,23 +286,33 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.<
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Frequencies (cm^-1): tensor([1913.200, 3882.404, 3911.185], dtype=torch.float64)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/torchani-2.3.dev62+g739ed28-py3.8.egg/torchani/utils.py:325: UserWarning: torch.symeig is deprecated in favor of torch.linalg.eigh and will be removed in a future PyTorch release.
+The default behavior has changed from using the upper triangular portion of the matrix by default to using the lower triangular portion.
+L, _ = torch.symeig(A, upper=upper)
+should be replaced with
+L = torch.linalg.eigvalsh(A, UPLO=&#39;U&#39; if upper else &#39;L&#39;)
+and
+L, V = torch.symeig(A, eigenvectors=True)
+should be replaced with
+L, V = torch.linalg.eigh(A, UPLO=&#39;U&#39; if upper else &#39;L&#39;) (Triggered internally at  /pytorch/aten/src/ATen/native/BatchLinearAlgebra.cpp:2500.)
+  eigenvalues, eigenvectors = torch.symeig(mass_scaled_hessian, eigenvectors=True)
+Frequencies (cm^-1): tensor([1913.200, 3882.404, 3911.185], dtype=torch.float64)
 Force Constants (mDyne/A): tensor([2.339, 9.269, 9.743], dtype=torch.float64)
 Reduced masses (AMU): tensor([1.085, 1.044, 1.081], dtype=torch.float64)
-Modes: tensor([[[     0.015,      0.677,      0.000],
+Modes: tensor([[[     0.015,      0.677,     -0.000],
          [     0.652,      0.184,     -0.000],
-         [    -0.042,     -0.054,     -0.000]],
+         [    -0.042,     -0.054,      0.000]],
 
-        [[    -0.689,      0.054,     -0.000],
+        [[    -0.689,      0.054,      0.000],
          [     0.225,     -0.654,      0.000],
-         [     0.029,      0.038,      0.000]],
+         [     0.029,      0.038,     -0.000]],
 
-        [[    -0.678,     -0.006,      0.000],
-         [    -0.164,      0.658,     -0.000],
-         [     0.053,     -0.041,      0.000]]], dtype=torch.float64)
+        [[    -0.678,     -0.006,     -0.000],
+         [    -0.164,      0.658,      0.000],
+         [     0.053,     -0.041,     -0.000]]], dtype=torch.float64)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.247 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.293 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-vibration-analysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/ee78bc2f4e1967149696942823208fe8/vibration_analysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">vibration_analysis.py</span></code></a></div>
