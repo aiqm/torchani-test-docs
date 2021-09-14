@@ -1,81 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Train Your Own Neural Network Potential &mdash; TorchANI 2.3.dev62+gbf771af documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Train Neural Network Potential To Both Energies and Forces" href="nnp_training_force.html" />
     <link rel="prev" title="Construct Model From NeuroChem Files" href="load_from_neurochem.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> TorchANI
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 2.3.dev62+gbf771af
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -83,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../start.html">Installation</a></li>
@@ -122,71 +70,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html#module-torchani.units">Units</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">TorchANI</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Train Your Own Neural Network Potential</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/examples/nnp_training.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-nnp-training-py"><span class="std std-ref">here</span></a>
@@ -303,7 +210,7 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.1s
+2/1  [============================================================] - 0.0s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
@@ -631,72 +538,72 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 250.70655698246887 at epoch 1
+RMSE: 77.66813421762029 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  4.75it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  4.85it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.88it/s]
-epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  5.71it/s]
-RMSE: 27.106921134698567 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  4.36it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  4.34it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.42it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  5.19it/s]
+RMSE: 150.95736820351624 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  4.96it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  4.96it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.98it/s]
-epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  5.82it/s]
-RMSE: 74.0780404944367 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  4.14it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  4.09it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.20it/s]
+epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.92it/s]
+RMSE: 93.40081482017399 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  5.06it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  5.03it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.00it/s]
-epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  5.86it/s]
-RMSE: 83.27551536796027 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  4.24it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  4.20it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.26it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  4.98it/s]
+RMSE: 64.19120188206381 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  5.02it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  4.99it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.96it/s]
-epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  5.81it/s]
-RMSE: 25.5778672615631 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  4.58it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  4.54it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.55it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  5.34it/s]
+RMSE: 21.318328063138686 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  4.93it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  4.98it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.96it/s]
-epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  5.80it/s]
-RMSE: 34.412555384670924 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  4.52it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  4.52it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.50it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  5.28it/s]
+RMSE: 46.27186755702865 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  4.99it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  4.92it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.91it/s]
-epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  5.77it/s]
-RMSE: 36.63835516380965 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  4.34it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  4.37it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.23it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  5.00it/s]
+RMSE: 26.19860806886757 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  4.91it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  4.95it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.92it/s]
-epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  5.76it/s]
-RMSE: 6.44526799424644 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  4.53it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  4.57it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.55it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  5.29it/s]
+RMSE: 19.895395729072945 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  4.93it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  4.92it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.91it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  5.76it/s]
-RMSE: 22.762163413271978 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  4.56it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  4.58it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.55it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  5.33it/s]
+RMSE: 17.304730663291952 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  5.01it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  4.99it/s]
-epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.91it/s]
-epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  5.78it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  4.56it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  4.58it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  4.56it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  5.35it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.857 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.691 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
@@ -708,50 +615,33 @@ epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  5.78it/s]
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="nnp_training_force.html" class="btn btn-neutral float-right" title="Train Neural Network Potential To Both Energies and Forces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="load_from_neurochem.html" class="btn btn-neutral float-left" title="Construct Model From NeuroChem Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nnp_training_force.html" class="btn btn-neutral float-right" title="Train Neural Network Potential To Both Energies and Forces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2018, Roitberg Group.
-
-    </p>
+    <p>&#169; Copyright 2018, Roitberg Group.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
