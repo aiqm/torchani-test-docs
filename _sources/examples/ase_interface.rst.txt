@@ -98,7 +98,7 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/torchani-2.3.dev62+gbf771af-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev62+gbf771af-py3.8.egg/torchani/resources/
     Downloading ANI model parameters ...
 
 
@@ -159,11 +159,11 @@ Now let's minimize the structure:
  .. code-block:: none
 
     Begin minimizing...
-    /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/torch/_tensor.py:575: UserWarning: floor_divide is deprecated, and will be removed in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values.
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torch/_tensor.py:575: UserWarning: floor_divide is deprecated, and will be removed in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values.
     To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor'). (Triggered internally at  ../aten/src/ATen/native/BinaryOps.cpp:467.)
       return torch.floor_divide(self, other)
           Step     Time          Energy         fmax
-    BFGS:    0 00:14:37    -8311.226180        0.0000
+    BFGS:    0 00:13:58    -8311.226180        0.0000
 
 
 
@@ -215,7 +215,7 @@ coefficient to 0.02 atomic units.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the 'temperature_K' argument
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the 'temperature_K' argument
       warnings.warn(FutureWarning(w))
 
 
@@ -245,16 +245,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.892eV  Ekin = 0.022eV (T=168K)  Etot = -1038.870eV
-    Energy per atom: Epot = -1038.874eV  Ekin = 0.035eV (T=267K)  Etot = -1038.839eV
-    Energy per atom: Epot = -1038.869eV  Ekin = 0.026eV (T=200K)  Etot = -1038.843eV
-    Energy per atom: Epot = -1038.873eV  Ekin = 0.032eV (T=247K)  Etot = -1038.841eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.021eV (T=165K)  Etot = -1038.843eV
-    Energy per atom: Epot = -1038.848eV  Ekin = 0.031eV (T=238K)  Etot = -1038.817eV
-    Energy per atom: Epot = -1038.866eV  Ekin = 0.035eV (T=273K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.856eV  Ekin = 0.036eV (T=281K)  Etot = -1038.820eV
-    Energy per atom: Epot = -1038.861eV  Ekin = 0.030eV (T=231K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.880eV  Ekin = 0.053eV (T=408K)  Etot = -1038.827eV
+    Energy per atom: Epot = -1038.883eV  Ekin = 0.015eV (T=119K)  Etot = -1038.868eV
+    Energy per atom: Epot = -1038.880eV  Ekin = 0.029eV (T=223K)  Etot = -1038.851eV
+    Energy per atom: Epot = -1038.872eV  Ekin = 0.040eV (T=309K)  Etot = -1038.832eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.028eV (T=217K)  Etot = -1038.834eV
+    Energy per atom: Epot = -1038.873eV  Ekin = 0.021eV (T=160K)  Etot = -1038.853eV
+    Energy per atom: Epot = -1038.878eV  Ekin = 0.027eV (T=208K)  Etot = -1038.851eV
+    Energy per atom: Epot = -1038.868eV  Ekin = 0.043eV (T=331K)  Etot = -1038.826eV
+    Energy per atom: Epot = -1038.885eV  Ekin = 0.031eV (T=236K)  Etot = -1038.854eV
+    Energy per atom: Epot = -1038.889eV  Ekin = 0.025eV (T=191K)  Etot = -1038.864eV
+    Energy per atom: Epot = -1038.879eV  Ekin = 0.027eV (T=206K)  Etot = -1038.853eV
 
     True
 
@@ -263,7 +263,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.542 seconds)
+   **Total running time of the script:** ( 0 minutes  12.927 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
