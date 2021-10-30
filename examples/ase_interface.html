@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev64+g10cca54 documentation</title>
+  <title>Structure minimization and constant temperature MD using ASE interface &mdash; TorchANI 2.3.dev66+g41bd56d documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> TorchANI
           </a>
               <div class="version">
-                2.3.dev64+g10cca54
+                2.3.dev66+g41bd56d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -126,7 +126,7 @@ calculator.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev64+g10cca54-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/resources/
 Downloading ANI model parameters ...
 /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torch/functional.py:1069: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2157.)
   return _VF.cartesian_prod(tensors)  # type: ignore[attr-defined]
@@ -156,12 +156,12 @@ large for structure minimization. If you insist on using
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev64+g10cca54-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
   cell = torch.tensor(self.atoms.get_cell(complete=True),
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev64+g10cca54-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
+/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
       Step     Time          Energy         fmax
-BFGS:    0 05:55:43    -8311.226174        0.0000
+BFGS:    0 06:01:54    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -195,23 +195,23 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev64+g10cca54-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
+/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
-Energy per atom: Epot = -1038.879eV  Ekin = 0.022eV (T=172K)  Etot = -1038.857eV
-Energy per atom: Epot = -1038.887eV  Ekin = 0.021eV (T=161K)  Etot = -1038.866eV
-Energy per atom: Epot = -1038.876eV  Ekin = 0.022eV (T=168K)  Etot = -1038.854eV
-Energy per atom: Epot = -1038.872eV  Ekin = 0.026eV (T=199K)  Etot = -1038.846eV
-Energy per atom: Epot = -1038.891eV  Ekin = 0.029eV (T=222K)  Etot = -1038.863eV
-Energy per atom: Epot = -1038.877eV  Ekin = 0.028eV (T=219K)  Etot = -1038.848eV
-Energy per atom: Epot = -1038.874eV  Ekin = 0.039eV (T=302K)  Etot = -1038.835eV
-Energy per atom: Epot = -1038.856eV  Ekin = 0.042eV (T=323K)  Etot = -1038.814eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.023eV (T=178K)  Etot = -1038.847eV
-Energy per atom: Epot = -1038.879eV  Ekin = 0.027eV (T=209K)  Etot = -1038.852eV
+Energy per atom: Epot = -1038.878eV  Ekin = 0.015eV (T=113K)  Etot = -1038.863eV
+Energy per atom: Epot = -1038.875eV  Ekin = 0.020eV (T=153K)  Etot = -1038.855eV
+Energy per atom: Epot = -1038.881eV  Ekin = 0.035eV (T=270K)  Etot = -1038.846eV
+Energy per atom: Epot = -1038.887eV  Ekin = 0.042eV (T=322K)  Etot = -1038.846eV
+Energy per atom: Epot = -1038.887eV  Ekin = 0.032eV (T=246K)  Etot = -1038.855eV
+Energy per atom: Epot = -1038.878eV  Ekin = 0.027eV (T=209K)  Etot = -1038.851eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.020eV (T=158K)  Etot = -1038.851eV
+Energy per atom: Epot = -1038.877eV  Ekin = 0.027eV (T=208K)  Etot = -1038.851eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.028eV (T=218K)  Etot = -1038.855eV
+Energy per atom: Epot = -1038.886eV  Ekin = 0.017eV (T=132K)  Etot = -1038.869eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.756 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.959 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
