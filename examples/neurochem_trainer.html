@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Train Neural Network Potential From NeuroChem Input File &mdash; TorchANI 2.3.dev66+g41bd56d documentation</title>
+  <title>Train Neural Network Potential From NeuroChem Input File &mdash; TorchANI 2.2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> TorchANI
           </a>
               <div class="version">
-                2.3.dev66+g41bd56d
+                2.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -142,7 +142,7 @@ But this is wrong and should be avoided for any serious training.</p>
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.1s
+2/1  [============================================================] - 0.0s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
@@ -167,22 +167,22 @@ its progressbar to stdout.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.11it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.05it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.03it/s]
-epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.07it/s]
-epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  3.61it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:01,  3.42it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  3.42it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  3.43it/s]
+epoch 1:  80%|########  | 4/5 [00:01&lt;00:00,  3.48it/s]
+epoch 1: 100%|##########| 5/5 [00:01&lt;00:00,  4.07it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.15it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.07it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.12it/s]
-epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.10it/s]
-epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  3.65it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:01,  3.43it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  3.50it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  3.50it/s]
+epoch 2:  80%|########  | 4/5 [00:01&lt;00:00,  3.47it/s]
+epoch 2: 100%|##########| 5/5 [00:01&lt;00:00,  4.09it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -207,50 +207,29 @@ generating this document:</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
   warnings.warn(&quot;cuaev not installed&quot;)
 /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torch/functional.py:1069: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2157.)
   return _VF.cartesian_prod(tensors)  # type: ignore[attr-defined]
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.3.dev66+g41bd56d-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
+/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.24it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.10it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.08it/s]
-epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.08it/s]
-epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  3.63it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:01,  3.48it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  3.47it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  3.47it/s]
+epoch 1:  80%|████████  | 4/5 [00:01&lt;00:00,  3.45it/s]
+epoch 1: 100%|██████████| 5/5 [00:01&lt;00:00,  4.07it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.14it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.06it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.10it/s]
-epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.11it/s]
-epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  3.65it/s]
-
-epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 3:  20%|██        | 1/5 [00:00&lt;00:01,  3.08it/s]
-epoch 3:  40%|████      | 2/5 [00:00&lt;00:00,  3.05it/s]
-epoch 3:  60%|██████    | 3/5 [00:00&lt;00:00,  3.06it/s]
-epoch 3:  80%|████████  | 4/5 [00:01&lt;00:00,  3.06it/s]
-epoch 3: 100%|██████████| 5/5 [00:01&lt;00:00,  3.57it/s]
-
-epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 4:  20%|██        | 1/5 [00:00&lt;00:01,  2.97it/s]
-epoch 4:  40%|████      | 2/5 [00:00&lt;00:00,  3.09it/s]
-epoch 4:  60%|██████    | 3/5 [00:00&lt;00:00,  3.14it/s]
-epoch 4:  80%|████████  | 4/5 [00:01&lt;00:00,  3.13it/s]
-epoch 4: 100%|██████████| 5/5 [00:01&lt;00:00,  3.67it/s]
-
-epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 5:  20%|██        | 1/5 [00:00&lt;00:01,  3.11it/s]
-epoch 5:  40%|████      | 2/5 [00:00&lt;00:00,  3.15it/s]
-epoch 5:  60%|██████    | 3/5 [00:00&lt;00:00,  3.12it/s]
-epoch 5:  80%|████████  | 4/5 [00:01&lt;00:00,  3.11it/s]
-epoch 5: 100%|██████████| 5/5 [00:01&lt;00:00,  3.65it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:01,  3.52it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  3.49it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  3.47it/s]
+epoch 2:  80%|████████  | 4/5 [00:01&lt;00:00,  3.51it/s]
+epoch 2: 100%|██████████| 5/5 [00:01&lt;00:00,  4.13it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  17.080 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.774 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
