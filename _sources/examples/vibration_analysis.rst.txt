@@ -67,7 +67,7 @@ Let's now manually specify the device we want TorchANI to run:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2.dev2+ge2dee06-py3.8.egg/torchani/resources/
 
 
 
@@ -100,17 +100,17 @@ Let's first construct a water molecule and do structure optimization:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2.dev2+ge2dee06-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
           Step     Time          Energy         fmax
-    BFGS:    0 00:15:43    -2078.633392        0.6576
-    BFGS:    1 00:15:43    -2078.637244        0.1905
-    BFGS:    2 00:15:43    -2078.637801        0.0292
-    BFGS:    3 00:15:43    -2078.637827        0.0183
-    BFGS:    4 00:15:43    -2078.637849        0.0014
-    BFGS:    5 00:15:43    -2078.637849        0.0001
-    BFGS:    6 00:15:43    -2078.637849        0.0000
-    BFGS:    7 00:15:43    -2078.637849        0.0000
+    BFGS:    0 15:19:34    -2078.633392        0.6576
+    BFGS:    1 15:19:34    -2078.637244        0.1905
+    BFGS:    2 15:19:34    -2078.637801        0.0292
+    BFGS:    3 15:19:34    -2078.637827        0.0183
+    BFGS:    4 15:19:34    -2078.637849        0.0014
+    BFGS:    5 15:19:34    -2078.637849        0.0001
+    BFGS:    6 15:19:34    -2078.637849        0.0000
+    BFGS:    7 15:19:34    -2078.637849        0.0000
 
     True
 
@@ -176,7 +176,7 @@ is the same as the code to compute energy:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2.dev2+ge2dee06-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
 
 
@@ -253,7 +253,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.1-py3.8.egg/torchani/utils.py:325: UserWarning: torch.symeig is deprecated in favor of torch.linalg.eigh and will be removed in a future PyTorch release.
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2.dev2+ge2dee06-py3.8.egg/torchani/utils.py:325: UserWarning: torch.symeig is deprecated in favor of torch.linalg.eigh and will be removed in a future PyTorch release.
     The default behavior has changed from using the upper triangular portion of the matrix by default to using the lower triangular portion.
     L, _ = torch.symeig(A, upper=upper)
     should be replaced with
@@ -266,17 +266,17 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
     Frequencies (cm^-1): tensor([1913.200, 3882.404, 3911.185], dtype=torch.float64)
     Force Constants (mDyne/A): tensor([2.339, 9.269, 9.743], dtype=torch.float64)
     Reduced masses (AMU): tensor([1.085, 1.044, 1.081], dtype=torch.float64)
-    Modes: tensor([[[    -0.015,     -0.677,     -0.000],
-             [    -0.652,     -0.184,      0.000],
-             [     0.042,      0.054,     -0.000]],
+    Modes: tensor([[[     0.015,      0.677,     -0.000],
+             [     0.652,      0.184,     -0.000],
+             [    -0.042,     -0.054,      0.000]],
 
-            [[    -0.689,      0.054,     -0.000],
+            [[    -0.689,      0.054,      0.000],
              [     0.225,     -0.654,      0.000],
              [     0.029,      0.038,     -0.000]],
 
-            [[     0.678,      0.006,      0.000],
-             [     0.164,     -0.658,     -0.000],
-             [    -0.053,      0.041,     -0.000]]], dtype=torch.float64)
+            [[    -0.678,     -0.006,     -0.000],
+             [    -0.164,      0.658,      0.000],
+             [     0.053,     -0.041,     -0.000]]], dtype=torch.float64)
 
 
 
@@ -284,7 +284,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.697 seconds)
+   **Total running time of the script:** ( 0 minutes  1.858 seconds)
 
 
 .. _sphx_glr_download_examples_vibration_analysis.py:
