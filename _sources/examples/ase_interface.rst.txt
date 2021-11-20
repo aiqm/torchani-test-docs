@@ -98,7 +98,7 @@ Now let's create a calculator from builtin models:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/resources/
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+gb4361a5-py3.8.egg/torchani/resources/
     Downloading ANI model parameters ...
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torch/functional.py:1069: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2157.)
       return _VF.cartesian_prod(tensors)  # type: ignore[attr-defined]
@@ -161,12 +161,12 @@ Now let's minimize the structure:
  .. code-block:: none
 
     Begin minimizing...
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+gb4361a5-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:201.)
       cell = torch.tensor(self.atoms.get_cell(complete=True),
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+gb4361a5-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
           Step     Time          Energy         fmax
-    BFGS:    0 00:15:33    -8311.226180        0.0000
+    BFGS:    0 18:44:21    -8311.226174        0.0000
 
 
 
@@ -248,18 +248,18 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+gb4361a5-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    Energy per atom: Epot = -1038.879eV  Ekin = 0.016eV (T=121K)  Etot = -1038.863eV
-    Energy per atom: Epot = -1038.864eV  Ekin = 0.031eV (T=239K)  Etot = -1038.833eV
-    Energy per atom: Epot = -1038.874eV  Ekin = 0.031eV (T=238K)  Etot = -1038.844eV
-    Energy per atom: Epot = -1038.846eV  Ekin = 0.040eV (T=310K)  Etot = -1038.806eV
-    Energy per atom: Epot = -1038.881eV  Ekin = 0.050eV (T=388K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.866eV  Ekin = 0.022eV (T=168K)  Etot = -1038.845eV
-    Energy per atom: Epot = -1038.868eV  Ekin = 0.041eV (T=314K)  Etot = -1038.827eV
-    Energy per atom: Epot = -1038.888eV  Ekin = 0.042eV (T=324K)  Etot = -1038.847eV
-    Energy per atom: Epot = -1038.880eV  Ekin = 0.024eV (T=183K)  Etot = -1038.856eV
-    Energy per atom: Epot = -1038.882eV  Ekin = 0.033eV (T=256K)  Etot = -1038.849eV
+    Energy per atom: Epot = -1038.873eV  Ekin = 0.015eV (T=113K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.876eV  Ekin = 0.036eV (T=276K)  Etot = -1038.840eV
+    Energy per atom: Epot = -1038.874eV  Ekin = 0.023eV (T=181K)  Etot = -1038.850eV
+    Energy per atom: Epot = -1038.864eV  Ekin = 0.041eV (T=320K)  Etot = -1038.822eV
+    Energy per atom: Epot = -1038.848eV  Ekin = 0.027eV (T=209K)  Etot = -1038.821eV
+    Energy per atom: Epot = -1038.865eV  Ekin = 0.022eV (T=171K)  Etot = -1038.843eV
+    Energy per atom: Epot = -1038.886eV  Ekin = 0.044eV (T=342K)  Etot = -1038.842eV
+    Energy per atom: Epot = -1038.867eV  Ekin = 0.043eV (T=333K)  Etot = -1038.824eV
+    Energy per atom: Epot = -1038.852eV  Ekin = 0.055eV (T=425K)  Etot = -1038.797eV
+    Energy per atom: Epot = -1038.862eV  Ekin = 0.027eV (T=205K)  Etot = -1038.836eV
 
     True
 
@@ -268,7 +268,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.019 seconds)
+   **Total running time of the script:** ( 0 minutes  12.839 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
