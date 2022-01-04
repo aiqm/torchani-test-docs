@@ -159,10 +159,8 @@ Now, let's go!
 
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:01,  3.52it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  3.58it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  3.59it/s]    epoch 1:  80%|########  | 4/5 [00:01<00:00,  3.60it/s]    epoch 1: 100%|##########| 5/5 [00:01<00:00,  4.22it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:01,  3.57it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  3.48it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  3.52it/s]    epoch 2:  80%|########  | 4/5 [00:01<00:00,  3.44it/s]    epoch 2: 100%|##########| 5/5 [00:01<00:00,  4.10it/s]
-    epoch 3:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 3:  20%|##        | 1/5 [00:00<00:01,  3.64it/s]    epoch 3:  40%|####      | 2/5 [00:00<00:00,  3.64it/s]    epoch 3:  60%|######    | 3/5 [00:00<00:00,  3.66it/s]    epoch 3:  80%|########  | 4/5 [00:01<00:00,  3.53it/s]    epoch 3: 100%|##########| 5/5 [00:01<00:00,  4.20it/s]
-    epoch 4:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 4:  20%|##        | 1/5 [00:00<00:01,  3.44it/s]    epoch 4:  40%|####      | 2/5 [00:00<00:00,  3.49it/s]    epoch 4:  60%|######    | 3/5 [00:00<00:00,  3.56it/s]    epoch 4:  80%|########  | 4/5 [00:01<00:00,  3.59it/s]    epoch 4: 100%|##########| 5/5 [00:01<00:00,  4.19it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  4.43it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  4.74it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  4.84it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  4.92it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  5.65it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  4.87it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  4.86it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  4.91it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  4.97it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  5.78it/s]
 
 
 
@@ -226,8 +224,11 @@ generating this document:
       return _VF.cartesian_prod(tensors)  # type: ignore[attr-defined]
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:01,  3.47it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  3.45it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  3.52it/s]    epoch 1:  80%|████████  | 4/5 [00:01<00:00,  3.57it/s]    epoch 1: 100%|██████████| 5/5 [00:01<00:00,  4.17it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:01,  3.41it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  3.50it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  3.45it/s]    epoch 2:  80%|████████  | 4/5 [00:01<00:00,  3.43it/s]    epoch 2: 100%|██████████| 5/5 [00:01<00:00,  4.05it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  4.72it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  4.65it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  4.77it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  4.82it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  5.62it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  4.73it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  4.85it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  4.78it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  4.69it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  5.53it/s]
+    epoch 3:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 3:  20%|██        | 1/5 [00:00<00:00,  4.87it/s]    epoch 3:  40%|████      | 2/5 [00:00<00:00,  4.91it/s]    epoch 3:  60%|██████    | 3/5 [00:00<00:00,  4.78it/s]    epoch 3:  80%|████████  | 4/5 [00:00<00:00,  4.81it/s]    epoch 3: 100%|██████████| 5/5 [00:00<00:00,  5.67it/s]
+    epoch 4:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 4:  20%|██        | 1/5 [00:00<00:00,  4.88it/s]    epoch 4:  40%|████      | 2/5 [00:00<00:00,  4.85it/s]    epoch 4:  60%|██████    | 3/5 [00:00<00:00,  4.75it/s]    epoch 4:  80%|████████  | 4/5 [00:00<00:00,  4.74it/s]    epoch 4: 100%|██████████| 5/5 [00:00<00:00,  5.60it/s]
+    epoch 5:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 5:  20%|██        | 1/5 [00:00<00:00,  4.92it/s]    epoch 5:  40%|████      | 2/5 [00:00<00:00,  4.92it/s]    epoch 5:  60%|██████    | 3/5 [00:00<00:00,  4.87it/s]    epoch 5:  80%|████████  | 4/5 [00:00<00:00,  4.85it/s]    epoch 5: 100%|██████████| 5/5 [00:00<00:00,  5.71it/s]
 
 
 
@@ -236,7 +237,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.681 seconds)
+   **Total running time of the script:** ( 0 minutes  12.974 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:
