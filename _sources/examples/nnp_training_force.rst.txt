@@ -554,10 +554,10 @@ In the training loop, we need to compute force, and loss for forces
     training starting from epoch 1
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    RMSE: 84.69117413257588 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:03<00:09,  3.04s/it]    epoch 1:  50%|#####     | 2/4 [00:05<00:05,  2.87s/it]    epoch 1:  75%|#######5  | 3/4 [00:08<00:02,  2.82s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.35s/it]    epoch 1: 100%|##########| 4/4 [00:10<00:00,  2.55s/it]
-    RMSE: 183.00136340233834 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:02<00:08,  2.75s/it]    epoch 2:  50%|#####     | 2/4 [00:05<00:05,  2.70s/it]    epoch 2:  75%|#######5  | 3/4 [00:08<00:02,  2.70s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.29s/it]    epoch 2: 100%|##########| 4/4 [00:09<00:00,  2.45s/it]
+    RMSE: 46.108049862055225 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:02<00:06,  2.10s/it]    epoch 1:  50%|#####     | 2/4 [00:04<00:04,  2.06s/it]    epoch 1:  75%|#######5  | 3/4 [00:06<00:01,  1.98s/it]    epoch 1: 100%|##########| 4/4 [00:07<00:00,  1.64s/it]    epoch 1: 100%|##########| 4/4 [00:07<00:00,  1.78s/it]
+    RMSE: 119.73089797314384 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:01<00:05,  1.97s/it]    epoch 2:  50%|#####     | 2/4 [00:03<00:03,  1.98s/it]    epoch 2:  75%|#######5  | 3/4 [00:05<00:01,  1.95s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.62s/it]    epoch 2: 100%|##########| 4/4 [00:06<00:00,  1.75s/it]
 
 
 
@@ -565,7 +565,7 @@ In the training loop, we need to compute force, and loss for forces
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  21.625 seconds)
+   **Total running time of the script:** ( 0 minutes  15.558 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training_force.py:
