@@ -166,7 +166,7 @@ Now let's minimize the structure:
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
           Step     Time          Energy         fmax
-    BFGS:    0 00:19:45    -8311.226180        0.0000
+    BFGS:    0 00:18:28    -8311.226180        0.0000
 
 
 
@@ -250,16 +250,16 @@ Now run the dynamics:
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    Energy per atom: Epot = -1038.891eV  Ekin = 0.021eV (T=159K)  Etot = -1038.871eV
-    Energy per atom: Epot = -1038.860eV  Ekin = 0.029eV (T=224K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.862eV  Ekin = 0.035eV (T=271K)  Etot = -1038.827eV
-    Energy per atom: Epot = -1038.862eV  Ekin = 0.054eV (T=421K)  Etot = -1038.807eV
-    Energy per atom: Epot = -1038.879eV  Ekin = 0.043eV (T=332K)  Etot = -1038.836eV
-    Energy per atom: Epot = -1038.876eV  Ekin = 0.036eV (T=282K)  Etot = -1038.839eV
-    Energy per atom: Epot = -1038.870eV  Ekin = 0.039eV (T=305K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.859eV  Ekin = 0.059eV (T=453K)  Etot = -1038.800eV
-    Energy per atom: Epot = -1038.855eV  Ekin = 0.032eV (T=246K)  Etot = -1038.823eV
-    Energy per atom: Epot = -1038.879eV  Ekin = 0.046eV (T=360K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.897eV  Ekin = 0.023eV (T=179K)  Etot = -1038.874eV
+    Energy per atom: Epot = -1038.888eV  Ekin = 0.030eV (T=232K)  Etot = -1038.858eV
+    Energy per atom: Epot = -1038.884eV  Ekin = 0.030eV (T=235K)  Etot = -1038.854eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.049eV (T=377K)  Etot = -1038.822eV
+    Energy per atom: Epot = -1038.845eV  Ekin = 0.026eV (T=201K)  Etot = -1038.819eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.047eV (T=362K)  Etot = -1038.828eV
+    Energy per atom: Epot = -1038.864eV  Ekin = 0.031eV (T=241K)  Etot = -1038.833eV
+    Energy per atom: Epot = -1038.866eV  Ekin = 0.019eV (T=146K)  Etot = -1038.847eV
+    Energy per atom: Epot = -1038.849eV  Ekin = 0.029eV (T=221K)  Etot = -1038.820eV
+    Energy per atom: Epot = -1038.859eV  Ekin = 0.040eV (T=310K)  Etot = -1038.819eV
 
     True
 
@@ -268,7 +268,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.113 seconds)
+   **Total running time of the script:** ( 0 minutes  13.029 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
