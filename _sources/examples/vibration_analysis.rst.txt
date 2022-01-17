@@ -103,14 +103,14 @@ Let's first construct a water molecule and do structure optimization:
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.2-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
           Step     Time          Energy         fmax
-    BFGS:    0 00:19:55    -2078.633392        0.6576
-    BFGS:    1 00:19:55    -2078.637244        0.1905
-    BFGS:    2 00:19:55    -2078.637801        0.0292
-    BFGS:    3 00:19:55    -2078.637827        0.0183
-    BFGS:    4 00:19:55    -2078.637849        0.0014
-    BFGS:    5 00:19:55    -2078.637849        0.0001
-    BFGS:    6 00:19:55    -2078.637849        0.0000
-    BFGS:    7 00:19:55    -2078.637849        0.0000
+    BFGS:    0 00:19:38    -2078.633392        0.6576
+    BFGS:    1 00:19:38    -2078.637244        0.1905
+    BFGS:    2 00:19:38    -2078.637801        0.0292
+    BFGS:    3 00:19:39    -2078.637827        0.0183
+    BFGS:    4 00:19:39    -2078.637849        0.0014
+    BFGS:    5 00:19:39    -2078.637849        0.0001
+    BFGS:    6 00:19:39    -2078.637849        0.0000
+    BFGS:    7 00:19:39    -2078.637849        0.0000
 
     True
 
@@ -266,17 +266,17 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
     Frequencies (cm^-1): tensor([1913.200, 3882.404, 3911.185], dtype=torch.float64)
     Force Constants (mDyne/A): tensor([2.339, 9.269, 9.743], dtype=torch.float64)
     Reduced masses (AMU): tensor([1.085, 1.044, 1.081], dtype=torch.float64)
-    Modes: tensor([[[    -0.015,     -0.677,     -0.000],
-             [    -0.652,     -0.184,      0.000],
-             [     0.042,      0.054,     -0.000]],
+    Modes: tensor([[[     0.015,      0.677,     -0.000],
+             [     0.652,      0.184,     -0.000],
+             [    -0.042,     -0.054,     -0.000]],
 
-            [[    -0.689,      0.054,     -0.000],
-             [     0.225,     -0.654,      0.000],
-             [     0.029,      0.038,     -0.000]],
+            [[     0.689,     -0.054,     -0.000],
+             [    -0.225,      0.654,     -0.000],
+             [    -0.029,     -0.038,      0.000]],
 
-            [[     0.678,      0.006,      0.000],
-             [     0.164,     -0.658,     -0.000],
-             [    -0.053,      0.041,     -0.000]]], dtype=torch.float64)
+            [[    -0.678,     -0.006,     -0.000],
+             [    -0.164,      0.658,     -0.000],
+             [     0.053,     -0.041,      0.000]]], dtype=torch.float64)
 
 
 
@@ -284,7 +284,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.412 seconds)
+   **Total running time of the script:** ( 0 minutes  2.109 seconds)
 
 
 .. _sphx_glr_download_examples_vibration_analysis.py:
