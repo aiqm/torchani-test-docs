@@ -507,8 +507,8 @@ Sequential(
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7fdc100824f0&gt;
-&lt;torchani.ase.Calculator object at 0x7fdc100824f0&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7fc0a5df7a30&gt;
+&lt;torchani.ase.Calculator object at 0x7fc0a5df7a30&gt;
 </pre></div>
 </div>
 <p>Now let’s define a methane molecule</p>
@@ -533,7 +533,7 @@ Sequential(
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+g3dfbaf4-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
-Energy: -40.45902210386233
+Energy: -40.459022101999686
 Force: tensor([[ 0.031, -0.132, -0.053],
         [-0.129,  0.164, -0.077],
         [ 0.086, -0.043,  0.041],
@@ -550,12 +550,12 @@ Force: tensor([[ 0.031, -0.132, -0.053],
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+g3dfbaf4-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
-Energy: -40.45902210386233
-Force: [[ 0.03062524 -0.13160463 -0.05265211]
- [-0.12927505  0.16388637 -0.07736803]
+Energy: -40.459022101999686
+Force: [[ 0.03062525 -0.13160463 -0.05265211]
+ [-0.12927507  0.16388637 -0.07736803]
  [ 0.08563147 -0.04288925  0.04082095]
  [ 0.02681219  0.00601404  0.03809873]
- [-0.01379385  0.00459347  0.05110047]]
+ [-0.01379384  0.00459347  0.05110046]]
 </pre></div>
 </div>
 <p>We can do the same thing with the single model:</p>
@@ -573,21 +573,21 @@ Force: [[ 0.03062524 -0.13160463 -0.05265211]
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+g3dfbaf4-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the &#39;trunc&#39; function NOT &#39;floor&#39;). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode=&#39;trunc&#39;), or for actual floor division, use torch.div(a, b, rounding_mode=&#39;floor&#39;).
   pair_sizes = counts * (counts - 1) // 2
-Energy: -40.4628003622009
+Energy: -40.46280036406355
 Force: tensor([[ 0.056, -0.127, -0.054],
         [-0.140,  0.155, -0.075],
         [ 0.075, -0.037,  0.039],
         [ 0.024,  0.002,  0.033],
         [-0.016,  0.007,  0.057]])
-Energy: -40.4628003622009
-Force: [[ 0.05614966 -0.12697159 -0.05413404]
- [-0.14007528  0.15523373 -0.07533836]
- [ 0.0753209  -0.0374411   0.03949669]
- [ 0.02423098  0.00235086  0.03344228]
- [-0.01562627  0.00682809  0.05653342]]
+Energy: -40.46280036406355
+Force: [[ 0.05614965 -0.1269716  -0.05413404]
+ [-0.14007531  0.15523373 -0.07533836]
+ [ 0.07532091 -0.03744109  0.03949668]
+ [ 0.024231    0.00235088  0.03344231]
+ [-0.01562625  0.00682809  0.05653341]]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.382 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.262 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-load-from-neurochem-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/6e47da231026b2cca4300c62c515ca96/load_from_neurochem.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_from_neurochem.py</span></code></a></div>
