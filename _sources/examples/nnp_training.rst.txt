@@ -185,9 +185,9 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
     Processing dataset in /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5
     => loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
-    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.1s=> loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
+    2/1  [============================================================] - 0.1s    3/1  [==========================================================================================] - 0.1s=> loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
     1/1  [==============================] - 0.0s
-    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.0sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
+    2/1  [============================================================] - 0.0s    3/1  [==========================================================================================] - 0.1sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
 
 
 
@@ -668,24 +668,24 @@ set to a much larger value
     training starting from epoch 1
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev2+g3dfbaf4-py3.8.egg/torchani/aev.py:249: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
       pair_sizes = counts * (counts - 1) // 2
-    RMSE: 121.6815016172077 at epoch 1
-    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:00<00:00,  5.58it/s]    epoch 1:  50%|#####     | 2/4 [00:00<00:00,  5.71it/s]    epoch 1:  75%|#######5  | 3/4 [00:00<00:00,  5.67it/s]    epoch 1: 100%|##########| 4/4 [00:00<00:00,  6.65it/s]
-    RMSE: 164.0377335325642 at epoch 2
-    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:00<00:00,  5.28it/s]    epoch 2:  50%|#####     | 2/4 [00:00<00:00,  5.39it/s]    epoch 2:  75%|#######5  | 3/4 [00:00<00:00,  5.53it/s]    epoch 2: 100%|##########| 4/4 [00:00<00:00,  6.45it/s]
-    RMSE: 90.43736534131942 at epoch 3
-    epoch 3:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 3:  25%|##5       | 1/4 [00:00<00:00,  5.67it/s]    epoch 3:  50%|#####     | 2/4 [00:00<00:00,  5.74it/s]    epoch 3:  75%|#######5  | 3/4 [00:00<00:00,  5.70it/s]    epoch 3: 100%|##########| 4/4 [00:00<00:00,  6.70it/s]
-    RMSE: 35.041767036897056 at epoch 4
-    epoch 4:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 4:  25%|##5       | 1/4 [00:00<00:00,  5.84it/s]    epoch 4:  50%|#####     | 2/4 [00:00<00:00,  5.89it/s]    epoch 4:  75%|#######5  | 3/4 [00:00<00:00,  5.94it/s]    epoch 4: 100%|##########| 4/4 [00:00<00:00,  6.93it/s]
-    RMSE: 51.66885576922245 at epoch 5
-    epoch 5:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 5:  25%|##5       | 1/4 [00:00<00:00,  6.06it/s]    epoch 5:  50%|#####     | 2/4 [00:00<00:00,  5.86it/s]    epoch 5:  75%|#######5  | 3/4 [00:00<00:00,  5.65it/s]    epoch 5: 100%|##########| 4/4 [00:00<00:00,  6.73it/s]
-    RMSE: 48.57116428684357 at epoch 6
-    epoch 6:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 6:  25%|##5       | 1/4 [00:00<00:00,  5.73it/s]    epoch 6:  50%|#####     | 2/4 [00:00<00:00,  5.84it/s]    epoch 6:  75%|#######5  | 3/4 [00:00<00:00,  5.95it/s]    epoch 6: 100%|##########| 4/4 [00:00<00:00,  6.95it/s]
-    RMSE: 20.73154013089953 at epoch 7
-    epoch 7:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 7:  25%|##5       | 1/4 [00:00<00:00,  6.16it/s]    epoch 7:  50%|#####     | 2/4 [00:00<00:00,  6.04it/s]    epoch 7:  75%|#######5  | 3/4 [00:00<00:00,  5.84it/s]    epoch 7: 100%|##########| 4/4 [00:00<00:00,  6.91it/s]
-    RMSE: 24.68690666484076 at epoch 8
-    epoch 8:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 8:  25%|##5       | 1/4 [00:00<00:00,  6.04it/s]    epoch 8:  50%|#####     | 2/4 [00:00<00:00,  6.15it/s]    epoch 8:  75%|#######5  | 3/4 [00:00<00:00,  6.13it/s]    epoch 8: 100%|##########| 4/4 [00:00<00:00,  7.14it/s]
-    RMSE: 25.761545495690726 at epoch 9
-    epoch 9:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 9:  25%|##5       | 1/4 [00:00<00:00,  5.43it/s]    epoch 9:  50%|#####     | 2/4 [00:00<00:00,  5.74it/s]    epoch 9:  75%|#######5  | 3/4 [00:00<00:00,  5.77it/s]    epoch 9: 100%|##########| 4/4 [00:00<00:00,  6.75it/s]
+    RMSE: 171.1677665509511 at epoch 1
+    epoch 1:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 1:  25%|##5       | 1/4 [00:00<00:00,  4.36it/s]    epoch 1:  50%|#####     | 2/4 [00:00<00:00,  4.50it/s]    epoch 1:  75%|#######5  | 3/4 [00:00<00:00,  4.54it/s]    epoch 1: 100%|##########| 4/4 [00:00<00:00,  5.30it/s]
+    RMSE: 93.01377922276924 at epoch 2
+    epoch 2:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 2:  25%|##5       | 1/4 [00:00<00:00,  4.43it/s]    epoch 2:  50%|#####     | 2/4 [00:00<00:00,  4.31it/s]    epoch 2:  75%|#######5  | 3/4 [00:00<00:00,  4.43it/s]    epoch 2: 100%|##########| 4/4 [00:00<00:00,  5.20it/s]
+    RMSE: 44.721064660644245 at epoch 3
+    epoch 3:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 3:  25%|##5       | 1/4 [00:00<00:00,  4.58it/s]    epoch 3:  50%|#####     | 2/4 [00:00<00:00,  4.38it/s]    epoch 3:  75%|#######5  | 3/4 [00:00<00:00,  4.47it/s]    epoch 3: 100%|##########| 4/4 [00:00<00:00,  5.27it/s]
+    RMSE: 41.6171531793565 at epoch 4
+    epoch 4:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 4:  25%|##5       | 1/4 [00:00<00:00,  4.50it/s]    epoch 4:  50%|#####     | 2/4 [00:00<00:00,  4.48it/s]    epoch 4:  75%|#######5  | 3/4 [00:00<00:00,  4.47it/s]    epoch 4: 100%|##########| 4/4 [00:00<00:00,  5.26it/s]
+    RMSE: 50.396837345594754 at epoch 5
+    epoch 5:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 5:  25%|##5       | 1/4 [00:00<00:00,  4.60it/s]    epoch 5:  50%|#####     | 2/4 [00:00<00:00,  4.54it/s]    epoch 5:  75%|#######5  | 3/4 [00:00<00:00,  4.49it/s]    epoch 5: 100%|##########| 4/4 [00:00<00:00,  5.26it/s]
+    RMSE: 30.548990010797752 at epoch 6
+    epoch 6:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 6:  25%|##5       | 1/4 [00:00<00:00,  4.39it/s]    epoch 6:  50%|#####     | 2/4 [00:00<00:00,  4.44it/s]    epoch 6:  75%|#######5  | 3/4 [00:00<00:00,  4.46it/s]    epoch 6: 100%|##########| 4/4 [00:00<00:00,  5.23it/s]
+    RMSE: 20.388439748313747 at epoch 7
+    epoch 7:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 7:  25%|##5       | 1/4 [00:00<00:00,  4.31it/s]    epoch 7:  50%|#####     | 2/4 [00:00<00:00,  4.43it/s]    epoch 7:  75%|#######5  | 3/4 [00:00<00:00,  4.39it/s]    epoch 7: 100%|##########| 4/4 [00:00<00:00,  5.16it/s]
+    RMSE: 22.67484187131555 at epoch 8
+    epoch 8:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 8:  25%|##5       | 1/4 [00:00<00:00,  4.61it/s]    epoch 8:  50%|#####     | 2/4 [00:00<00:00,  4.61it/s]    epoch 8:  75%|#######5  | 3/4 [00:00<00:00,  4.60it/s]    epoch 8: 100%|##########| 4/4 [00:00<00:00,  5.39it/s]
+    RMSE: 16.664406899349817 at epoch 9
+    epoch 9:   0%|          | 0/4 [00:00<?, ?it/s]    epoch 9:  25%|##5       | 1/4 [00:00<00:00,  4.43it/s]    epoch 9:  50%|#####     | 2/4 [00:00<00:00,  4.52it/s]    epoch 9:  75%|#######5  | 3/4 [00:00<00:00,  4.58it/s]    epoch 9: 100%|##########| 4/4 [00:00<00:00,  5.35it/s]
 
 
 
@@ -693,7 +693,7 @@ set to a much larger value
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.705 seconds)
+   **Total running time of the script:** ( 0 minutes  8.608 seconds)
 
 
 .. _sphx_glr_download_examples_nnp_training.py:
