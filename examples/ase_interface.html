@@ -157,7 +157,7 @@ large for structure minimization. If you insist on using
 /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev3+g1c5ee5f-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
   cell = torch.tensor(self.atoms.get_cell(complete=True),
       Step     Time          Energy         fmax
-BFGS:    0 00:02:19    -8311.226180        0.0000
+BFGS:    0 00:02:01    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -191,21 +191,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.881eV  Ekin = 0.030eV (T=230K)  Etot = -1038.852eV
-Energy per atom: Epot = -1038.889eV  Ekin = 0.017eV (T=132K)  Etot = -1038.872eV
-Energy per atom: Epot = -1038.858eV  Ekin = 0.028eV (T=219K)  Etot = -1038.830eV
-Energy per atom: Epot = -1038.855eV  Ekin = 0.037eV (T=289K)  Etot = -1038.817eV
-Energy per atom: Epot = -1038.869eV  Ekin = 0.051eV (T=394K)  Etot = -1038.818eV
-Energy per atom: Epot = -1038.840eV  Ekin = 0.027eV (T=210K)  Etot = -1038.813eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.037eV (T=288K)  Etot = -1038.826eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.031eV (T=237K)  Etot = -1038.833eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.039eV (T=301K)  Etot = -1038.831eV
-Energy per atom: Epot = -1038.863eV  Ekin = 0.030eV (T=231K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.897eV  Ekin = 0.015eV (T=114K)  Etot = -1038.882eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.031eV (T=243K)  Etot = -1038.851eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.027eV (T=205K)  Etot = -1038.848eV
+Energy per atom: Epot = -1038.848eV  Ekin = 0.037eV (T=285K)  Etot = -1038.811eV
+Energy per atom: Epot = -1038.868eV  Ekin = 0.056eV (T=433K)  Etot = -1038.812eV
+Energy per atom: Epot = -1038.875eV  Ekin = 0.039eV (T=300K)  Etot = -1038.836eV
+Energy per atom: Epot = -1038.877eV  Ekin = 0.017eV (T=135K)  Etot = -1038.860eV
+Energy per atom: Epot = -1038.876eV  Ekin = 0.054eV (T=419K)  Etot = -1038.821eV
+Energy per atom: Epot = -1038.875eV  Ekin = 0.035eV (T=274K)  Etot = -1038.840eV
+Energy per atom: Epot = -1038.863eV  Ekin = 0.042eV (T=329K)  Etot = -1038.821eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.284 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.722 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
