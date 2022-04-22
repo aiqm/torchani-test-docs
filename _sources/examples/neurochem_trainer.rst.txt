@@ -157,8 +157,8 @@ Now, let's go!
 
  .. code-block:: none
 
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  6.05it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  6.08it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  6.15it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  6.12it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  7.18it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  6.32it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  6.26it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  6.32it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  6.29it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  7.37it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|##        | 1/5 [00:00<00:00,  5.53it/s]    epoch 1:  40%|####      | 2/5 [00:00<00:00,  5.58it/s]    epoch 1:  60%|######    | 3/5 [00:00<00:00,  5.65it/s]    epoch 1:  80%|########  | 4/5 [00:00<00:00,  5.62it/s]    epoch 1: 100%|##########| 5/5 [00:00<00:00,  6.59it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|##        | 1/5 [00:00<00:00,  5.65it/s]    epoch 2:  40%|####      | 2/5 [00:00<00:00,  5.70it/s]    epoch 2:  60%|######    | 3/5 [00:00<00:00,  5.70it/s]    epoch 2:  80%|########  | 4/5 [00:00<00:00,  5.64it/s]    epoch 2: 100%|##########| 5/5 [00:00<00:00,  6.64it/s]
 
 
 
@@ -216,10 +216,10 @@ generating this document:
 
  .. code-block:: none
 
-    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev3+g1c5ee5f-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
+    /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/aev.py:16: UserWarning: cuaev not installed
       warnings.warn("cuaev not installed")
-    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  6.21it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  6.29it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  6.30it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  6.28it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  7.37it/s]
-    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  6.21it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  6.26it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  6.27it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  6.24it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  7.32it/s]
+    epoch 1:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 1:  20%|██        | 1/5 [00:00<00:00,  5.41it/s]    epoch 1:  40%|████      | 2/5 [00:00<00:00,  5.56it/s]    epoch 1:  60%|██████    | 3/5 [00:00<00:00,  5.63it/s]    epoch 1:  80%|████████  | 4/5 [00:00<00:00,  5.64it/s]    epoch 1: 100%|██████████| 5/5 [00:00<00:00,  6.57it/s]
+    epoch 2:   0%|          | 0/5 [00:00<?, ?it/s]    epoch 2:  20%|██        | 1/5 [00:00<00:00,  5.54it/s]    epoch 2:  40%|████      | 2/5 [00:00<00:00,  5.61it/s]    epoch 2:  60%|██████    | 3/5 [00:00<00:00,  5.63it/s]    epoch 2:  80%|████████  | 4/5 [00:00<00:00,  5.65it/s]    epoch 2: 100%|██████████| 5/5 [00:00<00:00,  6.55it/s]
 
 
 
@@ -228,7 +228,7 @@ generating this document:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.048 seconds)
+   **Total running time of the script:** ( 0 minutes  7.642 seconds)
 
 
 .. _sphx_glr_download_examples_neurochem_trainer.py:

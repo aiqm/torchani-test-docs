@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computing Vibrational Frequencies Using Analytical Hessian &mdash; TorchANI 2.2.3.dev3+g1c5ee5f documentation</title>
+  <title>Computing Vibrational Frequencies Using Analytical Hessian &mdash; TorchANI 2.2.3.dev4+g46c554a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> TorchANI
           </a>
               <div class="version">
-                2.2.3.dev3+g1c5ee5f
+                2.2.3.dev4+g46c554a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -119,7 +119,7 @@ vibration analysis analytically, thanks to the super power of <cite>torch.autogr
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev3+g1c5ee5f-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
 </pre></div>
 </div>
 <p>Let’s first construct a water molecule and do structure optimization:</p>
@@ -136,14 +136,14 @@ vibration analysis analytically, thanks to the super power of <cite>torch.autogr
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy         fmax
-BFGS:    0 00:02:15    -2078.633392        0.6576
-BFGS:    1 00:02:15    -2078.637244        0.1905
-BFGS:    2 00:02:15    -2078.637801        0.0292
-BFGS:    3 00:02:15    -2078.637827        0.0183
-BFGS:    4 00:02:16    -2078.637849        0.0014
-BFGS:    5 00:02:16    -2078.637849        0.0001
-BFGS:    6 00:02:16    -2078.637849        0.0000
-BFGS:    7 00:02:16    -2078.637849        0.0000
+BFGS:    0 21:31:42    -2078.633392        0.6576
+BFGS:    1 21:31:42    -2078.637244        0.1905
+BFGS:    2 21:31:42    -2078.637801        0.0292
+BFGS:    3 21:31:43    -2078.637827        0.0183
+BFGS:    4 21:31:43    -2078.637849        0.0014
+BFGS:    5 21:31:43    -2078.637849        0.0001
+BFGS:    6 21:31:43    -2078.637849        0.0000
+BFGS:    7 21:31:43    -2078.637849        0.0000
 
 True
 </pre></div>
@@ -193,7 +193,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.<
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev3+g1c5ee5f-py3.8.egg/torchani/utils.py:325: UserWarning: torch.symeig is deprecated in favor of torch.linalg.eigh and will be removed in a future PyTorch release.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/utils.py:325: UserWarning: torch.symeig is deprecated in favor of torch.linalg.eigh and will be removed in a future PyTorch release.
 The default behavior has changed from using the upper triangular portion of the matrix by default to using the lower triangular portion.
 L, _ = torch.symeig(A, upper=upper)
 should be replaced with
@@ -219,7 +219,7 @@ Modes: tensor([[[    -0.015,     -0.677,     -0.000],
          [    -0.053,      0.041,     -0.000]]], dtype=torch.float64)
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.446 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.605 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-vibration-analysis-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/ee78bc2f4e1967149696942823208fe8/vibration_analysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">vibration_analysis.py</span></code></a></div>
