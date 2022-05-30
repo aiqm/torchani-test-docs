@@ -17,6 +17,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -104,7 +105,7 @@
 to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="using-torchscript-to-serialize-and-deploy-model">
-<span id="sphx-glr-examples-jit-py"></span><h1>Using TorchScript to serialize and deploy model<a class="headerlink" href="#using-torchscript-to-serialize-and-deploy-model" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-examples-jit-py"></span><h1>Using TorchScript to serialize and deploy model<a class="headerlink" href="#using-torchscript-to-serialize-and-deploy-model" title="Permalink to this heading">¶</a></h1>
 <p>Models in TorchANI’s model zoo support TorchScript. TorchScript is a way to create
 serializable and optimizable models from PyTorch code. It allows users to saved their
 models from a Python process and loaded in a process where there is no Python dependency.</p>
@@ -116,7 +117,7 @@ models from a Python process and loaded in a process where there is no Python de
 </pre></div>
 </div>
 <div class="section" id="scripting-builtin-model-directly">
-<h2>Scripting builtin model directly<a class="headerlink" href="#scripting-builtin-model-directly" title="Permalink to this headline">¶</a></h2>
+<h2>Scripting builtin model directly<a class="headerlink" href="#scripting-builtin-model-directly" title="Permalink to this heading">¶</a></h2>
 <p>Let’s now load the built-in ANI-1ccx models. The builtin ANI-1ccx contains 8
 models trained with diffrent initialization.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -168,7 +169,7 @@ Single network energy, eager mode vs loaded jit: -40.428783462217055 -40.4287834
 </div>
 </div>
 <div class="section" id="customize-the-model-and-script">
-<h2>Customize the model and script<a class="headerlink" href="#customize-the-model-and-script" title="Permalink to this headline">¶</a></h2>
+<h2>Customize the model and script<a class="headerlink" href="#customize-the-model-and-script" title="Permalink to this heading">¶</a></h2>
 <p>You could also customize the model you want to export. For example, let’s do
 the following customization to the model:</p>
 <ul class="simple">
@@ -268,7 +269,7 @@ Hessian, eager mode vs loaded jit:
         [     0.292,     -0.092,     -0.652,     -0.020,      0.015,      0.029,      0.027,     -0.011,     -0.001,      0.048,     -0.030,     -0.065,     -0.346,      0.117,      0.689]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.270 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.393 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>
