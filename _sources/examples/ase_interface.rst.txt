@@ -162,7 +162,7 @@ Now let's minimize the structure:
     /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
       cell = torch.tensor(self.atoms.get_cell(complete=True),
           Step     Time          Energy         fmax
-    BFGS:    0 00:02:27    -8311.226180        0.0000
+    BFGS:    0 00:02:33    -8311.226174        0.0000
 
 
 
@@ -244,16 +244,16 @@ Now run the dynamics:
     Beginning dynamics...
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
     Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-    Energy per atom: Epot = -1038.882eV  Ekin = 0.021eV (T=160K)  Etot = -1038.862eV
-    Energy per atom: Epot = -1038.893eV  Ekin = 0.039eV (T=299K)  Etot = -1038.854eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.041eV (T=313K)  Etot = -1038.838eV
-    Energy per atom: Epot = -1038.862eV  Ekin = 0.031eV (T=240K)  Etot = -1038.831eV
-    Energy per atom: Epot = -1038.878eV  Ekin = 0.030eV (T=234K)  Etot = -1038.848eV
-    Energy per atom: Epot = -1038.883eV  Ekin = 0.024eV (T=187K)  Etot = -1038.858eV
-    Energy per atom: Epot = -1038.887eV  Ekin = 0.027eV (T=210K)  Etot = -1038.860eV
-    Energy per atom: Epot = -1038.856eV  Ekin = 0.038eV (T=295K)  Etot = -1038.818eV
-    Energy per atom: Epot = -1038.875eV  Ekin = 0.037eV (T=290K)  Etot = -1038.838eV
-    Energy per atom: Epot = -1038.850eV  Ekin = 0.036eV (T=280K)  Etot = -1038.814eV
+    Energy per atom: Epot = -1038.887eV  Ekin = 0.022eV (T=171K)  Etot = -1038.864eV
+    Energy per atom: Epot = -1038.881eV  Ekin = 0.047eV (T=362K)  Etot = -1038.834eV
+    Energy per atom: Epot = -1038.867eV  Ekin = 0.045eV (T=351K)  Etot = -1038.822eV
+    Energy per atom: Epot = -1038.860eV  Ekin = 0.022eV (T=171K)  Etot = -1038.838eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.021eV (T=160K)  Etot = -1038.854eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.034eV (T=266K)  Etot = -1038.837eV
+    Energy per atom: Epot = -1038.861eV  Ekin = 0.054eV (T=418K)  Etot = -1038.807eV
+    Energy per atom: Epot = -1038.856eV  Ekin = 0.054eV (T=421K)  Etot = -1038.802eV
+    Energy per atom: Epot = -1038.871eV  Ekin = 0.023eV (T=178K)  Etot = -1038.848eV
+    Energy per atom: Epot = -1038.875eV  Ekin = 0.020eV (T=155K)  Etot = -1038.855eV
 
     True
 
@@ -262,7 +262,7 @@ Now run the dynamics:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.748 seconds)
+   **Total running time of the script:** ( 0 minutes  16.747 seconds)
 
 
 .. _sphx_glr_download_examples_ase_interface.py:
