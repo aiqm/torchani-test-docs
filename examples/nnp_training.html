@@ -211,13 +211,13 @@ to tensor, that is, for all supported chemical symbols, which is correspond to
 
 1/1  [==============================] - 0.0s
 
-2/1  [============================================================] - 0.1s
+2/1  [============================================================] - 0.0s
 3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
 2/1  [============================================================] - 0.0s
-3/1  [==========================================================================================] - 0.1sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
+3/1  [==========================================================================================] - 0.0sSelf atomic energies:  tensor([-16.140,  24.082,  -8.092, -44.095], dtype=torch.float64)
 </pre></div>
 </div>
 <p>When iterating the dataset, we will get a dict of name-&gt;property mapping</p>
@@ -539,81 +539,72 @@ set to a much larger value</p>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 29.657409924917996 at epoch 1
+RMSE: 163.27404458373186 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  3.46it/s]
-epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  3.56it/s]
-epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.60it/s]
-epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  4.73it/s]
-epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  4.22it/s]
-RMSE: 292.30221031939124 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:00&lt;00:00,  5.67it/s]
+epoch 1:  50%|#####     | 2/4 [00:00&lt;00:00,  5.82it/s]
+epoch 1:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.95it/s]
+epoch 1: 100%|##########| 4/4 [00:00&lt;00:00,  6.94it/s]
+RMSE: 142.36827690035224 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  3.59it/s]
-epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  3.57it/s]
-epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.58it/s]
-epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.70it/s]
-epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  4.21it/s]
-RMSE: 115.8576989165979 at epoch 3
+epoch 2:  25%|##5       | 1/4 [00:00&lt;00:00,  6.11it/s]
+epoch 2:  50%|#####     | 2/4 [00:00&lt;00:00,  6.00it/s]
+epoch 2:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.91it/s]
+epoch 2: 100%|##########| 4/4 [00:00&lt;00:00,  6.97it/s]
+RMSE: 95.49073064430236 at epoch 3
 
 epoch 3:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  3.42it/s]
-epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  3.56it/s]
-epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.52it/s]
-epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  4.64it/s]
-epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  4.15it/s]
-RMSE: 70.69122633450229 at epoch 4
+epoch 3:  25%|##5       | 1/4 [00:00&lt;00:00,  6.00it/s]
+epoch 3:  50%|#####     | 2/4 [00:00&lt;00:00,  6.06it/s]
+epoch 3:  75%|#######5  | 3/4 [00:00&lt;00:00,  6.07it/s]
+epoch 3: 100%|##########| 4/4 [00:00&lt;00:00,  7.10it/s]
+RMSE: 65.22639518853444 at epoch 4
 
 epoch 4:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  3.26it/s]
-epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  3.37it/s]
-epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.44it/s]
-epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  4.53it/s]
-epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  4.03it/s]
-RMSE: 108.10561831044251 at epoch 5
+epoch 4:  25%|##5       | 1/4 [00:00&lt;00:00,  5.92it/s]
+epoch 4:  50%|#####     | 2/4 [00:00&lt;00:00,  5.99it/s]
+epoch 4:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.99it/s]
+epoch 4: 100%|##########| 4/4 [00:00&lt;00:00,  7.01it/s]
+RMSE: 41.37345225788407 at epoch 5
 
 epoch 5:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  3.53it/s]
-epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  3.56it/s]
-epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.56it/s]
-epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  4.67it/s]
-epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  4.18it/s]
-RMSE: 9.585954506708733 at epoch 6
+epoch 5:  25%|##5       | 1/4 [00:00&lt;00:00,  6.12it/s]
+epoch 5:  50%|#####     | 2/4 [00:00&lt;00:00,  6.14it/s]
+epoch 5:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.99it/s]
+epoch 5: 100%|##########| 4/4 [00:00&lt;00:00,  7.05it/s]
+RMSE: 22.58113012477262 at epoch 6
 
 epoch 6:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  3.50it/s]
-epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  3.54it/s]
-epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.51it/s]
-epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  4.65it/s]
-epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  4.16it/s]
-RMSE: 65.18063808961621 at epoch 7
+epoch 6:  25%|##5       | 1/4 [00:00&lt;00:00,  5.99it/s]
+epoch 6:  50%|#####     | 2/4 [00:00&lt;00:00,  6.06it/s]
+epoch 6:  75%|#######5  | 3/4 [00:00&lt;00:00,  6.07it/s]
+epoch 6: 100%|##########| 4/4 [00:00&lt;00:00,  7.10it/s]
+RMSE: 32.309171515144534 at epoch 7
 
 epoch 7:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  3.62it/s]
-epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  3.63it/s]
-epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.60it/s]
-epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  4.72it/s]
-epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  4.24it/s]
-RMSE: 17.732263561356504 at epoch 8
+epoch 7:  25%|##5       | 1/4 [00:00&lt;00:00,  5.89it/s]
+epoch 7:  50%|#####     | 2/4 [00:00&lt;00:00,  5.99it/s]
+epoch 7:  75%|#######5  | 3/4 [00:00&lt;00:00,  5.96it/s]
+epoch 7: 100%|##########| 4/4 [00:00&lt;00:00,  6.98it/s]
+RMSE: 27.189999987056733 at epoch 8
 
 epoch 8:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  3.51it/s]
-epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  3.53it/s]
-epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.56it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.68it/s]
-epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  4.18it/s]
-RMSE: 36.33039060480181 at epoch 9
+epoch 8:  25%|##5       | 1/4 [00:00&lt;00:00,  6.00it/s]
+epoch 8:  50%|#####     | 2/4 [00:00&lt;00:00,  6.05it/s]
+epoch 8:  75%|#######5  | 3/4 [00:00&lt;00:00,  6.00it/s]
+epoch 8: 100%|##########| 4/4 [00:00&lt;00:00,  7.03it/s]
+RMSE: 14.948119604998942 at epoch 9
 
 epoch 9:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  3.46it/s]
-epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  3.49it/s]
-epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  3.51it/s]
-epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  4.62it/s]
-epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  4.13it/s]
+epoch 9:  25%|##5       | 1/4 [00:00&lt;00:00,  6.09it/s]
+epoch 9:  50%|#####     | 2/4 [00:00&lt;00:00,  6.08it/s]
+epoch 9:  75%|#######5  | 3/4 [00:00&lt;00:00,  6.08it/s]
+epoch 9: 100%|##########| 4/4 [00:00&lt;00:00,  7.12it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  10.385 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.570 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/1a1c456fc1c08da39ec892b2971889ce/nnp_training.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training.py</span></code></a></div>
