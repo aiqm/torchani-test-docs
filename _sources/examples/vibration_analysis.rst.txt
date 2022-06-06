@@ -106,9 +106,9 @@ Let's first construct a water molecule and do structure optimization:
     BFGS:    2 00:02:43    -2078.637801        0.0292
     BFGS:    3 00:02:43    -2078.637827        0.0183
     BFGS:    4 00:02:43    -2078.637849        0.0014
-    BFGS:    5 00:02:43    -2078.637849        0.0001
-    BFGS:    6 00:02:43    -2078.637849        0.0000
-    BFGS:    7 00:02:43    -2078.637849        0.0000
+    BFGS:    5 00:02:44    -2078.637849        0.0001
+    BFGS:    6 00:02:44    -2078.637849        0.0000
+    BFGS:    7 00:02:44    -2078.637849        0.0000
 
     True
 
@@ -273,7 +273,7 @@ We output the modes as MDU (mass deweighted unnormalized), to compare with ASE.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.490 seconds)
+   **Total running time of the script:** ( 0 minutes  1.331 seconds)
 
 
 .. _sphx_glr_download_examples_vibration_analysis.py:
