@@ -153,7 +153,6 @@ information</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Self atomic energies: &#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani-1x/sample.h5, total molecules: 6
 
 1/6  [====&gt;.........................] - 0.0s
@@ -220,7 +219,6 @@ Self atomic energies:  tensor([-19.354, -19.354, -54.712, -75.163], dtype=torch.
 <span class="nb">print</span><span class="p">(</span><span class="n">nn</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANIModel(
   (0): Sequential(
     (0): Linear(in_features=384, out_features=160, bias=True)
@@ -278,7 +276,6 @@ The biases were initialized to zero.</p>
 <a href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.apply" title="torch.nn.Module.apply" class="sphx-glr-backref-module-torch-nn sphx-glr-backref-type-py-method"><span class="n">nn</span><span class="o">.</span><span class="n">apply</span></a><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANIModel(
   (0): Sequential(
     (0): Linear(in_features=384, out_features=160, bias=True)
@@ -474,7 +471,7 @@ is better than the best, then save the new best model to a checkpoint</p>
         <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.zero_grad" title="torch.optim.SGD.zero_grad" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">zero_grad</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/generated/torch.Tensor.backward.html#torch.Tensor.backward" title="torch.Tensor.backward" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-method"><span class="n">loss</span><span class="o">.</span><span class="n">backward</span></a><span class="p">()</span>
         <a href="https://pytorch.org/docs/master/generated/torch.optim.AdamW.html#torch.optim.AdamW.step" title="torch.optim.AdamW.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">AdamW</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
-        <a href="https://pytorch.org/docs/master/generated/torch.optim.SGD.html#torch.optim.SGD.step" title="torch.optim.SGD.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
+        <a href="https://pytorch.org/docs/master/generated/torch.optim.Optimizer.step.html#torch.optim.Optimizer.step" title="torch.optim.Optimizer.step" class="sphx-glr-backref-module-torch-optim sphx-glr-backref-type-py-method"><span class="n">SGD</span><span class="o">.</span><span class="n">step</span></a><span class="p">()</span>
 
         <span class="c1"># write current batch loss to TensorBoard</span>
         <a href="https://pytorch.org/docs/master/tensorboard.html#torch.utils.tensorboard.writer.SummaryWriter.add_scalar" title="torch.utils.tensorboard.writer.SummaryWriter.add_scalar" class="sphx-glr-backref-module-torch-utils-tensorboard-writer sphx-glr-backref-type-py-method"><span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span></a><span class="p">(</span><span class="s1">&#39;batch_loss&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">loss</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span></a> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="p">)</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">i</span></a><span class="p">)</span>
@@ -488,28 +485,27 @@ is better than the best, then save the new best model to a checkpoint</p>
     <span class="p">},</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">latest_checkpoint</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>training starting from epoch 1
-RMSE: 56.37106815716542 at epoch 1
+RMSE: 89.67329529593322 at epoch 1
 
 epoch 1:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 1:  25%|##5       | 1/4 [00:02&lt;00:06,  2.11s/it]
-epoch 1:  50%|#####     | 2/4 [00:03&lt;00:03,  1.94s/it]
-epoch 1:  75%|#######5  | 3/4 [00:05&lt;00:01,  1.89s/it]
-epoch 1: 100%|##########| 4/4 [00:06&lt;00:00,  1.55s/it]
-epoch 1: 100%|##########| 4/4 [00:06&lt;00:00,  1.70s/it]
-RMSE: 177.2236764225836 at epoch 2
+epoch 1:  25%|##5       | 1/4 [00:01&lt;00:05,  1.95s/it]
+epoch 1:  50%|#####     | 2/4 [00:03&lt;00:03,  1.86s/it]
+epoch 1:  75%|#######5  | 3/4 [00:05&lt;00:01,  1.85s/it]
+epoch 1: 100%|##########| 4/4 [00:06&lt;00:00,  1.51s/it]
+epoch 1: 100%|##########| 4/4 [00:06&lt;00:00,  1.65s/it]
+RMSE: 210.25986795884594 at epoch 2
 
 epoch 2:   0%|          | 0/4 [00:00&lt;?, ?it/s]
-epoch 2:  25%|##5       | 1/4 [00:01&lt;00:05,  1.83s/it]
+epoch 2:  25%|##5       | 1/4 [00:01&lt;00:05,  1.79s/it]
 epoch 2:  50%|#####     | 2/4 [00:03&lt;00:03,  1.77s/it]
-epoch 2:  75%|#######5  | 3/4 [00:05&lt;00:01,  1.73s/it]
-epoch 2: 100%|##########| 4/4 [00:06&lt;00:00,  1.45s/it]
-epoch 2: 100%|##########| 4/4 [00:06&lt;00:00,  1.56s/it]
+epoch 2:  75%|#######5  | 3/4 [00:05&lt;00:01,  1.88s/it]
+epoch 2: 100%|##########| 4/4 [00:06&lt;00:00,  1.54s/it]
+epoch 2: 100%|##########| 4/4 [00:06&lt;00:00,  1.64s/it]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.325 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-force-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.400 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nnp-training-force-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/4b6aa9678849c98dd34491f14233c2bd/nnp_training_force.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">nnp_training_force.py</span></code></a></div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">

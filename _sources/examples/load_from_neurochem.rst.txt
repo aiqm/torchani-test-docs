@@ -146,8 +146,6 @@ From using either the ensemble or a single model:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Sequential(
@@ -525,12 +523,10 @@ You can also create an ASE calculator using the ensemble or single model:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    <torchani.ase.Calculator object at 0x7f14b7089b50>
-    <torchani.ase.Calculator object at 0x7f14b7089b50>
+    <torchani.ase.Calculator object at 0x7f601e88ecd0>
+    <torchani.ase.Calculator object at 0x7f601e88ecd0>
 
 
 
@@ -579,8 +575,6 @@ Now let's compute energies using the ensemble directly:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Energy: -40.45902210386233
@@ -610,8 +604,6 @@ And using the ASE interface of the ensemble:
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -648,8 +640,6 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Energy: -40.4628003622009
@@ -671,28 +661,23 @@ We can do the same thing with the single model:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.428 seconds)
+   **Total running time of the script:** ( 0 minutes  1.376 seconds)
 
 
 .. _sphx_glr_download_examples_load_from_neurochem.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: load_from_neurochem.py <load_from_neurochem.py>`
 
-     :download:`Download Python source code: load_from_neurochem.py <load_from_neurochem.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: load_from_neurochem.ipynb <load_from_neurochem.ipynb>`
+      :download:`Download Jupyter notebook: load_from_neurochem.ipynb <load_from_neurochem.ipynb>`
 
 
 .. only:: html

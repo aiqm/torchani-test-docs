@@ -83,8 +83,6 @@ in periodic table to index species. If not specified, you need to use
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
@@ -160,8 +158,6 @@ And print to see the result:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Energy: -40.459790705366636
@@ -210,8 +206,6 @@ energy of zero
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Average Atomic energies, for species 6 1 1 1 1 tensor([[-38.080,  -0.581,  -0.591,  -0.605,  -0.604]],
@@ -236,8 +230,6 @@ you can also access model specific atomic energies
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     Atomic energies of first model, for species 6 1 1 1 1 tensor([[-38.084,  -0.580,  -0.590,  -0.603,  -0.603]],
@@ -249,28 +241,23 @@ you can also access model specific atomic energies
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.104 seconds)
+   **Total running time of the script:** ( 0 minutes  2.922 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: energy_force.py <energy_force.py>`
 
-     :download:`Download Python source code: energy_force.py <energy_force.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: energy_force.ipynb <energy_force.ipynb>`
+      :download:`Download Jupyter notebook: energy_force.ipynb <energy_force.ipynb>`
 
 
 .. only:: html
