@@ -160,7 +160,7 @@ And print to see the result:
 
  .. code-block:: none
 
-    Energy: -40.459790705366636
+    Energy: -40.459790701641346
     Force: tensor([[ 0.048, -0.130, -0.055],
             [-0.135,  0.158, -0.078],
             [ 0.080, -0.039,  0.039],
@@ -241,7 +241,7 @@ you can also access model specific atomic energies
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.552 seconds)
+   **Total running time of the script:** ( 0 minutes  3.043 seconds)
 
 
 .. _sphx_glr_download_examples_energy_force.py:
