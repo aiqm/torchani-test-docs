@@ -63,12 +63,12 @@
 <p class="caption" role="heading"><span class="caption-text">TorchANI's API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html">TorchANI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#model-zoo">Model Zoo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#datasets">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.models">Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.data">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#neurochem">NeuroChem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#ase-interface">ASE Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#units">Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.neurochem">NeuroChem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.ase">ASE Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.units">Units</a></li>
 </ul>
 
         </div>
@@ -95,8 +95,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="welcome-to-torchani-s-documentation">
-<h1>Welcome to TorchANI’s documentation!<a class="headerlink" href="#welcome-to-torchani-s-documentation" title="Permalink to this heading">¶</a></h1>
+  <div class="section" id="module-torchani">
+<span id="welcome-to-torchani-s-documentation"></span><h1>Welcome to TorchANI’s documentation!<a class="headerlink" href="#module-torchani" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://doi.org/10.26434/chemrxiv.12218294.v1">TorchANI</a> is a PyTorch implementation of <a class="reference external" href="http://pubs.rsc.org/en/Content/ArticleLanding/2017/SC/C6SC05720A#!divAbstract">ANI</a>, created and maintained by
 the <a class="reference external" href="https://roitberg.chem.ufl.edu/">Roitberg group</a>.  TorchANI contains classes like
 <a class="reference internal" href="api.html#torchani.AEVComputer" title="torchani.AEVComputer"><code class="xref py py-class docutils literal notranslate"><span class="pre">AEVComputer</span></code></a>, <a class="reference internal" href="api.html#torchani.ANIModel" title="torchani.ANIModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ANIModel</span></code></a>, and <a class="reference internal" href="api.html#torchani.EnergyShifter" title="torchani.EnergyShifter"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnergyShifter</span></code></a> that can
@@ -104,7 +104,7 @@ be pipelined to compute molecular energies from the 3D coordinates of
 molecules.  It also include tools to: deal with ANI datasets(e.g. <a class="reference external" href="https://www.nature.com/articles/sdata2017193">ANI-1</a>,
 <a class="reference external" href="https://aip.scitation.org/doi/abs/10.1063/1.5023802">ANI-1x</a>, <a class="reference external" href="https://doi.org/10.26434/chemrxiv.6744440.v1">ANI-1ccx</a>, <a class="reference external" href="https://doi.org/10.26434/chemrxiv.11819268.v1">ANI-2x</a>) at <a class="reference internal" href="api.html#module-torchani.data" title="torchani.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">torchani.data</span></code></a>, import various file
 formats of NeuroChem at <a class="reference internal" href="api.html#module-torchani.neurochem" title="torchani.neurochem"><code class="xref py py-attr docutils literal notranslate"><span class="pre">torchani.neurochem</span></code></a>, and more at <a class="reference internal" href="api.html#module-torchani.utils" title="torchani.utils"><code class="xref py py-attr docutils literal notranslate"><span class="pre">torchani.utils</span></code></a>.</p>
-<span class="target" id="module-torchani"></span><div class="toctree-wrapper compound">
+<div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="start.html">Installation</a></li>
@@ -140,13 +140,13 @@ formats of NeuroChem at <a class="reference internal" href="api.html#module-torc
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.nn.Gaussian"><code class="docutils literal notranslate"><span class="pre">Gaussian</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#model-zoo">Model Zoo</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.models">Model Zoo</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.models.ANI1x"><code class="docutils literal notranslate"><span class="pre">ANI1x</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.models.ANI1ccx"><code class="docutils literal notranslate"><span class="pre">ANI1ccx</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.models.ANI2x"><code class="docutils literal notranslate"><span class="pre">ANI2x</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#datasets">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.data">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.utils">Utilities</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.utils.pad_atomic_properties"><code class="docutils literal notranslate"><span class="pre">pad_atomic_properties()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.utils.present_species"><code class="docutils literal notranslate"><span class="pre">present_species()</span></code></a></li>
@@ -158,7 +158,7 @@ formats of NeuroChem at <a class="reference internal" href="api.html#module-torc
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.utils.get_atomic_masses"><code class="docutils literal notranslate"><span class="pre">get_atomic_masses()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#neurochem">NeuroChem</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.neurochem">NeuroChem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.neurochem.Constants"><code class="docutils literal notranslate"><span class="pre">Constants</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.neurochem.load_sae"><code class="docutils literal notranslate"><span class="pre">load_sae()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.neurochem.load_atomic_network"><code class="docutils literal notranslate"><span class="pre">load_atomic_network()</span></code></a></li>
@@ -167,11 +167,11 @@ formats of NeuroChem at <a class="reference internal" href="api.html#module-torc
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.neurochem.Trainer"><code class="docutils literal notranslate"><span class="pre">Trainer</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#ase-interface">ASE Interface</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.ase">ASE Interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.ase.Calculator"><code class="docutils literal notranslate"><span class="pre">Calculator</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html#units">Units</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-torchani.units">Units</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.units.hartree2ev"><code class="docutils literal notranslate"><span class="pre">hartree2ev()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.units.hartree2kcalmol"><code class="docutils literal notranslate"><span class="pre">hartree2kcalmol()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#torchani.units.hartree2kjoulemol"><code class="docutils literal notranslate"><span class="pre">hartree2kjoulemol()</span></code></a></li>
