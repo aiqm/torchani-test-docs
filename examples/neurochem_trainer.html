@@ -144,7 +144,7 @@ But this is wrong and should be avoided for any serious training.</p>
 1/1  [==============================] - 0.0s
 
 2/1  [============================================================] - 0.0s
-3/1  [==========================================================================================] - 0.0s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
+3/1  [==========================================================================================] - 0.1s=&gt; loading /home/runner/work/torchani/torchani/examples/../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5, total molecules: 1
 
 1/1  [==============================] - 0.0s
 
@@ -168,18 +168,46 @@ its progressbar to stdout.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  6.96it/s]
-epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  6.90it/s]
-epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  6.86it/s]
-epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  6.87it/s]
-epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  8.04it/s]
+epoch 1:  20%|##        | 1/5 [00:00&lt;00:00,  6.80it/s]
+epoch 1:  40%|####      | 2/5 [00:00&lt;00:00,  6.71it/s]
+epoch 1:  60%|######    | 3/5 [00:00&lt;00:00,  6.81it/s]
+epoch 1:  80%|########  | 4/5 [00:00&lt;00:00,  6.69it/s]
+epoch 1: 100%|##########| 5/5 [00:00&lt;00:00,  7.78it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  6.58it/s]
-epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  6.69it/s]
-epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  6.68it/s]
-epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  6.70it/s]
-epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  7.80it/s]
+epoch 2:  20%|##        | 1/5 [00:00&lt;00:00,  6.38it/s]
+epoch 2:  40%|####      | 2/5 [00:00&lt;00:00,  6.45it/s]
+epoch 2:  60%|######    | 3/5 [00:00&lt;00:00,  6.54it/s]
+epoch 2:  80%|########  | 4/5 [00:00&lt;00:00,  6.52it/s]
+epoch 2: 100%|##########| 5/5 [00:00&lt;00:00,  7.60it/s]
+
+epoch 3:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 3:  20%|##        | 1/5 [00:00&lt;00:00,  6.34it/s]
+epoch 3:  40%|####      | 2/5 [00:00&lt;00:00,  6.41it/s]
+epoch 3:  60%|######    | 3/5 [00:00&lt;00:00,  6.43it/s]
+epoch 3:  80%|########  | 4/5 [00:00&lt;00:00,  6.51it/s]
+epoch 3: 100%|##########| 5/5 [00:00&lt;00:00,  7.58it/s]
+
+epoch 4:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 4:  20%|##        | 1/5 [00:00&lt;00:00,  6.46it/s]
+epoch 4:  40%|####      | 2/5 [00:00&lt;00:00,  5.95it/s]
+epoch 4:  60%|######    | 3/5 [00:00&lt;00:00,  6.27it/s]
+epoch 4:  80%|########  | 4/5 [00:00&lt;00:00,  6.34it/s]
+epoch 4: 100%|##########| 5/5 [00:00&lt;00:00,  7.37it/s]
+
+epoch 5:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 5:  20%|##        | 1/5 [00:00&lt;00:00,  6.49it/s]
+epoch 5:  40%|####      | 2/5 [00:00&lt;00:00,  6.40it/s]
+epoch 5:  60%|######    | 3/5 [00:00&lt;00:00,  6.51it/s]
+epoch 5:  80%|########  | 4/5 [00:00&lt;00:00,  6.51it/s]
+epoch 5: 100%|##########| 5/5 [00:00&lt;00:00,  7.61it/s]
+
+epoch 6:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+epoch 6:  20%|##        | 1/5 [00:00&lt;00:00,  6.51it/s]
+epoch 6:  40%|####      | 2/5 [00:00&lt;00:00,  6.54it/s]
+epoch 6:  60%|######    | 3/5 [00:00&lt;00:00,  6.58it/s]
+epoch 6:  80%|########  | 4/5 [00:00&lt;00:00,  6.56it/s]
+epoch 6: 100%|##########| 5/5 [00:00&lt;00:00,  7.68it/s]
 </pre></div>
 </div>
 <p>Alternatively, you can run NeuroChem trainer directly using command line.
@@ -206,21 +234,21 @@ generating this document:</p>
   warnings.warn(&quot;cuaev not installed&quot;)
 
 epoch 1:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  7.06it/s]
-epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  6.42it/s]
-epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  6.71it/s]
-epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  6.86it/s]
-epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  7.93it/s]
+epoch 1:  20%|██        | 1/5 [00:00&lt;00:00,  6.90it/s]
+epoch 1:  40%|████      | 2/5 [00:00&lt;00:00,  6.91it/s]
+epoch 1:  60%|██████    | 3/5 [00:00&lt;00:00,  6.62it/s]
+epoch 1:  80%|████████  | 4/5 [00:00&lt;00:00,  6.76it/s]
+epoch 1: 100%|██████████| 5/5 [00:00&lt;00:00,  7.92it/s]
 
 epoch 2:   0%|          | 0/5 [00:00&lt;?, ?it/s]
-epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  7.10it/s]
-epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  6.97it/s]
-epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  6.99it/s]
-epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  7.01it/s]
-epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  8.18it/s]
+epoch 2:  20%|██        | 1/5 [00:00&lt;00:00,  7.01it/s]
+epoch 2:  40%|████      | 2/5 [00:00&lt;00:00,  6.98it/s]
+epoch 2:  60%|██████    | 3/5 [00:00&lt;00:00,  6.96it/s]
+epoch 2:  80%|████████  | 4/5 [00:00&lt;00:00,  6.97it/s]
+epoch 2: 100%|██████████| 5/5 [00:00&lt;00:00,  8.15it/s]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.299 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.109 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-neurochem-trainer-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/cca758d34ccbb1f250032c04edfb280b/neurochem_trainer.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">neurochem_trainer.py</span></code></a></div>
