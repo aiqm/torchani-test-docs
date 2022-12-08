@@ -124,7 +124,7 @@ models trained with diffrent initialization.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">(</span><span class="n">periodic_table_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
 </pre></div>
 </div>
 <p>It is very easy to compile and save the model using <cite>torch.jit</cite>.</p>
@@ -219,7 +219,7 @@ the following customization to the model:</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hessian, eager mode vs loaded jit:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hessians</span></a><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">hessians_jit</span></a><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
 Energy, eager mode vs loaded jit: -40.4590220910793 -40.4590220910793
 
 Force, eager mode vs loaded jit:
@@ -267,7 +267,7 @@ Hessian, eager mode vs loaded jit:
         [     0.292,     -0.092,     -0.652,     -0.020,      0.015,      0.029,      0.027,     -0.011,     -0.001,      0.048,     -0.030,     -0.065,     -0.346,      0.117,      0.689]])
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.646 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  4.474 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-jit-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/fc02d4b5c363f001bb660e86661c89f5/jit.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">jit.py</span></code></a></div>

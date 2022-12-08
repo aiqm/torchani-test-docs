@@ -126,7 +126,7 @@ calculator.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">calculator</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">()</span><span class="o">.</span><span class="n">ase</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/resources/
 Downloading ANI model parameters ...
 </pre></div>
 </div>
@@ -153,10 +153,10 @@ large for structure minimization. If you insist on using
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
-/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:230.)
+/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:230.)
   cell = torch.tensor(self.atoms.get_cell(complete=True),
       Step     Time          Energy         fmax
-BFGS:    0 00:03:03    -8311.226180        0.0000
+BFGS:    0 00:03:01    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -175,7 +175,7 @@ coefficient to 0.02 atomic units.</p>
 <a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dyn</span></a><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">printenergy</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the &#39;temperature_K&#39; argument
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the &#39;temperature_K&#39; argument
   warnings.warn(FutureWarning(w))
 </pre></div>
 </div>
@@ -188,21 +188,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.883eV  Ekin = 0.028eV (T=217K)  Etot = -1038.855eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.032eV (T=251K)  Etot = -1038.832eV
-Energy per atom: Epot = -1038.872eV  Ekin = 0.027eV (T=206K)  Etot = -1038.845eV
-Energy per atom: Epot = -1038.879eV  Ekin = 0.037eV (T=289K)  Etot = -1038.842eV
-Energy per atom: Epot = -1038.858eV  Ekin = 0.030eV (T=232K)  Etot = -1038.828eV
-Energy per atom: Epot = -1038.879eV  Ekin = 0.042eV (T=325K)  Etot = -1038.837eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.041eV (T=314K)  Etot = -1038.829eV
-Energy per atom: Epot = -1038.877eV  Ekin = 0.033eV (T=253K)  Etot = -1038.844eV
-Energy per atom: Epot = -1038.861eV  Ekin = 0.043eV (T=334K)  Etot = -1038.818eV
-Energy per atom: Epot = -1038.866eV  Ekin = 0.044eV (T=343K)  Etot = -1038.822eV
+Energy per atom: Epot = -1038.888eV  Ekin = 0.016eV (T=126K)  Etot = -1038.872eV
+Energy per atom: Epot = -1038.880eV  Ekin = 0.020eV (T=157K)  Etot = -1038.860eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.041eV (T=314K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.869eV  Ekin = 0.033eV (T=258K)  Etot = -1038.835eV
+Energy per atom: Epot = -1038.866eV  Ekin = 0.034eV (T=259K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.854eV  Ekin = 0.032eV (T=251K)  Etot = -1038.821eV
+Energy per atom: Epot = -1038.847eV  Ekin = 0.048eV (T=375K)  Etot = -1038.799eV
+Energy per atom: Epot = -1038.849eV  Ekin = 0.041eV (T=319K)  Etot = -1038.808eV
+Energy per atom: Epot = -1038.885eV  Ekin = 0.042eV (T=323K)  Etot = -1038.844eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.023eV (T=180K)  Etot = -1038.847eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.580 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.452 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
