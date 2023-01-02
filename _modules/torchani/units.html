@@ -256,7 +256,7 @@
 
 
 <div class="viewcode-block" id="sqrt_mhessian2invcm"><a class="viewcode-back" href="../../api.html#torchani.units.sqrt_mhessian2invcm">[docs]</a><span class="k">def</span> <span class="nf">sqrt_mhessian2invcm</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts sqrt(mass-scaled hessian units) into cm^-1</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts sqrt(mass-scaled hessian units) into cm^-1</span>
 
 <span class="sd">    Converts form units of sqrt(Hartree / (amu * Angstrom^2))</span>
 <span class="sd">    which are sqrt(units of the mass-scaled hessian matrix)</span>
@@ -269,7 +269,7 @@
 
 
 <div class="viewcode-block" id="sqrt_mhessian2milliev"><a class="viewcode-back" href="../../api.html#torchani.units.sqrt_mhessian2milliev">[docs]</a><span class="k">def</span> <span class="nf">sqrt_mhessian2milliev</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts sqrt(mass-scaled hessian units) into meV</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts sqrt(mass-scaled hessian units) into meV</span>
 
 <span class="sd">    Converts form units of sqrt(Hartree / (amu * Angstrom^2))</span>
 <span class="sd">    which are sqrt(units of the mass-scaled hessian matrix)</span>
@@ -282,7 +282,7 @@
 
 
 <div class="viewcode-block" id="mhessian2fconst"><a class="viewcode-back" href="../../api.html#torchani.units.mhessian2fconst">[docs]</a><span class="k">def</span> <span class="nf">mhessian2fconst</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts mass-scaled hessian units into mDyne/Angstrom</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Converts mass-scaled hessian units into mDyne/Angstrom</span>
 
 <span class="sd">    Converts from units of mass-scaled hessian (Hartree / (amu * Angstrom^2)</span>
 <span class="sd">    into force constant units (mDyne/Angstom), where 1 N = 1 * 10^8 mDyne&quot;&quot;&quot;</span>
@@ -290,27 +290,27 @@
 
 
 <div class="viewcode-block" id="hartree2ev"><a class="viewcode-back" href="../../api.html#torchani.units.hartree2ev">[docs]</a><span class="k">def</span> <span class="nf">hartree2ev</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to eV conversion factor from 2014 CODATA&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to eV conversion factor from 2014 CODATA&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">HARTREE_TO_EV</span></div>
 
 
 <div class="viewcode-block" id="ev2kjoulemol"><a class="viewcode-back" href="../../api.html#torchani.units.ev2kjoulemol">[docs]</a><span class="k">def</span> <span class="nf">ev2kjoulemol</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Electronvolt to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Electronvolt to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">EV_TO_KJOULEMOL</span></div>
 
 
 <div class="viewcode-block" id="ev2kcalmol"><a class="viewcode-back" href="../../api.html#torchani.units.ev2kcalmol">[docs]</a><span class="k">def</span> <span class="nf">ev2kcalmol</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Electronvolt to kcal/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Electronvolt to kcal/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">EV_TO_KCALMOL</span></div>
 
 
 <div class="viewcode-block" id="hartree2kjoulemol"><a class="viewcode-back" href="../../api.html#torchani.units.hartree2kjoulemol">[docs]</a><span class="k">def</span> <span class="nf">hartree2kjoulemol</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">HARTREE_TO_KJOULEMOL</span></div>
 
 
 <div class="viewcode-block" id="hartree2kcalmol"><a class="viewcode-back" href="../../api.html#torchani.units.hartree2kcalmol">[docs]</a><span class="k">def</span> <span class="nf">hartree2kcalmol</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Hartree to kJ/mol conversion factor from CODATA 2014&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">HARTREE_TO_KCALMOL</span></div>
 
 

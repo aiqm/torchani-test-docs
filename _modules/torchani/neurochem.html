@@ -206,7 +206,7 @@
 
 
 <div class="viewcode-block" id="Constants"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Constants">[docs]</a><span class="k">class</span> <span class="nc">Constants</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;NeuroChem constants. Objects of this class can be used as arguments</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;NeuroChem constants. Objects of this class can be used as arguments</span>
 <span class="sd">    to :class:`torchani.AEVComputer`, like ``torchani.AEVComputer(**consts)``.</span>
 
 <span class="sd">    Attributes:</span>
@@ -257,7 +257,7 @@
 
 
 <div class="viewcode-block" id="load_sae"><a class="viewcode-back" href="../../api.html#torchani.neurochem.load_sae">[docs]</a><span class="k">def</span> <span class="nf">load_sae</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an object of :class:`EnergyShifter` with self energies from</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns an object of :class:`EnergyShifter` with self energies from</span>
 <span class="sd">    NeuroChem sae file&quot;&quot;&quot;</span>
     <span class="n">self_energies</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
@@ -290,7 +290,7 @@
 
 
 <div class="viewcode-block" id="load_atomic_network"><a class="viewcode-back" href="../../api.html#torchani.neurochem.load_atomic_network">[docs]</a><span class="k">def</span> <span class="nf">load_atomic_network</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torch.nn.Sequential` with hyperparameters</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torch.nn.Sequential` with hyperparameters</span>
 <span class="sd">    and parameters loaded NeuroChem&#39;s .nnf, .wparam and .bparam files.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">decompress_nnf</span><span class="p">(</span><span class="n">buffer_</span><span class="p">):</span>
@@ -383,7 +383,7 @@
         <span class="k">return</span> <span class="n">layer_setups</span>
 
     <span class="k">def</span> <span class="nf">load_param_file</span><span class="p">(</span><span class="n">linear</span><span class="p">,</span> <span class="n">in_size</span><span class="p">,</span> <span class="n">out_size</span><span class="p">,</span> <span class="n">wfn</span><span class="p">,</span> <span class="n">bfn</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load `.wparam` and `.bparam` files&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load `.wparam` and `.bparam` files&quot;&quot;&quot;</span>
         <span class="n">wsize</span> <span class="o">=</span> <span class="n">in_size</span> <span class="o">*</span> <span class="n">out_size</span>
         <span class="n">fw</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">wfn</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">f&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wsize</span><span class="p">),</span> <span class="n">fw</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -425,7 +425,7 @@
 
 
 <div class="viewcode-block" id="load_model"><a class="viewcode-back" href="../../api.html#torchani.neurochem.load_model">[docs]</a><span class="k">def</span> <span class="nf">load_model</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">dir_</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torchani.ANIModel` loaded from</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torchani.ANIModel` loaded from</span>
 <span class="sd">    NeuroChem&#39;s network directory.</span>
 
 <span class="sd">    Arguments:</span>
@@ -441,7 +441,7 @@
 
 
 <div class="viewcode-block" id="load_model_ensemble"><a class="viewcode-back" href="../../api.html#torchani.neurochem.load_model_ensemble">[docs]</a><span class="k">def</span> <span class="nf">load_model_ensemble</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torchani.Ensemble` loaded from</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns an instance of :class:`torchani.Ensemble` loaded from</span>
 <span class="sd">    NeuroChem&#39;s network directories beginning with the given prefix.</span>
 
 <span class="sd">    Arguments:</span>
@@ -461,7 +461,7 @@
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
 
 <div class="viewcode-block" id="Trainer"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer">[docs]</a>    <span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Train with NeuroChem training configurations.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Train with NeuroChem training configurations.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            filename (str): Input file name</span>
@@ -742,12 +742,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">best_validation_rmse</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
 
 <div class="viewcode-block" id="Trainer.load_data"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer.load_data">[docs]</a>        <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training_path</span><span class="p">,</span> <span class="n">validation_path</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Load training and validation dataset from file.&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Load training and validation dataset from file.&quot;&quot;&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">training_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">training_path</span><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">()</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">training_batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">validation_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">imports</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">validation_path</span><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sae</span><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">()</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validation_batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Trainer.evaluate"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer.evaluate">[docs]</a>        <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Run the evaluation&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Run the evaluation&quot;&quot;&quot;</span>
             <span class="n">total_mse</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">properties</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
@@ -760,7 +760,7 @@
             <span class="k">return</span> <span class="n">hartree2kcalmol</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total_mse</span> <span class="o">/</span> <span class="n">count</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Trainer.run"><a class="viewcode-back" href="../../api.html#torchani.neurochem.Trainer.run">[docs]</a>        <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Run the training&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Run the training&quot;&quot;&quot;</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
             <span class="n">no_improve_count</span> <span class="o">=</span> <span class="mi">0</span>
 

@@ -246,12 +246,12 @@ large for structure minimization. If you insist on using
 /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/torchani-2.2.3.dev4+g46c554a-py3.8.egg/torchani/ase.py:53: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:230.)
   cell = torch.tensor(self.atoms.get_cell(complete=True),
       Step     Time          Energy         fmax
-BFGS:    0 00:02:51    -8311.226180        0.0000
+BFGS:    0 00:02:50    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">printenergy</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">atoms</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function to print the potential, kinetic and total energy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to print the potential, kinetic and total energy.&quot;&quot;&quot;</span>
     <span class="n">epot</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">ekin</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">get_kinetic_energy</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy per atom: Epot = </span><span class="si">%.3f</span><span class="s1">eV  Ekin = </span><span class="si">%.3f</span><span class="s1">eV (T=</span><span class="si">%3.0f</span><span class="s1">K)  &#39;</span>
@@ -278,21 +278,21 @@ coefficient to 0.02 atomic units.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.871eV  Ekin = 0.014eV (T=106K)  Etot = -1038.857eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.027eV (T=206K)  Etot = -1038.844eV
-Energy per atom: Epot = -1038.878eV  Ekin = 0.044eV (T=339K)  Etot = -1038.834eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.016eV (T=122K)  Etot = -1038.848eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.032eV (T=251K)  Etot = -1038.838eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.025eV (T=190K)  Etot = -1038.839eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.043eV (T=333K)  Etot = -1038.821eV
-Energy per atom: Epot = -1038.876eV  Ekin = 0.039eV (T=298K)  Etot = -1038.837eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.041eV (T=318K)  Etot = -1038.823eV
-Energy per atom: Epot = -1038.871eV  Ekin = 0.047eV (T=366K)  Etot = -1038.824eV
+Energy per atom: Epot = -1038.886eV  Ekin = 0.021eV (T=159K)  Etot = -1038.865eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.024eV (T=189K)  Etot = -1038.849eV
+Energy per atom: Epot = -1038.884eV  Ekin = 0.032eV (T=247K)  Etot = -1038.852eV
+Energy per atom: Epot = -1038.877eV  Ekin = 0.028eV (T=218K)  Etot = -1038.848eV
+Energy per atom: Epot = -1038.853eV  Ekin = 0.020eV (T=154K)  Etot = -1038.833eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.041eV (T=315K)  Etot = -1038.830eV
+Energy per atom: Epot = -1038.879eV  Ekin = 0.050eV (T=383K)  Etot = -1038.829eV
+Energy per atom: Epot = -1038.859eV  Ekin = 0.019eV (T=150K)  Etot = -1038.840eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.047eV (T=367K)  Etot = -1038.827eV
+Energy per atom: Epot = -1038.871eV  Ekin = 0.036eV (T=282K)  Etot = -1038.834eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.251 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  12.690 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
