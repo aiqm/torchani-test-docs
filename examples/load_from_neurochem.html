@@ -597,8 +597,8 @@ Sequential(
 <span class="nb">print</span><span class="p">(</span><span class="n">calculator1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7f5d772c2340&gt;
-&lt;torchani.ase.Calculator object at 0x7f5d772c2340&gt;
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;torchani.ase.Calculator object at 0x7f0a57f41880&gt;
+&lt;torchani.ase.Calculator object at 0x7f0a57f41880&gt;
 </pre></div>
 </div>
 <p>Now let’s define a methane molecule</p>
@@ -620,7 +620,7 @@ Sequential(
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="torch.Tensor" class="sphx-glr-backref-module-torch sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">force</span></a><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.459022101999686
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.45902210386233
 Force: tensor([[ 0.031, -0.132, -0.053],
         [-0.129,  0.164, -0.077],
         [ 0.086, -0.043,  0.041],
@@ -634,12 +634,12 @@ Force: tensor([[ 0.031, -0.132, -0.053],
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_forces" title="ase.Atoms.get_forces" class="sphx-glr-backref-module-ase sphx-glr-backref-type-py-method"><span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span></a><span class="p">()</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.459022101999686
-Force: [[ 0.03062524 -0.13160463 -0.05265211]
- [-0.12927505  0.16388637 -0.07736803]
- [ 0.08563147 -0.04288926  0.04082095]
- [ 0.02681219  0.00601404  0.03809874]
- [-0.01379384  0.00459347  0.05110046]]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.45902210386233
+Force: [[ 0.03062525 -0.13160463 -0.05265211]
+ [-0.12927505  0.16388635 -0.07736803]
+ [ 0.08563146 -0.04288925  0.04082095]
+ [ 0.02681219  0.00601404  0.03809873]
+ [-0.01379385  0.00459347  0.05110047]]
 </pre></div>
 </div>
 <p>We can do the same thing with the single model:</p>
@@ -654,21 +654,21 @@ Force: [[ 0.03062524 -0.13160463 -0.05265211]
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Force:&#39;</span><span class="p">,</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.get_forces" title="ase.Atoms.get_forces" class="sphx-glr-backref-module-ase sphx-glr-backref-type-py-method"><span class="n">methane</span><span class="o">.</span><span class="n">get_forces</span></a><span class="p">()</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ase</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Hartree</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.46280036406355
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy: -40.4628003622009
 Force: tensor([[ 0.056, -0.127, -0.054],
         [-0.140,  0.155, -0.075],
         [ 0.075, -0.037,  0.039],
         [ 0.024,  0.002,  0.033],
         [-0.016,  0.007,  0.057]])
-Energy: -40.46280036406355
-Force: [[ 0.05614965 -0.12697159 -0.05413405]
- [-0.14007531  0.15523373 -0.07533836]
- [ 0.07532091 -0.03744109  0.03949669]
- [ 0.024231    0.00235088  0.0334423 ]
- [-0.01562626  0.00682808  0.05653341]]
+Energy: -40.4628003622009
+Force: [[ 0.05614965 -0.12697157 -0.05413405]
+ [-0.14007528  0.15523373 -0.07533834]
+ [ 0.0753209  -0.0374411   0.03949669]
+ [ 0.02423098  0.00235087  0.03344228]
+ [-0.01562626  0.00682808  0.05653342]]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.577 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.478 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-load-from-neurochem-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/6e47da231026b2cca4300c62c515ca96/load_from_neurochem.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_from_neurochem.py</span></code></a></div>
