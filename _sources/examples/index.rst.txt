@@ -18,7 +18,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_ase_interface_thumb.png
-    :alt: Structure minimization and constant temperature MD using ASE interface
+    :alt:
 
   :ref:`sphx_glr_examples_ase_interface.py`
 
@@ -35,7 +35,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_neurochem_trainer_thumb.png
-    :alt: Train Neural Network Potential From NeuroChem Input File
+    :alt:
 
   :ref:`sphx_glr_examples_neurochem_trainer.py`
 
@@ -52,7 +52,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_vibration_analysis_thumb.png
-    :alt: Computing Vibrational Frequencies Using Analytical Hessian
+    :alt:
 
   :ref:`sphx_glr_examples_vibration_analysis.py`
 
@@ -69,7 +69,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_energy_force_thumb.png
-    :alt: Computing Energy and Force Using Models Inside Model Zoo
+    :alt:
 
   :ref:`sphx_glr_examples_energy_force.py`
 
@@ -86,7 +86,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_load_from_neurochem_thumb.png
-    :alt: Construct Model From NeuroChem Files
+    :alt:
 
   :ref:`sphx_glr_examples_load_from_neurochem.py`
 
@@ -103,7 +103,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_jit_thumb.png
-    :alt: Using TorchScript to serialize and deploy model
+    :alt:
 
   :ref:`sphx_glr_examples_jit.py`
 
@@ -120,7 +120,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_nnp_training_thumb.png
-    :alt: Train Your Own Neural Network Potential
+    :alt:
 
   :ref:`sphx_glr_examples_nnp_training.py`
 
@@ -137,7 +137,7 @@ Examples
 .. only:: html
 
   .. image:: /examples/images/thumb/sphx_glr_nnp_training_force_thumb.png
-    :alt: Train Neural Network Potential To Both Energies and Forces
+    :alt:
 
   :ref:`sphx_glr_examples_nnp_training_force.py`
 
@@ -163,7 +163,6 @@ Examples
    /examples/jit
    /examples/nnp_training
    /examples/nnp_training_force
-
 
 .. only:: html
 
