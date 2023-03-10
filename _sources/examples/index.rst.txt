@@ -164,6 +164,7 @@ Examples
    /examples/nnp_training
    /examples/nnp_training_force
 
+
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-gallery
