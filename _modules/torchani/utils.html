@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>torchani.utils &mdash; TorchANI 2.2.3.dev4+g46c554a documentation</title>
+  <title>torchani.utils &mdash; TorchANI 2.2.3.dev5+g40cf334 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
@@ -34,7 +34,7 @@
             TorchANI
           </a>
               <div class="version">
-                2.2.3.dev4+g46c554a
+                2.2.3.dev5+g40cf334
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -420,7 +420,7 @@
     <span class="k">if</span> <span class="n">mass_scaled_hessian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The input should contain only one molecule&#39;</span><span class="p">)</span>
     <span class="n">mass_scaled_hessian</span> <span class="o">=</span> <span class="n">mass_scaled_hessian</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">symeig</span><span class="p">(</span><span class="n">mass_scaled_hessian</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">mass_scaled_hessian</span><span class="p">)</span>
     <span class="n">angular_frequencies</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
     <span class="n">frequencies</span> <span class="o">=</span> <span class="n">angular_frequencies</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
     <span class="c1"># converting from sqrt(hartree / (amu * angstrom^2)) to cm^-1 or meV</span>

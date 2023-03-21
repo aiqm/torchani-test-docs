@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>torchani.ase &mdash; TorchANI 2.2.3.dev4+g46c554a documentation</title>
+  <title>torchani.ase &mdash; TorchANI 2.2.3.dev5+g40cf334 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
@@ -34,7 +34,7 @@
             TorchANI
           </a>
               <div class="version">
-                2.2.3.dev4+g46c554a
+                2.2.3.dev5+g40cf334
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -148,7 +148,7 @@
     <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">],</span>
                   <span class="n">system_changes</span><span class="o">=</span><span class="n">ase</span><span class="o">.</span><span class="n">calculators</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="n">all_changes</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">system_changes</span><span class="p">)</span>
-        <span class="n">cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_cell</span><span class="p">(</span><span class="n">complete</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_cell</span><span class="p">(</span><span class="n">complete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
                             <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="n">pbc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_pbc</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">,</span>
                            <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
