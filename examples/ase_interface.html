@@ -109,7 +109,7 @@ to download the full example code</p>
 calculator.</p>
 <p>To begin with, let’s first import the modules we will use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.lattice.cubic</span> <span class="kn">import</span> <span class="n">Diamond</span>
-<span class="kn">from</span> <span class="nn">ase.md.langevin</span> <span class="kn">import</span> <span class="n">Langevin</span>
+<span class="kn">from</span> <span class="nn">ase.md.langevin</span> <span class="kn">import</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class"><span class="n">Langevin</span></a>
 <span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/optimize.html#ase.optimize.BFGS" title="ase.optimize.BFGS" class="sphx-glr-backref-module-ase-optimize sphx-glr-backref-type-py-class"><span class="n">BFGS</span></a>
 <span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">units</span>
 <span class="kn">import</span> <span class="nn">torchani</span>
@@ -143,7 +143,7 @@ large for structure minimization. If you insist on using
 </div>
 </div>
 <p>Now let’s set the calculator for <code class="docutils literal notranslate"><span class="pre">atoms</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">atoms</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calculator</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.set_calculator" title="ase.Atoms.set_calculator" class="sphx-glr-backref-module-ase sphx-glr-backref-type-py-method"><span class="n">atoms</span><span class="o">.</span><span class="n">set_calculator</span></a><span class="p">(</span><span class="n">calculator</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now let’s minimize the structure:</p>
@@ -155,7 +155,7 @@ large for structure minimization. If you insist on using
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Begin minimizing...
       Step     Time          Energy         fmax
-BFGS:    0 00:03:28    -8311.226180        0.0000
+BFGS:    0 00:03:11    -8311.226180        0.0000
 </pre></div>
 </div>
 <p>Now create a callback function that print interesting physical quantities:</p>
@@ -170,8 +170,8 @@ BFGS:    0 00:03:28    -8311.226180        0.0000
 <p>We want to run MD with constant energy using the Langevin algorithm
 with a time step of 1 fs, the temperature 300K and the friction
 coefficient to 0.02 atomic units.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dyn</span> <span class="o">=</span> <span class="n">Langevin</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">units</span><span class="o">.</span><span class="n">fs</span></a><span class="p">,</span> <span class="mi">300</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">units</span><span class="o">.</span><span class="n">kB</span></a><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
-<span class="n">dyn</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">printenergy</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dyn</span></a> <span class="o">=</span> <a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class"><span class="n">Langevin</span></a><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">units</span><span class="o">.</span><span class="n">fs</span></a><span class="p">,</span> <span class="mi">300</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">units</span><span class="o">.</span><span class="n">kB</span></a><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dyn</span></a><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">printenergy</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/ase/md/md.py:48: FutureWarning: Specify the temperature in K using the &#39;temperature_K&#39; argument
@@ -181,27 +181,27 @@ coefficient to 0.02 atomic units.</p>
 <p>Now run the dynamics:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beginning dynamics...&quot;</span><span class="p">)</span>
 <span class="n">printenergy</span><span class="p">()</span>
-<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<a href="https://wiki.fysik.dtu.dk/ase/ase/md.html#ase.md.langevin.Langevin" title="ase.md.langevin.Langevin" class="sphx-glr-backref-module-ase-md-langevin sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">dyn</span></a><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Beginning dynamics...
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
 Energy per atom: Epot = -1038.903eV  Ekin = 0.000eV (T=  0K)  Etot = -1038.903eV
-Energy per atom: Epot = -1038.869eV  Ekin = 0.036eV (T=282K)  Etot = -1038.832eV
-Energy per atom: Epot = -1038.864eV  Ekin = 0.039eV (T=305K)  Etot = -1038.824eV
-Energy per atom: Epot = -1038.837eV  Ekin = 0.018eV (T=135K)  Etot = -1038.820eV
-Energy per atom: Epot = -1038.868eV  Ekin = 0.036eV (T=282K)  Etot = -1038.832eV
-Energy per atom: Epot = -1038.873eV  Ekin = 0.031eV (T=238K)  Etot = -1038.842eV
-Energy per atom: Epot = -1038.870eV  Ekin = 0.027eV (T=208K)  Etot = -1038.843eV
-Energy per atom: Epot = -1038.867eV  Ekin = 0.035eV (T=274K)  Etot = -1038.832eV
-Energy per atom: Epot = -1038.865eV  Ekin = 0.020eV (T=151K)  Etot = -1038.846eV
-Energy per atom: Epot = -1038.871eV  Ekin = 0.029eV (T=224K)  Etot = -1038.842eV
-Energy per atom: Epot = -1038.885eV  Ekin = 0.029eV (T=223K)  Etot = -1038.856eV
+Energy per atom: Epot = -1038.894eV  Ekin = 0.015eV (T=115K)  Etot = -1038.879eV
+Energy per atom: Epot = -1038.883eV  Ekin = 0.028eV (T=213K)  Etot = -1038.856eV
+Energy per atom: Epot = -1038.873eV  Ekin = 0.026eV (T=198K)  Etot = -1038.847eV
+Energy per atom: Epot = -1038.879eV  Ekin = 0.028eV (T=215K)  Etot = -1038.852eV
+Energy per atom: Epot = -1038.881eV  Ekin = 0.024eV (T=189K)  Etot = -1038.856eV
+Energy per atom: Epot = -1038.872eV  Ekin = 0.027eV (T=212K)  Etot = -1038.844eV
+Energy per atom: Epot = -1038.879eV  Ekin = 0.038eV (T=294K)  Etot = -1038.841eV
+Energy per atom: Epot = -1038.874eV  Ekin = 0.038eV (T=296K)  Etot = -1038.836eV
+Energy per atom: Epot = -1038.870eV  Ekin = 0.017eV (T=128K)  Etot = -1038.854eV
+Energy per atom: Epot = -1038.864eV  Ekin = 0.016eV (T=126K)  Etot = -1038.848eV
 
 True
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.254 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  14.634 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ase-interface-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <a class="reference download internal" download="" href="../_downloads/63fc96e3617a5d12dad01b74efe5c292/ase_interface.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">ase_interface.py</span></code></a></div>
